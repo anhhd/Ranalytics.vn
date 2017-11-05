@@ -1,4 +1,4 @@
-baseurl = "https://ranalytics.vn"
+baseurl = "http://ranalytics.vn"
 title = "Ranalytics.vn"
 theme = "hugo-universal-theme"
 languageCode = "en-us"
