@@ -1,0 +1,71 @@
+- id: home
+  translation: "Trang chủ"
+
+- id: templateBy
+  translation: "Template by"
+
+- id: portedBy
+  translation: "Ported to Hugo by"
+
+- id: contactGoTo
+  translation: "Liên hệ ngay"
+
+- id: contactAddrTitle
+  translation: "Địa chỉ"
+
+- id: contactTitle
+  translation: "Liên hệ"
+
+- id: contactForm
+  translation: "Thông tin liên hệ"
+
+- id: contactName
+  translation: "Họ và tên"
+
+- id: contactMail
+  translation: "Email"
+
+- id: contactMessage
+  translation: "Nội dung"
+
+- id: contactSend
+  translation: "Hoàn tất"
+
+- id: navHome
+  translation: "Về trang chủ"
+
+- id: navToggle
+  translation: "Toggle Navigation"
+
+- id: categoriesTitle
+  translation: "Nhóm bài viết"
+
+- id: searchTitle
+  translation: "Tìm kiếm"
+
+- id: tagsTitle
+  translation: "Tags"
+
+- id: continueReading
+  translation: "Tìm hiểu thêm"
+
+- id: readMore
+  translation: "Tìm hiểu thêm"
+
+- id: authorBy #Thông tin tác giả đăng post
+  translation: "Tác giả: "
+
+- id: recentPosts
+  translation: "Các bài viết gần đây"
+
+- id: aboutUs
+  translation: "Về chúng tôi"
+
+- id: newer
+  translation: "Các bài mới hơn"
+
+- id: older
+  translation: "Các bài cũ hơn"
+
+- id: publishedOn
+  translation: "Thời gian"

@@ -1,0 +1,24 @@
+---
+title: Hướng dẫn sử dụng R cơ bản
+author: 'Hoàng Đức Anh'
+date: '2017-10-31'
+slug: huong-dan-su-dung
+categories: 
+  - R
+tags: ['R', 'RSQLServer']
+summary: 'In this post, I will share with you the way that I manage my R library, no worries when updating your R or even R Services in SQLRServer'
+---
+
+#Hướng dẫn 1
+
+##Hướng dẫn 2
+
+```{r}
+head(mtcars)
+```
+
+**Sử dụng công thức toán**
+
+$$e^x = \frac{a}{b} x \sum_{i=1}^n$$
+
+
