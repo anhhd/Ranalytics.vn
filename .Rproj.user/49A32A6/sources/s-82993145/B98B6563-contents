@@ -1,6 +1,6 @@
 baseurl = "http://ranalytics.vn/"
 relativeurls = true
-title = "Ranalytics.vn"
+title = "Ranalytics.vn - Từ phân tích đến quyết định"
 theme = "hugo-universal-theme"
 languageCode = "en-us"
 

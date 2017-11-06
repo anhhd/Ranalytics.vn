@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Ranalytics.vn</title>
+    <title>Categories on Ranalytics.vn - Từ phân tích đến quyết định</title>
     <link>/categories/</link>
-    <description>Recent content in Categories on Ranalytics.vn</description>
+    <description>Recent content in Categories on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2017, Ranalytics.vn - all rights reserved</copyright>
@@ -14,7 +14,7 @@
     <item>
       <title>R</title>
       <link>/categories/r/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/categories/r/</guid>
       <description></description>

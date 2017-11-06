@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Ranalytics.vn</title>
+    <title>Tags on Ranalytics.vn - Từ phân tích đến quyết định</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on Ranalytics.vn</description>
+    <description>Recent content in Tags on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2017, Ranalytics.vn - all rights reserved</copyright>
@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>R</title>
+      <link>/tags/r/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R Markdown</title>
       <link>/tags/r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
@@ -36,6 +45,15 @@
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
       <guid>/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rstudio</title>
+      <link>/tags/rstudio/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rstudio/</guid>
       <description></description>
     </item>
     

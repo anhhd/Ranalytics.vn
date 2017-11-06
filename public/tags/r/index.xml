@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Ranalytics.vn</title>
+    <title>R on Ranalytics.vn - Từ phân tích đến quyết định</title>
     <link>/tags/r/</link>
-    <description>Recent content in R on Ranalytics.vn</description>
+    <description>Recent content in R on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2017, Ranalytics.vn - all rights reserved</copyright>
-    <lastBuildDate>Tue, 31 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Hướng dẫn sử dụng R cơ bản</title>
-      <link>/blog/2017/10/31/2017-10-31-huong-dan-su-dung/</link>
-      <pubDate>Tue, 31 Oct 2017 00:00:00 +0000</pubDate>
+      <title>Cai dat R</title>
+      <link>/blog/2017/11/06/2017-11-06-cai-dat-r/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2017/10/31/2017-10-31-huong-dan-su-dung/</guid>
-      <description>Hướng dẫn 1Hướng dẫn 2head(mtcars)## mpg cyl disp hp drat wt qsec vs am gear carb## Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4## Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4## Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1## Hornet 4 Drive 21.4 6 258 110 3.</description>
+      <guid>/blog/2017/11/06/2017-11-06-cai-dat-r/</guid>
+      <description>Thử nghiệmĐiểm 1Điểm 2head(mtcars)## mpg cyl disp hp drat wt qsec vs am gear carb## Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4## Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4## Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1## Hornet 4 Drive 21.4 6 258 110 3.</description>
     </item>
     
   </channel>
