@@ -1,6 +1,6 @@
 ---
-title: Cai dat R
-author: ''
+title: Hướng dẫn cài đặt R
+author: 'Hoàng Đức Anh'
 date: '2017-11-06'
 slug: cai-dat-r
 categories:
