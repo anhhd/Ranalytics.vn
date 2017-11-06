@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2749337062",
+    "hash" : "0",
     "id" : "B98B6563",
-    "lastKnownWriteTime" : 1509897279,
-    "last_content_update" : 1509897279380,
+    "lastKnownWriteTime" : 1509975482,
+    "last_content_update" : 1509975482607,
     "path" : "D:/GitHub/Ranalytics.vn/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "12,0",
-        "scrollLine" : "0"
+        "cursorPosition" : "172,22",
+        "scrollLine" : "166"
     },
     "relative_order" : 1,
     "source_on_save" : false,

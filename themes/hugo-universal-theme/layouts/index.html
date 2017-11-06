@@ -19,6 +19,12 @@
 
         {{ partial "features.html" . }}
 		
+		{{ partial "see_more_2.html" . }}
+		
+		{{ if .Site.Params.team.enable }}
+			{{ partial "team.html" . }}
+		{{ end }}
+		
         {{ partial "testimonials.html" . }}
 
         {{ partial "see_more.html" . }}

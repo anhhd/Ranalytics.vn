@@ -151,14 +151,6 @@ paginate = 10
     # at 'exampleSite/data/features'.
     # For more informtion take a look at the README.
 
-[params.see_more_2]
-    enable = false
-    icon = "fa fa-file-code-o"
-    title = "Xem khóa học với DataCamp"
-    subtitle = "Hoàng Đức Anh, đồng sáng lập viên RAnalytics.vn là giảng viên phân tích dữ liệu của RStudio"
-    link_url = "https://www.rstudio.com/instructors/"
-    link_text = "Xem ngay"
-
 [params.testimonials]
     enable = true
     # All testimonials are defined in their own files. You can find example items
@@ -180,10 +172,62 @@ paginate = 10
     # All clients are defined in their own files. You can find example items
     # at 'exampleSite/data/clients'.
     # For more informtion take a look at the README.
-    title = "Các khóa học"
+    title = "Tài liệu"
     subtitle = ""
 
 [params.recent_posts]
     enable = false
     title = "From our blog"
     subtitle = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo."
+
+[params.see_more_2]
+    enable = true
+    icon = "fa fa-info-circle"
+    title = "Về chúng tôi"
+    subtitle = "RAnalytics là một nhóm những người sử dụng R, nghiện phân tích số liệu, chuyên về phân tích, trực quan hóa số liệu & xây dựng các mô hình dự báo. Chúng tôi cung cấp các khóa học về R với nhiều chủ đề khác nhau cũng như tư vấn và xử lý các vấn đề khác nhau về phân tích dữ liệu và nghiên cứu thị trường. Chúng tôi thích thảo luận và xử lý các vấn đề thực tế trong phân tích kinh doanh. Các thành viên có hơn 10 năm kinh nghiệm trong phân tích kinh doanh, khoa học số liệu, nghiên cứu thị trường và phát triển website, trong nhiều lĩnh vực khác nhau, gồm có ngân hàng, Mobile, thương mại điện tử và công nghệ thông tin. Sứ mệnh của chúng tôi là đưa sức mạnh của R, phần mềm phân tích mạnh nhất hiện nay, đến với Việt Nam"
+    link_url = "https://www.datacamp.com/community/open-courses/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C6%A1-b%E1%BA%A3n-v%E1%BB%81-r"
+    link_text = "Xem ngay"
+    
+####TEAM SECTION
+# Team section
+  [params.team]
+    enable = true
+    # Possibility to center items
+    #center = true
+    title = "Các thành viên"
+#    subtitle = "Lorem ipsum dolor sit amet consectetur."
+#    description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde."
+
+    # All team member's pictures are stored under 'static/img/team'.
+    # Replace them with your own too.
+    # Suggestion: Image size should be at least 360px*360px or the alignment might be affected.
+
+    [[params.team.members]]
+      img = "2-phamdinhduc.png"
+      name = "Phạm Đình Đức"
+      position = "Cofounder, Data Scientist"
+      bio = "6 năm kinh nghiệm phân tích số liệu, xây dựng hệ thống Data Warehouse & tự động hóa báo cáo  trong lĩnh vực ngân hàng, bán lẻ & Ecommerce, tốt nghiệp thạc sỹ tại vương quốc Anh"
+      social = [
+        ["fa-linkedin", "https://www.linkedin.com/in/duc-pham-35910975/"]
+      ]
+      
+        [[params.team.members]]
+      img = "1-hoangducanh.jpg"
+      name = "Hoàng Đức Anh"
+      position = "Cofounder, Business Analytics Professional"
+      # For bio markdown and even multiline strings are available.
+      bio = "Giảng viên phân tích dữ liệu của RStudio tại Việt Nam, 4 năm kinh nghiệm trong lĩnh vực phân tích số liệu, 3 năm kinh nghiệm trong E-Commerce & Mobile. Tốt nghiệp thạc sỹ ngành phân tích định lượng trong kinh tế tại Warsaw"
+      social = [
+        ["fa-twitter", "https://twitter.com/AnhHoangDuc"],
+        ["fa-linkedin", "https://www.linkedin.com/in/hoangducanh/"],
+        ["fa-globe", "http://anhhoangduc.com/"],
+      ]
+
+    [[params.team.members]]
+      img = "3-lekhanhduong.png"
+      name = "Lê Khánh Dương"
+      position = "Senior Developer"
+      bio = "4 năm kinh nghiệm lập trình PHP, Java và xây dựng các hệ thống hỗ trợ Ecommerce & phân tích số liệu"
+      social = [
+        ["fa-linkedin", "https://www.linkedin.com/in/duonglk/"]
+      ]

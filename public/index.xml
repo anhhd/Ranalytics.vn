@@ -56,7 +56,10 @@ summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/faq/</guid>
-      <description>1. RAnalytics là gì? RAnalytics là một nhóm những người sử dụng R, nghiện phân tích số liệu, chuyên về phân tích, trực quan hóa số liệu &amp;amp; xây dựng các mô hình dự báo. Chúng tôi cung cấp các khóa học về R với nhiều chủ đề khác nhau cũng như tư vấn và xử lý các vấn đề khác nhau về phân tích dữ liệu và nghiên cứu thị trường.</description>
+      <description>1.Khóa học sẽ diễn ra như thế nào?
+Chủ yếu qua thực hành. Các bạn sẽ được giải thích các khái niệm và hướng dẫn cơ bản, sau đó sẽ thực hành ngay trên R.
+2. Những ai nên học khóa học này?
+Tất cả những ai thích phân tích số liệu hoặc thấy việc phân tích số liệu là cần thiết cho công việc của mình. Đặc biệt các bạn làm trong lĩnh vực phân tích – tổng hợp kinh doanh, research, marketing.</description>
     </item>
     
     <item>
