@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogs on Ranalytics.vn - Từ phân tích đến quyết định</title>
-    <link>/blog/</link>
-    <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <title>Microsoft R on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/tags/microsoft-r/</link>
+    <description>Recent content in Microsoft R on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2017, Ranalytics.vn - all rights reserved</copyright>
     <lastBuildDate>Thu, 10 Aug 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/microsoft-r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,15 +20,6 @@
       <guid>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</guid>
       <description>When starting using with R, installing and managing R libraries seems not to be a difficult task at all. However, when updating R to new version, it will make some problems. For most cases, you have to re-install your library, which takes much time.
 There is another tricky way to solve that problem, which is to copy all your old libraries to the new library folder. For example, all your libraries in R version 3.</description>
-    </item>
-    
-    <item>
-      <title>Comming soon</title>
-      <link>/blog/2015/06/24/creating-a-new-theme/</link>
-      <pubDate>Wed, 24 Jun 2015 13:50:46 +0200</pubDate>
-      
-      <guid>/blog/2015/06/24/creating-a-new-theme/</guid>
-      <description>Comming soon!</description>
     </item>
     
   </channel>

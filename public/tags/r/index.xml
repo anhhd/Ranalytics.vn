@@ -7,18 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright (c) 2017, Ranalytics.vn - all rights reserved</copyright>
-    <lastBuildDate>Mon, 06 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Aug 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Hướng dẫn cài đặt R</title>
-      <link>/blog/2017/11/06/2017-11-06-cai-dat-r/</link>
-      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      <title>How to manage libraries in R efficiently?</title>
+      <link>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</link>
+      <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2017/11/06/2017-11-06-cai-dat-r/</guid>
-      <description>Thử nghiệmĐiểm 1Điểm 2head(mtcars)## mpg cyl disp hp drat wt qsec vs am gear carb## Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4## Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4## Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1## Hornet 4 Drive 21.4 6 258 110 3.</description>
+      <guid>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</guid>
+      <description>When starting using with R, installing and managing R libraries seems not to be a difficult task at all. However, when updating R to new version, it will make some problems. For most cases, you have to re-install your library, which takes much time.
+There is another tricky way to solve that problem, which is to copy all your old libraries to the new library folder. For example, all your libraries in R version 3.</description>
     </item>
     
   </channel>
