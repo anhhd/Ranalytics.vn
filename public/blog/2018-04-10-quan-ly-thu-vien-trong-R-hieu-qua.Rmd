@@ -1,6 +1,6 @@
 ---
 title: Quản lý thư viện trong R hiệu quả
-author: ''
+author: 'Hoàng Đức Anh'
 date: '2017-08-10'
 slug: quan-ly-thu-vien-trong-r-hieu-qua
 categories:
