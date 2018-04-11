@@ -13,13 +13,13 @@
     
     
     <item>
-      <title>How to manage libraries in R efficiently?</title>
+      <title>Quản lý thư viện trong R hiệu quả?</title>
       <link>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</link>
       <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</guid>
-      <description>When starting using with R, installing and managing R libraries seems not to be a difficult task at all. However, when updating R to new version, it will make some problems. For most cases, you have to re-install your library, which takes much time.
-There is another tricky way to solve that problem, which is to copy all your old libraries to the new library folder. For example, all your libraries in R version 3.</description>
+      <description>Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.
+Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới.</description>
     </item>
     
   </channel>
