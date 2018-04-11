@@ -44,7 +44,17 @@
                             {{ end }}
                             {{ i18n "publishedOn" }} {{ .Date.Format .Site.Params.date_format }}
                             </p>
-                            <p class="intro">{{ .summary }}</p>
+                           
+							
+				<div class="intro"><p>
+				{{ if .Params.summary }}
+				{{ printf "%s" .Params.summary | markdownify }}
+				{{ else if .Truncated }}
+				{{ printf "%s" .Summary | markdownify }}
+				{{ else }}
+				{{ .Content }}
+				{{ end }}
+				</p></div>
 							
 							
                             <p class="read-more">
