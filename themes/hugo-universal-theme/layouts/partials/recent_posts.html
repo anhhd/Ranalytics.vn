@@ -44,18 +44,13 @@
                             {{ end }}
                             {{ i18n "publishedOn" }} {{ .Date.Format .Site.Params.date_format }}
                             </p>
-                           
 							
-				<p class="intro">
-				{{ if .Params.summary }}
-				{{ printf "%s" .Params.summary | markdownify }}
-				{{ else if .Truncated }}
-				{{ printf "%s" .Summary | markdownify }}
-				{{ else }}
-				{{ .Content }}
-				{{ end }}
-				</p>
-							
+                            <p> {{ if .summary }}
+                                    {{ .summary }}
+                                        {{ else }}
+                                  {{ .Summary | plainify | safeHTML }}
+                                        {{ end }}</p>
+						   
 							
                             <p class="read-more">
                               <a href="{{ .Permalink }}" class="btn btn-template-main">{{ i18n "continueReading" }}</a>
