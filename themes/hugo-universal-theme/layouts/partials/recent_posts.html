@@ -46,7 +46,7 @@
                             </p>
                            
 							
-				<div class="intro"><p>
+				<p class="intro">
 				{{ if .Params.summary }}
 				{{ printf "%s" .Params.summary | markdownify }}
 				{{ else if .Truncated }}
@@ -54,7 +54,7 @@
 				{{ else }}
 				{{ .Content }}
 				{{ end }}
-				</p></div>
+				</p>
 							
 							
                             <p class="read-more">
