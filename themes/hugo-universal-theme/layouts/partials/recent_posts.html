@@ -11,6 +11,16 @@
             <p class="lead">
               {{ .Site.Params.recent_posts.subtitle | markdownify }}
             </p>
+			
+			    <div class="article-style"><p>
+				{{ if .Params.summary }}
+				{{ printf "%s" .Params.summary | markdownify }}
+				{{ else if .Truncated }}
+				{{ printf "%s" .Summary | markdownify }}
+				{{ else }}
+				{{ .Content }}
+				{{ end }}
+				</p></div>
 
             <!-- *** BLOG HOMEPAGE *** -->
 
