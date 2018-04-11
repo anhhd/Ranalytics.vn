@@ -1,0 +1,21 @@
+---
+title: Test 2
+author: ''
+date: '2018-04-11'
+slug: test-2
+categories: []
+tags: []
+summary: "Sử dụng ggplot2"
+banner: "img/banners/banner-1.jpg"
+---
+
+Hướng dẫn dùng một số hàm cơ bản của R
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+mtcars %>% 
+  ggplot(aes(mpg, cyl)) +
+  geom_point() +
+  theme_bw()
+```

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/2018/04/11/2018-04-11-test-2/</loc>
+    <lastmod>2018-04-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</loc>
     <lastmod>2017-08-10T00:00:00+00:00</lastmod>
   </url>
@@ -18,12 +23,16 @@
   </url>
   
   <url>
+    <loc>/blog/1/01/01/creating-a-new-theme/</loc>
+  </url>
+  
+  <url>
     <loc>/contact/</loc>
   </url>
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2017-08-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -58,7 +67,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-08-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

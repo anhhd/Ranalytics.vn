@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Test 2</title>
+      <link>/blog/2018/04/11/2018-04-11-test-2/</link>
+      <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/04/11/2018-04-11-test-2/</guid>
+      <description>Hướng dẫn dùng một số hàm cơ bản của R
+library(tidyverse)  ## Loading tidyverse: ggplot2 ## Loading tidyverse: tibble ## Loading tidyverse: tidyr ## Loading tidyverse: readr ## Loading tidyverse: purrr ## Loading tidyverse: dplyr  ## Warning: package &#39;purrr&#39; was built under R version 3.4.4  ## Conflicts with tidy packages ----------------------------------------------  ## filter(): dplyr, stats ## lag(): dplyr, stats  library(ggplot2) mtcars %&amp;gt;% ggplot(aes(mpg, cyl)) + geom_point() + theme_bw()  </description>
+    </item>
     
     <item>
       <title>Quản lý thư viện trong R hiệu quả?</title>
@@ -37,6 +47,15 @@ Có một cách truyền thông để xử lý vấn đề trên, đó là copy 
       
       <guid>/blog/2015/06/24/creating-a-new-theme/</guid>
       <description>Comming soon!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/blog/1/01/01/creating-a-new-theme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/1/01/01/creating-a-new-theme/</guid>
+      <description>code{white-space: pre;}pre:not([class]) {background-color: white;}if (window.hljs) {hljs.configure({languages: []});hljs.initHighlightingOnLoad();if (document.readyState &amp;&amp; document.readyState === &#34;complete&#34;) {window.setTimeout(function() { hljs.initHighlighting(); }, 0);}}h1 {font-size: 34px;}h1.title {font-size: 38px;}h2 {font-size: 30px;}h3 {font-size: 24px;}h4 {font-size: 18px;}h5 {font-size: 16px;}h6 {font-size: 12px;}.</description>
     </item>
     
   </channel>
