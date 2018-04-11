@@ -45,11 +45,8 @@
                             {{ i18n "publishedOn" }} {{ .Date.Format .Site.Params.date_format }}
                             </p>
 							
-                            <p> {{ if .summary }}
-                                    {{ .summary }}
-                                        {{ else }}
-                                  {{ .Summary | plainify | safeHTML }}
-                                        {{ end }}</p>
+                            <p class="intro">{{ .summary }}</p>
+							
 						   
 							
                             <p class="read-more">
