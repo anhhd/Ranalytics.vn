@@ -6,7 +6,7 @@ slug: quan-ly-thu-vien-trong-r-hieu-qua
 categories:
   - R
 tags: ["R"]
-summary: "Cách quản lý thư viện trong R hiệu quả"
+subtitle: "Cách quản lý thư viện trong R hiệu quả"
 banner: "img/banners/banner-1.jpg"
 ---
 
