@@ -6,7 +6,6 @@
     <description>Recent content in R on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright (c) 2017, Ranalytics.vn - all rights reserved</copyright>
     <lastBuildDate>Thu, 10 Aug 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
@@ -20,6 +19,15 @@
       <guid>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</guid>
       <description>Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.
 Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới.</description>
+    </item>
+    
+    <item>
+      <title>Sử dụng ggplot2?</title>
+      <link>/blog/2017/08/10/2018-04-11-su-dung-ggplot2/</link>
+      <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2017/08/10/2018-04-11-su-dung-ggplot2/</guid>
+      <description>Hướng dẫn dùng ggplot2library(tidyverse)## Loading tidyverse: ggplot2## Loading tidyverse: tibble## Loading tidyverse: tidyr## Loading tidyverse: readr## Loading tidyverse: purrr## Loading tidyverse: dplyr## Warning: package &amp;#39;purrr&amp;#39; was built under R version 3.4.4## Conflicts with tidy packages ----------------------------------------------## filter(): dplyr, stats## lag(): dplyr, statslibrary(ggplot2)mtcars %&amp;gt;% ggplot(aes(mpg, cyl)) +geom_point() +theme_bw()</description>
     </item>
     
   </channel>

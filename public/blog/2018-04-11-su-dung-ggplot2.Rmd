@@ -1,0 +1,24 @@
+---
+title: Sử dụng ggplot2?
+author: ''
+date: '2017-08-10'
+slug: su-dung-ggplot2
+categories:
+  - R
+tags: ["R"]
+summary: "Sử dụng ggplot2"
+banner: "img/banners/banner-1.jpg"
+---
+
+# Hướng dẫn dùng ggplot2
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+mtcars %>% 
+  ggplot(aes(mpg, cyl)) +
+  geom_point() +
+  theme_bw()
+```
+
+
