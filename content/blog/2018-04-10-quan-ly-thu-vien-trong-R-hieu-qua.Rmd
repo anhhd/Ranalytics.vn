@@ -14,14 +14,14 @@ Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như
 
 Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới. Ví dụ, toàn bộ library của `R 3.3` nằm ở thư mục `D:\My Documents\R\win-library\3.3`. Sau khi update lên `R 3.4`, ta không muốn cài đặt lại tất cả các library, cách nhanh nhất là copy toàn bộ library cũ vào folder chứa library mới nằm ở `D:\My Documents\R\win-library\3.4`. 
 
-Tuy nhiên, cách xử lý này cũng có nhiều nhược điểm. Thứ nhất, cách xử lý này tốn thời gian để copy các folder, nhiều khi lên tới 40-50 phút nếu ta có rất nhiều library. Thứ hai, nếu ta có nhiều version của R, cách này sẽ tiêu tốn dung lượng lưu trữ đến vài Gb. Cuối cùng, ta không thể chỉ cài đặt R library một lần và sử dụng cho nhiều lần sau, với mỗi phiên bản của R (VD: R từ Cran và RServices của Microsoft) ta phải cài đặt hoặc copy nhiều lần.
+Tuy nhiên, cách xử lý này cũng có nhiều nhược điểm. Thứ nhất, cách xử lý này tốn thời gian để copy các folder, nhiều khi lên tới 40-50 phút nếu ta có rất nhiều library. Thứ hai, nếu ta có nhiều version của R, cách này sẽ tiêu tốn dung lượng lưu trữ đến vài Gb. Cuối cùng, ta không thể chỉ cài đặt R library một lần và sử dụng cho nhiều lần sau, với mỗi phiên bản của R (VD: `R` từ Cran và `RServices` của Microsoft) ta phải cài đặt hoặc copy nhiều lần.
 
 Tuy nhiên, có một cách rất hiệu quả để đơn giản hóa toàn bộ các vấn đề trên bằng một vài bước đơn giản như sau.
 
 - **Bước 1**: Tạo một folder cố đinh để lưu trữ library trong máy tính. VD `D:/Rlibrary`
 - **Bước 2**: Copy toàn bộ library vào folder vừa tạo (VD: Copy library từ `D:\My Documents\R\win-library\3.3`) `D:/Rlibrary`
 - **Bước 3**: Thay đổi chế độ mặc định của R để R hiểu thư mục `D:/Rlibrary` (folder mới) là thư mục làm việc mặc định, tất cả các library mới sẽ được cài đặt tại đây.
-    - Mở Rstudio và tìm thư mục hiện đang chứa library trong R
+    - Mở `Rstudio` và tìm thư mục hiện đang chứa library trong R
 
 ```{r, waring = F}
 .libPaths()
