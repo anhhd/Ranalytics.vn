@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quản lý thư viện trong R hiệu quả</title>
+  <title>Thu gọn giá trị các factor trong biểu đồ</title>
   <meta name="author" content="" />
 
   
@@ -56,9 +56,9 @@
   <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Quản lý thư viện trong R hiệu quả" />
+  <meta property="og:title" content="Thu gọn giá trị các factor trong biểu đồ" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua//" />
+  <meta property="og:url" content="/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -77,9 +77,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="../../../../../">
-                    <img src="../../../../../img/logo.png" alt="Quản lý thư viện trong R hiệu quả logo" class="hidden-xs hidden-sm">
-                    <img src="../../../../../img/logo-small.png" alt="Quản lý thư viện trong R hiệu quả logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Quản lý thư viện trong R hiệu quả - Về trang chủ</span>
+                    <img src="../../../../../img/logo.png" alt="Thu gọn giá trị các factor trong biểu đồ logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Thu gọn giá trị các factor trong biểu đồ logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Thu gọn giá trị các factor trong biểu đồ - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -158,7 +158,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Quản lý thư viện trong R hiệu quả</h1>
+                <h1>Thu gọn giá trị các factor trong biểu đồ</h1>
             </div>
         </div>
     </div>
@@ -174,33 +174,45 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2017-08-10</p>
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2018-04-15</p>
 
                         <div id="post-content">
-                          <p>Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.</p>
-<p>Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới. Ví dụ, toàn bộ library của <code>R 3.3</code> nằm ở thư mục <code>D:\My Documents\R\win-library\3.3</code>. Sau khi update lên <code>R 3.4</code>, ta không muốn cài đặt lại tất cả các library, cách nhanh nhất là copy toàn bộ library cũ vào folder chứa library mới nằm ở <code>D:\My Documents\R\win-library\3.4</code>.</p>
-<p>Tuy nhiên, cách xử lý này cũng có nhiều nhược điểm. Thứ nhất, cách xử lý này tốn thời gian để copy các folder, nhiều khi lên tới 40-50 phút nếu ta có rất nhiều library. Thứ hai, nếu ta có nhiều version của R, cách này sẽ tiêu tốn dung lượng lưu trữ đến vài Gb. Cuối cùng, ta không thể chỉ cài đặt R library một lần và sử dụng cho nhiều lần sau, với mỗi phiên bản của R (VD: <code>R</code> từ Cran và <code>RServices</code> của Microsoft) ta phải cài đặt hoặc copy nhiều lần.</p>
-<p>Tuy nhiên, có một cách rất hiệu quả để đơn giản hóa toàn bộ các vấn đề trên bằng một vài bước đơn giản như sau.</p>
-<ul>
-<li><strong>Bước 1</strong>: Tạo một folder cố đinh để lưu trữ library trong máy tính. VD <code>D:/Rlibrary</code></li>
-<li><strong>Bước 2</strong>: Copy toàn bộ library vào folder vừa tạo (VD: Copy library từ <code>D:\My Documents\R\win-library\3.3</code>) <code>D:/Rlibrary</code></li>
-<li><strong>Bước 3</strong>: Thay đổi chế độ mặc định của R để R hiểu thư mục <code>D:/Rlibrary</code> (folder mới) là thư mục làm việc mặc định, tất cả các library mới sẽ được cài đặt tại đây.
-<ul>
-<li>Mở <code>Rstudio</code> và tìm thư mục hiện đang chứa library trong R</li>
-</ul></li>
-</ul>
-<pre class="r"><code>.libPaths()</code></pre>
-<p>Sau khi thực hiện, ta sẽ có 2 kết quả, thứ nhất là thư mục <code>C:/Users/anhhd/Rlibrary</code> - bỏ qua thư mục này &amp; thư mục số 2 <code>C:/Program Files/R/R-3.3.0/library</code>. Ta có thể thay đổi thư mục cài đặt như sau</p>
-<ul>
-<li>Truy cập <code>C:/Program Files/R/R-3.3.0/library</code></li>
-<li>Truy cập <code>base\R</code></li>
-<li>Copy file <code>Rprofile</code> ra desktop</li>
-<li>Mở <code>Rprofile</code> với notepad</li>
-<li>Thêm đoạn code sau vào dòng cuối cùng</li>
-<li>Copy <code>Rprofile</code> ngược lại vào <code>C:/Program Files/R/R-3.3.0/library/base/R</code></li>
-</ul>
-<p>Khởi động lại Rstudio và gõ câu lệnh <code>.libPaths()</code>, ta sẽ nhìn thấy thư mục mặc định chưa library chuyển sang <code>D:/Rlibrary</code>.</p>
-<p>Sau khi thực hiện xong, nếu update R, việc các bạn phải làm chỉ là điều chỉnh lại thư viện mặc định của phiên bản R mới sang <code>D:/Rlibrary</code> như hướng dẫn ở trên, không cần copy hoặc cài đặt lại các library mới.</p>
+                          <p>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(ggplot2)
+
+data &lt;- data.frame(x = c(&quot;Trung tam kinh doanh dien tu dien may va do gia dung&quot;, 
+                         &quot;Trung tam 2&quot;, 
+                         &quot;Trung tam kinh doanh my pham va dich vu&quot;),
+                   y = c(5,3,7))
+
+# Vẽ biểu đồ thông thường, không xử lý với factor
+data %&gt;% 
+  ggplot(aes(x, y)) + 
+  geom_bar(stat = &quot;identity&quot;, aes(fill = x)) +
+  theme_bw() +
+  theme(legend.position = &quot;none&quot;) +
+  ggtitle(&quot;Ví dụ 1&quot;)</code></pre>
+<p><img src="../../../../../blog/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Để khắc phục vấn đề trên, ta có thể sử dụng library <code>stringr</code> với hàm <code>str_wrap</code> để tự động co gọn lại giá trị của factor trên biểu đồ</p>
+<pre class="r"><code>library(stringr)
+data %&gt;% 
+  ggplot(aes(x, y)) + 
+  geom_bar(stat = &quot;identity&quot;, aes(fill = x)) +
+  theme_bw() +
+  theme(legend.position = &quot;none&quot;) +
+  scale_x_discrete(labels = str_wrap(levels(data$x), width = 20)) +
+  ggtitle(&quot;Ví dụ 2&quot;)</code></pre>
+<p><img src="../../../../../blog/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Như vậy, với hàm đơn giả từ R, ta đã có thể xử lý được vấn đề hiển thị giá trị của factor quá dài!</p>
 <p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
 
                         </div>

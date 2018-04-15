@@ -1,0 +1,50 @@
+---
+title: Thu gọn giá trị các factor trong biểu đồ
+author: Hoàng Đức Anh
+date: '2018-04-15'
+slug: thu-gon-gia-tri-cac-factor-trong-bieu-do
+categories: ["Tips"]
+tags: ["Tips", "factor"]
+summary: "Hướng dẫn thu gọn giá trị các factor khi vẽ biểu đồ với R"
+banner: "img/banners/banner-1.jpg"
+---
+
+
+
+<p>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(ggplot2)
+
+data &lt;- data.frame(x = c(&quot;Trung tam kinh doanh dien tu dien may va do gia dung&quot;, 
+                         &quot;Trung tam 2&quot;, 
+                         &quot;Trung tam kinh doanh my pham va dich vu&quot;),
+                   y = c(5,3,7))
+
+# Vẽ biểu đồ thông thường, không xử lý với factor
+data %&gt;% 
+  ggplot(aes(x, y)) + 
+  geom_bar(stat = &quot;identity&quot;, aes(fill = x)) +
+  theme_bw() +
+  theme(legend.position = &quot;none&quot;) +
+  ggtitle(&quot;Ví dụ 1&quot;)</code></pre>
+<p><img src="/blog/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Để khắc phục vấn đề trên, ta có thể sử dụng library <code>stringr</code> với hàm <code>str_wrap</code> để tự động co gọn lại giá trị của factor trên biểu đồ</p>
+<pre class="r"><code>library(stringr)
+data %&gt;% 
+  ggplot(aes(x, y)) + 
+  geom_bar(stat = &quot;identity&quot;, aes(fill = x)) +
+  theme_bw() +
+  theme(legend.position = &quot;none&quot;) +
+  scale_x_discrete(labels = str_wrap(levels(data$x), width = 20)) +
+  ggtitle(&quot;Ví dụ 2&quot;)</code></pre>
+<p><img src="/blog/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Như vậy, với hàm đơn giả từ R, ta đã có thể xử lý được vấn đề hiển thị giá trị của factor quá dài!</p>
+<p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</loc>
+    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</loc>
     <lastmod>2017-08-10T00:00:00+00:00</lastmod>
   </url>
@@ -13,7 +18,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2017-08-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -27,13 +32,13 @@
   </url>
   
   <url>
-    <loc>/contact/</loc>
+    <loc>/tags/factor/</loc>
+    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2017-08-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>/contact/</loc>
   </url>
   
   <url>
@@ -43,19 +48,37 @@
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2017-08-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2017-08-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/courses/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/tips/</loc>
+    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/tips/</loc>
+    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

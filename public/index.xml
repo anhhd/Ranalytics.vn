@@ -6,10 +6,20 @@
     <description>Recent content on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 15 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Thu gọn giá trị các factor trong biểu đồ</title>
+      <link>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</link>
+      <pubDate>Sun, 15 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</guid>
+      <description>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:
+library(dplyr)## ## Attaching package: &amp;#39;dplyr&amp;#39;## The following objects are masked from &amp;#39;package:stats&amp;#39;:## ## filter, lag## The following objects are masked from &amp;#39;package:base&amp;#39;:## ## intersect, setdiff, setequal, unionlibrary(ggplot2)data &amp;lt;- data.frame(x = c(&amp;quot;Trung tam kinh doanh dien tu dien may va do gia dung&amp;quot;, &amp;quot;Trung tam 2&amp;quot;, &amp;quot;Trung tam kinh doanh my pham va dich vu&amp;quot;),y = c(5,3,7))# Vẽ biểu đồ thông thường, không xử lý với factordata %&amp;gt;% ggplot(aes(x, y)) + geom_bar(stat = &amp;quot;identity&amp;quot;, aes(fill = x)) +theme_bw() +theme(legend.</description>
+    </item>
     
     <item>
       <title>Quản lý thư viện trong R hiệu quả</title>

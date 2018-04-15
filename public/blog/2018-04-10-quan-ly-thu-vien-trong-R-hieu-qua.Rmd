@@ -23,11 +23,11 @@ Tuy nhiên, có một cách rất hiệu quả để đơn giản hóa toàn b�
 - **Bước 3**: Thay đổi chế độ mặc định của R để R hiểu thư mục `D:/Rlibrary` (folder mới) là thư mục làm việc mặc định, tất cả các library mới sẽ được cài đặt tại đây.
     - Mở `Rstudio` và tìm thư mục hiện đang chứa library trong R
 
-```{r, waring = F}
+```{r, waring = F, eval = F}
 .libPaths()
 ```
 
-Như các bạn thấy, ta có 2 kết quả, thứ nhất là thư mục `D:/Rlibrary` - bỏ qua thư mục này & thư mục số 2 `C:/Program Files/R/R-3.3.0/library`. Ta có thể thay đổi thư mục cài đặt như sau
+Sau khi thực hiện, ta sẽ có 2 kết quả, thứ nhất là thư mục `C:/Users/anhhd/Rlibrary` - bỏ qua thư mục này & thư mục số 2 `C:/Program Files/R/R-3.3.0/library`. Ta có thể thay đổi thư mục cài đặt như sau
 
 - Truy cập `C:/Program Files/R/R-3.3.0/library`
 - Truy cập `base\R`
@@ -40,4 +40,5 @@ Khởi động lại Rstudio và gõ câu lệnh `.libPaths()`, ta sẽ nhìn th
 
 Sau khi thực hiện xong, nếu update R, việc các bạn phải làm chỉ là điều chỉnh lại thư viện mặc định của phiên bản R mới sang `D:/Rlibrary` như hướng dẫn ở trên, không cần copy hoặc cài đặt lại các library mới.
 
+Chúc các bạn học và làm việc hiệu quả với [Ranalytics.vn](ranalytics.vn)!
 

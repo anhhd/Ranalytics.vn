@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogs on Ranalytics.vn - Từ phân tích đến quyết định</title>
-    <link>/blog/</link>
-    <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <title>Tips on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/categories/tips/</link>
+    <description>Recent content in Tips on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 15 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/tips/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       <guid>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</guid>
       <description>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:
 library(dplyr)## ## Attaching package: &amp;#39;dplyr&amp;#39;## The following objects are masked from &amp;#39;package:stats&amp;#39;:## ## filter, lag## The following objects are masked from &amp;#39;package:base&amp;#39;:## ## intersect, setdiff, setequal, unionlibrary(ggplot2)data &amp;lt;- data.frame(x = c(&amp;quot;Trung tam kinh doanh dien tu dien may va do gia dung&amp;quot;, &amp;quot;Trung tam 2&amp;quot;, &amp;quot;Trung tam kinh doanh my pham va dich vu&amp;quot;),y = c(5,3,7))# Vẽ biểu đồ thông thường, không xử lý với factordata %&amp;gt;% ggplot(aes(x, y)) + geom_bar(stat = &amp;quot;identity&amp;quot;, aes(fill = x)) +theme_bw() +theme(legend.</description>
-    </item>
-    
-    <item>
-      <title>Quản lý thư viện trong R hiệu quả</title>
-      <link>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</link>
-      <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</guid>
-      <description>Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.
-Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới.</description>
     </item>
     
   </channel>

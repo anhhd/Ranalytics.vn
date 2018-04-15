@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quản lý thư viện trong R hiệu quả</title>
+  <title>Tips</title>
   <meta name="author" content="" />
 
   
@@ -26,16 +26,16 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   
-  <link href="../../../../../css/animate.css" rel="stylesheet">
+  <link href="../../css/animate.css" rel="stylesheet">
 
   
   
-    <link href="../../../../../css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="../../css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
   
 
 
   
-  <link href="../../../../../css/custom.css" rel="stylesheet">
+  <link href="../../css/custom.css" rel="stylesheet">
 
   
   
@@ -46,19 +46,19 @@
   
 
   
-  <link rel="shortcut icon" href="../../../../../img/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="../../../../../img/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png" />
   
 
-  <link href="../../../../../css/owl.carousel.css" rel="stylesheet">
-  <link href="../../../../../css/owl.theme.css" rel="stylesheet">
+  <link href="../../css/owl.carousel.css" rel="stylesheet">
+  <link href="../../css/owl.theme.css" rel="stylesheet">
 
-  <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
+  <link rel="alternate" href="../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Quản lý thư viện trong R hiệu quả" />
+  <meta property="og:title" content="Tips" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua//" />
+  <meta property="og:url" content="/tags/tips//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -76,10 +76,10 @@
 
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand home" href="../../../../../">
-                    <img src="../../../../../img/logo.png" alt="Quản lý thư viện trong R hiệu quả logo" class="hidden-xs hidden-sm">
-                    <img src="../../../../../img/logo-small.png" alt="Quản lý thư viện trong R hiệu quả logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Quản lý thư viện trong R hiệu quả - Về trang chủ</span>
+                <a class="navbar-brand home" href="../../">
+                    <img src="../../img/logo.png" alt="Tips logo" class="hidden-xs hidden-sm">
+                    <img src="../../img/logo-small.png" alt="Tips logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Tips - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -95,31 +95,31 @@
                   
                   <li class="dropdown">
                     
-                    <a href="../../../../../">Trang chủ</a>
+                    <a href="../../">Trang chủ</a>
                     
                   </li>
                   
                   <li class="dropdown">
                     
-                    <a href="../../../../../courses/">Khóa học</a>
+                    <a href="../../courses/">Khóa học</a>
                     
                   </li>
                   
                   <li class="dropdown">
                     
-                    <a href="../../../../../faq/">FAQ</a>
+                    <a href="../../faq/">FAQ</a>
                     
                   </li>
                   
                   <li class="dropdown">
                     
-                    <a href="../../../../../blog/">Blog</a>
+                    <a href="../../blog/">Blog</a>
                     
                   </li>
                   
                   <li class="dropdown">
                     
-                    <a href="../../../../../contact/">Liên hệ</a>
+                    <a href="../../contact/">Liên hệ</a>
                     
                   </li>
                   
@@ -158,7 +158,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Quản lý thư viện trong R hiệu quả</h1>
+                <h1>Tips</h1>
             </div>
         </div>
     </div>
@@ -167,69 +167,63 @@
 
         <div id="content">
             <div class="container">
-
                 <div class="row">
-
                     
 
-                    <div class="col-md-9" id="blog-post">
+                    <div class="col-md-9" id="blog-listing-medium">
 
-                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2017-08-10</p>
-
-                        <div id="post-content">
-                          <p>Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.</p>
-<p>Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới. Ví dụ, toàn bộ library của <code>R 3.3</code> nằm ở thư mục <code>D:\My Documents\R\win-library\3.3</code>. Sau khi update lên <code>R 3.4</code>, ta không muốn cài đặt lại tất cả các library, cách nhanh nhất là copy toàn bộ library cũ vào folder chứa library mới nằm ở <code>D:\My Documents\R\win-library\3.4</code>.</p>
-<p>Tuy nhiên, cách xử lý này cũng có nhiều nhược điểm. Thứ nhất, cách xử lý này tốn thời gian để copy các folder, nhiều khi lên tới 40-50 phút nếu ta có rất nhiều library. Thứ hai, nếu ta có nhiều version của R, cách này sẽ tiêu tốn dung lượng lưu trữ đến vài Gb. Cuối cùng, ta không thể chỉ cài đặt R library một lần và sử dụng cho nhiều lần sau, với mỗi phiên bản của R (VD: <code>R</code> từ Cran và <code>RServices</code> của Microsoft) ta phải cài đặt hoặc copy nhiều lần.</p>
-<p>Tuy nhiên, có một cách rất hiệu quả để đơn giản hóa toàn bộ các vấn đề trên bằng một vài bước đơn giản như sau.</p>
-<ul>
-<li><strong>Bước 1</strong>: Tạo một folder cố đinh để lưu trữ library trong máy tính. VD <code>D:/Rlibrary</code></li>
-<li><strong>Bước 2</strong>: Copy toàn bộ library vào folder vừa tạo (VD: Copy library từ <code>D:\My Documents\R\win-library\3.3</code>) <code>D:/Rlibrary</code></li>
-<li><strong>Bước 3</strong>: Thay đổi chế độ mặc định của R để R hiểu thư mục <code>D:/Rlibrary</code> (folder mới) là thư mục làm việc mặc định, tất cả các library mới sẽ được cài đặt tại đây.
-<ul>
-<li>Mở <code>Rstudio</code> và tìm thư mục hiện đang chứa library trong R</li>
-</ul></li>
-</ul>
-<pre class="r"><code>.libPaths()</code></pre>
-<p>Sau khi thực hiện, ta sẽ có 2 kết quả, thứ nhất là thư mục <code>C:/Users/anhhd/Rlibrary</code> - bỏ qua thư mục này &amp; thư mục số 2 <code>C:/Program Files/R/R-3.3.0/library</code>. Ta có thể thay đổi thư mục cài đặt như sau</p>
-<ul>
-<li>Truy cập <code>C:/Program Files/R/R-3.3.0/library</code></li>
-<li>Truy cập <code>base\R</code></li>
-<li>Copy file <code>Rprofile</code> ra desktop</li>
-<li>Mở <code>Rprofile</code> với notepad</li>
-<li>Thêm đoạn code sau vào dòng cuối cùng</li>
-<li>Copy <code>Rprofile</code> ngược lại vào <code>C:/Program Files/R/R-3.3.0/library/base/R</code></li>
-</ul>
-<p>Khởi động lại Rstudio và gõ câu lệnh <code>.libPaths()</code>, ta sẽ nhìn thấy thư mục mặc định chưa library chuyển sang <code>D:/Rlibrary</code>.</p>
-<p>Sau khi thực hiện xong, nếu update R, việc các bạn phải làm chỉ là điều chỉnh lại thư viện mặc định của phiên bản R mới sang <code>D:/Rlibrary</code> như hướng dẫn ở trên, không cần copy hoặc cài đặt lại các library mới.</p>
-<p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
-
-                        </div>
                         
                         
-                        <div id="comments">
-                            <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "devcows" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-                        </div>
+                        <section class="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                  <div class="image">
+                                      <a href="../../blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/">
+                                          
+                                          <img src="../../img/banners/banner-1.jpg" class="img-responsive" alt="">
+                                          
+                                      </a>
+                                  </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h2><a href="../../blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/">Thu gọn giá trị các factor trong biểu đồ</a></h2>
+                                    <div class="clearfix">
+                                        <p class="author-category">
+                                          
+                                          Tác giả:  <a href="#">Hoàng Đức Anh</a>
+                                          
+                                          
+                                          
+                                          in <a href="../../categories/tips">Tips</a>
+                                          
+                                          
+
+                                        </p>
+                                        <p class="date-comments">
+                                            <a href="../../blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/"><i class="fa fa-calendar-o"></i> 2018-04-15</a>
+                                        </p>
+                                    </div>
+                                    <p class="intro">
+									
+									Hướng dẫn thu gọn giá trị các factor khi vẽ biểu đồ với R
+									
+										</p>
+                                    <p class="read-more"><a href="../../blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/" class="btn btn-template-main">Tìm hiểu thêm</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
                         
 
+                        <ul class="pager">
+                            
+                            <li class="previous disabled"><a href="#">&larr; Các bài mới hơn</a></li>
+                            
+
+                            
+                            <li class="next disabled"><a href="#">Các bài cũ hơn &rarr;</a></li>
+                            
+                        </ul>
                     </div>
                     
 
@@ -277,10 +271,10 @@
     <div class="panel-body">
         <ul class="nav nav-pills nav-stacked">
             
-            <li><a href="../../../../../categories/r">r (1)</a>
+            <li><a href="../../categories/r">r (1)</a>
             </li>
             
-            <li><a href="../../../../../categories/tips">tips (1)</a>
+            <li><a href="../../categories/tips">tips (1)</a>
             </li>
             
         </ul>
@@ -302,13 +296,13 @@
     <div class="panel-body">
         <ul class="tag-cloud">
             
-            <li><a href="../../../../../tags/factor"><i class="fa fa-tags"></i> factor</a>
+            <li><a href="../../tags/factor"><i class="fa fa-tags"></i> factor</a>
             </li>
             
-            <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
+            <li><a href="../../tags/r"><i class="fa fa-tags"></i> r</a>
             </li>
             
-            <li><a href="../../../../../tags/tips"><i class="fa fa-tags"></i> tips</a>
+            <li><a href="../../tags/tips"><i class="fa fa-tags"></i> tips</a>
             </li>
             
         </ul>
@@ -329,7 +323,6 @@
 
                 </div>
                 
-
             </div>
             
         </div>
@@ -368,7 +361,7 @@
       
 
 
-            <a href="../../../../../contact" class="btn btn-small btn-template-main">Liên hệ ngay</a>
+            <a href="../../contact" class="btn btn-small btn-template-main">Liên hệ ngay</a>
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -430,12 +423,12 @@ ga('send', 'pageview');
 
 <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCFhtWLJcE30xOAjcbSFi-0fnoVmQZPb1Y&v=3.exp"></script>
 
-<script src="../../../../../js/hpneo.gmaps.js"></script>
-<script src="../../../../../js/gmaps.init.js"></script>
-<script src="../../../../../js/front.js"></script>
+<script src="../../js/hpneo.gmaps.js"></script>
+<script src="../../js/gmaps.init.js"></script>
+<script src="../../js/front.js"></script>
 
 
-<script src="../../../../../js/owl.carousel.min.js"></script>
+<script src="../../js/owl.carousel.min.js"></script>
 
 
   </body>
