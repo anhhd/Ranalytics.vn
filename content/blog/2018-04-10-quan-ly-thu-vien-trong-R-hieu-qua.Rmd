@@ -10,6 +10,11 @@ summary: "Hướng dẫn cách thức quản lý thư viện trong R hiệu qu�
 banner: "img/banners/banner-1.png"
 ---
 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
 Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.
 
 Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới. Ví dụ, toàn bộ library của `R 3.3` nằm ở thư mục `D:\My Documents\R\win-library\3.3`. Sau khi update lên `R 3.4`, ta không muốn cài đặt lại tất cả các library, cách nhanh nhất là copy toàn bộ library cũ vào folder chứa library mới nằm ở `D:\My Documents\R\win-library\3.4`. 
