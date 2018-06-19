@@ -7,6 +7,8 @@ categories:
   - R
   - SQLServer
 tags: ["R", "SQLServer"]
+summary: "Hướng dẫn kết nối R với SQLServer"
+banner: "img/banners/banner-3.png"
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
@@ -24,19 +26,19 @@ Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các datab
 
 - Click vào add để tạo kết nối mới
 
-![](/img/public/1_odbc_2.png)
+![](/img/blog/1_odbc_2.png)
 
 - Lựa chọn `SQLServer Native Client`
 
-![](/img/public/1_odbc_3.png)
+![](/img/blog/1_odbc_3.png)
 
 - Đặt tên cho kết nối, ví dụ: `sql` và lựa chọn database để kết nối
 
-![](/img/public/1_odbc_4.png)
+![](/img/blog/1_odbc_4.png)
 
 - Chọn phương thức bảo mật - tích hợp với máy tính hoặc yêu cầu log-in
 
-![](/img/public/1_odbc_5.png)
+![](/img/blog/1_odbc_5.png)
 
 - Thực hiện nốt, bấm vào `Next`
 
@@ -44,9 +46,13 @@ Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các datab
 
 ```{r, eval = F}
 library(RODBC)
+
 #Thực hiện kết nối với tên SQL vừa tạo
+
 channel <- odbcConnect("sql")
+
 #Thực hiện Query data 
+
 data <- sqlQuery(channel, "
   SELECT TOP 1000 *
   FROM [AdventureWorks2014].[Production].[TransactionHistory]

@@ -191,28 +191,28 @@
 <li>Click vào add để tạo kết nối mới</li>
 </ul>
 <div class="figure">
-<img src="../../../../../img/public/1_odbc_2.png" />
+<img src="../../../../../img/blog/1_odbc_2.png" />
 
 </div>
 <ul>
 <li>Lựa chọn <code>SQLServer Native Client</code></li>
 </ul>
 <div class="figure">
-<img src="../../../../../img/public/1_odbc_3.png" />
+<img src="../../../../../img/blog/1_odbc_3.png" />
 
 </div>
 <ul>
 <li>Đặt tên cho kết nối, ví dụ: <code>sql</code> và lựa chọn database để kết nối</li>
 </ul>
 <div class="figure">
-<img src="../../../../../img/public/1_odbc_4.png" />
+<img src="../../../../../img/blog/1_odbc_4.png" />
 
 </div>
 <ul>
 <li>Chọn phương thức bảo mật - tích hợp với máy tính hoặc yêu cầu log-in</li>
 </ul>
 <div class="figure">
-<img src="../../../../../img/public/1_odbc_5.png" />
+<img src="../../../../../img/blog/1_odbc_5.png" />
 
 </div>
 <ul>
@@ -220,9 +220,13 @@
 </ul>
 <p><strong>Bước 2</strong>: Thực hiện packages <code>RODBC</code> để kết nối với database</p>
 <pre class="r"><code>library(RODBC)
+
 #Thực hiện kết nối với tên SQL vừa tạo
+
 channel &lt;- odbcConnect(&quot;sql&quot;)
+
 #Thực hiện Query data 
+
 data &lt;- sqlQuery(channel, &quot;
   SELECT TOP 1000 *
   FROM [AdventureWorks2014].[Production].[TransactionHistory]
