@@ -1,6 +1,6 @@
 ---
 title: Kết nối R với SQLServer
-author: ''
+author: Hoàng Đức Anh'
 date: '2018-06-19'
 slug: ket-noi-r-voi-sqlserver
 categories:
@@ -18,32 +18,52 @@ Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các datab
 
 **Bước 1**: Tạo kết nối với SQLServer
 
+---
+
 Để tạo kết nối với SQLServer, ta thực hiện như sau:
+
 
 - **Bước 1.1**: Truy cập vào `Control Panel >> Administrative Tools >> ODBC Data Sources`
 
+---
 
 ![](/img/blog/1_odbc_1.png)
 
 - **Bước 1.2**: Click vào add để tạo kết nối mới
 
+---
+
+- **Bước 1.2**: Tạo connection mới
+
+---
 
 ![](/img/blog/1_odbc_2.png)
 
 - **Bước 1.3**: Lựa chọn `SQLServer Native Client`
+---
 
+- **Bước 1.3**: Lựa chọn `SQLServer Native Client` 
+
+---
 
 ![](/img/blog/1_odbc_3.png)
 
 
+---
+
 - **Bước 1.4**: Đặt tên cho kết nối, ví dụ: `sql` và lựa chọn database để kết nối
 
 
+---
+
 ![](/img/blog/1_odbc_4.png)
 
+---
 
 - **Bước 1.5**: Chọn phương thức bảo mật - tích hợp với máy tính hoặc yêu cầu log-in
 
+
+---
 
 ![](/img/blog/1_odbc_5.png)
 
@@ -51,6 +71,8 @@ Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các datab
 
 - **Bước 1.6**: Thực hiện nốt, bấm vào `Next`
 
+---
+---
 
 **Bước 2**: Thực hiện packages `RODBC` để kết nối với database
 

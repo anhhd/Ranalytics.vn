@@ -1,6 +1,6 @@
 ---
 title: Kết nối R với SQLServer
-author: ''
+author: Hoàng Đức Anh'
 date: '2018-06-19'
 slug: ket-noi-r-voi-sqlserver
 categories:
@@ -15,10 +15,12 @@ banner: "img/banners/banner-3.png"
 
 <p>Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các database phổ biến nhất hiện nay. Do đó, khi làm việc thực tế, ta cân phải truy cập vào các cơ sở dữ liệu để truy cập dữ liệu phân tích. Trong blog này, mình sẽ hướng dẫn các bạn cách thức kết nối R với SQLServer qua hai bước đơn giản dưới đây:</p>
 <p><strong>Bước 1</strong>: Tạo kết nối với SQLServer</p>
+<hr />
 <p>Để tạo kết nối với SQLServer, ta thực hiện như sau:</p>
 <ul>
 <li><strong>Bước 1.1</strong>: Truy cập vào <code>Control Panel &gt;&gt; Administrative Tools &gt;&gt; ODBC Data Sources</code></li>
 </ul>
+<hr />
 <div class="figure">
 <img src="/img/blog/1_odbc_1.png" />
 
@@ -26,27 +28,38 @@ banner: "img/banners/banner-3.png"
 <ul>
 <li><strong>Bước 1.2</strong>: Click vào add để tạo kết nối mới</li>
 </ul>
+<hr />
+<ul>
+<li><strong>Bước 1.2</strong>: Tạo connection mới</li>
+</ul>
+<hr />
 <div class="figure">
 <img src="/img/blog/1_odbc_2.png" />
 
 </div>
 <ul>
+<li><h2 id="buc-1.3-la-chon-sqlserver-native-client"><strong>Bước 1.3</strong>: Lựa chọn <code>SQLServer Native Client</code></h2></li>
 <li><strong>Bước 1.3</strong>: Lựa chọn <code>SQLServer Native Client</code></li>
 </ul>
+<hr />
 <div class="figure">
 <img src="/img/blog/1_odbc_3.png" />
 
 </div>
+<hr />
 <ul>
 <li><strong>Bước 1.4</strong>: Đặt tên cho kết nối, ví dụ: <code>sql</code> và lựa chọn database để kết nối</li>
 </ul>
+<hr />
 <div class="figure">
 <img src="/img/blog/1_odbc_4.png" />
 
 </div>
+<hr />
 <ul>
 <li><strong>Bước 1.5</strong>: Chọn phương thức bảo mật - tích hợp với máy tính hoặc yêu cầu log-in</li>
 </ul>
+<hr />
 <div class="figure">
 <img src="/img/blog/1_odbc_5.png" />
 
