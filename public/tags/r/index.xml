@@ -6,10 +6,20 @@
     <description>Recent content in R on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kết nối R với SQLServer</title>
+      <link>/blog/2018/06/19/2018-06-19-ket-noi-r-voi-sqlserver/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/06/19/2018-06-19-ket-noi-r-voi-sqlserver/</guid>
+      <description>Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các database phổ biến nhất hiện nay. Do đó, khi làm việc thực tế, ta cân phải truy cập vào các cơ sở dữ liệu để truy cập dữ liệu phân tích. Trong blog này, mình sẽ hướng dẫn các bạn cách thức kết nối R với SQLServer qua hai bước đơn giản dưới đây:
+Bước 1: Tạo kết nối với SQLServer</description>
+    </item>
     
     <item>
       <title>Quản lý thư viện trong R hiệu quả</title>
