@@ -29,8 +29,6 @@ Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các datab
 
 ![](/img/blog/1_odbc_1.png)
 
-- **Bước 1.2**: Click vào add để tạo kết nối mới
-
 ---
 
 - **Bước 1.2**: Tạo connection mới
@@ -39,7 +37,6 @@ Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các datab
 
 ![](/img/blog/1_odbc_2.png)
 
-- **Bước 1.3**: Lựa chọn `SQLServer Native Client`
 ---
 
 - **Bước 1.3**: Lựa chọn `SQLServer Native Client` 
@@ -48,11 +45,9 @@ Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các datab
 
 ![](/img/blog/1_odbc_3.png)
 
-
 ---
 
 - **Bước 1.4**: Đặt tên cho kết nối, ví dụ: `sql` và lựa chọn database để kết nối
-
 
 ---
 
@@ -71,7 +66,6 @@ Trong các doanh nghiệp hiện nay, SQLServer vẫn là một trong các datab
 
 - **Bước 1.6**: Thực hiện nốt, bấm vào `Next`
 
----
 ---
 
 **Bước 2**: Thực hiện packages `RODBC` để kết nối với database
