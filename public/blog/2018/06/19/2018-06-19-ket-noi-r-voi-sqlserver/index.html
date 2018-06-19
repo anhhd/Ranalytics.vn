@@ -181,42 +181,43 @@
 <p><strong>Bước 1</strong>: Tạo kết nối với SQLServer</p>
 <p>Để tạo kết nối với SQLServer, ta thực hiện như sau:</p>
 <ul>
-<li>Truy cập vào <code>Control Panel &gt;&gt; Administrative Tools &gt;&gt; ODBC Data Sources</code></li>
+<li><strong>Bước 1.1</strong>: Truy cập vào <code>Control Panel &gt;&gt; Administrative Tools &gt;&gt; ODBC Data Sources</code></li>
 </ul>
 <div class="figure">
 <img src="../../../../../img/blog/1_odbc_1.png" />
 
 </div>
 <ul>
-<li>Click vào add để tạo kết nối mới</li>
+<li><strong>Bước 1.2</strong>: Click vào add để tạo kết nối mới</li>
 </ul>
 <div class="figure">
 <img src="../../../../../img/blog/1_odbc_2.png" />
 
 </div>
 <ul>
-<li>Lựa chọn <code>SQLServer Native Client</code></li>
+<li><strong>Bước 1.3</strong>: Lựa chọn <code>SQLServer Native Client</code></li>
 </ul>
 <div class="figure">
 <img src="../../../../../img/blog/1_odbc_3.png" />
 
 </div>
 <ul>
-<li>Đặt tên cho kết nối, ví dụ: <code>sql</code> và lựa chọn database để kết nối</li>
+<li><strong>Bước 1.4</strong>: Đặt tên cho kết nối, ví dụ: <code>sql</code> và lựa chọn database để kết nối</li>
 </ul>
 <div class="figure">
 <img src="../../../../../img/blog/1_odbc_4.png" />
 
 </div>
 <ul>
-<li>Chọn phương thức bảo mật - tích hợp với máy tính hoặc yêu cầu log-in</li>
+<li><strong>Bước 1.5</strong>: Chọn phương thức bảo mật - tích hợp với máy tính hoặc yêu cầu log-in</li>
 </ul>
 <div class="figure">
 <img src="../../../../../img/blog/1_odbc_5.png" />
 
 </div>
+<hr />
 <ul>
-<li>Thực hiện nốt, bấm vào <code>Next</code></li>
+<li><strong>Bước 1.6</strong>: Thực hiện nốt, bấm vào <code>Next</code></li>
 </ul>
 <p><strong>Bước 2</strong>: Thực hiện packages <code>RODBC</code> để kết nối với database</p>
 <pre class="r"><code>library(RODBC)
