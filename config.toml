@@ -14,6 +14,16 @@ googleAnalytics = "UA-117458816-1"
 # Define the number of posts per page
 paginate = 10
 
+    highlight = true
+    highlight_languages = ["r", "markdown"]
+	
+	MathJaxCDN = "//cdn.bootcss.com"
+    MathJaxVersion = "2.7.1"
+	
+#   highlight_style = "github"
+   highlight_style = "railscasts"
+   highlight_version = "9.9.0"
+
 #############################
 #MENU OF WEBSITE
 #defaultContentLanguageInSubdir = true
