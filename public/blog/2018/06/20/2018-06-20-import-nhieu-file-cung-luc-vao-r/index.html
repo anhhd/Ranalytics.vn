@@ -6,7 +6,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Factor</title>
+  <title>Import nhiều file cùng lúc vào R</title>
   <meta name="author" content="" />
 
   
@@ -26,16 +26,16 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   
-  <link href="../../css/animate.css" rel="stylesheet">
+  <link href="../../../../../css/animate.css" rel="stylesheet">
 
   
   
-    <link href="../../css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="../../../../../css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
   
 
 
   
-  <link href="../../css/custom.css" rel="stylesheet">
+  <link href="../../../../../css/custom.css" rel="stylesheet">
 
   
   
@@ -46,19 +46,19 @@
   
 
   
-  <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="../../../../../img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="../../../../../img/apple-touch-icon.png" />
   
 
-  <link href="../../css/owl.carousel.css" rel="stylesheet">
-  <link href="../../css/owl.theme.css" rel="stylesheet">
+  <link href="../../../../../css/owl.carousel.css" rel="stylesheet">
+  <link href="../../../../../css/owl.theme.css" rel="stylesheet">
 
-  <link rel="alternate" href="../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
+  <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Factor" />
+  <meta property="og:title" content="Import nhiều file cùng lúc vào R" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/tags/factor//" />
+  <meta property="og:url" content="/blog/2018/06/20/2018-06-20-import-nhieu-file-cung-luc-vao-r//" />
   <meta property="og:image" content="img/logo.png" />
 
 </head>
@@ -76,10 +76,10 @@
 
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand home" href="../../">
-                    <img src="../../img/logo.png" alt="Factor logo" class="hidden-xs hidden-sm">
-                    <img src="../../img/logo-small.png" alt="Factor logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Factor - Về trang chủ</span>
+                <a class="navbar-brand home" href="../../../../../">
+                    <img src="../../../../../img/logo.png" alt="Import nhiều file cùng lúc vào R logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Import nhiều file cùng lúc vào R logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Import nhiều file cùng lúc vào R - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -95,31 +95,31 @@
                   
                   <li class="dropdown">
                     
-                    <a href="../../">Trang chủ</a>
+                    <a href="../../../../../">Trang chủ</a>
                     
                   </li>
                   
                   <li class="dropdown">
                     
-                    <a href="../../courses/">Khóa học</a>
+                    <a href="../../../../../courses/">Khóa học</a>
                     
                   </li>
                   
                   <li class="dropdown">
                     
-                    <a href="../../faq/">FAQ</a>
+                    <a href="../../../../../faq/">FAQ</a>
                     
                   </li>
                   
                   <li class="dropdown">
                     
-                    <a href="../../blog/">Blog</a>
+                    <a href="../../../../../blog/">Blog</a>
                     
                   </li>
                   
                   <li class="dropdown">
                     
-                    <a href="../../contact/">Liên hệ</a>
+                    <a href="../../../../../contact/">Liên hệ</a>
                     
                   </li>
                   
@@ -158,7 +158,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Factor</h1>
+                <h1>Import nhiều file cùng lúc vào R</h1>
             </div>
         </div>
     </div>
@@ -167,63 +167,73 @@
 
         <div id="content">
             <div class="container">
+
                 <div class="row">
+
                     
 
-                    <div class="col-md-9" id="blog-listing-medium">
+                    <div class="col-md-9" id="blog-post">
 
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2018-06-20</p>
+
+                        <div id="post-content">
+                          <p>Trong thực tế, khi phân tích dữ liệu, ta thường xuyên phải làm việc với nhiều file có cấu trúc dữ liệu giống nhau được trích xuất từ những khoảng thời gian/đối tượng khác nhau. Khi phân tích, ta phải cùng lúc xử lý rất nhiều những file loại này. Trong blog này, <a href="ranalytics.vn">RAnalytics</a> sẽ hướng dẫn các bạn import cùng lúc nhiều file.</p>
+<p>Giả sử trong cùng 1 folder, ta có 10 file định dạng csv giống nhau chứa dữ liệu dạng iris như sau:</p>
+<pre class="r"><code>iris %&gt;% head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Chúng ta muốn import cùng lúc 10 file này vào 1 data frame, ta có thể tạo 1 hàm đọc lần lượt từng file và nối các file này lại với nhau như sau:</p>
+<pre class="r"><code>load_data &lt;- function(path) { 
+  
+  # Tìm tất cả các file định dạng csv trong thư mục path
+  
+  files &lt;- dir(path, pattern = &#39;\\.csv&#39;, full.names = TRUE)
+  
+  # Đọc các file này với hàm read.csv
+  
+  tables &lt;- lapply(files, read.csv)
+  
+  #Nối tất cả các dataframe trên bằng hàm do.call và rbind
+  
+  do.call(rbind, tables)
+}</code></pre>
+<p>Giả sử các file <code>csv</code> được chứa ở folder <code>C:/Users/anhhd3/Desktop/data_folder</code>, ta có thể import cùng lúc vào R như sau:</p>
+<pre class="r"><code>data &lt;- load_data(&quot;C:/Users/anhhd3/Desktop/data_folder&quot;)</code></pre>
+<p>Hàm trên hoàn toàn có thể mở rộng với các file định dạng excel, txt hay bất kỳ file nào bạn cần import vào R!</p>
+<p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
+
+                        </div>
                         
                         
-                        <section class="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <div class="image">
-                                      <a href="../../blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/">
-                                          
-                                          <img src="../../img/banners/banner-1.jpg" class="img-responsive" alt="">
-                                          
-                                      </a>
-                                  </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h2><a href="../../blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/">Thu gọn giá trị các factor trong biểu đồ</a></h2>
-                                    <div class="clearfix">
-                                        <p class="author-category">
-                                          
-                                          Tác giả:  <a href="#">Hoàng Đức Anh</a>
-                                          
-                                          
-                                          
-                                          in <a href="../../categories/tips">Tips</a>
-                                          
-                                          
-
-                                        </p>
-                                        <p class="date-comments">
-                                            <a href="../../blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/"><i class="fa fa-calendar-o"></i> 2018-04-15</a>
-                                        </p>
-                                    </div>
-                                    <p class="intro">
-									
-									Hướng dẫn thu gọn giá trị các factor khi vẽ biểu đồ với R
-									
-										</p>
-                                    <p class="read-more"><a href="../../blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/" class="btn btn-template-main">Tìm hiểu thêm</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "devcows" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
                         
 
-                        <ul class="pager">
-                            
-                            <li class="previous disabled"><a href="#">&larr; Các bài mới hơn</a></li>
-                            
-
-                            
-                            <li class="next disabled"><a href="#">Các bài cũ hơn &rarr;</a></li>
-                            
-                        </ul>
                     </div>
                     
 
@@ -271,13 +281,13 @@
     <div class="panel-body">
         <ul class="nav nav-pills nav-stacked">
             
-            <li><a href="../../categories/r">r (2)</a>
+            <li><a href="../../../../../categories/r">r (2)</a>
             </li>
             
-            <li><a href="../../categories/sqlserver">sqlserver (1)</a>
+            <li><a href="../../../../../categories/sqlserver">sqlserver (1)</a>
             </li>
             
-            <li><a href="../../categories/tips">tips (2)</a>
+            <li><a href="../../../../../categories/tips">tips (2)</a>
             </li>
             
         </ul>
@@ -299,16 +309,16 @@
     <div class="panel-body">
         <ul class="tag-cloud">
             
-            <li><a href="../../tags/factor"><i class="fa fa-tags"></i> factor</a>
+            <li><a href="../../../../../tags/factor"><i class="fa fa-tags"></i> factor</a>
             </li>
             
-            <li><a href="../../tags/r"><i class="fa fa-tags"></i> r</a>
+            <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
             </li>
             
-            <li><a href="../../tags/sqlserver"><i class="fa fa-tags"></i> sqlserver</a>
+            <li><a href="../../../../../tags/sqlserver"><i class="fa fa-tags"></i> sqlserver</a>
             </li>
             
-            <li><a href="../../tags/tips"><i class="fa fa-tags"></i> tips</a>
+            <li><a href="../../../../../tags/tips"><i class="fa fa-tags"></i> tips</a>
             </li>
             
         </ul>
@@ -329,6 +339,7 @@
 
                 </div>
                 
+
             </div>
             
         </div>
@@ -367,7 +378,7 @@
       
 
 
-            <a href="../../contact" class="btn btn-small btn-template-main">Liên hệ ngay</a>
+            <a href="../../../../../contact" class="btn btn-small btn-template-main">Liên hệ ngay</a>
 
             <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -432,12 +443,12 @@ if (!doNotTrack) {
 
 <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCFhtWLJcE30xOAjcbSFi-0fnoVmQZPb1Y&v=3.exp"></script>
 
-<script src="../../js/hpneo.gmaps.js"></script>
-<script src="../../js/gmaps.init.js"></script>
-<script src="../../js/front.js"></script>
+<script src="../../../../../js/hpneo.gmaps.js"></script>
+<script src="../../../../../js/gmaps.init.js"></script>
+<script src="../../../../../js/front.js"></script>
 
 
-<script src="../../js/owl.carousel.min.js"></script>
+<script src="../../../../../js/owl.carousel.min.js"></script>
 
 
   </body>

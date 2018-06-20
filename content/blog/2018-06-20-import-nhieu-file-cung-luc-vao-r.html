@@ -1,0 +1,44 @@
+---
+title: Import nhiều file cùng lúc vào R
+author: Hoàng Đức Anh
+date: '2018-06-20'
+slug: import-nhieu-file-cung-luc-vao-r
+categories:
+  - Tips
+tags:
+  - Tips
+summary: "Hướng dẫn import cùng lúc nhiều file vào R"
+banner: "img/banners/banner-4.png"
+---
+
+
+
+<p>Trong thực tế, khi phân tích dữ liệu, ta thường xuyên phải làm việc với nhiều file có cấu trúc dữ liệu giống nhau được trích xuất từ những khoảng thời gian/đối tượng khác nhau. Khi phân tích, ta phải cùng lúc xử lý rất nhiều những file loại này. Trong blog này, <a href="ranalytics.vn">RAnalytics</a> sẽ hướng dẫn các bạn import cùng lúc nhiều file.</p>
+<p>Giả sử trong cùng 1 folder, ta có 10 file định dạng csv giống nhau chứa dữ liệu dạng iris như sau:</p>
+<pre class="r"><code>iris %&gt;% head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Chúng ta muốn import cùng lúc 10 file này vào 1 data frame, ta có thể tạo 1 hàm đọc lần lượt từng file và nối các file này lại với nhau như sau:</p>
+<pre class="r"><code>load_data &lt;- function(path) { 
+  
+  # Tìm tất cả các file định dạng csv trong thư mục path
+  
+  files &lt;- dir(path, pattern = &#39;\\.csv&#39;, full.names = TRUE)
+  
+  # Đọc các file này với hàm read.csv
+  
+  tables &lt;- lapply(files, read.csv)
+  
+  #Nối tất cả các dataframe trên bằng hàm do.call và rbind
+  
+  do.call(rbind, tables)
+}</code></pre>
+<p>Giả sử các file <code>csv</code> được chứa ở folder <code>C:/Users/anhhd3/Desktop/data_folder</code>, ta có thể import cùng lúc vào R như sau:</p>
+<pre class="r"><code>data &lt;- load_data(&quot;C:/Users/anhhd3/Desktop/data_folder&quot;)</code></pre>
+<p>Hàm trên hoàn toàn có thể mở rộng với các file định dạng excel, txt hay bất kỳ file nào bạn cần import vào R!</p>
+<p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>

@@ -6,10 +6,20 @@
     <description>Recent content on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Import nhiều file cùng lúc vào R</title>
+      <link>/blog/2018/06/20/2018-06-20-import-nhieu-file-cung-luc-vao-r/</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/06/20/2018-06-20-import-nhieu-file-cung-luc-vao-r/</guid>
+      <description>Trong thực tế, khi phân tích dữ liệu, ta thường xuyên phải làm việc với nhiều file có cấu trúc dữ liệu giống nhau được trích xuất từ những khoảng thời gian/đối tượng khác nhau. Khi phân tích, ta phải cùng lúc xử lý rất nhiều những file loại này. Trong blog này, RAnalytics sẽ hướng dẫn các bạn import cùng lúc nhiều file.
+Giả sử trong cùng 1 folder, ta có 10 file định dạng csv giống nhau chứa dữ liệu dạng iris như sau:</description>
+    </item>
     
     <item>
       <title>Kết nối R với SQLServer</title>
