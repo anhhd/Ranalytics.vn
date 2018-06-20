@@ -112,6 +112,8 @@ googleAnalytics = "UA-117458816-1"
 
 	# Define the number of posts per page
 	paginate = 10
+	
+	highlight = true
 
 	highlightjsVersion = "9.11.0"
     highlightjsCDN = "//cdn.bootcss.com"
