@@ -11,20 +11,6 @@ disqusShortname = "devcows"
 # Enable Google Analytics by entering your tracking code
 googleAnalytics = "UA-117458816-1"
 
-math = true
-
-# Define the number of posts per page
-paginate = 10
-
-highlight = true
-highlight_languages = ["r", "markdown"]
-	
-MathJaxCDN = "//cdn.bootcss.com"
-MathJaxVersion = "2.7.1"
-	
-highlight_style = "github"
-#highlight_style = "railscasts"
-highlight_version = "9.9.0"
 
 #############################
 #MENU OF WEBSITE
@@ -122,6 +108,22 @@ highlight_version = "9.9.0"
     # Format dates with Go's time formatting
     date_format = "2006-01-02"
 
+	math = true
+
+	# Define the number of posts per page
+	paginate = 10
+
+	highlight = true
+	highlight_languages = ["r", "markdown"]
+		
+	MathJaxCDN = "//cdn.bootcss.com"
+	MathJaxVersion = "2.7.1"
+		
+	highlight_style = "github"
+	#highlight_style = "railscasts"
+	highlight_version = "9.9.0"
+	
+	
     logo = "img/logo.png"
     
     address = """<p> 50 Nguyễn Phúc Lai, Ô Chợ Dừa, Đống Đa, Hà Nội
