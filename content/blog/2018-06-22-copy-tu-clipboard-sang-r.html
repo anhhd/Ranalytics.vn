@@ -1,0 +1,40 @@
+---
+title: Copy từ clipboard vào R
+author: Hoàng Đức Anh
+date: '2018-06-22'
+slug: copy-tu-clipboard-sang-r
+categories:
+  - R
+  - Tips
+tags:
+  - Tips
+  - Import data
+summary: "Copy từ clipboard vào R"
+banner: "img/banners/banner-5.png"
+---
+
+
+
+<p>Khi làm việc thực tế, không phải lúc nào chúng ta cũng đọc dữ liệu từ 1 file định dạng csv/xlsx vào R. Nhiều khi, để thuận tiện, ta có thể copy clipboard từ excel/csv vào thẳng R. Trong bài viết này <a href="ranalytics.vn">Ranalytics</a> sẽ hướng dẫn các bạn copy nhanh từ clipboard vào thẳng môi trường làm việc trong R.</p>
+<p>Giả sử ta có 1 bảng dữ liệu từ excel và cần import vào R như sau:</p>
+<div class="figure">
+<img src="/img/blog/2_excel.png" />
+
+</div>
+<p>Thông thường, ta sẽ phải lưu file dưới dạng <code>csv</code> hoặc <code>excel</code> và import vào R. Tuy nhiên, nếu bạn không cần phải tái sử dụng kết quả trên hoặc muốn thực hiện nhanh, ta có thể copy clipboard vào R với các bước sau.</p>
+<ul>
+<li><strong>Bước 1</strong>: Lựa chọn khu vực cần copy, thực hiện copy (<code>Ctrl + C</code>)</li>
+</ul>
+<hr />
+<ul>
+<li><strong>Bước 2</strong>: Sử dụng hàm <code>read.table</code> với lựa chọn <code>file = &quot;clipboard&quot;</code> như sau:</li>
+</ul>
+<pre class="r"><code># Chọn file = &quot;clipboard&quot; với header là tên biến
+df &lt;- read.table(file = &quot;clipboard&quot;, header = T)
+df</code></pre>
+<pre><code>##   x y
+## 1 1 4
+## 2 2 5
+## 3 3 6</code></pre>
+<p>Như vậy, các bạn đã hoàn thành xong việc import dữ liệu từ clipboard vào R một cách nhanh chóng.</p>
+<p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>

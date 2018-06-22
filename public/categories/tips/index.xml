@@ -6,10 +6,20 @@
     <description>Recent content in Tips on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/tips/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Copy từ clipboard vào R</title>
+      <link>/blog/2018/06/22/2018-06-22-copy-tu-clipboard-sang-r/</link>
+      <pubDate>Fri, 22 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/06/22/2018-06-22-copy-tu-clipboard-sang-r/</guid>
+      <description>Khi làm việc thực tế, không phải lúc nào chúng ta cũng đọc dữ liệu từ 1 file định dạng csv/xlsx vào R. Nhiều khi, để thuận tiện, ta có thể copy clipboard từ excel/csv vào thẳng R. Trong bài viết này Ranalytics sẽ hướng dẫn các bạn copy nhanh từ clipboard vào thẳng môi trường làm việc trong R.
+Giả sử ta có 1 bảng dữ liệu từ excel và cần import vào R như sau:</description>
+    </item>
     
     <item>
       <title>Import nhiều file cùng lúc vào R</title>
