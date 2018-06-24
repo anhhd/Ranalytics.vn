@@ -8,7 +8,7 @@ categories:
 tags:
   - Rstudio
 summary: "Một số phím tắt hữu dụng trong RStudio"
-banner: "img/banners/banner-5.png"
+banner: "img/banners/banner-6.jpg"
 ---
 
 Trong quá trình sử dụng R trong phân tích dữ liệu, phần lớn chúng ta đều sẽ sử dụng RStudio là IDE mặc định. Tuy nhiên, đối với các bạn mới bắt đầu, không phải bạn nào cũng biết các phím tắt trong RStudio giúp cho công việc trở nên thuận tiện hơn. Trong bài viết này, [Ranalytics.vn](Ranalytics.vn) sẽ hướng dẫn các bạn một số phím tắt cơ bản hay sử dụng trong Rstudio
