@@ -1,0 +1,53 @@
+---
+title: Các phím tắt hữu dụng trong RStudio
+author: Hoàng Đức Anh
+date: '2018-06-24'
+slug: cac-phim-tat-huu-dung-trong-rstudio
+categories:
+  - Tips
+tags:
+  - Rstudio
+summary: "Một số phím tắt hữu dụng trong RStudio"
+banner: "img/banners/banner-5.png"
+---
+
+Trong quá trình sử dụng R trong phân tích dữ liệu, phần lớn chúng ta đều sẽ sử dụng RStudio là IDE mặc định. Tuy nhiên, đối với các bạn mới bắt đầu, không phải bạn nào cũng biết các phím tắt trong RStudio giúp cho công việc trở nên thuận tiện hơn. Trong bài viết này, [Ranalytics.vn](Ranalytics.vn) sẽ hướng dẫn các bạn một số phím tắt cơ bản hay sử dụng trong Rstudio
+
+# Tạo nhanh dấu gán 
+
+Ta có thể sử dụng phím tắt `Alt + -` để tạo nhanh dấu gán `<-` trong scipt hoặc console.
+
+![](/img/blog/20180624_assign.gif)
+
+
+---
+
+# Tạo nhanh toán tử pipe `%>%`
+
+Ta có thể sử dụng phím tắt `Ctrl + Shift + M` để tạo nhanh toán tử pipe `%>%` 
+
+![](/img/blog/20180624_pipe.gif)
+
+---
+
+# Tạo nhanh script mới
+
+Sử dụng phím tắt `Ctrl + Shift + N`
+
+---
+
+# Knit nhanh kết quả Rmarkdown 
+
+Sử dụng phím tắt `Ctrl + Shift + K`
+
+---
+
+# Chuyển code thành comment và ngược lại 
+
+Sử dụng phím tắt `Ctrl + Shift + C`
+
+Trên dây là một số phím tắt được dùng rất nhiều trong quá trình phân tích dữ liệu.
+
+Chúc các bạn học và làm việc hiệu quả với [Ranalytics.vn](ranalytics.vn)!
+
+

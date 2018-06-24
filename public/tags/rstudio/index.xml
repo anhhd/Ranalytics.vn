@@ -6,19 +6,18 @@
     <description>Recent content in Rstudio on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright (c) 2017, Ranalytics.vn - all rights reserved</copyright>
-    <lastBuildDate>Mon, 06 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/rstudio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Hướng dẫn cài đặt R</title>
-      <link>/blog/2017/11/06/2017-11-06-cai-dat-r/</link>
-      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      <title>Các phím tắt hữu dụng trong RStudio</title>
+      <link>/blog/2018/06/24/2018-06-24-cac-phim-tat-huu-dung-trong-rstudio/</link>
+      <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2017/11/06/2017-11-06-cai-dat-r/</guid>
-      <description>Thử nghiệmĐiểm 1Điểm 2head(mtcars)## mpg cyl disp hp drat wt qsec vs am gear carb## Mazda RX4 21.0 6 160 110 3.90 2.620 16.46 0 1 4 4## Mazda RX4 Wag 21.0 6 160 110 3.90 2.875 17.02 0 1 4 4## Datsun 710 22.8 4 108 93 3.85 2.320 18.61 1 1 4 1## Hornet 4 Drive 21.4 6 258 110 3.</description>
+      <guid>/blog/2018/06/24/2018-06-24-cac-phim-tat-huu-dung-trong-rstudio/</guid>
+      <description>Trong quá trình sử dụng R trong phân tích dữ liệu, phần lớn chúng ta đều sẽ sử dụng RStudio là IDE mặc định. Tuy nhiên, đối với các bạn mới bắt đầu, không phải bạn nào cũng biết các phím tắt trong RStudio giúp cho công việc trở nên thuận tiện hơn. Trong bài viết này, Ranalytics.vn sẽ hướng dẫn các bạn một số phím tắt cơ bản hay sử dụng trong Rstudio</description>
     </item>
     
   </channel>
