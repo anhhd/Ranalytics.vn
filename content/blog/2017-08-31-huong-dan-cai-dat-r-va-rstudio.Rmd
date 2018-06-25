@@ -1,0 +1,78 @@
+---
+title: Hướng dẫn cài đặt R & RStudio
+author: 'Hoàng Đức Anh'
+date: '2017-08-31'
+slug: huong-dan-cai-dat-r-va-rstudio
+categories:
+  - R
+tags:
+  - Rstudio
+  - R
+summary: "Hướng dẫn cài đặt R & RStudio"
+banner: "img/banners/banner-7.png"
+---
+
+Khi bắt đầu học phân tích dữ liệu với R, RStudio là lựa chọn số một về IDE. Tuy nhiên, nhiều bạn chưa phân biệt được R & RStudio như thế nào cũng như cách cài đặt R & RStudio. Trong bài viết này, mình sẽ làm rõ sự khác biệt của `R` và `RStudio` cũng như hướng dẫn các bạn cách thức cài đặt hai phần mềm trên.
+
+---
+
+### Khác biệt giữa R & RStudio
+
+- `R` là phần mềm phân tích thống kê/ đồ họa cho giới phân tích dữ liệu, thống kê. Trang web truy cập `R` là [https://cran.r-project.org](https://cran.r-project.org).
+
+- `RStudio` là IDE (Integrated Development Environment), một phần mềm cho phép truy cập trực tiếp vào phần mềm `R`, đồng thời hỗ trợ rất nhiều tính năng nâng cao, giúp cho việc quản lý và phân tích dữ liệu với R được hiệu quả hơn. Trang web truy cập `RStudio` là [https://rstudio.com](rstudio.com)
+
+Hiểu một cách đơn giản, `R` là phần mềm lõi, giúp phân tích, tính toán, thống kê. Trong khi `RStudio` là phần "vỏ". Tuy nhiên, phần "vỏ" này giúp cho việc sử dụng R được hiệu quả hơn rất nhiều, bao gồm việc tạo script, quản lý project, tự động hóa, etc.
+
+---
+
+### Cách cài đặt R & RStudio
+
+**Cài đặt R**:
+
+- Truy cập trang web: [https://cran.r-project.org](https://cran.r-project.org)
+- Lựa chọn `Download R for Windows`
+- Lựa chọn `base`
+- Download phiên bản mới nhất `Download R 3.5.0 for Windows`
+- Cài đặt `R` như phần mềm thông thường
+
+Các bạn có thể xem hướng dẫn như dưới đây:
+
+![](/img/blog/20170831_download_r.gif)
+
+---
+
+**Cài đặt Rstudio**:
+
+- Truy cập trang web: [https://rstudio.com](https://rstudio.com)
+- Lựa chọn `Product >> Rstudio`
+- Lựa chọn `Rstudio desktop >> Download RStudio Desktop`
+- Download phiên bản Rstuio mới nhất
+- Cài đặt `RStudio` như phần mềm thông thường
+
+Các bạn có thể xem hướng dẫn như dưới đây:
+
+![](/img/blog/20170831_download_r.gif)
+
+---
+
+Sau khi cài đặt xong, máy tính của bạn sẽ có thêm 2 phần mềm mới là `R` và `Rstudio` 
+
+![](/img/blog/20170831_r_rstudio.png)
+
+---
+
+Khi khởi động R sẽ có giao diện như sau:
+
+![](/img/blog/20170831_r_screen.gif)
+
+---
+
+Khi khởi động RStudio sẽ có giao diện như sau:
+
+![](/img/blog/20170831_rstudio_screen.gif)
+
+Trong quá trình học và làm việc với [RAnalytics.vn](ranalytics.vn), các bạn sẽ làm việc chủ yếu với `Rstudio` bởi `R` đã được tích hợp tự động với Rstudio.
+
+Chúc các bạn học và làm việc hiệu quả với [Ranalytics.vn](ranalytics.vn)!
+
