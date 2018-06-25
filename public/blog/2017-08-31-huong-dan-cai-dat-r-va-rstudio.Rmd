@@ -12,6 +12,11 @@ summary: "Hướng dẫn cài đặt R & RStudio"
 banner: "img/banners/banner-7.png"
 ---
 
+```{r setup, include=F}
+knitr::opts_chunk$set(fig.width=8, fig.height=5) 
+```
+
+
 Khi bắt đầu học phân tích dữ liệu với R, RStudio là lựa chọn số một về IDE. Tuy nhiên, nhiều bạn chưa phân biệt được R & RStudio như thế nào cũng như cách cài đặt R & RStudio. Trong bài viết này, mình sẽ làm rõ sự khác biệt của `R` và `RStudio` cũng như hướng dẫn các bạn cách thức cài đặt hai phần mềm trên.
 
 ---
@@ -71,6 +76,8 @@ Khi khởi động R sẽ có giao diện như sau:
 Khi khởi động RStudio sẽ có giao diện như sau:
 
 ![](/img/blog/20170831_rstudio_screen.gif)
+
+---
 
 Trong quá trình học và làm việc với [RAnalytics.vn](ranalytics.vn), các bạn sẽ làm việc chủ yếu với `Rstudio` bởi `R` đã được tích hợp tự động với Rstudio.
 
