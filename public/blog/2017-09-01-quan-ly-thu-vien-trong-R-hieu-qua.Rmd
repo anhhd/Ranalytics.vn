@@ -1,0 +1,49 @@
+---
+title: Quản lý thư viện trong R hiệu quả
+author: 'Hoàng Đức Anh'
+date: '2017-09-01'
+slug: quan-ly-thu-vien-trong-r-hieu-qua
+categories:
+  - R
+tags: ["R"]
+summary: "Hướng dẫn cách thức quản lý thư viện trong R hiệu quả"
+banner: "img/banners/banner-1.png"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.
+
+Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới. Ví dụ, toàn bộ library của `R 3.3` nằm ở thư mục `D:\My Documents\R\win-library\3.3`. Sau khi update lên `R 3.4`, ta không muốn cài đặt lại tất cả các library, cách nhanh nhất là copy toàn bộ library cũ vào folder chứa library mới nằm ở `D:\My Documents\R\win-library\3.4`. 
+
+Tuy nhiên, cách xử lý này cũng có nhiều nhược điểm. Thứ nhất, cách xử lý này tốn thời gian để copy các folder, nhiều khi lên tới 40-50 phút nếu ta có rất nhiều library. Thứ hai, nếu ta có nhiều version của R, cách này sẽ tiêu tốn dung lượng lưu trữ đến vài Gb. Cuối cùng, ta không thể chỉ cài đặt R library một lần và sử dụng cho nhiều lần sau, với mỗi phiên bản của R (VD: `R` từ Cran và `RServices` của Microsoft) ta phải cài đặt hoặc copy nhiều lần.
+
+Tuy nhiên, có một cách rất hiệu quả để đơn giản hóa toàn bộ các vấn đề trên bằng một vài bước đơn giản như sau.
+
+- **Bước 1**: Tạo một folder cố đinh để lưu trữ library trong máy tính. VD `D:/Rlibrary`
+- **Bước 2**: Copy toàn bộ library vào folder vừa tạo (VD: Copy library từ `D:\My Documents\R\win-library\3.3`) `D:/Rlibrary`
+- **Bước 3**: Thay đổi chế độ mặc định của R để R hiểu thư mục `D:/Rlibrary` (folder mới) là thư mục làm việc mặc định, tất cả các library mới sẽ được cài đặt tại đây.
+    - Mở `Rstudio` và tìm thư mục hiện đang chứa library trong R
+
+```{r, waring = F, eval = F}
+.libPaths()
+```
+
+Sau khi thực hiện, ta sẽ có 2 kết quả, thứ nhất là thư mục `C:/Users/anhhd/Rlibrary` - bỏ qua thư mục này & thư mục số 2 `C:/Program Files/R/R-3.3.0/library`. Ta có thể thay đổi thư mục cài đặt như sau
+
+- Truy cập `C:/Program Files/R/R-3.3.0/library`
+- Truy cập `base\R`
+- Copy file `Rprofile` ra desktop
+- Mở `Rprofile` với notepad 
+- Thêm đoạn code sau vào dòng cuối cùng `.libPaths("D:/Rlibrary")`
+- Copy `Rprofile` ngược lại vào `C:/Program Files/R/R-3.3.0/library/base/R`
+
+Khởi động lại Rstudio và gõ câu lệnh `.libPaths()`, ta sẽ nhìn thấy thư mục mặc định chưa library chuyển sang `D:/Rlibrary`.
+
+Sau khi thực hiện xong, nếu update R, việc các bạn phải làm chỉ là điều chỉnh lại thư viện mặc định của phiên bản R mới sang `D:/Rlibrary` như hướng dẫn ở trên, không cần copy hoặc cài đặt lại các library mới.
+
+Chúc các bạn học và làm việc hiệu quả với [Ranalytics.vn](ranalytics.vn)!
+

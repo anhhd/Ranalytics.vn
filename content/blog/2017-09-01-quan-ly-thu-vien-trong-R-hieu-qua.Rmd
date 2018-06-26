@@ -1,7 +1,7 @@
 ---
 title: Quản lý thư viện trong R hiệu quả
 author: 'Hoàng Đức Anh'
-date: '2017-08-10'
+date: '2017-09-01'
 slug: quan-ly-thu-vien-trong-r-hieu-qua
 categories:
   - R
@@ -38,7 +38,7 @@ Sau khi thực hiện, ta sẽ có 2 kết quả, thứ nhất là thư mục `C
 - Truy cập `base\R`
 - Copy file `Rprofile` ra desktop
 - Mở `Rprofile` với notepad 
-- Thêm đoạn code sau vào dòng cuối cùng`r .libPaths("D:/Rlibrary")`
+- Thêm đoạn code sau vào dòng cuối cùng `.libPaths("D:/Rlibrary")`
 - Copy `Rprofile` ngược lại vào `C:/Program Files/R/R-3.3.0/library/base/R`
 
 Khởi động lại Rstudio và gõ câu lệnh `.libPaths()`, ta sẽ nhìn thấy thư mục mặc định chưa library chuyển sang `D:/Rlibrary`.

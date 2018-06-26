@@ -32,6 +32,16 @@ Bước 1: Tạo kết nối với SQLServer</description>
     </item>
     
     <item>
+      <title>Quản lý thư viện trong R hiệu quả</title>
+      <link>/blog/2017/09/01/2017-09-01-quan-ly-thu-vien-trong-r-hieu-qua/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2017/09/01/2017-09-01-quan-ly-thu-vien-trong-r-hieu-qua/</guid>
+      <description>Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.
+Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới.</description>
+    </item>
+    
+    <item>
       <title>Hướng dẫn cài đặt R &amp; RStudio</title>
       <link>/blog/2017/08/31/2017-08-31-huong-dan-cai-dat-r-va-rstudio/</link>
       <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
@@ -39,16 +49,6 @@ Bước 1: Tạo kết nối với SQLServer</description>
       <guid>/blog/2017/08/31/2017-08-31-huong-dan-cai-dat-r-va-rstudio/</guid>
       <description>Khi bắt đầu học phân tích dữ liệu với R, RStudio là lựa chọn số một về IDE. Tuy nhiên, nhiều bạn chưa phân biệt được R &amp;amp; RStudio như thế nào cũng như cách cài đặt R &amp;amp; RStudio. Trong bài viết này, mình sẽ làm rõ sự khác biệt của R và RStudio cũng như hướng dẫn các bạn cách thức cài đặt hai phần mềm trên.
 Khác biệt giữa R &amp;amp; RStudioR là phần mềm phân tích thống kê/ đồ họa cho giới phân tích dữ liệu, thống kê.</description>
-    </item>
-    
-    <item>
-      <title>Quản lý thư viện trong R hiệu quả</title>
-      <link>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</link>
-      <pubDate>Thu, 10 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2017/08/10/2018-04-10-quan-ly-thu-vien-trong-r-hieu-qua/</guid>
-      <description>Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.
-Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới.</description>
     </item>
     
   </channel>
