@@ -38,6 +38,11 @@
   </url>
   
   <url>
+    <loc>/blog/2017/01/01/2017-01-01-cac-vi-tri-cong-viec-trong-khoa-hoc-du-lieu/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/contact/</loc>
   </url>
   
@@ -57,6 +62,18 @@
   </url>
   
   <url>
+    <loc>/categories/data-science/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/data-science/</loc>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/factor/</loc>
     <lastmod>2018-04-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -73,14 +90,14 @@
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <loc>/categories/r/</loc>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+    <loc>/tags/r/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -97,20 +114,20 @@
   </url>
   
   <url>
-    <loc>/tags/sqlserver/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/categories/sqlserver/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>/tags/sqlserver/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
-    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
+    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -119,14 +136,14 @@
   </url>
   
   <url>
-    <loc>/tags/tips/</loc>
-    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+    <loc>/categories/tips/</loc>
+    <lastmod>2018-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/tips/</loc>
-    <lastmod>2018-06-24T00:00:00+00:00</lastmod>
+    <loc>/tags/tips/</loc>
+    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,36 @@
+---
+title: Các vị trí công việc trong khoa học dữ liệu
+author: Hoàng Đức Anh
+date: '2017-01-01'
+slug: cac-vi-tri-cong-viec-trong-khoa-hoc-du-lieu
+categories:
+  - Data Science
+tags:
+  - Data Science
+summary: "Các vị trí công việc trong khoa hoc dữ liệu"
+banner: "img/banners/banner-8.png"
+---
+
+Trong khoa học dữ liệu, có rất nhiều vị trí khác nhau, không chỉ mỗi phân tích tìm kiếm insights và xây dựng mô hình dự báo. Do các vị trí này đều là những vị trí mới và tạm thời chưa có các thuật ngữ thống nhất ở Việt Nam, mình sẽ tạm dịch các vị trí như dưới đây trong khi giữ nguyên bản gốc tiếng Anh.
+
+- Data Scientist - Chuyên viên khai phá dữ liệu và xây dựng mô hình
+- Data Analyst - Chuyên viên phân tích dữ liệu
+- Data Architect - Chuyên viên/chuyên gia kiến trúc dữ liệu
+- Data Engineer - Kỹ sư phát triển và tích hợp cơ sở dữ liệu
+- Statistician - Chuyên viên phân tích thống kê
+- Database Administrator - Chuyên viên quản trị cơ sở dữ liệu
+- Business Analyst - Chuyên viên phân tích kinh doanh
+- Data & Analytics Manager - Quản lý (trưởng phòng/ giám đốc) phân tích dữ liệu
+
+Infographic dưới đây sẽ giúp các bạn hiểu rõ hơn công việc của từng vị trí trong khoa học dữ liệu
+
+---
+
+![](/img/blog/20170101_datasciencejobs.png)
+
+---
+
+Hy vọng sau khi hiểu rõ hơn vị trí của từng công việc, các bạn sẽ thấy rõ hơn vị trí mình phù hợp để có định hướng công việc tốt hơn.
+
+Chúc các bạn học và làm việc hiệu quả với [Ranalytics.vn](ranalytics.vn)!
+
