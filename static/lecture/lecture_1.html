@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bài 1: Giới thiệu cơ bản về R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Hoàng Đức Anh" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="ranalytics.css" type="text/css" />
+    <link rel="stylesheet" href="ranalytics-font.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Bài 1: Giới thiệu cơ bản về R
+### Hoàng Đức Anh
+### 2018/01/01
+
+---
+
+
+
+
+layout: true
+.footer[Ranalytics.vn]
+.rectangle[]
+
+---
+
+## Nội dung
+
+1. Giới thiệu hệ sinh thái của R
+2. Giới thiệu cơ bản về R
+3. Cấu trúc dữ liệu trong R
+4. Lưu ý
+
+---
+
+class: inverse, center, middle
+
+# 1. Giới thiệu hệ sinh thái của R
+
+---
+
+## Hệ sinh thái của R
+
+- R base: thành phần core của R: [https://www.r-project.org/](https://www.r-project.org/). 
+
+--
+
+- R IDE (Integrated Development Environment): RStudio là phần mềm được thiết kế để việc sử dụng R trở nên dễ dàng hơ. Download tại website: [https://www.rstudio.com/](https://www.rstudio.com/) 
+
+--
+
+- R packages: Tập hợp các lênh, dữ liệu, tài liệu để giải quyết 1 hoặc 1 nhóm các vấn đề trong phân tích. Hiện có hơn 12K packages khác nhau trên R. Truy cập website: [https://cran.r-project.org/web/packages/](https://cran.r-project.org/web/packages/)
+
+--
+
+- Blogs/website: [r-bloggers.com](r-bloggers.com)
+
+---
+
+## Cài đặt R &amp; RStudio
+
+--
+
+- Cài đặt R-base: [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
+
+--
+
+- Cài đặt R-studio: [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
+
+---
+
+## Giới thiệu về giao diện R Studio
+
+- Script/Editor: Xem, chỉnh sửa và thực hiện các dòng lệnh trong R
+
+- Console: Hiển thị kết quả của câu lệnh từ script hoặc cho phép nhập lệnh và trả kết quả như R-base
+
+- Environment &amp; History: Xem lịch sử và các đối tượng (oject) trong R
+
+- Plot, packges &amp; Help: Xem kết quả plot, packages và help trong R
+ 
+---
+
+## Giao diện Rstudio
+
+.center[
+![](img/rstudio-ide.png)
+
+.caption[
+**H. 1:** Giao diện RStudio 
+]]
+
+---
+
+## Cách tạo một script trong R
+
+- Cách 1: `File &gt;&gt; New File &gt;&gt; R Script`
+- Cách 2: `Ctrl + Shift + N`
+
+--
+
+**Lưu ý**:
+
+- Với các script có comment bằng tiếng Việt, lưu lại như sau:
+
+`File &gt;&gt; Save With Encoding &gt;&gt; UTF8`
+
+---
+
+class: inverse, center, middle
+
+# 2. Giới thiệu cơ bản về R
+
+---
+
+## Đối tượng làm việc trong R (1)
+
+- Dấu gán `&lt;-` (`Alt + -`)
+
+--
+
+
+```r
+#Ví dụ về đối tượng
+#Đối tượng là 1 số
+x&lt;-3
+x
+```
+
+```
+## [1] 3
+```
+
+---
+
+## Đối tượng làm việc trong R (2)
+
+.pull-up[
+
+```r
+#Đối tượng là 1 vector có phân phối chuẩn
+y&lt;-rnorm(1000,3,1)
+#Đối tượng là 1 biểu đồ
+hist(y, col="violet", main = "Histogram of normal distribution")
+```
+]
+
+--
+
+.pull-down[
+.center[
+![](lecture_1_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]]
+
+---
+
+## Đối tượng làm việc trong R (3)
+
+
+```r
+#Xem thư mục đang làm việc
+#Get working directory
+getwd()
+
+#Thay đổi thư mục làm việc
+#setwd("Thư mục làm việc") - lưu ý thay "/" bằng "\"
+
+#Xem các đối tượng đang làm việc
+ls()
+
+#Xóa tất cả các đối tượng
+#rm = remove
+rm(list=ls())
+```
+
+---
+
+## Hàm trong R
+
+- Câu lệnh (hay hàm): Là một yêu cầu do người dùng tương tác với R để yêu cầu R thực hiện một hoặc một vài yêu cầu. Một câu lệnh sẽ có 2 thành phần:
+    - Tên câu lệnh (function)
+    - Biến (Variable)
+
+- cấu trúc của câu lệnh: `f(argument1, argument2...)`
+
+--
+
+**Lưu ý:**
+
+--
+
+- Comment: Viết sau ký tự "#"
+
+
+```r
+# Tính toán các chỉ số thống kê
+summary(mtcars)
+```
+
+--
+
+- Thực hiện dòng lệnh: Ctrl + Enter
+
+
+---
+
+## Hàm trong R (2)
+
+
+```r
+#VÍ DỤ VỀ CÂU LỆNH TRONG R
+#Các biến trong toán học
+exp(1)
+cos(-3.14)
+
+#Các câu lệnh nâng cao khác
+#Tóm tắt các số liệu
+summary(mtcars) #
+#Xem tên các biến trong 1 bản ghi dữ liệu
+names(mtcars)
+#Xem các dòng đầu tiên của 1 bản dữ liệu
+head(mtcars)
+#Xem các dòng cuối cùng của 1 bản dữ liệu
+tail(mtcars)
+```
+
+---
+
+## Hàm trong R (3)
+
+- Để tìm thông tin và đọc tài liệu về một hàm, dùng lệnh `? Tên hàm` hoặc `help(tên hàm)`. Xem ví dụ:
+
+
+```r
+# Cách 1 
+?mean
+# Cách 2
+help(mean)
+```
+
+---
+
+## Hàm trong R (4)
+
+- Output của một hàm là input của hàm khác
+
+.pull-up[
+
+```r
+lmfit &lt;- lm(mpg~wt, data=mtcars)
+coef(summary(lmfit))
+```
+]
+
+--
+
+.pull-down[
+
+```
+##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 37.285126   1.877627 19.857575 8.241799e-19
+## wt          -5.344472   0.559101 -9.559044 1.293959e-10
+```
+]
+
+---
+
+## Packages trong R
+
+ - Packages (thư viện) trong R là một gói các câu lệnh, dữ liệu và tài liệu để xử lý một nhóm các vấn đề về phân tích thống kê
+ - Một số các packages thường dùng: reshape, ggplot2, dplyr, forecast, rpart, car, zoo...
+ - Cách cài đặt packages trong R
+
+.pull-left[
+
+```r
+# Bước 1: Cài đặt
+install.packages("ggplot2")
+# Bước 2: Load dữ liệu
+library(ggplot2)
+```
+]
+
+--
+
+.pull-right[
+
+```r
+#Cài đặt nhiều thư viện
+#Bước 1: Tạo 1 list các thư viện 
+packages &lt;- c("car", "zoo")
+#Bước 2: Cài đặt 
+install.packages(packages)
+#Bước 3: Load thư viện
+lapply(packages, 
+       library, 
+       character.only = TRUE)
+```
+]
+
+---
+class: inverse, center, middle
+
+## 3. Cấu trúc dữ liệu cơ bản trong R
+
+---
+
+## Véc tơ (1)
+
+
+```r
+#Vector chứa dữ liệu kiểu số. c~combine
+a &lt;- c(1,2,3,4,5)
+#Vector chứa dữ liệu kiểu ký tự
+b &lt;- c("One", "two", "three")
+#Phép tính logic
+c &lt;- c(TRUE, FALSE, FALSE)
+#Kiểu dữ liệu trong 1 vector phải đồng nhất
+a &lt;- c(1,2,3,4,5,"x")
+class(a)
+```
+
+```
+## [1] "character"
+```
+
+---
+
+## Véc-tơ (2) - factor
+
+- Factor là một trường hợp đặc biệt của vector, là loại biến có đặc tính là nhóm:
+    - Nominal (Đen, đỏ, tím)
+    - Oridinal (Cao &gt; trung bình &gt; thấp)
+
+
+```r
+x &lt;- c("red", "blue", "red")
+x
+```
+
+```
+## [1] "red"  "blue" "red"
+```
+
+--
+
+
+```r
+as.factor(x)
+```
+
+```
+## [1] red  blue red 
+## Levels: blue red
+```
+
+
+---
+
+## Ma trận
+
+
+```r
+y&lt;-matrix(1:20, nrow=5, ncol=4)
+y
+```
+
+```
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20
+```
+
+---
+
+## Dataframe
+
+- Data frames là một bản ghi dữ liệu trong R gồm dòng và cột, dòng là biến, cột là quan sát (observation). Trong đó, mỗi dòng (mỗi biến) chứa cùng một kiểu dữ liệu (numeric, character, date,…)
+
+--
+
+
+```r
+#Tạo vector của biến
+patientID &lt;- c(1, 2, 3, 4)
+age &lt;- c(25, 34, 28, 52)
+diabetes &lt;- c("Type1", "Type2", "Type1", "Type1")
+status &lt;- c("Poor", "Improved", "Excellent", "Poor")
+#Tạo data frame. Lưu ý: các vector trong data frame cần có cùng độ dài
+patientdata &lt;- data.frame(patientID, age, diabetes, status)
+patientdata
+```
+
+```
+##   patientID age diabetes    status
+## 1         1  25    Type1      Poor
+## 2         2  34    Type2  Improved
+## 3         3  28    Type1 Excellent
+## 4         4  52    Type1      Poor
+```
+
+---
+
+## Các câu lệnh cơ bản với data frame (1)
+
+- Dấu `$`: Chọn biến trong dataframe
+
+
+```r
+#Xem tên các biến trong data frame
+names(patientdata)
+```
+
+```
+## [1] "patientID" "age"       "diabetes"  "status"
+```
+--
+
+
+```r
+#Xem biến age
+patientdata$age
+```
+
+```
+## [1] 25 34 28 52
+```
+
+---
+
+## Các câu lệnh cơ bản với data frame (2)
+
+
+```r
+#Giá trị dòng 3, cột 2
+patientdata[3,2]
+```
+
+```
+## [1] 28
+```
+
+-- 
+
+
+```r
+#Filter với age&gt;28
+patientdata[patientdata$age&gt;28,]
+```
+
+```
+##   patientID age diabetes   status
+## 2         2  34    Type2 Improved
+## 4         4  52    Type1     Poor
+```
+
+---
+
+## Các câu lệnh cơ bản với data frame (3)
+
+.pull-left[
+
+```r
+#Cách 1: Chọn age, status
+patientdata[c("age","status")]
+```
+
+```
+##   age    status
+## 1  25      Poor
+## 2  34  Improved
+## 3  28 Excellent
+## 4  52      Poor
+```
+]
+
+--
+
+.pull-right[
+
+```r
+#Cách 2: Chọn age, status
+patientdata[c(2,4)]
+```
+
+```
+##   age    status
+## 1  25      Poor
+## 2  34  Improved
+## 3  28 Excellent
+## 4  52      Poor
+```
+]
+
+--
+
+
+```r
+#Summary
+summary(patientdata)
+```
+
+```
+##    patientID         age         diabetes       status 
+##  Min.   :1.00   Min.   :25.00   Type1:3   Excellent:1  
+##  1st Qu.:1.75   1st Qu.:27.25   Type2:1   Improved :1  
+##  Median :2.50   Median :31.00             Poor     :2  
+##  Mean   :2.50   Mean   :34.75                          
+##  3rd Qu.:3.25   3rd Qu.:38.50                          
+##  Max.   :4.00   Max.   :52.00
+```
+
+---
+
+## List
+
+- List là một tập hợp các đối tượng. Một list có thể chứa vector, ma trận,…
+
+
+
+```r
+g &lt;- "My First List"
+h &lt;- c(25, 26, 18, 39)
+j &lt;- matrix(1:10, nrow=5)
+k &lt;- c("one", "two", "three")
+mylist &lt;- list(title=g, ages=h, ducanh = j, Object_4 = k)
+mylist
+```
+
+---
+
+class: inverse, center, middle
+
+# 4. Lưu ý
+
+---
+
+## Các lỗi thường gặp
+
+
+```r
+#Lỗi viết hoa, viết thường: R phân biệt viết hoa, viết thường
+help() vs. HELP() vs. Help()
+```
+
+--
+
+
+```r
+#Không có dấu ngoặc kép khi cài đặt packages
+install.packages("car") vs. install.packages(car)
+```
+--
+
+
+```r
+#Sử dụng dấy gạch "\" trong windows cho đường dẫn thay vì "/"
+setwd("D:/mydata") vs. setwd("D:\mydata")
+```
+
+---
+
+class: inverse, middle, center
+
+# Q&amp;A
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "xcode",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+h1, h2, h3 {
+  font-weight: normal;
+  color: #024C90;
+}
+
+/*
+Add thêm vị trí top, left để có margin cao hơn
+*/
+
+h2 {
+	top: 20px;
+    left: 0.5em;
+    text-align: left;
+    width: 100%;
+	margin-bottom: 0.2em;
+	margin-top: 0.1em;
+}
+
+a, a > code {
+  color: #024C90;
+}
+.remark-code-line-highlighted { background-color: rgba(136, 57, 138, 0.3); }
+
+
+/*Code line*/
+
+.remark-code {
+    color: #646464;
+}
+
+/*
+.code.r.hljs.remark-code {
+ color: #7F7F7F;
+}
+*/
+
+.hljs-xcode .hljs {
+ background: #F2F2F2
+}
+
+
+
+/*Slide title */
+
+.inverse {
+  background-color: #203864;
+}
+.inverse, .inverse h1, .inverse h2, .inverse h3, .inverse a, inverse a > code {
+  color: #fff;
+}
+
+.footer {
+    color: #7F7F7F;
+    position: fixed;
+    top: 95%;
+    left: 1em;
+    text-align: left;
+    width: 100%;
+}
+
+.inverse .footer{
+	display:none;
+}
+
+.title-slide {
+  background-color: #203864;
+}
+
+.title-slide, .title-slide h1, .title-slide h2, .title-slide h3 {
+  color: #fff;
+}
+
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+
+.inverse .remark-slide-number {
+  display: none;
+}
+
+.inverse .rectangle {
+  display: none;
+}
+
+.title-slide .rectangle {
+  display: none;
+}
+
+/*Draw header */
+
+.rectangle {
+    width:1em;
+    height:2em;
+    background:#203864;
+    position:fixed;
+    top:40px;
+    left:40px;
+}
+
+.left-code {
+  color: #000;
+  width: 38%;
+  height: 92%;
+  float: left;
+}
+.right-plot {
+  width: 60%;
+  float: right;
+  /* border-left: solid 1px #272822; */
+  padding-left: 1%;
+}
+
+
+
+.left-column h3 {
+	top: 0.5;
+/*	top: 0.5em;*/
+    line-height: 0.3;
+	font-size: 12
+}
+
+.left-column h3:last-of-type{
+  color: #024C90;
+  font-weight:bold
+}
+
+.right-column {
+  padding-top: 0.5;
+}
+
+
+/*
+.remark-slide-content {
+  padding-top: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 35px;
+}
+
+
+/*
+.remark-slide-title > h2:second-of-type {
+  padding-left: 35px;
+}
+*/
+
+

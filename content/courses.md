@@ -10,6 +10,7 @@ RAnalytics.vn đã phối hợp với [DataCamp](https://www.datacamp.com) để
 
 Các bạn có thể truy cập khóa học tại đường link dưới đây: [Hướng dẫn cơ bản về R](https://www.datacamp.com/community/open-courses/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C6%A1-b%E1%BA%A3n-v%E1%BB%81-r)
 
+---
 
 ## 2. Phân tích và xử lý dữ liệu cơ bản với R
 
@@ -17,7 +18,13 @@ Thông tin chi tiết các bạn có thể xem ở slide dưới đây
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/tjVtnJiE1RIdFy" width="650" height="500" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/thekingin2039/gii-thiu-v-kha-hc-vi-r-ranalyticsvn" title="Giới thiệu về khóa học với R - Ranalytics.vn" target="_blank">Giới thiệu về khóa học với R - Ranalytics.vn</a> </strong> from <strong><a href="//www.slideshare.net/thekingin2039" target="_blank">Hoang Duc Anh</a></strong> </div>
 
-# Các tài liệu khác phục vụ khóa học
+Tài liệu cho khóa học
+
+- [Giới thiệu cơ bản về R](http://ranalytics.vn/lecture/lecture_1.html)
+
+---
+
+## Các tài liệu khác phục vụ khóa học
 
 RAnalytics đã phối hợp với [RStudio](rstudio.com) để dịch các cheatsheet mới nhất từ RStudio phục vụ cộng đồng phân tích dữ liệu sử dụng R tại Việt Nam
 
