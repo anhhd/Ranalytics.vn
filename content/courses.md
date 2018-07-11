@@ -16,7 +16,7 @@ Các bạn có thể truy cập khóa học tại đường link dưới đây: 
 
 Thông tin chi tiết các bạn có thể xem ở slide dưới đây
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/tjVtnJiE1RIdFy" width="650" height="500" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/thekingin2039/gii-thiu-v-kha-hc-vi-r-ranalyticsvn" title="Giới thiệu về khóa học với R - Ranalytics.vn" target="_blank">Giới thiệu về khóa học với R - Ranalytics.vn</a> </strong> from <strong><a href="//www.slideshare.net/thekingin2039" target="_blank">Hoang Duc Anh</a></strong> </div>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/tjVtnJiE1RIdFy" width="850" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/thekingin2039/gii-thiu-v-kha-hc-vi-r-ranalyticsvn" title="Giới thiệu về khóa học với R - Ranalytics.vn" target="_blank">Giới thiệu về khóa học với R - Ranalytics.vn</a> </strong> from <strong><a href="//www.slideshare.net/thekingin2039" target="_blank">Hoang Duc Anh</a></strong> </div>
 
 Tài liệu cho khóa học sẽ được cập nhật trong mỗi bài giảng
 

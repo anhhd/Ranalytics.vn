@@ -26,7 +26,7 @@ Tuy nhiên, có một cách rất hiệu quả để đơn giản hóa toàn b�
 - **Bước 1**: Tạo một folder cố đinh để lưu trữ library trong máy tính. VD `D:/Rlibrary`
 - **Bước 2**: Copy toàn bộ library vào folder vừa tạo (VD: Copy library từ `D:\My Documents\R\win-library\3.3`) `D:/Rlibrary`
 - **Bước 3**: Thay đổi chế độ mặc định của R để R hiểu thư mục `D:/Rlibrary` (folder mới) là thư mục làm việc mặc định, tất cả các library mới sẽ được cài đặt tại đây.
-    - Mở `Rstudio` và tìm thư mục hiện đang chứa library trong R
+    - Mở `Rstudio` và tìm thư mục hiện đang chứa library trong R. Thực hiện câu lệnh sau:
 
 ```{r, waring = F, eval = F}
 .libPaths()
