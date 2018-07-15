@@ -1,0 +1,46 @@
+---
+title: Quản lý dự án phân tích trong R với Project
+author: Hoàng Đức Anh
+date: '2018-07-15'
+slug: quan-ly-du-an-phan-tich-trong-r-voi-project
+categories:
+  - R
+  - Project
+tags: ["R"]
+summary: "Hướng dẫn cách thức quản lý dư án phân tích với project trong R"
+banner: "img/banners/banner-9.jpg"
+---
+
+Khi triển khai một dự án phân tích dữ liệu với R, thông thường, chúng ta sẽ cho toàn bộ code, kết quả đầu ra vào một folder chung. Khi đó, ta sẽ phải đổi toàn bộ thư mục làm việc `working directory` sang địa chỉ của thư mục dự án.
+
+Ví dụ, ta có dự án phân tích marketing đặt trên ổ `D` với đường dẫn như sau `D:\marketing`. Khi đó, toàn bộ code, để đơn giản, sẽ phải thay đổi thư mục làm việc. Các bạn sẽ phải đặt thư mục làm việc trong các file code như sau:
+
+```{r, eval = F}
+setwd("D:/marketing")
+```
+
+Tuy nhiên, đây không phải là cách tối ưu. Trong `RStudio`, ta có thể sử dụng `Project` để quản lý hiệu quả hơn code, kết quả, dữ liệu và các tài liệu có liên quan như sau.
+
+- **Bước 1**: Tạo project mới: `File >> New project`
+- **Bước 2**: Chọn đường dẫn cho project
+    - `New directory >> New project >> Directory name` - với project hoàn toàn mới
+    - `Existing directory` - với project đang quản lý theo cách *cũ*
+
+Trong ví dụ này, mình sẽ lựa chọn là `New directory` và tạo một project mới có tên là `marketing`:
+
+- Chọn `Directory name` là `marketing`
+- Chọn đường dẫn tại ổ `D`
+
+- **Bước 3**: Tạo project mới `Create project`
+
+Như vậy, chúng ta đã vừa tạo xong 1 project với Rstudio. Toàn bộ các file, data, kết quả đầu ra chúng ta có thể lưu thẳng vào folder của project.
+
+Ví dụ, ta tạo 1 script có tên là `script1.R`, ta có thể lưu thẳng vào folder `code` trong project (folder này do chúng ta tự tạo). Các bạn có thể xem ví dụ minh họa dưới đây.
+
+![](/img/blog/20180715_project.gif)
+
+Khi khởi động project, ta chỉ cần truy cập vào foder và khởi động file `.Rproj` (trong trường hợp này là `marketing.Rproj`). Khi đó, ta không cần phải đặt lại `working directory` nữa, `working directory` mặc định chính là đường dẫn của thư mục.
+
+Với việc sử dụng project, việc tái sử dụng, bàn giao code sẽ rất thuận tiện do chỉ việc copy toàn bộ project và bàn giao cho đồng nghiệp. Khi đó, người được bàn giao chỉ việc khởi động file `.Rproj`.
+
+Việc sử dụng `Project` sẽ giúp các bạn quản lý và làm việc hiệu quả hơn rất nhiều với các dự án phân tích dữ liệu. Chúc các bạn học và làm việc hiệu quả với [Ranalytics.vn](ranalytics.vn)!

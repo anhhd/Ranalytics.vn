@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/categories/project/</link>
+    <description>Recent content in Project on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quản lý dự án phân tích trong R với Project</title>
+      <link>/blog/2018/07/15/2018-07-15-quan-ly-du-an-phan-tich-trong-r-voi-project/</link>
+      <pubDate>Sun, 15 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/07/15/2018-07-15-quan-ly-du-an-phan-tich-trong-r-voi-project/</guid>
+      <description>Khi triển khai một dự án phân tích dữ liệu với R, thông thường, chúng ta sẽ cho toàn bộ code, kết quả đầu ra vào một folder chung. Khi đó, ta sẽ phải đổi toàn bộ thư mục làm việc working directory sang địa chỉ của thư mục dự án.
+Ví dụ, ta có dự án phân tích marketing đặt trên ổ D với đường dẫn như sau D:\marketing. Khi đó, toàn bộ code, để đơn giản, sẽ phải thay đổi thư mục làm việc.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,39 @@
+---
+title: Quản lý dự án phân tích trong R với Project
+author: Hoàng Đức Anh
+date: '2018-07-15'
+slug: quan-ly-du-an-phan-tich-trong-r-voi-project
+categories:
+  - R
+  - Project
+tags: ["R"]
+summary: "Hướng dẫn cách thức quản lý dư án phân tích với project trong R"
+banner: "img/banners/banner-9.jpg"
+---
+
+
+
+<p>Khi triển khai một dự án phân tích dữ liệu với R, thông thường, chúng ta sẽ cho toàn bộ code, kết quả đầu ra vào một folder chung. Khi đó, ta sẽ phải đổi toàn bộ thư mục làm việc <code>working directory</code> sang địa chỉ của thư mục dự án.</p>
+<p>Ví dụ, ta có dự án phân tích marketing đặt trên ổ <code>D</code> với đường dẫn như sau <code>D:\marketing</code>. Khi đó, toàn bộ code, để đơn giản, sẽ phải thay đổi thư mục làm việc. Các bạn sẽ phải đặt thư mục làm việc trong các file code như sau:</p>
+<pre class="r"><code>setwd(&quot;D:/marketing&quot;)</code></pre>
+<p>Tuy nhiên, đây không phải là cách tối ưu. Trong <code>RStudio</code>, ta có thể sử dụng <code>Project</code> để quản lý hiệu quả hơn code, kết quả, dữ liệu và các tài liệu có liên quan như sau.</p>
+<ul>
+<li><strong>Bước 1</strong>: Tạo project mới: <code>File &gt;&gt; New project</code></li>
+<li><strong>Bước 2</strong>: Chọn đường dẫn cho project
+<ul>
+<li><code>New directory &gt;&gt; New project &gt;&gt; Directory name</code> - với project hoàn toàn mới</li>
+<li><code>Existing directory</code> - với project đang quản lý theo cách <em>cũ</em></li>
+</ul></li>
+</ul>
+<p>Trong ví dụ này, mình sẽ lựa chọn là <code>New directory</code> và tạo một project mới có tên là <code>marketing</code>:</p>
+<ul>
+<li>Chọn <code>Directory name</code> là <code>marketing</code></li>
+<li><p>Chọn đường dẫn tại ổ <code>D</code></p></li>
+<li><p><strong>Bước 3</strong>: Tạo project mới <code>Create project</code></p></li>
+</ul>
+<p>Như vậy, chúng ta đã vừa tạo xong 1 project với Rstudio. Toàn bộ các file, data, kết quả đầu ra chúng ta có thể lưu thẳng vào folder của project.</p>
+<p>Ví dụ, ta tạo 1 script có tên là <code>script1.R</code>, ta có thể lưu thẳng vào folder <code>code</code> trong project (folder này do chúng ta tự tạo). Các bạn có thể xem ví dụ minh họa dưới đây.</p>
+<p><img src="/img/blog/20180715_project.gif" /></p>
+<p>Khi khởi động project, ta chỉ cần truy cập vào foder và khởi động file <code>.Rproj</code> (trong trường hợp này là <code>marketing.Rproj</code>). Khi đó, ta không cần phải đặt lại <code>working directory</code> nữa, <code>working directory</code> mặc định chính là đường dẫn của thư mục.</p>
+<p>Với việc sử dụng project, việc tái sử dụng, bàn giao code sẽ rất thuận tiện do chỉ việc copy toàn bộ project và bàn giao cho đồng nghiệp. Khi đó, người được bàn giao chỉ việc khởi động file <code>.Rproj</code>.</p>
+<p>Việc sử dụng <code>Project</code> sẽ giúp các bạn quản lý và làm việc hiệu quả hơn rất nhiều với các dự án phân tích dữ liệu. Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
