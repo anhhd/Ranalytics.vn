@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="author" content="Hoàng Đức Anh" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/fa-svg-with-js.css" rel="stylesheet" />
+    <script src="libs/font-awesome/js/fontawesome-all.min.js"></script>
+    <script src="libs/font-awesome/js/fa-v4-shims.min.js"></script>
     <link rel="stylesheet" href="ranalytics.css" type="text/css" />
     <link rel="stylesheet" href="ranalytics-font.css" type="text/css" />
   </head>
@@ -14,7 +17,7 @@ class: center, middle, inverse, title-slide
 
 # Bài 1: Giới thiệu cơ bản về R
 ### Hoàng Đức Anh
-### 2018/01/01
+### July, 2018
 
 ---
 
@@ -24,6 +27,18 @@ class: center, middle, inverse, title-slide
 layout: true
 .footer[Ranalytics.vn]
 .rectangle[]
+
+---
+
+
+## Nội dung khóa học
+
+- Giới thiệu cơ bản về R &amp; RStudio
+- Import dữ liệu và một số chỉ số thống kê cơ bản
+- Ngữ pháp của biến đổi dữ liệu với `dplyr`
+- Ngữ pháp của biểu đồ với `ggplot2`
+- Xây dựng báo cáo với `rmarkdown`
+- Thống kê cơ bản với `R`
 
 ---
 
@@ -86,12 +101,7 @@ class: inverse, center, middle
 
 ## Giao diện Rstudio
 
-.center[
 ![](img/rstudio-ide.png)
-
-.caption[
-**H. 1:** Giao diện RStudio 
-]]
 
 ---
 
@@ -301,10 +311,21 @@ lapply(packages,
 ```
 ]
 
+--
+
+Các packages sẽ sử dụng trong khóa học
+
+
+```r
+packages &lt;- c("tidyverse", "reshape2", "Hmisc", "ggrepel", "ggthemes")
+install.packages(packages)
+```
+
 ---
+
 class: inverse, center, middle
 
-## 3. Cấu trúc dữ liệu cơ bản trong R
+# 3. Cấu trúc dữ liệu cơ bản trong R
 
 ---
 
@@ -381,7 +402,7 @@ y
 
 ## Dataframe
 
-- Data frames là một bản ghi dữ liệu trong R gồm dòng và cột, dòng là biến, cột là quan sát (observation). Trong đó, mỗi dòng (mỗi biến) chứa cùng một kiểu dữ liệu (numeric, character, date,…)
+- Data frames là một bản ghi dữ liệu trong R gồm dòng và cột, dòng là quan sát, cột là biến (observation). Trong đó, mỗi dòng (mỗi biến) chứa cùng một kiểu dữ liệu (numeric, character, date,…)
 
 --
 
@@ -436,6 +457,7 @@ patientdata$age
 
 ## Các câu lệnh cơ bản với data frame (2)
 
+.pull-up[
 
 ```r
 #Giá trị dòng 3, cột 2
@@ -445,9 +467,11 @@ patientdata[3,2]
 ```
 ## [1] 28
 ```
+]
 
 -- 
 
+.pull-down[
 
 ```r
 #Filter với age&gt;28
@@ -459,6 +483,7 @@ patientdata[patientdata$age&gt;28,]
 ## 2         2  34    Type2 Improved
 ## 4         4  52    Type1     Poor
 ```
+]
 
 ---
 
@@ -569,12 +594,24 @@ setwd("D:/mydata") vs. setwd("D:\mydata")
 class: inverse, middle, center
 
 # Q&amp;A
+
+---
+
+class: inverse, middle, center
+
+# Liên hệ
+
+&lt;a href="mailto:hoangducanh89@gmail.com"&gt;&lt;i class="fa fa-paper-plane fa-fw"&gt;&lt;/i&gt;&amp;nbsp; hoangducanh89@gmail.com&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://ranalytics.vn"&gt;&lt;i class="fa fa-link fa-fw"&gt;&lt;/i&gt;&amp;nbsp; http://ranalytics.vn&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://facebook.com/hoangducanh89"&gt;&lt;i class="fa fa-facebook fa-fw"&gt;&lt;/i&gt;&amp;nbsp; hoangducanh89&lt;/a&gt;&lt;br&gt;
+&lt;a href="http://cslu.ohsu.edu"&gt;&lt;i class="fa fa-map-marker fa-fw"&gt;&lt;/i&gt;&amp;nbsp; 50, Nguyễn Phúc Lai, Hà Nội&lt;/a&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "xcode",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"ratio": "16:10"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

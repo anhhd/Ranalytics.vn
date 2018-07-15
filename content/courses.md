@@ -30,7 +30,7 @@ RAnalytics đã phối hợp với [RStudio](rstudio.com) để dịch các chea
 - [Trực quan hóa dữ liệu với ngữ pháp của biểu đồ GGPLOT2](https://www.rstudio.com/wp-content/uploads/2016/03/ggplot2-cheatsheet-2.0-Vietnamese.pdf)
 - [Biến đổi dữ liệu với DPLYR và TYDYR](https://www.rstudio.com/wp-content/uploads/2016/03/Data-Wrangling-Cheatsheet-Vietnamese.pdf)
 - [Tự động hóa phân tích với RMARKDOWN](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-Vietnamese.pdf)
-- [Xây dựng ứng dụng Shiny](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-Vietnamese.pdf)
+- [Xây dựng ứng dụng Shiny](https://www.rstudio.com/wp-content/uploads/2016/07/Shiny-Cheat-Sheet-Vietnamese.pdf)
 - [Xây dựng R package](https://www.rstudio.com/wp-content/uploads/2016/07/devtools-cheatsheet_Vietnamese.pdf)
 
 ---

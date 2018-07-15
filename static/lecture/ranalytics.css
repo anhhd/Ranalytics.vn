@@ -99,6 +99,8 @@ a, a > code {
     left:40px;
 }
 
+/* Các class khác nhau*/
+
 .left-code {
   color: #000;
   width: 38%;
@@ -111,8 +113,6 @@ a, a > code {
   /* border-left: solid 1px #272822; */
   padding-left: 1%;
 }
-
-
 
 .left-column h3 {
 	top: 0.5;
@@ -130,6 +130,50 @@ a, a > code {
   padding-top: 0.5;
 }
 
+/* Tạo cột left là kết quả, right là comment*/
+
+.left-result {
+  color: #000;
+  width: 78%;
+  height: 76%;
+  float: left;
+}
+.right-comment {
+  width: 20%;
+  float: right;
+  height: 76%;
+  background-color: #DAE3F3;
+ /* border-left: solid 1px #272822; */
+  padding-left: 1%;
+} 
+
+table {
+    border-collapse: collapse;
+    width: auto;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+}
+
+th, td {
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #5B9BD5;
+    color: white;
+    border-bottom: 1px solid #666;
+}
+
+blockquote {
+  border-left: solid 5px #f2f2f2;
+  padding-left: 1em;
+}
+
+/******** TITLE SLIDE *************/
+
 
 /*
 .remark-slide-content {
@@ -145,5 +189,7 @@ a, a > code {
   padding-left: 35px;
 }
 */
+
+
 
 
