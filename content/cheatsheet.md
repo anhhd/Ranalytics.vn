@@ -4,8 +4,6 @@ description = "Các cheatsheets R bằng tiếng Việt"
 keywords = ["FAQ","How do I","questions","what if"]
 +++
 
-## Cheatsheets
-
 RAnalytics đã phối hợp với [RStudio](rstudio.com) để dịch các cheatsheet mới nhất từ RStudio phục vụ cộng đồng phân tích dữ liệu sử dụng R tại Việt Nam
 
 &nbsp;
