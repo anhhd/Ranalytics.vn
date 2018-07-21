@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Viết công thức toán trong rmarkdown</title>
+      <link>/blog/2018/07/18/2018-07-21-viet-cong-thuc-toan-trong-rmarkdown/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/07/18/2018-07-21-viet-cong-thuc-toan-trong-rmarkdown/</guid>
+      <description>Khi làm việc với rmarkdown và RStudio, ta có thể viết các công thức, ký hiệu toán học một cách rất dễ dàng. Để viết các công thức toán, có hai cách:
+Cách 1: Công thức toán nằm trong dấu $công thức toán$. Khi đó, công thức sẽ hiển thị nằm trên cùng một dòng.Ví dụ: $y = x^2$ sẽ hiển thị kết quả là \(y = x^2\)</description>
+    </item>
     
     <item>
       <title>Quản lý dự án phân tích trong R với Project</title>

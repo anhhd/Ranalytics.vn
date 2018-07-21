@@ -1,0 +1,167 @@
+---
+title: Viết công thức toán trong rmarkdown
+author: Hoàng Đức Anh
+date: '2018-07-18'
+slug: viet-cong-thuc-toan-trong-rmarkdown
+categories:
+  - RStudio
+tags:
+  - Rstudio
+summary: "Các công thức và ký hiệu toán học thường dùng trong Rmarkdown"
+banner: "img/banners/banner-10.png"
+---
+
+
+
+<p>Khi làm việc với <code>rmarkdown</code> và <code>RStudio</code>, ta có thể viết các công thức, ký hiệu toán học một cách rất dễ dàng. Để viết các công thức toán, có hai cách:</p>
+<ul>
+<li>Cách 1: Công thức toán nằm trong dấu <code>$công thức toán$</code>. Khi đó, công thức sẽ hiển thị nằm trên cùng một dòng.</li>
+</ul>
+<p>Ví dụ: <code>$y = x^2$</code> sẽ hiển thị kết quả là <span class="math inline">\(y = x^2\)</span></p>
+<ul>
+<li>Cách 2: Công thức toán nằm trong dấu <code>$$công thức toán$$</code> (hai dấu <code>$</code>). Khi đó, công thức sẽ hiển thị sẽ nằm ở một dòng độc lập.</li>
+</ul>
+<p>Ví dụ: <code>$$y = x^2$$</code> sẽ hiển thị kết quả là <span class="math display">\[y = x^2\]</span></p>
+<p>Trong bài viết này, <code>ranalytics</code> sẽ hướng dẫn các bạn, đặc biệt là các bạn chưa dùng Latax, viết một số ký hiệu toán học thường dùng.</p>
+<hr />
+<div id="ky-hiu-ting-latin" class="section level3">
+<h3>Ký hiệu tiếng Latin</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Ký hiệu</th>
+<th>Cách viết</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\alpha\)</span></td>
+<td><code>\alpha</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\beta\)</span></td>
+<td><code>\beta</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\gamma\)</span></td>
+<td><code>\gamma</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Gamma\)</span></td>
+<td><code>\Gamma</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\pi\)</span></td>
+<td><code>\pi</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Pi\)</span></td>
+<td><code>\Pi</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\phi\)</span></td>
+<td><code>\phi</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Phi\)</span></td>
+<td><code>\Phi</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\varphi\)</span></td>
+<td><code>\varphi</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\theta\)</span></td>
+<td><code>\theta</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="ky-hiu-toan-hoc" class="section level3">
+<h3>Ký hiệu toán học</h3>
+<p>Các ký hiệu toán học viết trong <code>rmarkdown</code> có hai nguyên tắc chính như sau:</p>
+<ul>
+<li>Các chỉ số chạy/tham số ở dưới sẽ nằm sau dấu <code>_</code> (ví dụ <span class="math inline">\(x_2\)</span>, <span class="math inline">\(y_j\)</span>), các chỉ số ở vị trí ở phía trên sẽ nằm sau dấu <code>^</code> (ví dụ <span class="math inline">\(x^2\)</span>, <span class="math inline">\(y^n\)</span>)</li>
+<li>Các nhóm tham số cùng thuộc một vị trí sẽ nằm trong dấu <code>{}</code>. Ví dụ <code>y_{n+1}</code> sẽ cho kết quả là <span class="math inline">\(y_{n+1}\)</span>.</li>
+</ul>
+<p>Các ký hiệu toán học hay dùng nhất xem trong bảng dưới đây.</p>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ký hiệu</th>
+<th>Cách viết</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\to\)</span></td>
+<td><code>\to</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\infty\)</span></td>
+<td><code>\infty</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(k_{n+1}\)</span></td>
+<td><code>k_{n+1}</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(n^2\)</span></td>
+<td><code>n^2</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(k_n^2\)</span></td>
+<td><code>k_n^2</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{n!}{k!(n-k)!}\)</span></td>
+<td><code>\frac{n!}{k!(n-k)!}</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\binom{n}{k}\)</span></td>
+<td><code>\binom{n}{k}</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{\frac{x}{1}}{x - y}\)</span></td>
+<td><code>\frac{\frac{x}{1}}{x - y}</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(^3/_7\)</span></td>
+<td><code>^3/_7</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sqrt{k}\)</span></td>
+<td><code>\sqrt{k}</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sqrt[n]{k}\)</span></td>
+<td><code>\sqrt[n]{k}</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sum_{i=1}^{10} t_i\)</span></td>
+<td><code>\sum_{i=1}^{10} t_i</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x\)</span></td>
+<td><code>\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x</code></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sum\)</span></td>
+<td><code>\sum</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\prod\)</span></td>
+<td><code>\prod</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Đối với các ký hiệu toán học khác, các bạn có thể tham khảo ở <a href="https://www.latex4technics.com/" class="uri">https://www.latex4technics.com/</a>. Sau khi xây dựng xong công thức, các bạn chỉ việc copy vào <code>rmarkdown</code></p>
+<hr />
+<p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
+</div>
