@@ -3564,3 +3564,25 @@ a.list-group-item.active > .badge,
   left: 15px;
   right: 15px;
 }
+
+/*Duc Anh add format table*/
+
+table {
+    border-collapse: collapse;
+    width: auto;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+}
+
+th, td {
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #5B9BD5;
+    color: white;
+    border-bottom: 1px solid #666;
+}
