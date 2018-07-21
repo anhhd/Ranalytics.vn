@@ -13,11 +13,11 @@ banner: "img/banners/banner-10.png"
 
 Khi làm việc với `rmarkdown` và `RStudio`, ta có thể viết các công thức, ký hiệu toán học một cách rất dễ dàng. Để viết các công thức toán, có hai cách:
 
-- Cách 1: Công thức toán nằm trong dấu `$công thức toán$`. Khi đó, công thức sẽ hiển thị nằm trên cùng một dòng.
+- Cách 1: Công thức toán nằm trong dấu ```$công thức toán$```. Khi đó, công thức sẽ hiển thị nằm trên cùng một dòng.
 
-Ví dụ: `$y = x^2$` sẽ hiển thị kết quả là $y = x^2$
+Ví dụ: ```$y = x^2$``` sẽ hiển thị kết quả là $y = x^2$
 
-- Cách 2: Công thức toán nằm trong dấu `$$công thức toán$$` (hai dấu `$`). Khi đó, công thức sẽ hiển thị sẽ nằm ở một dòng độc lập.
+- Cách 2: Công thức toán nằm trong dấu ```$$công thức toán$$``` (hai dấu `$`). Khi đó, công thức sẽ hiển thị sẽ nằm ở một dòng độc lập.
 
 Ví dụ: `$$y = x^2$$` sẽ hiển thị kết quả là $$y = x^2$$
 
