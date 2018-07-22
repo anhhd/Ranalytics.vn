@@ -3586,21 +3586,3 @@ th {
     color: white;
     border-bottom: 1px solid #666;
 }
-
-/*Code highlight*/
-a, a > code {
-  color: #024C90;
-}
-.remark-code-line-highlighted { background-color: rgba(136, 57, 138, 0.3); }
-
-
-/*Code line*/
-
-.remark-code {
-    color: #646464;
-}
-
-.hljs-xcode .hljs {
- background: #F2F2F2
-}
-
