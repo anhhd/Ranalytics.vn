@@ -143,7 +143,7 @@ googleAnalytics = "UA-117458816-1"
 	highlightjsVersion = "9.11.0"
     highlightjsCDN = "//cdn.bootcss.com"
     highlightjsLang = ["r", "yaml", "markdown"]
-    highlightjsTheme = "railscasts"
+#   highlightjsTheme = "railscasts"
 
     MathJaxCDN = "//cdn.bootcss.com"
     MathJaxVersion = "2.7.1"
