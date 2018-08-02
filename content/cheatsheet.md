@@ -70,3 +70,36 @@ This browser does not support PDFs. Please download the PDF to view it: <a href=
 &nbsp;
 
 ---
+
+#### [Xử lý dữ liệu thời gian với lubridate](https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/lubridate_vietnamese.pdf)
+
+
+<iframe src="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/lubridate_vietnamese.pdf&embedded=true" style="width:900px; height:675px;" frameborder="0">
+This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/lubridate_vietnamese.pdf">Download PDF</a>
+</iframe>
+
+&nbsp;
+
+---
+
+#### [Xử lý dữ liệu chuỗi ký tự với stringr](https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/stringr_vietnamese.pdf)
+
+
+<iframe src="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/stringr_vietnamese.pdf&embedded=true" style="width:900px; height:675px;" frameborder="0">
+This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/stringr_vietnamese.pdf">Download PDF</a>
+</iframe>
+
+&nbsp;
+
+---
+
+#### [Nhóm hàm apply với purrr](https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/purrr_vietnamese.pdf)
+
+
+<iframe src="https://docs.google.com/viewer?url=https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/purrr_vietnamese.pdf&embedded=true" style="width:900px; height:675px;" frameborder="0">
+This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/rstudio/cheatsheets/raw/master/translations/vietnamese/purrr_vietnamese.pdf">Download PDF</a>
+</iframe>
+
+&nbsp;
+
+---
