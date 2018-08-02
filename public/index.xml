@@ -132,6 +132,17 @@ Trực quan hóa dữ liệu với ngữ pháp của biểu đồ GGPLOT2 This b
     </item>
     
     <item>
+      <title>Các loại biểu đồ với GGPLOT2</title>
+      <link>/charts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/charts/</guid>
+      <description>Ranalytics đã tổng hợp một số nguồn hữu ích, giúp các bạn dễ dàng tra cứu, tìm kiếm mã nguồn của các loại biểu đồ thường dùng trên R với GGPLOT2
+&amp;nbsp;
+R Graph Catalog Đây là trang web rất hay được xây dựng bằng shiny trên R, giúp cho người dùng có thể dễ dàng tra cứu các loại biểu đồ và sử dụng các ví dụ có sẵn.</description>
+    </item>
+    
+    <item>
       <title>Câu hỏi thường gặp</title>
       <link>/faq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
