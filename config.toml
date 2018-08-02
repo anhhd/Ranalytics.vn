@@ -82,17 +82,17 @@ googleAnalytics = "UA-117458816-1"
 
 # Top bar social links menu
 
-[[menu.topbar]]
-    weight = 1
-    name = "GitHub"
-    url = "https://github.com/devcows/hugo-universal-theme"
-    pre = "<i class='fa fa-2x fa-github'></i>"
-
 #[[menu.topbar]]
-#    weight = 2
-#    name = "Facebook"
-#    url = "http://facebook.com"
-#    pre = "<i class='fa fa-2x fa-facebook'></i>"
+#    weight = 1
+#    name = "GitHub"
+#    url = "https://github.com/devcows/hugo-universal-theme"
+#    pre = "<i class='fa fa-2x fa-github'></i>"
+
+[[menu.topbar]]
+    weight = 4
+    name = "Facebook"
+    url = "https://www.facebook.com/groups/ranalytics"
+    pre = "<i class='fa fa-2x fa-facebook'></i>"
 
 #[[menu.topbar]]
 #    weight = 3
@@ -101,10 +101,17 @@ googleAnalytics = "UA-117458816-1"
 #    pre = "<i class='fa fa-2x fa-twitter'></i>"
 
 [[menu.topbar]]
-    weight = 4
+    weight = 3
     name = "Email"
     url = "mailto:hoangducanh89@gmail.com"
     pre = "<i class='fa fa-2x fa-envelope'></i>"
+
+[[menu.topbar]]
+    weight = 2
+    name = "Phone"
+    url = "tel:+84977738939"
+    pre = "<i class='fa fa-2x fa-phone'></i>"
+
 
 [params]
     viewMorePostLink = "/blog/"
@@ -171,8 +178,8 @@ googleAnalytics = "UA-117458816-1"
 
 # Enable or disable top bar with social icons
 [params.topbar]
-    enable = false
-    text = """<p class="hidden-sm hidden-xs">Contact us on +420 777 555 333 or hello@universal.com.</p>
+    enable = true
+    text = """<p class="hidden-sm hidden-xs">Liên hệ với chúng tôi qua +84 977 738 939</p>
       <p class="hidden-md hidden-lg"><a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>
       <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
       </p>
