@@ -65,6 +65,12 @@ googleAnalytics = "UA-117458816-1"
     weight = 2
 
 [[menu.main]]
+    name = "Phong cách viết code"
+    parent = "material"
+    url  = "/lecture/coding-style.html"
+    weight = 3
+
+[[menu.main]]
     name = "FAQ"
     identifier = "faq"
     url  = "/faq/"
