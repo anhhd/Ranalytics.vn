@@ -36,26 +36,25 @@ Khi đã tạo được các biểu đồ cơ bản, ta còn cần phải làm c
 
 ---
 
-Dữ liệu sử dụng vẽ biểu đồ
+### Dữ liệu sử dụng vẽ biểu đồ
 
 ```{r}
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 data <- diamonds %>% sample_n(5000)
 data %>% summary
 ```
 
-#### Tạo biểu đồ gốc
+### Tạo biểu đồ gốc
 
 ```{r}
-#Bước 1: Tạo biểu đồ điểm
-library(ggplot2)
-
 #Tạo theme
 theme_set(theme_minimal())
 
 p <- ggplot(data, aes(x=carat, y = price)) +
   geom_point(aes(col=cut))
 p
+
 #Bước 2: Tạo thêm "layer" cho phép tùy chỉnh các thành phần trong biểu đồ
 #Sử dụng layer "theme" để tùy chỉnh
 
@@ -66,7 +65,7 @@ p1
 ```
 
 
-#### Thay đổi title của biểu đồ với hàm "theme"
+## Thay đổi title của biểu đồ với hàm "theme"
 
 - Trường hợp 1: Cho to cỡ chữ và làm tên biểu đồ dạng "bold"
 
@@ -98,7 +97,7 @@ p +
 ```
 
 
-#### Tùy chỉnh tiêu đề trên từng trục biểu đồ
+## Tùy chỉnh tiêu đề trên từng trục biểu đồ
 
 - Trường hợp 1: Thay đổi cỡ chữ, làm đậm chữ của tiêu đề  trục x
 
@@ -126,7 +125,7 @@ p +
                                       face = "bold"))
 ```
 
-#### Tùy chỉnh thành phần text trên từng trục biểu đồ
+## Tùy chỉnh thành phần text trên từng trục biểu đồ
 
 - Trường hợp 1: Thay đổi kích thước, làm đậm chữ trên trục
 
@@ -149,7 +148,7 @@ p +
   theme(axis.text = element_text(size = 13, angle = 45))
 ```
 
-#### Tùy chỉnh phần chú giải của biểu đồ
+## Tùy chỉnh phần chú giải của biểu đồ
 
 - Trường hợp 1: Xóa toàn bộ legend
 
@@ -191,13 +190,13 @@ p +
 
 ---
 
-#### Tùy chỉnh khung màu trong biểu đồ
+## Tùy chỉnh khung màu trong biểu đồ
 
 Các màu mặc định của GGPLOT2 đáp ứng phần lớn các yêu cầu trong phân tích và báo cáo. Tuy nhiên, khi cần tùy chỉnh màu sắc mặc định này lại có thể rất khó khăn nếu ta không biết cách làm.  Trong thực tế, các biểu đồ của các công ty lớn, hoặc các báo cáo phân tích đều phải tuân theo chuẩn màu sắc của cả công ty. Do đó, ta cần phải nắm được cách tùy chỉnh màu sắc của biểu đồ trong R.
 
 Một số mã màu sắc của R có thể tham khảo tại [link](http://sape.inf.usi.ch/quick-reference/ggplot2/colour)
 
-##### Màu của biến rời rạc
+### Màu của biến rời rạc
 
 - Trường hợp 1: Tự điền mã màu
 
@@ -220,7 +219,7 @@ p +
   theme_tufte()
 ```
 
-##### Màu của biến liên tục
+### Màu của biến liên tục
 
 Màu trên GGPLOT2 có thể thay đổi với dài màu liên tục. Xem ví dụ sau.
 

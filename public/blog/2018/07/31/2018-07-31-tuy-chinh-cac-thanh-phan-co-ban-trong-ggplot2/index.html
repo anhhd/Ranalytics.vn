@@ -239,40 +239,40 @@
 <li>Phần chú giải: <code>legend.title</code>, <code>legend.text</code></li>
 </ul>
 <hr />
-<p>Dữ liệu sử dụng vẽ biểu đồ</p>
-<pre class="r"><code>library(tidyverse)
+<div id="d-liu-s-dung-ve-biu-" class="section level3">
+<h3>Dữ liệu sử dụng vẽ biểu đồ</h3>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
 data &lt;- diamonds %&gt;% sample_n(5000)
 data %&gt;% summary</code></pre>
 <pre><code>##      carat               cut       color       clarity         depth      
-##  Min.   :0.2000   Fair     : 156   D: 663   SI1    :1221   Min.   :55.80  
-##  1st Qu.:0.4000   Good     : 458   E: 915   VS2    :1134   1st Qu.:61.00  
-##  Median :0.7000   Very Good:1147   F: 853   SI2    : 858   Median :61.80  
-##  Mean   :0.8037   Premium  :1237   G:1074   VS1    : 767   Mean   :61.76  
-##  3rd Qu.:1.0500   Ideal    :2002   H: 765   VVS2   : 475   3rd Qu.:62.50  
-##  Max.   :4.5000                    I: 473   VVS1   : 306   Max.   :79.00  
-##                                    J: 257   (Other): 239                  
+##  Min.   :0.2000   Fair     : 141   D: 623   SI1    :1248   Min.   :43.00  
+##  1st Qu.:0.4000   Good     : 464   E: 923   VS2    :1145   1st Qu.:61.00  
+##  Median :0.7000   Very Good:1118   F: 871   SI2    : 835   Median :61.90  
+##  Mean   :0.7941   Premium  :1204   G:1019   VS1    : 753   Mean   :61.74  
+##  3rd Qu.:1.0400   Ideal    :2073   H: 794   VVS2   : 456   3rd Qu.:62.50  
+##  Max.   :4.1300                    I: 508   VVS1   : 316   Max.   :73.60  
+##                                    J: 262   (Other): 247                  
 ##      table           price             x                y         
-##  Min.   :43.00   Min.   :  326   Min.   : 0.000   Min.   : 0.000  
-##  1st Qu.:56.00   1st Qu.:  977   1st Qu.: 4.750   1st Qu.: 4.750  
-##  Median :57.00   Median : 2444   Median : 5.700   Median : 5.710  
-##  Mean   :57.44   Mean   : 3972   Mean   : 5.746   Mean   : 5.747  
-##  3rd Qu.:59.00   3rd Qu.: 5413   3rd Qu.: 6.550   3rd Qu.: 6.550  
-##  Max.   :73.00   Max.   :18788   Max.   :10.230   Max.   :10.160  
+##  Min.   :52.00   Min.   :  326   Min.   : 3.810   Min.   : 3.770  
+##  1st Qu.:56.00   1st Qu.:  936   1st Qu.: 4.710   1st Qu.: 4.720  
+##  Median :57.00   Median : 2400   Median : 5.690   Median : 5.700  
+##  Mean   :57.42   Mean   : 3902   Mean   : 5.726   Mean   : 5.728  
+##  3rd Qu.:59.00   3rd Qu.: 5282   3rd Qu.: 6.530   3rd Qu.: 6.520  
+##  Max.   :68.00   Max.   :18766   Max.   :10.140   Max.   :10.100  
 ##                                                                   
 ##        z        
 ##  Min.   :0.000  
-##  1st Qu.:2.940  
-##  Median :3.530  
-##  Mean   :3.547  
-##  3rd Qu.:4.040  
-##  Max.   :6.720  
+##  1st Qu.:2.910  
+##  Median :3.520  
+##  Mean   :3.535  
+##  3rd Qu.:4.030  
+##  Max.   :6.430  
 ## </code></pre>
-<div id="tao-biu--gc" class="section level4">
-<h4>Tạo biểu đồ gốc</h4>
-<pre class="r"><code>#Bước 1: Tạo biểu đồ điểm
-library(ggplot2)
-
-#Tạo theme
+</div>
+<div id="tao-biu--gc" class="section level3">
+<h3>Tạo biểu đồ gốc</h3>
+<pre class="r"><code>#Tạo theme
 theme_set(theme_minimal())
 
 p &lt;- ggplot(data, aes(x=carat, y = price)) +
@@ -288,8 +288,8 @@ p1 &lt;- p +
 p1</code></pre>
 <p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 </div>
-<div id="thay-i-title-cua-biu--vi-ham-theme" class="section level4">
-<h4>Thay đổi title của biểu đồ với hàm “theme”</h4>
+<div id="thay-i-title-cua-biu--vi-ham-theme" class="section level2">
+<h2>Thay đổi title của biểu đồ với hàm “theme”</h2>
 <ul>
 <li>Trường hợp 1: Cho to cỡ chữ và làm tên biểu đồ dạng “bold”</li>
 </ul>
@@ -315,8 +315,8 @@ p1 +
                                   family = &quot;serif&quot;))</code></pre>
 <p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
-<div id="tuy-chinh-tieu--tren-tng-truc-biu-" class="section level4">
-<h4>Tùy chỉnh tiêu đề trên từng trục biểu đồ</h4>
+<div id="tuy-chinh-tieu--tren-tng-truc-biu-" class="section level2">
+<h2>Tùy chỉnh tiêu đề trên từng trục biểu đồ</h2>
 <ul>
 <li>Trường hợp 1: Thay đổi cỡ chữ, làm đậm chữ của tiêu đề trục x</li>
 </ul>
@@ -339,8 +339,8 @@ p1 +
                                       face = &quot;bold&quot;))</code></pre>
 <p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<div id="tuy-chinh-thanh-phn-text-tren-tng-truc-biu-" class="section level4">
-<h4>Tùy chỉnh thành phần text trên từng trục biểu đồ</h4>
+<div id="tuy-chinh-thanh-phn-text-tren-tng-truc-biu-" class="section level2">
+<h2>Tùy chỉnh thành phần text trên từng trục biểu đồ</h2>
 <ul>
 <li>Trường hợp 1: Thay đổi kích thước, làm đậm chữ trên trục</li>
 </ul>
@@ -360,8 +360,8 @@ p1 +
   theme(axis.text = element_text(size = 13, angle = 45))</code></pre>
 <p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
-<div id="tuy-chinh-phn-chu-giai-cua-biu-" class="section level4">
-<h4>Tùy chỉnh phần chú giải của biểu đồ</h4>
+<div id="tuy-chinh-phn-chu-giai-cua-biu-" class="section level2">
+<h2>Tùy chỉnh phần chú giải của biểu đồ</h2>
 <ul>
 <li>Trường hợp 1: Xóa toàn bộ legend</li>
 </ul>
@@ -396,12 +396,12 @@ p1 +
 <p> </p>
 <hr />
 </div>
-<div id="tuy-chinh-khung-mau-trong-biu-" class="section level4">
-<h4>Tùy chỉnh khung màu trong biểu đồ</h4>
+<div id="tuy-chinh-khung-mau-trong-biu-" class="section level2">
+<h2>Tùy chỉnh khung màu trong biểu đồ</h2>
 <p>Các màu mặc định của GGPLOT2 đáp ứng phần lớn các yêu cầu trong phân tích và báo cáo. Tuy nhiên, khi cần tùy chỉnh màu sắc mặc định này lại có thể rất khó khăn nếu ta không biết cách làm. Trong thực tế, các biểu đồ của các công ty lớn, hoặc các báo cáo phân tích đều phải tuân theo chuẩn màu sắc của cả công ty. Do đó, ta cần phải nắm được cách tùy chỉnh màu sắc của biểu đồ trong R.</p>
 <p>Một số mã màu sắc của R có thể tham khảo tại <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour">link</a></p>
-<div id="mau-cua-bin-ri-rac" class="section level5">
-<h5>Màu của biến rời rạc</h5>
+<div id="mau-cua-bin-ri-rac" class="section level3">
+<h3>Màu của biến rời rạc</h3>
 <ul>
 <li>Trường hợp 1: Tự điền mã màu</li>
 </ul>
@@ -422,8 +422,8 @@ p +
   theme_tufte()</code></pre>
 <p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
 </div>
-<div id="mau-cua-bin-lien-tuc" class="section level5">
-<h5>Màu của biến liên tục</h5>
+<div id="mau-cua-bin-lien-tuc" class="section level3">
+<h3>Màu của biến liên tục</h3>
 <p>Màu trên GGPLOT2 có thể thay đổi với dài màu liên tục. Xem ví dụ sau.</p>
 <pre class="r"><code># Tạo biểu đồ gốc
 p &lt;- ggplot(data, aes(x = carat, y = price)) +
