@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tùy chỉnh các thành phần cơ bản trong GGPLOT2</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="devows, hugo, go">	
+  
+
+  
+  <meta name="description" content="Site template made by devcows using hugo">	
+  
+
+  <meta name="generator" content="Hugo 0.44" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="../../../../../css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="../../../../../css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="../../../../../css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="../../../../../img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="../../../../../img/apple-touch-icon.png" />
+  
+
+  <link href="../../../../../css/owl.carousel.css" rel="stylesheet">
+  <link href="../../../../../css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
+
+  
+  <meta property="og:title" content="Tùy chỉnh các thành phần cơ bản trong GGPLOT2" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2018/07/31/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2//" />
+  <meta property="og:image" content="img/logo.png" />
+
+  <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
+  <script src="../../../../../js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="../../../../../">
+                    <img src="../../../../../img/logo.png" alt="Tùy chỉnh các thành phần cơ bản trong GGPLOT2 logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Tùy chỉnh các thành phần cơ bản trong GGPLOT2 logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Tùy chỉnh các thành phần cơ bản trong GGPLOT2 - Về trang chủ</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../">Trang chủ</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../courses/">Khóa học</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tài liệu <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="../../../../../cheatsheet/">R cheatsheets</a></li>
+                      
+                        <li><a href="../../../../../charts/">Các loại biểu đồ</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../faq/">FAQ</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../contact/">Liên hệ</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Tùy chỉnh các thành phần cơ bản trong GGPLOT2</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2018-07-31</p>
+
+                        <div id="post-content">
+                          <p>Khi mới bắt đầu làm việc với GGPLOT2, sẽ rất khó để có thể tùy chỉnh các thành phần cơ bản trong biểu đồ. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn tùy chỉnh những thành phần cơ bản nhất của biểu đồ với GGPLOT2.</p>
+<hr />
+<p>Khi đã tạo được các biểu đồ cơ bản, ta còn cần phải làm chủ được các thành phần khác của biểu đồ, trong đó quan trọng nhất gồm có:</p>
+<ul>
+<li>Tên biểu đồ</li>
+<li>Trên các trục tọa độ (x, y)</li>
+<li>Nội dung phần chú giải</li>
+<li>Phần text trong từng trục</li>
+</ul>
+<p>Để thay đổi các thành phần này, ta dùng hàm <strong>theme</strong> để tạo layer theme mới cho biểu đồ đã tạo. Các thành phần tương ứng của hàm <strong>theme</strong> là:</p>
+<ul>
+<li>Tên biểu đồ: <code>plot.title</code></li>
+<li>Trên các trục tọa độ (x, y): <code>axis.title.x</code>, <code>axis.title.y</code></li>
+<li>Nội dung phần text trong từng trục: <code>axis.text.x</code>, <code>axis.text.y</code></li>
+<li>Phần chú giải: <code>legend.title</code>, <code>legend.text</code></li>
+</ul>
+<hr />
+<p>Dữ liệu sử dụng vẽ biểu đồ</p>
+<pre class="r"><code>library(tidyverse)
+data &lt;- diamonds %&gt;% sample_n(5000)
+data %&gt;% summary</code></pre>
+<pre><code>##      carat               cut       color       clarity         depth      
+##  Min.   :0.2000   Fair     : 156   D: 663   SI1    :1221   Min.   :55.80  
+##  1st Qu.:0.4000   Good     : 458   E: 915   VS2    :1134   1st Qu.:61.00  
+##  Median :0.7000   Very Good:1147   F: 853   SI2    : 858   Median :61.80  
+##  Mean   :0.8037   Premium  :1237   G:1074   VS1    : 767   Mean   :61.76  
+##  3rd Qu.:1.0500   Ideal    :2002   H: 765   VVS2   : 475   3rd Qu.:62.50  
+##  Max.   :4.5000                    I: 473   VVS1   : 306   Max.   :79.00  
+##                                    J: 257   (Other): 239                  
+##      table           price             x                y         
+##  Min.   :43.00   Min.   :  326   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.:56.00   1st Qu.:  977   1st Qu.: 4.750   1st Qu.: 4.750  
+##  Median :57.00   Median : 2444   Median : 5.700   Median : 5.710  
+##  Mean   :57.44   Mean   : 3972   Mean   : 5.746   Mean   : 5.747  
+##  3rd Qu.:59.00   3rd Qu.: 5413   3rd Qu.: 6.550   3rd Qu.: 6.550  
+##  Max.   :73.00   Max.   :18788   Max.   :10.230   Max.   :10.160  
+##                                                                   
+##        z        
+##  Min.   :0.000  
+##  1st Qu.:2.940  
+##  Median :3.530  
+##  Mean   :3.547  
+##  3rd Qu.:4.040  
+##  Max.   :6.720  
+## </code></pre>
+<div id="tao-biu--gc" class="section level4">
+<h4>Tạo biểu đồ gốc</h4>
+<pre class="r"><code>#Bước 1: Tạo biểu đồ điểm
+library(ggplot2)
+
+#Tạo theme
+theme_set(theme_minimal())
+
+p &lt;- ggplot(data, aes(x=carat, y = price)) +
+  geom_point(aes(col=cut))
+p</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>#Bước 2: Tạo thêm &quot;layer&quot; cho phép tùy chỉnh các thành phần trong biểu đồ
+#Sử dụng layer &quot;theme&quot; để tùy chỉnh
+
+#Bước 2.1: Tạo biểu đồ có title &amp; subtitle
+p1 &lt;- p + 
+  labs(title = &quot;Diamonds - price vs. carat&quot;)
+p1</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+</div>
+<div id="thay-i-title-cua-biu--vi-ham-theme" class="section level4">
+<h4>Thay đổi title của biểu đồ với hàm “theme”</h4>
+<ul>
+<li>Trường hợp 1: Cho to cỡ chữ và làm tên biểu đồ dạng “bold”</li>
+</ul>
+<pre class="r"><code>p1 + 
+  theme(plot.title = element_text(size = 15, face = &quot;bold&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 2: Thay đổi font chữ cho tên biểu đồ</li>
+</ul>
+<pre class="r"><code>#library(extrafont)
+p1 + 
+  theme(plot.title = element_text(size = 20, 
+                                  face = &quot;bold&quot;, 
+                                  family = &quot;serif&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 3: Xuống dòng cho tên trong biểu đồ</li>
+</ul>
+<pre class="r"><code>p + 
+  ggtitle(&quot;Diamonds \nprice vs. carat&quot;) + 
+  theme(plot.title = element_text(size = 20, 
+                                  face = &quot;bold&quot;, 
+                                  family = &quot;serif&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="tuy-chinh-tieu--tren-tng-truc-biu-" class="section level4">
+<h4>Tùy chỉnh tiêu đề trên từng trục biểu đồ</h4>
+<ul>
+<li>Trường hợp 1: Thay đổi cỡ chữ, làm đậm chữ của tiêu đề trục x</li>
+</ul>
+<pre class="r"><code>p + 
+  theme(axis.title.x = element_text(size = 11, 
+                                    face = &quot;bold&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 2: Thay đổi font chữ của trục x</li>
+</ul>
+<pre class="r"><code>p + 
+  theme(axis.title.x = element_text(family = &quot;serif&quot;, 
+                                    face = &quot;bold&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 3: Thay đổi kích cỡ, font chữ ở cả 2 trục</li>
+</ul>
+<pre class="r"><code>p + 
+  theme(axis.title = element_text(family = &quot;serif&quot;, 
+                                      face = &quot;bold&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="tuy-chinh-thanh-phn-text-tren-tng-truc-biu-" class="section level4">
+<h4>Tùy chỉnh thành phần text trên từng trục biểu đồ</h4>
+<ul>
+<li>Trường hợp 1: Thay đổi kích thước, làm đậm chữ trên trục</li>
+</ul>
+<pre class="r"><code>p + 
+  theme(axis.text.x = element_text(size = 13, face = &quot;italic&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 2: Làm nghiêng chữ trên trục</li>
+</ul>
+<pre class="r"><code>p + 
+  theme(axis.text.x = element_text(size = 13, angle = 45))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<ul>
+<li>Trường hơp 3: Thay đổi cả 2 trục</li>
+</ul>
+<pre class="r"><code>p + 
+  theme(axis.text = element_text(size = 13, angle = 45))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="tuy-chinh-phn-chu-giai-cua-biu-" class="section level4">
+<h4>Tùy chỉnh phần chú giải của biểu đồ</h4>
+<ul>
+<li>Trường hợp 1: Xóa toàn bộ legend</li>
+</ul>
+<pre class="r"><code>p + theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 2: Xóa tiêu đề của legend</li>
+</ul>
+<pre class="r"><code>p + theme(legend.title = element_blank())</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 3: Thay đổi kích thước, màu sắc của tên legend</li>
+</ul>
+<pre class="r"><code>p + 
+  theme(legend.title = element_text(size = 14, 
+                                    face = &quot;bold&quot;, 
+                                    color = &quot;red&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 4: Thay đổi tên trong legend</li>
+</ul>
+<pre class="r"><code>p + scale_colour_discrete(name = &quot;Type of diamonds&quot;)</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 5: Thay đổi kích cỡ chữ trong phần legend</li>
+</ul>
+<pre class="r"><code>p + 
+  theme(legend.text = element_text(size =12, 
+                                   face = &quot;bold&quot;, 
+                                   family = &quot;serif&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p> </p>
+<hr />
+</div>
+<div id="tuy-chinh-khung-mau-trong-biu-" class="section level4">
+<h4>Tùy chỉnh khung màu trong biểu đồ</h4>
+<p>Các màu mặc định của GGPLOT2 đáp ứng phần lớn các yêu cầu trong phân tích và báo cáo. Tuy nhiên, khi cần tùy chỉnh màu sắc mặc định này lại có thể rất khó khăn nếu ta không biết cách làm. Trong thực tế, các biểu đồ của các công ty lớn, hoặc các báo cáo phân tích đều phải tuân theo chuẩn màu sắc của cả công ty. Do đó, ta cần phải nắm được cách tùy chỉnh màu sắc của biểu đồ trong R.</p>
+<p>Một số mã màu sắc của R có thể tham khảo tại <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour">link</a></p>
+<div id="mau-cua-bin-ri-rac" class="section level5">
+<h5>Màu của biến rời rạc</h5>
+<ul>
+<li>Trường hợp 1: Tự điền mã màu</li>
+</ul>
+<pre class="r"><code>p + 
+  scale_color_manual(values = c(&quot;darkred&quot;, &quot;darkblue&quot;, &quot;violet&quot;, &quot;darkgreen&quot;, &quot;orange&quot;))</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<ul>
+<li>Trường hợp 2: Thay đổi màu sắc theo 1 số chế độ mặc đinh</li>
+</ul>
+<pre class="r"><code>#Sử dụng Brewer
+p + 
+  scale_colour_brewer(palette = &quot;Set1&quot;)</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre class="r"><code>#Sử dụng bảng màu của Tableau
+library(ggthemes)
+p + 
+  scale_colour_tableau() + 
+  theme_tufte()</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
+</div>
+<div id="mau-cua-bin-lien-tuc" class="section level5">
+<h5>Màu của biến liên tục</h5>
+<p>Màu trên GGPLOT2 có thể thay đổi với dài màu liên tục. Xem ví dụ sau.</p>
+<pre class="r"><code># Tạo biểu đồ gốc
+p &lt;- ggplot(data, aes(x = carat, y = price)) +
+  geom_point(aes(col=price))
+p</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<ul>
+<li>Tạo màu theo biến liên tục với <code>scale_color_gradient</code></li>
+</ul>
+<pre class="r"><code>p + scale_color_gradient(low = &quot;darkblue&quot;, high = &quot;darkred&quot;)</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<ul>
+<li>Tạo màu theo biến liên tục với <code>scale_color_gradient2</code></li>
+</ul>
+<pre class="r"><code>p + scale_color_gradient2(midpoint = mean(data$price), 
+                          low = &quot;blue4&quot;, 
+                          mid = &quot;white&quot;, 
+                          high = &quot;red4&quot;)</code></pre>
+<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<hr />
+<p>Như vậy, chúng ta đã vừa biết xong những cách thay đổi các thuộc tính cơ bản nhất của biểu đồ với <code>ggplot2</code>. Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
+</div>
+</div>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ranalytics-vn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Tìm kiếm</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" results="0" class="form-control" placeholder="Tìm kiếm">
+                <input type="hidden" name="q" value="site:/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Nhóm bài viết</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="../../../../../categories/data-science">data-science (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/project">project (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/r">r (5)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/rstudio">rstudio (2)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/sqlserver">sqlserver (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/tips">tips (4)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="../../../../../tags/data-science"><i class="fa fa-tags"></i> data-science</a>
+            </li>
+            
+            <li><a href="../../../../../tags/factor"><i class="fa fa-tags"></i> factor</a>
+            </li>
+            
+            <li><a href="../../../../../tags/import-data"><i class="fa fa-tags"></i> import-data</a>
+            </li>
+            
+            <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rstudio"><i class="fa fa-tags"></i> rstudio</a>
+            </li>
+            
+            <li><a href="../../../../../tags/sqlserver"><i class="fa fa-tags"></i> sqlserver</a>
+            </li>
+            
+            <li><a href="../../../../../tags/tips"><i class="fa fa-tags"></i> tips</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>Về chúng tôi</h4>
+
+            Với RAnalytics.vn, bạn sẽ vững bước hơn trên sự nghiệp phân tích dữ liệu.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+              
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>Liên hệ</h4>
+
+             50 Nguyễn Phúc Lai, Ô Chợ Dừa, Đống Đa, Hà Nội
+        <br>
+      </p>
+      
+
+
+            <a href="../../../../../contact" class="btn btn-small btn-template-main">Liên hệ ngay</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2017, Ranalytics.vn - all rights reserved</p>
+            
+            <p class="pull-right">
+              Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Ported to Hugo by <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-117458816-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCFhtWLJcE30xOAjcbSFi-0fnoVmQZPb1Y&v=3.exp"></script>
+
+<script src="../../../../../js/hpneo.gmaps.js"></script>
+<script src="../../../../../js/gmaps.init.js"></script>
+<script src="../../../../../js/front.js"></script>
+
+
+<script src="../../../../../js/owl.carousel.min.js"></script>
+
+
+  </body>
+</html>
