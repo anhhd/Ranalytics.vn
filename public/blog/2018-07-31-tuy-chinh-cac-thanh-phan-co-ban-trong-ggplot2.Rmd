@@ -4,9 +4,10 @@ author: Hoàng Đức Anh
 date: '2018-07-31'
 slug: tuy-chinh-cac-thanh-phan-co-ban-trong-ggplog2
 categories:
-  - RStudio
+  - Vizualization
 tags:
-  - Rstudio
+  - vizualization
+  - ggplot2
 summary: "Cách tùy chỉnh một số thành phần cơ bản thường dùng trong GGPLOT2"
 banner: "img/banners/banner-11.png"
 ---

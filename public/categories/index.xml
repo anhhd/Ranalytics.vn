@@ -40,7 +40,7 @@
     <item>
       <title>Rstudio</title>
       <link>/categories/rstudio/</link>
-      <pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/rstudio/</guid>
       <description></description>
@@ -61,6 +61,15 @@
       <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/tips/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vizualization</title>
+      <link>/categories/vizualization/</link>
+      <pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/vizualization/</guid>
       <description></description>
     </item>
     
