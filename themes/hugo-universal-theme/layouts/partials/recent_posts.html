@@ -11,13 +11,13 @@
             <p class="lead">
               {{ .Site.Params.recent_posts.subtitle | markdownify }}
             </p>
-			
-			<!-- *** BLOG HOMEPAGE *** -->
+
+            <!-- *** BLOG HOMEPAGE *** -->
 
             <div class="row">
 
-                {{ $blog := .Paginate (where .Data.Pages "Type" "blog") }}
-                {{ range first 4 $blog.Pages }}
+                {{ $posts := .Paginate (where .Data.Pages "Type" "blog") }}
+                {{ range first 4 $posts.Pages }}
                 <div class="col-md-3 col-sm-6">
                     <div class="box-image-text blog">
                         <div class="top">
@@ -44,11 +44,7 @@
                             {{ end }}
                             {{ i18n "publishedOn" }} {{ .Date.Format .Site.Params.date_format }}
                             </p>
-							
-                            <p class="intro">{{ .summary }}</p>
-							
-						   
-							
+                            <p class="intro">{{ .Summary }}</p>
                             <p class="read-more">
                               <a href="{{ .Permalink }}" class="btn btn-template-main">{{ i18n "continueReading" }}</a>
                             </p>

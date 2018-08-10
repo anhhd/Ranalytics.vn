@@ -234,7 +234,7 @@ googleAnalytics = "UA-117458816-1"
     subtitle = ""
 
 [params.recent_posts]
-    enable = false
+    enable = true
     title = "Blog"
     subtitle = "Các bài viết gần nhất"
 
