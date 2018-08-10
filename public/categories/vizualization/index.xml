@@ -6,10 +6,20 @@
     <description>Recent content in Vizualization on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/vizualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Xử lý factor với `forcats`</title>
+      <link>/blog/2018/08/07/2018-08-07-xu-ly-factor-voi-forcats/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/08/07/2018-08-07-xu-ly-factor-voi-forcats/</guid>
+      <description>Trong quá trình phân tích dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc xử lý các biến rời rạc (factor/categorical variable). Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một số hàm cơ bản trong package forcats để xử lý các biến rời rạc.
+Forcats packagePackage forcats là 1 package rất hữu dụng trong việc xử lý các biến rời rạc có thuộc tính là nhóm (factor) trong R.</description>
+    </item>
     
     <item>
       <title>Tùy chỉnh các thành phần cơ bản trong GGPLOT2</title>
@@ -19,16 +29,6 @@
       <guid>/blog/2018/07/31/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2/</guid>
       <description>Khi mới bắt đầu làm việc với GGPLOT2, sẽ rất khó để có thể tùy chỉnh các thành phần cơ bản trong biểu đồ. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tùy chỉnh những thành phần cơ bản nhất của biểu đồ với GGPLOT2.
 Khi đã tạo được các biểu đồ cơ bản, ta còn cần phải làm chủ được các thành phần khác của biểu đồ, trong đó quan trọng nhất gồm có:</description>
-    </item>
-    
-    <item>
-      <title>Xử lý factor với `forcats`</title>
-      <link>/blog/2018/07/31/2018-08-07-xu-ly-factor-voi-forcats/</link>
-      <pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2018/07/31/2018-08-07-xu-ly-factor-voi-forcats/</guid>
-      <description>Trong quá trình phân tích dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc xử lý các biến rời rạc (factor/categorical variable). Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một số hàm cơ bản trong package forcats để xử lý các biến rời rạc.
-Forcats packagePackage forcats là 1 package rất hữu dụng trong việc xử lý các biến rời rạc có thuộc tính là nhóm (factor) trong R.</description>
     </item>
     
   </channel>
