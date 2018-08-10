@@ -1,0 +1,126 @@
+---
+title: Xử lý factor với `forcats`
+author: Nguyễn Hải Trường
+date: '2018-07-31'
+slug: xu-ly-factor-voi-forcats
+categories:
+  - Vizualization
+tags:
+  - forcats
+  - factor
+summary: "Cách tùy chỉnh một số thành phần cơ bản thường dùng trong GGPLOT2"
+banner: "img/banners/banner-12.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc xử lý các biến rời rạc (factor/categorical variable). Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn sử dụng một số hàm cơ bản trong package <code>forcats</code> để xử lý các biến rời rạc.</p>
+<hr />
+<div id="forcats-package" class="section level1">
+<h1>Forcats package</h1>
+<p>Package <code>forcats</code> là 1 package rất hữu dụng trong việc xử lý các biến rời rạc có thuộc tính là nhóm (factor) trong <code>R</code>.</p>
+<p>Biến rời rạc là biến mà chúng ta không thể hiện được dưới dạng số, mà chỉ thể hiện tính chất của thực thế, ví dụ: giới tính, tình trạng hôn nhân, nghề nghiệp…</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+library(forcats)</code></pre>
+</div>
+<div id="factor-recode" class="section level1">
+<h1>Factor Recode</h1>
+<p>Một trong những hàm rất hữu dụng trong package <code>forcats</code> là <code>fct_recode</code>. Nó giúp chúng ta thay đổi các giá trị (levels) của 1 biến rời rạc (factor).</p>
+<pre class="r"><code># Sử dụng dữ liệu airquality có sẵn trong R
+data(&quot;airquality&quot;)
+airquality %&gt;% str</code></pre>
+<pre><code>## &#39;data.frame&#39;:    153 obs. of  6 variables:
+##  $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
+##  $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
+##  $ Wind   : num  7.4 8 12.6 11.5 14.3 14.9 8.6 13.8 20.1 8.6 ...
+##  $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
+##  $ Month  : int  5 5 5 5 5 5 5 5 5 5 ...
+##  $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
+<pre class="r"><code>airquality %&gt;% summary</code></pre>
+<pre><code>##      Ozone           Solar.R           Wind             Temp      
+##  Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+##  1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+##  Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+##  Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+##  3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+##  Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+##  NA&#39;s   :37       NA&#39;s   :7                                       
+##      Month            Day      
+##  Min.   :5.000   Min.   : 1.0  
+##  1st Qu.:6.000   1st Qu.: 8.0  
+##  Median :7.000   Median :16.0  
+##  Mean   :6.993   Mean   :15.8  
+##  3rd Qu.:8.000   3rd Qu.:23.0  
+##  Max.   :9.000   Max.   :31.0  
+## </code></pre>
+<pre class="r"><code>#Biến month đang có định dạng là integer, chuyển thành định dạng factor
+airquality$Month &lt;- airquality$Month %&gt;% 
+  as.factor
+
+airquality$Month %&gt;% class</code></pre>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<pre class="r"><code>levels(airquality$Month)</code></pre>
+<pre><code>## [1] &quot;5&quot; &quot;6&quot; &quot;7&quot; &quot;8&quot; &quot;9&quot;</code></pre>
+<pre class="r"><code># Thay tên các tháng sử dụng hàm fct_recode
+airquality$Month &lt;- fct_recode(airquality$Month, 
+                               May = &#39;5&#39;, 
+                               June = &#39;6&#39;, 
+                               July = &#39;7&#39;, 
+                               August = &#39;8&#39;, 
+                               September = &#39;9&#39;)
+
+levels(airquality$Month)</code></pre>
+<pre><code>## [1] &quot;May&quot;       &quot;June&quot;      &quot;July&quot;      &quot;August&quot;    &quot;September&quot;</code></pre>
+<pre class="r"><code>library(ggplot2)
+airquality %&gt;% 
+  ggplot(aes(Month, Temp)) +
+  geom_boxplot(aes(fill = Month)) +
+  ggtitle(label = &quot;Daily Temperatures Aggregated by Month&quot;) +
+  theme_bw()</code></pre>
+<p><img src="/blog/2018-08-07-xu-ly-factor-voi-forcats_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="factor-reverse" class="section level1">
+<h1>Factor Reverse</h1>
+<p>Để đảo ngược lại thứ tự các giá trị trong 1 biến rời rạc chúng ta dùng hàm <code>fct_rev</code>.</p>
+<pre class="r"><code>airquality %&gt;% 
+  ggplot(aes(fct_rev(Month), Temp)) +
+  geom_boxplot(aes(fill = Month)) +
+  labs(x = &quot;Month&quot;) +
+  ggtitle(label = &quot;Our plot now has the x-axis in reverse order&quot;) +
+  theme_bw()</code></pre>
+<p><img src="/blog/2018-08-07-xu-ly-factor-voi-forcats_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="factor-relevel" class="section level1">
+<h1>Factor Relevel</h1>
+<p>Một hàm rất hữu dụng khác là <code>fct_relevel</code>. Hàm này giúp chúng ta thay đổi bất kỳ giá trị của 1 biến rời rạc ở bất cứ vị trí nào ta mong muốn.</p>
+<pre class="r"><code># Giả sử ta muốn vẽ biểu đồ nhiệt độ các tháng theo thứ tự: September, July, May, August, June
+airquality$Month &lt;- fct_relevel(airquality$Month, &#39;September&#39;, &#39;July&#39;, &#39;May&#39;, &#39;August&#39;, &#39;June&#39;)
+
+levels(airquality$Month)</code></pre>
+<pre><code>## [1] &quot;September&quot; &quot;July&quot;      &quot;May&quot;       &quot;August&quot;    &quot;June&quot;</code></pre>
+<pre class="r"><code>airquality %&gt;% 
+  ggplot(aes(Month, Temp)) +
+  geom_boxplot(aes(fill = Month)) +
+  ggtitle(label = &quot;Notice how the order of the level &#39;Month&#39; has changed&quot;) +
+  theme_bw()</code></pre>
+<p><img src="/blog/2018-08-07-xu-ly-factor-voi-forcats_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="factor-reorder" class="section level1">
+<h1>Factor Reorder</h1>
+<p>Một hàm khác thường xuyên được sử dụng để sắp xếp theo thứ tự tăng/giảm dần của 1 biến rời rạc dựa vào giá trị của 1 biến số khác là <code>fct_reorder</code>.</p>
+<p>Giả sử, trong trường hợp này chúng ta muốn sắp xếp các tháng theo nhiệt độ tăng dần.</p>
+<pre class="r"><code># Ta có thể lựa chọn .desc=T (thứ tự giảm dần) hoặc .desc=F (tăng dần)
+airquality %&gt;% 
+  ggplot(aes(x = fct_reorder(Month, Temp, .desc = F), y = Temp)) +
+  geom_boxplot(aes(fill = Month)) +
+  ggtitle(label = &quot;We can make better comparison by reordering the levels based on the temperature values!&quot;) +
+  theme_bw() +
+  theme(plot.title = element_text(size = 10, face = &#39;bold&#39;))</code></pre>
+<p><img src="/blog/2018-08-07-xu-ly-factor-voi-forcats_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<hr />
+<p>Như vậy, chúng ta đã vừa được làm quen với một số hàm cơ bản trong package <code>forcats</code> như thay đổi và sắp xếp thứ tự các giá trị của 1 biến rời rạc. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>

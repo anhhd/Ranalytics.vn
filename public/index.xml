@@ -22,6 +22,16 @@ Khi đã tạo được các biểu đồ cơ bản, ta còn cần phải làm c
     </item>
     
     <item>
+      <title>Xử lý factor với `forcats`</title>
+      <link>/blog/2018/07/31/2018-08-07-xu-ly-factor-voi-forcats/</link>
+      <pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/07/31/2018-08-07-xu-ly-factor-voi-forcats/</guid>
+      <description>Trong quá trình phân tích dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc xử lý các biến rời rạc (factor/categorical variable). Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một số hàm cơ bản trong package forcats để xử lý các biến rời rạc.
+Forcats packagePackage forcats là 1 package rất hữu dụng trong việc xử lý các biến rời rạc có thuộc tính là nhóm (factor) trong R.</description>
+    </item>
+    
+    <item>
       <title>Viết công thức toán trong rmarkdown</title>
       <link>/blog/2018/07/18/2018-07-21-viet-cong-thuc-toan-trong-rmarkdown/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>

@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>/blog/2018/07/31/2018-08-07-xu-ly-factor-voi-forcats/</loc>
+    <lastmod>2018-07-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2018/07/18/2018-07-21-viet-cong-thuc-toan-trong-rmarkdown/</loc>
     <lastmod>2018-07-18T00:00:00+00:00</lastmod>
   </url>
@@ -98,7 +103,13 @@
   
   <url>
     <loc>/tags/factor/</loc>
-    <lastmod>2018-04-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/forcats/</loc>
+    <lastmod>2018-07-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
