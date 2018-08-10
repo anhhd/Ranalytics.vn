@@ -90,13 +90,13 @@
   </url>
   
   <url>
-    <loc>/categories/data-science/</loc>
+    <loc>/tags/data-science/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/data-science/</loc>
+    <loc>/categories/data-science/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -136,13 +136,13 @@
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
+    <loc>/tags/r/</loc>
     <lastmod>2018-07-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2018-07-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -154,25 +154,25 @@
   </url>
   
   <url>
-    <loc>/categories/rstudio/</loc>
-    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/rstudio/</loc>
     <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/sqlserver/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <loc>/categories/rstudio/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/sqlserver/</loc>
+    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/sqlserver/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -188,26 +188,26 @@
   </url>
   
   <url>
-    <loc>/categories/tips/</loc>
-    <lastmod>2018-06-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/tips/</loc>
     <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/vizualization/</loc>
-    <lastmod>2018-08-07T00:00:00+00:00</lastmod>
+    <loc>/categories/tips/</loc>
+    <lastmod>2018-06-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/vizualization/</loc>
     <lastmod>2018-07-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/vizualization/</loc>
+    <lastmod>2018-08-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

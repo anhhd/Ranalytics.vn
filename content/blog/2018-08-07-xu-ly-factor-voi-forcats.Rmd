@@ -45,8 +45,9 @@ airquality %>% str
 airquality %>% summary
 ```
 
+Trong tập dữ liệu trên, biến month đang có định dạng là integer, chuyển thành định dạng factor
+
 ```{r}
-#Biến month đang có định dạng là integer, chuyển thành định dạng factor
 airquality$Month <- airquality$Month %>% 
   as.factor
 
@@ -54,9 +55,9 @@ airquality$Month %>% class
 levels(airquality$Month)
 ```
 
+Thay tên các tháng sử dụng hàm fct_recode
 
 ```{r}
-# Thay tên các tháng sử dụng hàm fct_recode
 airquality$Month <- fct_recode(airquality$Month, 
                                May = '5', 
                                June = '6', 
@@ -97,12 +98,11 @@ airquality %>%
 
 # Factor Relevel
 
-Một hàm rất hữu dụng khác là ``fct_relevel``. Hàm này giúp chúng ta thay đổi bất kỳ giá trị của 1 biến rời rạc ở bất cứ vị trí nào ta mong muốn.
+Một hàm rất hữu dụng khác là ``fct_relevel``. Hàm này giúp chúng ta thay đổi bất kỳ giá trị của 1 biến rời rạc ở bất cứ vị trí nào ta mong muốn. Giả sử ta muốn vẽ biểu đồ nhiệt độ các tháng theo thứ tự: `September, July, May, August, June`
 
 ```{r}
-# Giả sử ta muốn vẽ biểu đồ nhiệt độ các tháng theo thứ tự: September, July, May, August, June
 airquality$Month <- fct_relevel(airquality$Month, 'September', 'July', 'May', 'August', 'June')
-
+#Kiểm tra lại thứ tự của factor
 levels(airquality$Month)
 ```
 
@@ -121,16 +121,18 @@ airquality %>%
 
 Một hàm khác thường xuyên được sử dụng để sắp xếp theo thứ tự tăng/giảm dần của 1 biến rời rạc dựa vào giá trị của 1 biến số khác là ``fct_reorder``.
 
-Giả sử, trong trường hợp này chúng ta muốn sắp xếp các tháng theo nhiệt độ tăng dần.
+Giả sử, trong trường hợp này chúng ta muốn sắp xếp các tháng theo nhiệt độ tăng dần. Ta có thể lựa chọn `.desc=T` (thứ tự giảm dần) hoặc `.desc=F` (tăng dần)
 
 ```{r}
-# Ta có thể lựa chọn .desc=T (thứ tự giảm dần) hoặc .desc=F (tăng dần)
 airquality %>% 
   ggplot(aes(x = fct_reorder(Month, Temp, .desc = F), y = Temp)) +
   geom_boxplot(aes(fill = Month)) +
-  ggtitle(label = "We can make better comparison by reordering the levels based on the temperature values!") +
+  labs(title = "We can make better comparison",
+       subtitle = "by reordering the levels based on the temperature values!",
+       x = "Month") +
   theme_bw() +
-  theme(plot.title = element_text(size = 10, face = 'bold'))
+  theme(plot.title = element_text(size = 12, 
+                                  face = 'bold'))
 ```
 
 ---

@@ -264,16 +264,16 @@ airquality %&gt;% str</code></pre>
 ##  3rd Qu.:8.000   3rd Qu.:23.0  
 ##  Max.   :9.000   Max.   :31.0  
 ## </code></pre>
-<pre class="r"><code>#Biến month đang có định dạng là integer, chuyển thành định dạng factor
-airquality$Month &lt;- airquality$Month %&gt;% 
+<p>Trong tập dữ liệu trên, biến month đang có định dạng là integer, chuyển thành định dạng factor</p>
+<pre class="r"><code>airquality$Month &lt;- airquality$Month %&gt;% 
   as.factor
 
 airquality$Month %&gt;% class</code></pre>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <pre class="r"><code>levels(airquality$Month)</code></pre>
 <pre><code>## [1] &quot;5&quot; &quot;6&quot; &quot;7&quot; &quot;8&quot; &quot;9&quot;</code></pre>
-<pre class="r"><code># Thay tên các tháng sử dụng hàm fct_recode
-airquality$Month &lt;- fct_recode(airquality$Month, 
+<p>Thay tên các tháng sử dụng hàm fct_recode</p>
+<pre class="r"><code>airquality$Month &lt;- fct_recode(airquality$Month, 
                                May = &#39;5&#39;, 
                                June = &#39;6&#39;, 
                                July = &#39;7&#39;, 
@@ -305,10 +305,9 @@ airquality %&gt;%
 </div>
 <div id="factor-relevel" class="section level1">
 <h1>Factor Relevel</h1>
-<p>Một hàm rất hữu dụng khác là <code>fct_relevel</code>. Hàm này giúp chúng ta thay đổi bất kỳ giá trị của 1 biến rời rạc ở bất cứ vị trí nào ta mong muốn.</p>
-<pre class="r"><code># Giả sử ta muốn vẽ biểu đồ nhiệt độ các tháng theo thứ tự: September, July, May, August, June
-airquality$Month &lt;- fct_relevel(airquality$Month, &#39;September&#39;, &#39;July&#39;, &#39;May&#39;, &#39;August&#39;, &#39;June&#39;)
-
+<p>Một hàm rất hữu dụng khác là <code>fct_relevel</code>. Hàm này giúp chúng ta thay đổi bất kỳ giá trị của 1 biến rời rạc ở bất cứ vị trí nào ta mong muốn. Giả sử ta muốn vẽ biểu đồ nhiệt độ các tháng theo thứ tự: <code>September, July, May, August, June</code></p>
+<pre class="r"><code>airquality$Month &lt;- fct_relevel(airquality$Month, &#39;September&#39;, &#39;July&#39;, &#39;May&#39;, &#39;August&#39;, &#39;June&#39;)
+#Kiểm tra lại thứ tự của factor
 levels(airquality$Month)</code></pre>
 <pre><code>## [1] &quot;September&quot; &quot;July&quot;      &quot;May&quot;       &quot;August&quot;    &quot;June&quot;</code></pre>
 <pre class="r"><code>airquality %&gt;% 
@@ -322,14 +321,16 @@ levels(airquality$Month)</code></pre>
 <div id="factor-reorder" class="section level1">
 <h1>Factor Reorder</h1>
 <p>Một hàm khác thường xuyên được sử dụng để sắp xếp theo thứ tự tăng/giảm dần của 1 biến rời rạc dựa vào giá trị của 1 biến số khác là <code>fct_reorder</code>.</p>
-<p>Giả sử, trong trường hợp này chúng ta muốn sắp xếp các tháng theo nhiệt độ tăng dần.</p>
-<pre class="r"><code># Ta có thể lựa chọn .desc=T (thứ tự giảm dần) hoặc .desc=F (tăng dần)
-airquality %&gt;% 
+<p>Giả sử, trong trường hợp này chúng ta muốn sắp xếp các tháng theo nhiệt độ tăng dần. Ta có thể lựa chọn <code>.desc=T</code> (thứ tự giảm dần) hoặc <code>.desc=F</code> (tăng dần)</p>
+<pre class="r"><code>airquality %&gt;% 
   ggplot(aes(x = fct_reorder(Month, Temp, .desc = F), y = Temp)) +
   geom_boxplot(aes(fill = Month)) +
-  ggtitle(label = &quot;We can make better comparison by reordering the levels based on the temperature values!&quot;) +
+  labs(title = &quot;We can make better comparison&quot;,
+       subtitle = &quot;by reordering the levels based on the temperature values!&quot;,
+       x = &quot;Month&quot;) +
   theme_bw() +
-  theme(plot.title = element_text(size = 10, face = &#39;bold&#39;))</code></pre>
+  theme(plot.title = element_text(size = 12, 
+                                  face = &#39;bold&#39;))</code></pre>
 <p><img src="../../../../../blog/2018-08-07-xu-ly-factor-voi-forcats_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <hr />
 <p>Như vậy, chúng ta đã vừa được làm quen với một số hàm cơ bản trong package <code>forcats</code> như thay đổi và sắp xếp thứ tự các giá trị của 1 biến rời rạc. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
