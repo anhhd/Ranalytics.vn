@@ -69,6 +69,12 @@ googleAnalytics = "UA-117458816-1"
     parent = "material"
     url  = "/lecture/coding-style.html"
     weight = 3
+    
+[[menu.main]]
+    name = "Giới thiệu cơ bản về R (Datacamp)"
+    parent = "material"
+    url  = "https://www.datacamp.com/community/open-courses/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C6%A1-b%E1%BA%A3n-v%E1%BB%81-r"
+    weight = 10
 
 [[menu.main]]
     name = "FAQ"
