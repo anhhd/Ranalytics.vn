@@ -1,0 +1,92 @@
+---
+title: Format dữ liệu trong GGPLOT2 với scales
+author: Hoàng Đức Anh
+date: '2018-08-17'
+slug: format-du-lieu-trong-ggplot2-voi-scales
+categories:
+  - Vizualization
+tags:
+  - ggplot2
+  - scales
+summary: "Hướng dẫn format dữ liệu trên trục biểu đồ với scales"
+banner: "img/banners/banner-13.png"
+---
+
+
+
+<p>Trong quá trình trực quan hóa dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc format lại dữ liệu để hiển thị tốt nhất. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn sử dụng một package rất hữu hiệu trong việc format lại dữ liệu trên trục biểu đồ là <code>scales</code>. Cách thức format dữ liệu trên biểu đồ trong nội dung bài viết này gồm 4 nhóm chính:</p>
+<ul>
+<li>Hiển thị ký tự tiền tệ</li>
+<li>Hiển thị ký tự phần trăm</li>
+<li>Hiển thị theo cấu trúc của báo cáo khoa học</li>
+<li>Hiển thị dữ liệu thời gian</li>
+</ul>
+<hr />
+<div id="lam-vic-vi-cac-kiu-d-liu-thong-thung" class="section level2">
+<h2>Làm việc với các kiểu dữ liệu thông thường</h2>
+<p>Trước hết, ta hãy tạo biểu đồ cơ bản đầu tiên từ tập dữ liệu <code>mtcars</code></p>
+<pre class="r"><code># Gọi library
+library(tidyverse)
+library(scales)
+# Sử dụng theme_bw cho tất cả các biểu đồ
+theme_set(theme_bw())</code></pre>
+<pre class="r"><code># Tạo biểu đồ cơ bản
+p &lt;- ggplot(cars, aes(x = speed, y = dist)) + 
+  geom_point(col = &quot;navy&quot;)
+p</code></pre>
+<p><img src="/blog/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Sau đây, chúng ta sẽ thử các cách khác nhau để format lại trục dữ liệu trên biểu đồ. Để thực hiện cách format lại dữ liệu trên trục, ta có thể sử dụng option <code>labels</code> trên từng trục.</p>
+<ul>
+<li>Dữ liệu hiển thị dạng phần trăm</li>
+</ul>
+<pre class="r"><code>p + scale_y_continuous(labels = percent)</code></pre>
+<p><img src="/blog/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<ul>
+<li>Dữ liệu hiển thị có chứa ký hiệu tiền tệ</li>
+</ul>
+<pre class="r"><code># dollar
+p + scale_y_continuous(labels = dollar)</code></pre>
+<p><img src="/blog/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<ul>
+<li>Dữ liệu hiển thị ký tự khoa học, ví dụ <code>1e6</code></li>
+</ul>
+<pre class="r"><code>p + scale_y_continuous(labels = scientific)</code></pre>
+<p><img src="/blog/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="truc-biu--vi-d-liu-thi-gian" class="section level2">
+<h2>Trục biểu đồ với dữ liệu thời gian</h2>
+<ul>
+<li>Tạo dữ liệu dummy</li>
+</ul>
+<pre class="r"><code>df &lt;- data.frame(
+  date = seq(13000, 13200, by = 1) %&gt;% lubridate::as_date(),
+  price = runif(201)*10*abs(rnorm(201,0,1)))
+head(df)</code></pre>
+<pre><code>##         date      price
+## 1 2005-08-05 0.13942979
+## 2 2005-08-06 0.05585222
+## 3 2005-08-07 9.78357345
+## 4 2005-08-08 0.97998067
+## 5 2005-08-09 2.32872248
+## 6 2005-08-10 0.05484107</code></pre>
+<pre class="r"><code>p2 &lt;- ggplot(data=df, 
+             aes(x=date, y=price)) + 
+  geom_line(col = &quot;darkblue&quot;)
+p2</code></pre>
+<p><img src="/blog/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Ta có thể điều chỉnh cách thức hiển thị trên trục x theo nhiều cách như sau</p>
+<pre class="r"><code>library(scales)
+
+# Format : tháng/ngày
+p2 + scale_x_date(breaks = date_breaks(&quot;month&quot;),
+  labels = date_format(&quot;%m/%y&quot;)) </code></pre>
+<p><img src="/blog/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code># Format: tháng, năm - hiển thị ký tự tiếng Anh
+p2 + scale_x_date(breaks = date_breaks(&quot;months&quot;),
+                  labels = date_format(&quot;%b,%y&quot;))</code></pre>
+<p><img src="/blog/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p>Để hiểu hơn cách thức hiển thị dữ liệu dạng ngày tháng trong <code>R</code>, ta có thể tra cứu cách thức format với câu lệnh</p>
+<pre class="r"><code>?strptime</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được làm quen với một số kiểu format trục biểu đồ cơ bản - nhưng rất hữu dụng trong package <code>scales</code>, những hàm cơ bản trên được dùng rất nhiều trong công việc thực tế. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
