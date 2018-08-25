@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 25 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cloud Computing</title>
+      <link>/tags/cloud-computing/</link>
+      <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cloud-computing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Data Science</title>
@@ -68,7 +77,7 @@
     <item>
       <title>Rstudio</title>
       <link>/tags/rstudio/</link>
-      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/rstudio/</guid>
       <description></description>

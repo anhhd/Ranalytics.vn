@@ -6,10 +6,19 @@
     <description>Recent content in Rstudio on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 25 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/rstudio/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cài đặt RStudio trên Amazon</title>
+      <link>/blog/2018/08/25/2018-08-25-cai-dat-rstudio-server-tren-amazon/</link>
+      <pubDate>Sat, 25 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/08/25/2018-08-25-cai-dat-rstudio-server-tren-amazon/</guid>
+      <description>Như chúng ta đều biết, R gặp các vấn đề giới hạn của bộ nhớ. Đặc biệt, với các bạn sử dụng Windows, R còn gặp các vấn đề về lỗi font tiếng Việt (encoding). Thêm vào đó, với các bạn muốn sử dụng R trong Deep Learning với CUDA cũng sẽ gặp rất nhiều khó khăn trong việc cài đặt cũng như các vấn đề về chi phí. Sử dụng RStudio online trên Amazon là cách thức hữu hiệu trong giải quyết các vấn đề sau:</description>
+    </item>
     
     <item>
       <title>Viết công thức toán trong rmarkdown</title>

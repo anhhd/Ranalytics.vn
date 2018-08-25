@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/2018/08/25/2018-08-25-cai-dat-rstudio-server-tren-amazon/</loc>
+    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/</loc>
     <lastmod>2018-08-17T00:00:00+00:00</lastmod>
   </url>
@@ -73,7 +78,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2018-08-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -84,6 +89,18 @@
   
   <url>
     <loc>/cheatsheet/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/cloud-computing/</loc>
+    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/cloud-computing/</loc>
+    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -154,13 +171,13 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-08-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/rstudio/</loc>
-    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -190,7 +207,7 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

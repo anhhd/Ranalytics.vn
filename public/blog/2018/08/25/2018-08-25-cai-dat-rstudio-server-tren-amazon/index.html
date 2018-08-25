@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cài đặt RStudio trên Amazon</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="devows, hugo, go">	
+  
+
+  
+  <meta name="description" content="Site template made by devcows using hugo">	
+  
+
+  <meta name="generator" content="Hugo 0.44" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="../../../../../css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="../../../../../css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="../../../../../css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="../../../../../img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="../../../../../img/apple-touch-icon.png" />
+  
+
+  <link href="../../../../../css/owl.carousel.css" rel="stylesheet">
+  <link href="../../../../../css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
+
+  
+  <meta property="og:title" content="Cài đặt RStudio trên Amazon" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2018/08/25/2018-08-25-cai-dat-rstudio-server-tren-amazon//" />
+  <meta property="og:image" content="img/logo.png" />
+
+  <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
+  <script src="../../../../../js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="../../../../../">
+                    <img src="../../../../../img/logo.png" alt="Cài đặt RStudio trên Amazon logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Cài đặt RStudio trên Amazon logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Cài đặt RStudio trên Amazon - Về trang chủ</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../">Trang chủ</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../courses/">Khóa học</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tài liệu <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="../../../../../cheatsheet/">R cheatsheets</a></li>
+                      
+                        <li><a href="../../../../../charts/">Các loại biểu đồ</a></li>
+                      
+                        <li><a href="../../../../../lecture/coding-style.html">Phong cách viết code</a></li>
+                      
+                        <li><a href="https://www.datacamp.com/community/open-courses/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C6%A1-b%E1%BA%A3n-v%E1%BB%81-r">Giới thiệu cơ bản về R (Datacamp)</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../faq/">FAQ</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../contact/">Liên hệ</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Cài đặt RStudio trên Amazon</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2018-08-25</p>
+
+                        <div id="post-content">
+                          <p>Như chúng ta đều biết, R gặp các vấn đề giới hạn của bộ nhớ. Đặc biệt, với các bạn sử dụng Windows, R còn gặp các vấn đề về lỗi font tiếng Việt (encoding). Thêm vào đó, với các bạn muốn sử dụng R trong Deep Learning với CUDA cũng sẽ gặp rất nhiều khó khăn trong việc cài đặt cũng như các vấn đề về chi phí. Sử dụng RStudio online trên Amazon là cách thức hữu hiệu trong giải quyết các vấn đề sau:</p>
+<ul>
+<li>Dữ liệu vượt quá dung lượng bộ nhớ máy tính (RAM)</li>
+<li>Có thể làm việc mọi nơi, mọi lúc được</li>
+</ul>
+<p>Trong bài viết này, <code>RAnalytics</code> sẽ hướng dẫn các bạn tạo 1 server Rstudio online trên Amazon trong vòng chưa đến một phút.</p>
+<hr />
+<div id="buc-0-tao-account-tren-amazon" class="section level3">
+<h3>Bước 0: Tạo account trên amazon</h3>
+<ul>
+<li>Đăng ký 1 tài khoản trên Amazon với đường link sau <a href="https://aws.amazon.com/" class="uri">https://aws.amazon.com/</a></li>
+<li>Điền thông tin tài khoản thẻ tín dụng để có thể thanh toán với dịch vụ của Amazon</li>
+</ul>
+<hr />
+</div>
+<div id="buc-1-s-dung-ami-cua-rstudio-tren-amazon" class="section level3">
+<h3>Bước 1: Sử dụng AMI của RStudio trên Amazon</h3>
+<p>Truy cập vào trang web sau: [<a href="http://www.louisaslett.com/RStudio_AMI" class="uri">http://www.louisaslett.com/RStudio_AMI</a>]. Trang web này chứa tất cả các RStudio AMI (Amazon Machine Image) của RStudio bản mới nhất</p>
+<p> </p>
+<p><img src="../../../../../img/blog/20180825_rstudio_ami.png" /></p>
+<p> </p>
+<hr />
+</div>
+<div id="buc-2-la-chon-server-cua-amazon." class="section level3">
+<h3>Bước 2: Lựa chọn server của <code>Amazon</code>.</h3>
+<p>Thông thường mình sẽ sử dụng dịch vụ Amazon tại Singapore. Tuy nhiên, các bạn có thể lựa chọn tùy ý Server mong muốn.</p>
+<hr />
+</div>
+<div id="buc-3-chon-cu-hinh-may-tinh-mong-mun" class="section level3">
+<h3>Bước 3: Chọn cấu hình máy tính mong muốn</h3>
+<p>Sau khi click vào AMI của Singapore sẽ hiển thị giao diện như sau:</p>
+<p> </p>
+<hr />
+<p><img src="../../../../../img/blog/20180825_rstudio_ami_1.png" /></p>
+<hr />
+<p> </p>
+<p>Ở bước này, ta phải chọn loại server mong muốn, các bạn có thể sử dụng rất nhiều các cấu hình khác nhau để cài đặt Rstudio server. Để tiết kiệm và sử dụng với mục đích thử nghiệm, mình sẽ dùng máy <code>t2.micro</code> .</p>
+<hr />
+</div>
+<div id="buc-4-la-chon-security-group" class="section level3">
+<h3>Bước 4: Lựa chọn <code>Security Group</code></h3>
+<p>Để đơn giản, các bạn có thể đến thẳng bước <code>6. Configure Security Group</code> và chọn <code>Type</code> là <code>HTTP</code> để có thể truy cập vào RStudio online.</p>
+<p> </p>
+<p><img src="../../../../../img/blog/20180825_rstudio_ami_2.png" /></p>
+<p> </p>
+<hr />
+<ul>
+<li>Bước 5: Launch RStudio Server, lưu ý chọn option <code>Proceed without key pair</code> để đơn giản như dưới đây.</li>
+</ul>
+<p> </p>
+<p><img src="../../../../../img/blog/20180825_rstudio_ami_3.png" /></p>
+<p> </p>
+<p>Sau khi launching xong, ta sẽ có giao diện như hình dưới, các bạn lưu ý vào thẳng console của Amazon (click theo hình ở dưới) để tìm kiếm IP của Rstudio online của mình vừa tạo.</p>
+<p><img src="../../../../../img/blog/20180825_rstudio_ami_4.png" /></p>
+<hr />
+</div>
+<div id="buc-6-tim-ia-chi-ip-public-cua-may-tinh-va-tao-va-truy-cp" class="section level3">
+<h3>Bước 6: Tìm địa chỉ IP Public của máy tính vừa tạo và truy cập</h3>
+<p>IP của máy tính vừa tạo sẽ có địa chỉ IP4 như hình dưới đây</p>
+<p> </p>
+<p><img src="../../../../../img/blog/20180825_rstudio_ami_5.png" /></p>
+<p> </p>
+<hr />
+</div>
+<div id="buc-7-truy-cp-va-s-dung-rstudio" class="section level3">
+<h3>Bước 7: Truy cập và sử dụng RStudio</h3>
+<p>Truy cập vào địa chỉ IP phía trên. Chúng ta có thể truy cập với mật khẩu và log-in mặc định là <code>user: rstudio</code> và <code>password: rstudio</code> như dưới đây</p>
+<p> </p>
+<p><img src="../../../../../img/blog/20180825_rstudio_ami_6.png" /></p>
+<p> </p>
+<p>Sau khi đăng nhập được vào, các bạn có thể đổi mật khẩu, liên kết RStudio với account Dropbox để thuận tiện trong việc phân tích và sao lưu dữ liệu như trong script <code>Welcome.R</code> trong hình dưới đây.</p>
+<p> </p>
+<p><img src="../../../../../img/blog/20180825_rstudio_ami_7.png" /></p>
+<p> </p>
+<hr />
+<p>Như vậy, chúng ta đã vừa tạo được một server Rstudio online của riêng mình. Việc sử dụng RStudio online sẽ rất hữu dụng trong việc vượt qua các hạn chế về cấu hình máy tính cá nhân của các bạn. Đặc biệt, việc sử dụng RStudio online sẽ rất thích hợp với các bạn đang và muốn tìm hiểu về Deep learning trong R với CUDA. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ranalytics-vn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Tìm kiếm</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" results="0" class="form-control" placeholder="Tìm kiếm">
+                <input type="hidden" name="q" value="site:/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Nhóm bài viết</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="../../../../../categories/cloud-computing">cloud-computing (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/data-science">data-science (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/project">project (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/r">r (5)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/rstudio">rstudio (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/sqlserver">sqlserver (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/tips">tips (4)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/vizualization">vizualization (3)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="../../../../../tags/cloud-computing"><i class="fa fa-tags"></i> cloud-computing</a>
+            </li>
+            
+            <li><a href="../../../../../tags/data-science"><i class="fa fa-tags"></i> data-science</a>
+            </li>
+            
+            <li><a href="../../../../../tags/factor"><i class="fa fa-tags"></i> factor</a>
+            </li>
+            
+            <li><a href="../../../../../tags/forcats"><i class="fa fa-tags"></i> forcats</a>
+            </li>
+            
+            <li><a href="../../../../../tags/ggplot2"><i class="fa fa-tags"></i> ggplot2</a>
+            </li>
+            
+            <li><a href="../../../../../tags/import-data"><i class="fa fa-tags"></i> import-data</a>
+            </li>
+            
+            <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rstudio"><i class="fa fa-tags"></i> rstudio</a>
+            </li>
+            
+            <li><a href="../../../../../tags/scales"><i class="fa fa-tags"></i> scales</a>
+            </li>
+            
+            <li><a href="../../../../../tags/sqlserver"><i class="fa fa-tags"></i> sqlserver</a>
+            </li>
+            
+            <li><a href="../../../../../tags/tips"><i class="fa fa-tags"></i> tips</a>
+            </li>
+            
+            <li><a href="../../../../../tags/vizualization"><i class="fa fa-tags"></i> vizualization</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>Về chúng tôi</h4>
+
+            Với RAnalytics.vn, bạn sẽ vững bước hơn trên sự nghiệp phân tích dữ liệu.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Các bài viết gần đây</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2018/08/25/2018-08-25-cai-dat-rstudio-server-tren-amazon/">
+                          
+                            <img src="../../../../../img/banners/banner-14.png" class="img-responsive" alt="">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2018/08/25/2018-08-25-cai-dat-rstudio-server-tren-amazon/">Cài đặt RStudio trên Amazon</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/">
+                          
+                            <img src="../../../../../img/banners/banner-13.png" class="img-responsive" alt="">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/">Format dữ liệu trong GGPLOT2 với scales</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2018/08/07/2018-08-07-xu-ly-factor-voi-forcats/">
+                          
+                            <img src="../../../../../img/banners/banner-12.png" class="img-responsive" alt="">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2018/08/07/2018-08-07-xu-ly-factor-voi-forcats/">Xử lý factor với `forcats`</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>Liên hệ</h4>
+
+             50 Nguyễn Phúc Lai, Ô Chợ Dừa, Đống Đa, Hà Nội
+        <br>
+      </p>
+      
+
+
+            <a href="../../../../../contact" class="btn btn-small btn-template-main">Liên hệ ngay</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2017, Ranalytics.vn - all rights reserved</p>
+            
+            <p class="pull-right">
+              Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Ported to Hugo by <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-117458816-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCFhtWLJcE30xOAjcbSFi-0fnoVmQZPb1Y&v=3.exp"></script>
+
+<script src="../../../../../js/hpneo.gmaps.js"></script>
+<script src="../../../../../js/gmaps.init.js"></script>
+<script src="../../../../../js/front.js"></script>
+
+
+<script src="../../../../../js/owl.carousel.min.js"></script>
+
+
+  </body>
+</html>

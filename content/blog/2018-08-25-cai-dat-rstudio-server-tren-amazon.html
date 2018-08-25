@@ -1,0 +1,93 @@
+---
+title: Cài đặt RStudio trên Amazon
+author: Hoàng Đức Anh
+date: '2018-08-25'
+slug: cai-dat-rstudio-server-tren-amazon
+categories:
+  - Cloud Computing
+tags:
+  - RStudio
+  - Cloud Computing
+summary: "Cách tạo RStudio Server trên Cloud của Amazon Web Service"
+banner: "img/banners/banner-14.png"
+---
+
+
+
+<p>Như chúng ta đều biết, R gặp các vấn đề giới hạn của bộ nhớ. Đặc biệt, với các bạn sử dụng Windows, R còn gặp các vấn đề về lỗi font tiếng Việt (encoding). Thêm vào đó, với các bạn muốn sử dụng R trong Deep Learning với CUDA cũng sẽ gặp rất nhiều khó khăn trong việc cài đặt cũng như các vấn đề về chi phí. Sử dụng RStudio online trên Amazon là cách thức hữu hiệu trong giải quyết các vấn đề sau:</p>
+<ul>
+<li>Dữ liệu vượt quá dung lượng bộ nhớ máy tính (RAM)</li>
+<li>Có thể làm việc mọi nơi, mọi lúc được</li>
+</ul>
+<p>Trong bài viết này, <code>RAnalytics</code> sẽ hướng dẫn các bạn tạo 1 server Rstudio online trên Amazon trong vòng chưa đến một phút.</p>
+<hr />
+<div id="buc-0-tao-account-tren-amazon" class="section level3">
+<h3>Bước 0: Tạo account trên amazon</h3>
+<ul>
+<li>Đăng ký 1 tài khoản trên Amazon với đường link sau <a href="https://aws.amazon.com/" class="uri">https://aws.amazon.com/</a></li>
+<li>Điền thông tin tài khoản thẻ tín dụng để có thể thanh toán với dịch vụ của Amazon</li>
+</ul>
+<hr />
+</div>
+<div id="buc-1-s-dung-ami-cua-rstudio-tren-amazon" class="section level3">
+<h3>Bước 1: Sử dụng AMI của RStudio trên Amazon</h3>
+<p>Truy cập vào trang web sau: [<a href="http://www.louisaslett.com/RStudio_AMI" class="uri">http://www.louisaslett.com/RStudio_AMI</a>]. Trang web này chứa tất cả các RStudio AMI (Amazon Machine Image) của RStudio bản mới nhất</p>
+<p> </p>
+<p><img src="/img/blog/20180825_rstudio_ami.png" /></p>
+<p> </p>
+<hr />
+</div>
+<div id="buc-2-la-chon-server-cua-amazon." class="section level3">
+<h3>Bước 2: Lựa chọn server của <code>Amazon</code>.</h3>
+<p>Thông thường mình sẽ sử dụng dịch vụ Amazon tại Singapore. Tuy nhiên, các bạn có thể lựa chọn tùy ý Server mong muốn.</p>
+<hr />
+</div>
+<div id="buc-3-chon-cu-hinh-may-tinh-mong-mun" class="section level3">
+<h3>Bước 3: Chọn cấu hình máy tính mong muốn</h3>
+<p>Sau khi click vào AMI của Singapore sẽ hiển thị giao diện như sau:</p>
+<p> </p>
+<hr />
+<p><img src="/img/blog/20180825_rstudio_ami_1.png" /></p>
+<hr />
+<p> </p>
+<p>Ở bước này, ta phải chọn loại server mong muốn, các bạn có thể sử dụng rất nhiều các cấu hình khác nhau để cài đặt Rstudio server. Để tiết kiệm và sử dụng với mục đích thử nghiệm, mình sẽ dùng máy <code>t2.micro</code> .</p>
+<hr />
+</div>
+<div id="buc-4-la-chon-security-group" class="section level3">
+<h3>Bước 4: Lựa chọn <code>Security Group</code></h3>
+<p>Để đơn giản, các bạn có thể đến thẳng bước <code>6. Configure Security Group</code> và chọn <code>Type</code> là <code>HTTP</code> để có thể truy cập vào RStudio online.</p>
+<p> </p>
+<p><img src="/img/blog/20180825_rstudio_ami_2.png" /></p>
+<p> </p>
+<hr />
+<ul>
+<li>Bước 5: Launch RStudio Server, lưu ý chọn option <code>Proceed without key pair</code> để đơn giản như dưới đây.</li>
+</ul>
+<p> </p>
+<p><img src="/img/blog/20180825_rstudio_ami_3.png" /></p>
+<p> </p>
+<p>Sau khi launching xong, ta sẽ có giao diện như hình dưới, các bạn lưu ý vào thẳng console của Amazon (click theo hình ở dưới) để tìm kiếm IP của Rstudio online của mình vừa tạo.</p>
+<p><img src="/img/blog/20180825_rstudio_ami_4.png" /></p>
+<hr />
+</div>
+<div id="buc-6-tim-ia-chi-ip-public-cua-may-tinh-va-tao-va-truy-cp" class="section level3">
+<h3>Bước 6: Tìm địa chỉ IP Public của máy tính vừa tạo và truy cập</h3>
+<p>IP của máy tính vừa tạo sẽ có địa chỉ IP4 như hình dưới đây</p>
+<p> </p>
+<p><img src="/img/blog/20180825_rstudio_ami_5.png" /></p>
+<p> </p>
+<hr />
+</div>
+<div id="buc-7-truy-cp-va-s-dung-rstudio" class="section level3">
+<h3>Bước 7: Truy cập và sử dụng RStudio</h3>
+<p>Truy cập vào địa chỉ IP phía trên. Chúng ta có thể truy cập với mật khẩu và log-in mặc định là <code>user: rstudio</code> và <code>password: rstudio</code> như dưới đây</p>
+<p> </p>
+<p><img src="/img/blog/20180825_rstudio_ami_6.png" /></p>
+<p> </p>
+<p>Sau khi đăng nhập được vào, các bạn có thể đổi mật khẩu, liên kết RStudio với account Dropbox để thuận tiện trong việc phân tích và sao lưu dữ liệu như trong script <code>Welcome.R</code> trong hình dưới đây.</p>
+<p> </p>
+<p><img src="/img/blog/20180825_rstudio_ami_7.png" /></p>
+<p> </p>
+<hr />
+<p>Như vậy, chúng ta đã vừa tạo được một server Rstudio online của riêng mình. Việc sử dụng RStudio online sẽ rất hữu dụng trong việc vượt qua các hạn chế về cấu hình máy tính cá nhân của các bạn. Đặc biệt, việc sử dụng RStudio online sẽ rất thích hợp với các bạn đang và muốn tìm hiểu về Deep learning trong R với CUDA. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
