@@ -80,9 +80,7 @@ Sau khi click vào AMI của Singapore sẽ hiển thị giao diện như sau:
 
 ---
 
-### Bước 5: Launch RStudio Server
-
-Lúc này, ta có thể `launch` RStudio để sử dụng. Lưu ý chọn option `Proceed without key pair` để đơn giản như dưới đây.
+- Bước 5: Launch RStudio Server, lưu ý chọn option `Proceed without key pair` để đơn giản như dưới đây.
 
 &nbsp;
 
