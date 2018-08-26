@@ -1,0 +1,117 @@
+---
+title: Biểu đồ động với GGPLOT2 và PLOTLY
+author: Hoàng Đức Anh
+date: '2018-08-20'
+slug: bieu-do-dong-voi-ggplot2-va-plotly
+categories:
+  - Vizualization
+tags:
+  - Vizualization
+  - ggplot2
+summary: "Cách tạo biểu đồ động với ggplot2 và plotyly"
+banner: "img/banners/banner-15.png"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = F, message = F)
+```
+
+`ggplot2` là package được sử dụng mặc định trong các vấn đề về trực quan hóa dữ liệu với R. Tuy nhiên, `ggplot2` chỉ cho phép xây dựng các biểu đồ tĩnh (static plot) mà chưa hỗ trợ các biểu đồ có thể tương tác được với các lựa chọn như hover hay zoom. Hiện nay, có rất nhiều package trên R hỗ trợ biểu đồ tương tác như `rCharts`, `Highcharter` hay `rbokeh`. 
+
+Trong bài viết này, `RAnalytics` sẽ hướng dẫn các bạn tạo xây dựng biểu đồ tương tác được với `plotly` mà không cần phải học các cú pháp từ các package được đề cập phía trên. Biểu đồ được tạo sẽ giữ nguyên cú pháp của `ggplot2`.
+
+---
+
+### Cài đặt `plotly`
+
+Để vẽ biểu đồ, trước hết ta cần cài đặt package `plotyly`
+
+```{r}
+#install.packages("plotly")
+library(dplyr)
+library(ggplot2)
+library(plotly)
+theme_set(theme_bw())
+```
+
+---
+
+### Vẽ biểu đồ với `ggplot2`
+
+Ta có thể tạo bất kỳ biểu đồ nào trên ggplot2 và lưu lại thành một object.
+
+```{r}
+p <- iris %>% 
+  ggplot(aes(Species, Sepal.Length)) +
+  geom_boxplot(aes(fill = Species)) +
+  labs(title = "Interactive plot")
+p
+```
+
+### Tạo biểu đồ động với `plotly`
+
+Sau khi đã tạo xong biểu đồ và lưu dưới dạng đối tượng (một object), ta có thể xây dựng biểu đồ động với plotly bằng cách rất đơn giản như sau.
+
+```{r}
+ggplotly(p)
+```
+
+Với biểu đồ này, ta có thể phóng to, thu nhỏ và rê chuột (hover) vào từng vị trí trên biểu đồ.
+
+Ta có thể xem thêm một số ví dụ sau
+
+#### Biểu đồ mật độ
+
+```{r}
+p1 <- iris %>% 
+  ggplot(aes(Sepal.Length)) +
+  geom_density(aes(fill = Species), alpha = 0.7) +
+  labs(title = "Interactive density chart")
+p1
+ggplotly(p1)
+```
+
+---
+
+#### Biểu đồ dây
+
+```{r}
+# Tạo dataframe
+df <- data.frame(x = seq(1, 10, by = 0.1)) %>% 
+  mutate(y = 0.3*x + sin(x) + rnorm(91, 0, 1))  
+
+# Tạo biểu đồ với ggplot2
+p3 <- df %>% 
+  ggplot(aes(x, y)) +
+  geom_line(col = "darkgrey", size = 0.6) +
+  geom_point(col = "darkblue", alpha = 0.8)
+
+# Tạo biểu đồ với ggplotly
+ggplotly(p3)
+```
+
+&nbsp;
+
+---
+
+#### Biểu đồ điểm và facet
+
+Với phiên bản mới nhất của `plotly`, việc sử dụng facet trong `ggplotly` đã tốt hơn rất nhiều so với các phiên bản trước và thể hiện gần như tương đồng so với các lựa chọn về `facet` trong ggplot2.
+
+
+```{r}
+p2 <- iris %>% 
+  ggplot(aes(Sepal.Length, Petal.Length)) +
+  geom_point(aes(col = Species)) +
+  theme_bw() +
+  labs(title = "Interactive scatter plot") +
+  facet_wrap(~Species)
+ggplotly(p2)
+```
+
+&nbsp;
+
+---
+
+Như vậy, chúng ta đã vừa thực hiện xong cách thức tạo các biểu đồ tương tác được với `ggplot2` và `plotly`. Với `plotly`, các bạn sẽ không nhất thiết phải học các package mới mà hoàn toàn có thể sử dụng các câu lệnh quen thuộc với `ggplot2`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!
+

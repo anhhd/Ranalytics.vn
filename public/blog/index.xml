@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Biểu đồ động với GGPLOT2 và PLOTLY</title>
+      <link>/blog/2018/08/20/2018-08-20-bieu-do-dong-voi-ggplot2-va-plotly/</link>
+      <pubDate>Mon, 20 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/08/20/2018-08-20-bieu-do-dong-voi-ggplot2-va-plotly/</guid>
+      <description>ggplot2 là package được sử dụng mặc định trong các vấn đề về trực quan hóa dữ liệu với R. Tuy nhiên, ggplot2 chỉ cho phép xây dựng các biểu đồ tĩnh (static plot) mà chưa hỗ trợ các biểu đồ có thể tương tác được với các lựa chọn như hover hay zoom. Hiện nay, có rất nhiều package trên R hỗ trợ biểu đồ tương tác như rCharts, Highcharter hay rbokeh.</description>
+    </item>
+    
+    <item>
       <title>Format dữ liệu trong GGPLOT2 với scales</title>
       <link>/blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/</link>
       <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>

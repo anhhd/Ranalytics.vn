@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>/blog/2018/08/20/2018-08-20-bieu-do-dong-voi-ggplot2-va-plotly/</loc>
+    <lastmod>2018-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/</loc>
     <lastmod>2018-08-17T00:00:00+00:00</lastmod>
   </url>
@@ -137,7 +142,7 @@
   
   <url>
     <loc>/tags/ggplot2/</loc>
-    <lastmod>2018-08-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -229,13 +234,13 @@
   
   <url>
     <loc>/categories/vizualization/</loc>
-    <lastmod>2018-08-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/vizualization/</loc>
-    <lastmod>2018-07-31T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
