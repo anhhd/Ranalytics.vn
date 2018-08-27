@@ -1,0 +1,152 @@
+---
+title: "Xử lý dữ liệu thời gian với lubridate"
+author: Nguyễn Hải Trường
+date: '2018-08-27'
+slug: xu-ly-du-lieu-thoi-gian-voi-lubridate
+categories:
+  - Biến đổi dữ liệu
+tags:
+  - Date
+summary: "Các cách biến đổi dữ liệu thời gian cơ bản với lubridate"
+banner: "img/banners/banner-16.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc xử lý các biến <code>date</code> hoặc <code>date-time</code>. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn sử dụng một số hàm cơ bản trong package <code>lubridate</code> để xử lý các biến date và date-time.</p>
+<hr />
+<div id="lubridate-package" class="section level3">
+<h3>Lubridate package</h3>
+<p>Trong <code>R</code> dữ liệu liên quan đến thời gian có 2 kiểu định dạng:</p>
+<ul>
+<li><p><code>date</code>: 2018-08-01</p></li>
+<li><p><code>date-time</code>: 2018-08-01 16:35:52 (ngày giờ cụ thể)</p></li>
+</ul>
+<p>Package <code>lubridate</code> là 1 package rất hữu dụng để xử lý date và date-time.</p>
+<pre class="r"><code>library(lubridate)
+library(dplyr)</code></pre>
+<hr />
+</div>
+<div id="ly-thong-tin-t-date" class="section level3">
+<h3>Lấy thông tin từ Date</h3>
+<p>Để lấy thông tin ngày, tháng, năm của date chúng ta có thể sử dụng hàm <code>day()</code>, <code>month()</code>, <code>year()</code> tương ứng.</p>
+<pre class="r"><code># Giả sử chúng ta lấy ngày hôm nay làm ví dụ: dùng hàm today()
+today &lt;- today()
+today</code></pre>
+<pre><code>## [1] &quot;2018-08-27&quot;</code></pre>
+<pre class="r"><code>today %&gt;% class</code></pre>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<pre class="r"><code># Ngày 
+day(today)</code></pre>
+<pre><code>## [1] 27</code></pre>
+<pre class="r"><code># Tháng 
+month(today)</code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="r"><code># Năm 
+year(today)</code></pre>
+<pre><code>## [1] 2018</code></pre>
+<p>Trong trường hợp chúng ta muốn xem hôm nay là thứ mấy, sử dụng hàm <code>wday()</code> và thêm option <code>label = T</code>.</p>
+<pre class="r"><code># Thứ trong tuần
+wday(today, label = T)</code></pre>
+<pre><code>## [1] Mon
+## Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
+<p>Nếu chúng ta muốn xem ngày trong tháng hoặc ngày trong năm, sử dụng hàm <code>mday()</code> và <code>yday()</code> tương ứng.</p>
+<pre class="r"><code># Ngày trong tháng
+mday(today)</code></pre>
+<pre><code>## [1] 27</code></pre>
+<pre class="r"><code># Ngày thứ bao nhiêu trong năm
+yday(today)</code></pre>
+<pre><code>## [1] 239</code></pre>
+<hr />
+</div>
+<div id="date-time" class="section level3">
+<h3>Date-time</h3>
+<p>Chúng ta có thể dùng các hàm <code>hour()</code>, <code>minute()</code>, <code>second()</code> để biết được giờ, phút, giây của date-time.</p>
+<pre class="r"><code># Ngày giờ hiện tại
+now &lt;- now()
+now</code></pre>
+<pre><code>## [1] &quot;2018-08-27 07:27:48 +07&quot;</code></pre>
+<pre class="r"><code>now %&gt;% class</code></pre>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<pre class="r"><code># Giờ của ngày hiện tại
+hour(now)</code></pre>
+<pre><code>## [1] 7</code></pre>
+<pre class="r"><code># Phút của ngày hiện tại
+minute(now)</code></pre>
+<pre><code>## [1] 27</code></pre>
+<pre class="r"><code># Giây của ngày hiện tại
+second(now)</code></pre>
+<pre><code>## [1] 48.13216</code></pre>
+<p>Nếu muốn cập nhật lại giờ phút giây của date-time, chúng ta có thể dùng hàm <code>update()</code> và thêm các option <code>hours</code>, <code>minutes</code>, <code>seconds</code> như mong muốn.</p>
+<pre class="r"><code># Giả sử chúng ta cập nhật lại ngày giờ của ngày hiện tại là 15 giờ 30 phút 20 giây
+update(now, 
+       hours = 15, 
+       minutes = 30,
+       seconds = 20)</code></pre>
+<pre><code>## [1] &quot;2018-08-27 15:30:20 +07&quot;</code></pre>
+<p>Chúng ta có thể dễ dàng chuyển định dạng từ date-time sang date bằng việc sử dụng hàm <code>as.Date()</code>.</p>
+<pre class="r"><code>as.Date(now)</code></pre>
+<pre><code>## [1] &quot;2018-08-27&quot;</code></pre>
+<hr />
+</div>
+<div id="parsing-date-date-time" class="section level1">
+<h1>Parsing Date &amp; Date-time</h1>
+<p>Chúng ta có thể nhập thông tin một ngày nhất định một cách dễ dàng bằng việc sử dụng các hàm như <code>ymd()</code>, <code>dmy()</code>, <code>ymd_hms()</code>…</p>
+<pre class="r"><code>ymd(20101215)</code></pre>
+<pre><code>## [1] &quot;2010-12-15&quot;</code></pre>
+<pre class="r"><code>mdy(&quot;4/1/17&quot;)</code></pre>
+<pre><code>## [1] &quot;2017-04-01&quot;</code></pre>
+<pre class="r"><code>ymd_hms(&quot;2014-08-23 17:23:02&quot;)</code></pre>
+<pre><code>## [1] &quot;2014-08-23 17:23:02 UTC&quot;</code></pre>
+<hr />
+<div id="time-zones-mt-s-ham-tinh-toan" class="section level3">
+<h3>Time Zones &amp; một số hàm tính toán</h3>
+<p>Để xem ngày giờ cụ thể tại các quốc gia có múi giờ khác nhau, chúng ta có thể sử dụng hàm <code>with_tz()</code>. Danh sách các múi giờ cụ thể trong lubridate có thể xem tại đây: <a href="http://en.wikipedia.org/wiki/List_of_tz_database_time_zones" class="uri">http://en.wikipedia.org/wiki/List_of_tz_database_time_zones</a>.</p>
+<pre class="r"><code># Múi giờ hiện tại
+Sys.timezone()</code></pre>
+<pre><code>## [1] &quot;Asia/Bangkok&quot;</code></pre>
+<pre class="r"><code># Asia/Bangkok
+with_tz(now, tz = &quot;Asia/Bangkok&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-08-27 07:27:48 +07&quot;</code></pre>
+<pre class="r"><code># America/New_York
+with_tz(now, tz = &quot;America/New_York&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-08-26 20:27:48 EDT&quot;</code></pre>
+<p>Để có thể thực hiện một số phép tính toán với thời gian như: sau ngày hiện tại x ngày là ngày bao nhiêu, sau ngày hiện tại x tháng là ngày bao nhiêu… chúng ta có thể lấy ngày đó <code>+</code> một trong các hàm sau tùy theo mục đích: <code>days()</code>, <code>months()</code>, <code>years()</code>, <code>hours()</code>, <code>minutes()</code>, <code>seconds()</code>.</p>
+<pre class="r"><code># 2 ngày sau
+today + days(2)</code></pre>
+<pre><code>## [1] &quot;2018-08-29&quot;</code></pre>
+<pre class="r"><code># 2 ngày trước
+today + days(-2)</code></pre>
+<pre><code>## [1] &quot;2018-08-25&quot;</code></pre>
+<pre class="r"><code># 2 tháng sau
+today + months(2)</code></pre>
+<pre><code>## [1] &quot;2018-10-27&quot;</code></pre>
+<pre class="r"><code># 2 năm sau
+today + years(2)</code></pre>
+<pre><code>## [1] &quot;2020-08-27&quot;</code></pre>
+<pre class="r"><code># 2 giờ sau
+now + hours(2)</code></pre>
+<pre><code>## [1] &quot;2018-08-27 09:27:48 +07&quot;</code></pre>
+<pre class="r"><code># 2 phút sau
+now + minutes(2)</code></pre>
+<pre><code>## [1] &quot;2018-08-27 07:29:48 +07&quot;</code></pre>
+<pre class="r"><code># 2 giây sau
+now + seconds(2)</code></pre>
+<pre><code>## [1] &quot;2018-08-27 07:27:50 +07&quot;</code></pre>
+<p>Chúng ta có thể tính toán thời gian giữa 2 ngày bất kỳ bằng việc sử dụng hàm <code>as.period()</code>.</p>
+<pre class="r"><code># Giả sử chúng ta muốn tính toán xem từ ngày 29/12/1992 đến nay là bao lâu?
+day_past &lt;- ymd(19921229)
+
+# Tạo khoảng thời gian từ 29/12/1992 đến nay: dùng hàm interval()
+how_long &lt;- interval(day_past, today)
+
+# Tính toán thời gian bao lâu
+as.period(how_long)</code></pre>
+<pre><code>## [1] &quot;25y 7m 29d 0H 0M 0S&quot;</code></pre>
+<pre class="r"><code># Có thể thêm option unit để quy đổi ra ngày, tháng hay năm: giả sử quy đổi ra ngày
+as.period(how_long, unit = &quot;days&quot;)</code></pre>
+<pre><code>## [1] &quot;9372d 0H 0M 0S&quot;</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được làm quen với một số hàm cơ bản trong package lubridate để xử lý date và date-time. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
+</div>

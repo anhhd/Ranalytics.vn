@@ -6,10 +6,20 @@
     <description>Recent content on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Xử lý dữ liệu thời gian với lubridate</title>
+      <link>/blog/2018/08/27/2018-08-27-xu-ly-du-lieu-thoi-gian-voi-lubridate/</link>
+      <pubDate>Mon, 27 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/08/27/2018-08-27-xu-ly-du-lieu-thoi-gian-voi-lubridate/</guid>
+      <description>Trong quá trình phân tích dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc xử lý các biến date hoặc date-time. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một số hàm cơ bản trong package lubridate để xử lý các biến date và date-time.
+Lubridate packageTrong R dữ liệu liên quan đến thời gian có 2 kiểu định dạng:</description>
+    </item>
     
     <item>
       <title>Cài đặt RStudio trên Amazon</title>
