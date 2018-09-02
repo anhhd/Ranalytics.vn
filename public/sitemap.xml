@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/2018/09/02/2018-09-02-xu-ly-du-lieu-chuoi-voi-stringr/</loc>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2018/08/27/2018-08-27-xu-ly-du-lieu-thoi-gian-voi-lubridate/</loc>
     <lastmod>2018-08-27T00:00:00+00:00</lastmod>
   </url>
@@ -94,7 +99,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2018-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -126,6 +131,12 @@
   
   <url>
     <loc>/faq/</loc>
+  </url>
+  
+  <url>
+    <loc>/categories/data-manipulation/</loc>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -194,7 +205,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -225,6 +236,12 @@
   <url>
     <loc>/categories/sqlserver/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/stringr/</loc>
+    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

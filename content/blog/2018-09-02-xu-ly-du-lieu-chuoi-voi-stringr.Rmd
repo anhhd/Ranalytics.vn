@@ -1,0 +1,178 @@
+---
+title: "Xử lý dữ liệu chuỗi với stringr"
+author: "Nguyen Hai Truong"
+date: "2018-09-02"
+categories:
+  - Data Manipulation
+tags:
+  - stringr
+summary: "Xử lý dữ liệu chuỗi với stringR"
+banner: "img/banners/banner-17.jpg"
+---
+
+Trong quá trình phân tích dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc xử lý text. Trong bài viết này, ``Ranalytics`` sẽ hướng dẫn các bạn sử dụng một số hàm cơ bản trong package ``stringr`` để xử lý vấn đề trên.
+
+---
+
+### Stringr package
+
+Thông thường, dữ liệu text không phải lúc nào cũng "sạch" do gặp phải những vấn đề khi nhập liệu như: lúc viết hoa, lúc viết thường, thừa nhiều dấu cách, lẫn số hoặc ký tự đặc biệt trong text... Package ``stringr`` là 1 trong những package rất hữu dụng trong ``R`` để giải quyết những vấn đề trên.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = F, 
+                      message = F)
+```
+
+```{r}
+library(stringr)
+library(dplyr)
+library(readxl)
+```
+
+---
+
+### Chữ hoa - chữ thường
+
+Trong một số trường hợp chúng ta muốn biểu thị text ở dạng viết hoa hoặc viết thường, chúng ta có thể dùng hàm ``toupper()`` (viết hoa), ``tolower()`` (viết thường). 
+
+```{r}
+# Ví dụ dữ liệu thông tin của 10 bạn học sinh
+data <- data.frame(
+  student = c("Nam", "Viet", "Ha", 
+              "Tuan", "Ngoc ", "Quang", "Hai",
+              "Son", " Dong", " duc"),
+  address = c( "Ho Chi Minh", "Ha Noi ", "Hai Duong", 
+               "Hai Phong", "Nghe An", 
+               "Ha Tinh", "Bac Giang", 
+               "Bac Ninh", 
+               "Quang Binh",
+               "Nha Trang"),
+  dob = c("2002-12-03","2003-06-12","2003-12-20",
+          "2004-06-28","2005-01-05","2005-07-15",
+          "2002-01-21","2003-07-31","2005-02-06",
+          "2006-08-16")
+)
+
+data$address <- data$address %>% as.character()
+
+# Tolower giá trị của biến nơi sinh sống
+tolower(data$address)
+
+# Toupper giá trị của biến biến nơi sinh sống
+toupper(data$address)
+```
+
+---
+
+### Cat
+
+Tuy cat không phải là hàm trong `stringr` nhưng là hàm rất hữu dụng khi làm việc với chuối. Để nối các chuỗi với nhau chúng ta có thể dùng hàm ``cat``. 
+
+
+```{r}
+cat("address of student:", data$address)
+```
+
+Chúng ta có thể thêm `option sep` để ngăn cách các text theo ý muốn (giả sử ở đây dùng dấu phẩy để ngăn cách giữa các chuỗi)
+
+```{r}
+# Trường hợp hai
+cat(data$address, sep = ",")
+```
+
+---
+
+### Subtring
+
+Trong package stringr chúng ta có thể sử dụng hàm ``substr()`` để lấy 1 phần (đoạn) nhất định của text.
+
+`substr(x, start, stop)`: start - vị trí bắt đầu, stop - vị trí kết thúc.
+
+Trong ví dụ trên, nếu chúng ta tạo thêm biến mới là biến năm sinh ta có thể lấy 4 ký tự đầu tiên của biến `dob`.
+
+
+```{r, warning=F, message=F}
+data %>% 
+  mutate(year = substr(dob,1,4))
+```
+
+---
+
+### Gsub vs. str_replace_all
+
+Trong r-base, chúng ta có thể sử dụng hàm `gsub` để loại bỏ số, ký tự đặc biệt, dấu cách thừa... trong text một cách dễ dàng.
+
+```{r}
+# Tạo dataframe (trường hợp này biến address chưa được làm sạch)
+data2 <- data.frame(
+  student = c("Nam","Viet","Ha","Tuan","Ngoc",
+  "Quang","Hai","Son","Dong","Duc"),
+  address = c("Ho CHi miNh","HA NOI","Hai  Duong","Hai pHong","Nghe 12430 An","@Ha 145 Tinh","{Bac Giang}","[Bac Ninh]","(Quang Binh123#","123Nha Trang02"))
+
+data2 
+
+# Thay đổi giá trị biến address thành chữ viết hoa
+data2$address <- data2$address %>% tolower
+data2$address
+
+# Loại bỏ tất cả dấu cách
+data2$address <- gsub("[[:space:]]", "", data2$address)
+data2$address
+
+# Loại bỏ số
+data2$address <- gsub("\\d", "", data2$address)
+data2$address
+
+# Loại bỏ tất cả các ký tự đặc biệt
+data2$address <- gsub("[[:punct:]]", "", data2$address)
+data2$address
+
+# Như vậy biến address đã được làm sạch
+data2
+```
+
+&nbsp;
+
+**Sử dụng với stringr**
+
+Khi bắt đầu quen sử dụng `stringr`, ta hoàn toàn có thể sử dụng hàm `str_replcae_all` để thay thế cho `gsub`. Hàm này thuận tiện và đơn giản hơn so với `gsub` và tuân theo cấu trúc của `tidyverse`.
+
+```{r}
+address <- c("Ho CHi miNh","HA NOI","Hai  Duong","Hai pHong","Nghe 12430 An","@Ha 145 Tinh","{Bac Giang}","[Bac Ninh]","(Quang Binh123#","123Nha Trang02")
+
+address %>% 
+  # Xóa ký tự đặc biệt
+  str_replace_all("[[:punct:]]", "") %>% 
+  # Xóa các số
+  str_replace_all("\\d", "") %>% 
+  # Xóa khoảng trắng
+  str_replace_all("[[:space:]]", "") %>% 
+  tolower
+```
+
+Ta hoàn toàn có thể kết hợp nhiều điều kiện như sau:
+
+```{r}
+address %>% 
+  str_replace_all("[[[:punct:]]\\d[[:space:]]]", 
+                  "") %>% 
+  tolower
+```
+
+---
+
+### Loại bỏ khoảng trắng trước ký tự
+
+Trong trường hợp giả sử chúng ta chỉ muốn loại bỏ dấu cách trước và sau text mà không muốn bỏ dấu cách ngăn cách giữa các từ trong text thì chúng ta có thể sử dụng hàm ``str_trim()``
+
+```{r}
+address <- c(" Ha Noi", "HCM  ", " Hai Phong ")
+address
+
+str_trim(address)
+```
+
+---
+
+Như vậy, chúng ta đã vừa được làm quen với một số hàm cơ bản trong package stringr để xử lý text. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!
