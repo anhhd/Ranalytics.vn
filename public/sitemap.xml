@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/2018/09/14/2018-09-16-tips-ggplot2/</loc>
+    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2018/09/02/2018-09-02-xu-ly-du-lieu-chuoi-voi-stringr/</loc>
     <lastmod>2018-09-02T00:00:00+00:00</lastmod>
   </url>
@@ -99,7 +104,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -152,6 +157,12 @@
   </url>
   
   <url>
+    <loc>/categories/data-vizualization/</loc>
+    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/date/</loc>
     <lastmod>2018-08-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -171,7 +182,7 @@
   
   <url>
     <loc>/tags/ggplot2/</loc>
-    <lastmod>2018-08-20T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -205,7 +216,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

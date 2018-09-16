@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vẽ biểu đồ boxplot hiệu quả với GGPLOT2</title>
+      <link>/blog/2018/09/14/2018-09-16-tips-ggplot2/</link>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/09/14/2018-09-16-tips-ggplot2/</guid>
+      <description>Trong quá trình phân tích dữ liệu, ngoài việc đưa ra những con số thống kê “khô khan” chúng ta cần phải minh họa những con số bằng những hình vẽ hoặc biểu đồ để thu hút người đọc khi trình bày với đơn vị kinh doanh hay đối tác.
+Như các bạn đã biết, package ggplot2 trong R có thể giúp chúng ta “visualize” một cách dễ dàng và đẹp mắt, hay nói cách khác là biến những con số “khô khan” thành những con số biết nói.</description>
+    </item>
     
     <item>
       <title>Xử lý dữ liệu chuỗi với stringr</title>
