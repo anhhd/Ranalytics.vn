@@ -1,17 +1,3 @@
----
-title: Tùy chỉnh các thành phần cơ bản trong GGPLOT2
-author: Hoàng Đức Anh
-date: '2018-07-31'
-slug: tuy-chinh-cac-thanh-phan-co-ban-trong-ggplog2
-categories:
-  - Vizualization
-tags:
-  - vizualization
-  - ggplot2
-summary: "Cách tùy chỉnh một số thành phần cơ bản thường dùng trong GGPLOT2"
-banner: "img/banners/banner-11.png"
----
-
 
 
 <p>Khi mới bắt đầu làm việc với GGPLOT2, sẽ rất khó để có thể tùy chỉnh các thành phần cơ bản trong biểu đồ. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn tùy chỉnh những thành phần cơ bản nhất của biểu đồ với GGPLOT2.</p>
@@ -37,29 +23,29 @@ banner: "img/banners/banner-11.png"
 library(ggplot2)
 data &lt;- diamonds %&gt;% sample_n(5000)
 data %&gt;% summary</code></pre>
-<pre><code>##      carat               cut       color       clarity         depth      
-##  Min.   :0.2100   Fair     : 143   D: 634   SI1    :1250   Min.   :52.20  
-##  1st Qu.:0.4000   Good     : 464   E: 868   VS2    :1200   1st Qu.:61.10  
-##  Median :0.7000   Very Good:1096   F: 916   SI2    : 802   Median :61.80  
-##  Mean   :0.8005   Premium  :1273   G:1045   VS1    : 751   Mean   :61.75  
-##  3rd Qu.:1.0500   Ideal    :2024   H: 762   VVS2   : 454   3rd Qu.:62.50  
-##  Max.   :3.6500                    I: 550   VVS1   : 324   Max.   :79.00  
-##                                    J: 225   (Other): 219                  
-##      table           price             x               y        
-##  Min.   :49.00   Min.   :  340   Min.   :0.000   Min.   : 3.78  
-##  1st Qu.:56.00   1st Qu.:  945   1st Qu.:4.710   1st Qu.: 4.73  
-##  Median :57.00   Median : 2410   Median :5.700   Median : 5.71  
-##  Mean   :57.52   Mean   : 3954   Mean   :5.737   Mean   : 5.75  
-##  3rd Qu.:59.00   3rd Qu.: 5484   3rd Qu.:6.550   3rd Qu.: 6.54  
-##  Max.   :73.00   Max.   :18766   Max.   :9.530   Max.   :58.90  
-##                                                                 
-##        z        
-##  Min.   :0.000  
-##  1st Qu.:2.917  
-##  Median :3.530  
-##  Mean   :3.543  
-##  3rd Qu.:4.040  
-##  Max.   :8.060  
+<pre><code>##      carat              cut       color       clarity         depth      
+##  Min.   :0.200   Fair     : 137   D: 652   SI1    :1213   Min.   :54.70  
+##  1st Qu.:0.390   Good     : 462   E: 880   VS2    :1139   1st Qu.:61.00  
+##  Median :0.700   Very Good:1086   F: 880   SI2    : 838   Median :61.80  
+##  Mean   :0.794   Premium  :1300   G:1049   VS1    : 772   Mean   :61.75  
+##  3rd Qu.:1.050   Ideal    :2015   H: 765   VVS2   : 444   3rd Qu.:62.50  
+##  Max.   :4.130                    I: 520   VVS1   : 345   Max.   :72.90  
+##                                   J: 254   (Other): 249                  
+##      table           price               x                y         
+##  Min.   :52.00   Min.   :  354.0   Min.   : 0.000   Min.   : 0.000  
+##  1st Qu.:56.00   1st Qu.:  934.5   1st Qu.: 4.690   1st Qu.: 4.700  
+##  Median :57.00   Median : 2381.5   Median : 5.700   Median : 5.710  
+##  Mean   :57.49   Mean   : 3871.7   Mean   : 5.718   Mean   : 5.732  
+##  3rd Qu.:59.00   3rd Qu.: 5226.2   3rd Qu.: 6.540   3rd Qu.: 6.540  
+##  Max.   :73.00   Max.   :18788.0   Max.   :10.020   Max.   :58.900  
+##                                                                     
+##        z         
+##  Min.   : 0.000  
+##  1st Qu.: 2.890  
+##  Median : 3.520  
+##  Mean   : 3.537  
+##  3rd Qu.: 4.040  
+##  Max.   :31.800  
 ## </code></pre>
 </div>
 <div id="tao-biu--gc" class="section level3">
@@ -70,7 +56,7 @@ theme_set(theme_minimal())
 p &lt;- ggplot(data, aes(x=carat, y = price)) +
   geom_point(aes(col=cut))
 p</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>#Bước 2: Tạo thêm &quot;layer&quot; cho phép tùy chỉnh các thành phần trong biểu đồ
 #Sử dụng layer &quot;theme&quot; để tùy chỉnh
 
@@ -78,7 +64,7 @@ p</code></pre>
 p1 &lt;- p + 
   labs(title = &quot;Diamonds - price vs. carat&quot;)
 p1</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 </div>
 <div id="thay-i-title-cua-biu--vi-ham-theme" class="section level2">
 <h2>Thay đổi title của biểu đồ với hàm “theme”</h2>
@@ -87,7 +73,7 @@ p1</code></pre>
 </ul>
 <pre class="r"><code>p1 + 
   theme(plot.title = element_text(size = 15, face = &quot;bold&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 2: Thay đổi font chữ cho tên biểu đồ</li>
 </ul>
@@ -96,7 +82,7 @@ p1 +
   theme(plot.title = element_text(size = 20, 
                                   face = &quot;bold&quot;, 
                                   family = &quot;serif&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 3: Xuống dòng cho tên trong biểu đồ</li>
 </ul>
@@ -105,7 +91,7 @@ p1 +
   theme(plot.title = element_text(size = 20, 
                                   face = &quot;bold&quot;, 
                                   family = &quot;serif&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="tuy-chinh-tieu--tren-tng-truc-biu-" class="section level2">
 <h2>Tùy chỉnh tiêu đề trên từng trục biểu đồ</h2>
@@ -115,21 +101,21 @@ p1 +
 <pre class="r"><code>p + 
   theme(axis.title.x = element_text(size = 11, 
                                     face = &quot;bold&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 2: Thay đổi font chữ của trục x</li>
 </ul>
 <pre class="r"><code>p + 
   theme(axis.title.x = element_text(family = &quot;serif&quot;, 
                                     face = &quot;bold&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 3: Thay đổi kích cỡ, font chữ ở cả 2 trục</li>
 </ul>
 <pre class="r"><code>p + 
   theme(axis.title = element_text(family = &quot;serif&quot;, 
                                       face = &quot;bold&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="tuy-chinh-thanh-phn-text-tren-tng-truc-biu-" class="section level2">
 <h2>Tùy chỉnh thành phần text trên từng trục biểu đồ</h2>
@@ -138,19 +124,19 @@ p1 +
 </ul>
 <pre class="r"><code>p + 
   theme(axis.text.x = element_text(size = 13, face = &quot;italic&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 2: Làm nghiêng chữ trên trục</li>
 </ul>
 <pre class="r"><code>p + 
   theme(axis.text.x = element_text(size = 13, angle = 45))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <ul>
 <li>Trường hơp 3: Thay đổi cả 2 trục</li>
 </ul>
 <pre class="r"><code>p + 
   theme(axis.text = element_text(size = 13, angle = 45))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 <div id="tuy-chinh-phn-chu-giai-cua-biu-" class="section level2">
 <h2>Tùy chỉnh phần chú giải của biểu đồ</h2>
@@ -158,12 +144,12 @@ p1 +
 <li>Trường hợp 1: Xóa toàn bộ legend</li>
 </ul>
 <pre class="r"><code>p + theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 2: Xóa tiêu đề của legend</li>
 </ul>
 <pre class="r"><code>p + theme(legend.title = element_blank())</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 3: Thay đổi kích thước, màu sắc của tên legend</li>
 </ul>
@@ -171,12 +157,12 @@ p1 +
   theme(legend.title = element_text(size = 14, 
                                     face = &quot;bold&quot;, 
                                     color = &quot;red&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 4: Thay đổi tên trong legend</li>
 </ul>
 <pre class="r"><code>p + scale_colour_discrete(name = &quot;Type of diamonds&quot;)</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 5: Thay đổi kích cỡ chữ trong phần legend</li>
 </ul>
@@ -184,7 +170,7 @@ p1 +
   theme(legend.text = element_text(size =12, 
                                    face = &quot;bold&quot;, 
                                    family = &quot;serif&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p> </p>
 <hr />
 </div>
@@ -199,20 +185,20 @@ p1 +
 </ul>
 <pre class="r"><code>p + 
   scale_color_manual(values = c(&quot;darkred&quot;, &quot;darkblue&quot;, &quot;violet&quot;, &quot;darkgreen&quot;, &quot;orange&quot;))</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <ul>
 <li>Trường hợp 2: Thay đổi màu sắc theo 1 số chế độ mặc đinh</li>
 </ul>
 <pre class="r"><code>#Sử dụng Brewer
 p + 
   scale_colour_brewer(palette = &quot;Set1&quot;)</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <pre class="r"><code>#Sử dụng bảng màu của Tableau
 library(ggthemes)
 p + 
   scale_colour_tableau() + 
   theme_tufte()</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
 </div>
 <div id="mau-cua-bin-lien-tuc" class="section level3">
 <h3>Màu của biến liên tục</h3>
@@ -221,12 +207,12 @@ p +
 p &lt;- ggplot(data, aes(x = carat, y = price)) +
   geom_point(aes(col=price))
 p</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <ul>
 <li>Tạo màu theo biến liên tục với <code>scale_color_gradient</code></li>
 </ul>
 <pre class="r"><code>p + scale_color_gradient(low = &quot;darkblue&quot;, high = &quot;darkred&quot;)</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <ul>
 <li>Tạo màu theo biến liên tục với <code>scale_color_gradient2</code></li>
 </ul>
@@ -234,7 +220,7 @@ p</code></pre>
                           low = &quot;blue4&quot;, 
                           mid = &quot;white&quot;, 
                           high = &quot;red4&quot;)</code></pre>
-<p><img src="/blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <hr />
 <p>Như vậy, chúng ta đã vừa biết xong những cách thay đổi các thuộc tính cơ bản nhất của biểu đồ với <code>ggplot2</code>. Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
 </div>

@@ -1,0 +1,95 @@
+---
+title: "Tạo wordcloud với ggplot2"
+author: "Hoàng Đức Anh"
+date: "2018-10-01"
+categories:
+  - Data Vizualization
+tags:
+  - ggplot2
+  - wordcloud
+summary: "Tạo wordcloud với ggplot2"
+banner: "img/banners/banner-19.jpg"
+---
+
+Khi phân tích dữ liệu, một trong những định dang dữ liệu chúng ta thường xuyên phải sử dụng là định dạng text. Với loại dữ liệu này, một trong những cách để trực quan hóa hiệu quả là sử dụng `wordcloud`. Trong bài viết này, `Ranalytics` sẽ hướng dẫn các bạn tạo wordcloud nhanh chóng theo phong cách của `tidyverse` với package `ggwordcloud` - một package mới trong hệ sinh thái của R.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+```{r, eval = F}
+# Cài đặt
+install.packages("ggwordcloud")
+```
+
+
+```{r, warning=F, message=F}
+# Loading package
+library(tidyverse)
+library(ggwordcloud)
+```     
+
+---
+
+Ta sẽ tạo wordcloud từ tập dữ liệu có sẵn của `ggwordcloud` là `love_words_small`. 
+
+```{r}
+data("love_words_small")
+love_words_small %>% head %>% knitr::kable()
+
+# Đặt theme minimal là default
+theme_set(theme_minimal())
+```
+
+Để tạo wordcloud, ta có thể sử dụng `geom_text_wordcloud` có sẵn. Tương tự như các `geom_*` khác của R, `geom_text_wordcloud` cũng hỗ trợ các `aes` như size, color. Xem các ví dụ dưới đây.
+
+```{r}
+# Ví dụ 1: wordcloud đơn giản
+love_words_small %>% 
+  ggplot(aes(label = word)) +
+  geom_text_wordcloud()
+
+# Ví dụ 2: wordcloud có màu sắc và kích cỡ
+love_words_small %>% 
+  ggplot(aes(label = word, size = speakers)) +
+  geom_text_wordcloud() +
+  scale_size_area(max_size = 20)
+
+# Ví dụ 3: Tạo màu sắc random cho chữ
+
+love_words_small %>% 
+  ggplot(aes(label = word, 
+             size = speakers,
+             col = as.factor(sample.int(
+               8, nrow(.), replace = T
+             )))) +
+  geom_text_wordcloud() +
+  scale_size_area(max_size = 20) 
+```
+
+---
+
+Ngoài ra, `ggwordcloud` còn cho phép tạo khung của wordcloud từ ảnh. Xem ví dụ sau.
+
+```{r}
+set.seed(42)
+love_words_small %>%
+  ggplot(aes(
+    label = word,
+    size = speakers,
+    color = as.factor(sample.int(7, nrow(.), replace = T))
+  )) +
+  geom_text_wordcloud(mask = png::readPNG(
+    system.file(
+      "extdata/hearth.png",
+      package = "ggwordcloud",
+      mustWork = TRUE
+    )
+  ),
+  rm_outside = TRUE) +
+  scale_size_area(max_size = 20)
+```
+
+---
+
+Như vậy, chúng ta đã vừa nắm được cách thức đơn giản để tạo `wordcloud` với hệ sinh thái của `ggplot2`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!

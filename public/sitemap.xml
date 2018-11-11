@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/2018/10/01/2018-10-01-tao-word-cloud-voi-ggplot2/</loc>
+    <lastmod>2018-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2018/09/14/2018-09-16-tips-ggplot2/</loc>
     <lastmod>2018-09-14T00:00:00+00:00</lastmod>
   </url>
@@ -35,11 +40,6 @@
   <url>
     <loc>/blog/2018/08/07/2018-08-07-xu-ly-factor-voi-forcats/</loc>
     <lastmod>2018-08-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/blog/2018/07/31/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2/</loc>
-    <lastmod>2018-07-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -93,6 +93,10 @@
   </url>
   
   <url>
+    <loc>/blog/1/01/01/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2/</loc>
+  </url>
+  
+  <url>
     <loc>/contact/</loc>
   </url>
   
@@ -104,7 +108,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -158,7 +162,7 @@
   
   <url>
     <loc>/categories/data-vizualization/</loc>
-    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -182,7 +186,7 @@
   
   <url>
     <loc>/tags/ggplot2/</loc>
-    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -216,7 +220,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -287,6 +291,12 @@
   <url>
     <loc>/categories/vizualization/</loc>
     <lastmod>2018-08-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/wordcloud/</loc>
+    <lastmod>2018-10-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

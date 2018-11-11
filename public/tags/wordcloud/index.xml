@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wordcloud on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/tags/wordcloud/</link>
+    <description>Recent content in Wordcloud on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/wordcloud/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tạo wordcloud với ggplot2</title>
+      <link>/blog/2018/10/01/2018-10-01-tao-word-cloud-voi-ggplot2/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/10/01/2018-10-01-tao-word-cloud-voi-ggplot2/</guid>
+      <description>Khi phân tích dữ liệu, một trong những định dang dữ liệu chúng ta thường xuyên phải sử dụng là định dạng text. Với loại dữ liệu này, một trong những cách để trực quan hóa hiệu quả là sử dụng wordcloud. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tạo wordcloud nhanh chóng theo phong cách của tidyverse với package ggwordcloud - một package mới trong hệ sinh thái của R.</description>
+    </item>
+    
+  </channel>
+</rss>
