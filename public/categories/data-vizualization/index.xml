@@ -6,10 +6,20 @@
     <description>Recent content in Data Vizualization on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-vizualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tạo bản đồ với ggplot2</title>
+      <link>/blog/2018/11/01/2018-11-01-tao-ban-do-voi-ggplot2/</link>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/11/01/2018-11-01-tao-ban-do-voi-ggplot2/</guid>
+      <description>Giới thiệuKhi phân tích dữ liệu, xây dựng bản đồ là một trong những công cụ rất mạnh giúp cho việc trực quan hóa, đặc biệt trong lĩnh vực kinh doanh, marketing. Việc xây dựng bản đồ giúp truyền tài kết quả phân tích một cách nhanh chóng và hiệu quả.
+Với cách làm truyền thống, việc xây dựng bản đồ là không hề dễ dàng. Các packages như sp, sf hay tmap đều rất mạnh trong vẽ biểu đồ.</description>
+    </item>
     
     <item>
       <title>Tạo wordcloud với ggplot2</title>
@@ -17,6 +27,15 @@
       <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/blog/2018/10/01/2018-10-01-tao-word-cloud-voi-ggplot2/</guid>
+      <description>Khi phân tích dữ liệu, một trong những định dang dữ liệu chúng ta thường xuyên phải sử dụng là định dạng text. Với loại dữ liệu này, một trong những cách để trực quan hóa hiệu quả là sử dụng wordcloud. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tạo wordcloud nhanh chóng theo phong cách của tidyverse với package ggwordcloud - một package mới trong hệ sinh thái của R.</description>
+    </item>
+    
+    <item>
+      <title>Tạo wordcloud với ggplot2</title>
+      <link>/blog/2018/10/01/2018-10-01-tao-wordcloud-voi-ggplot2/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/10/01/2018-10-01-tao-wordcloud-voi-ggplot2/</guid>
       <description>Khi phân tích dữ liệu, một trong những định dang dữ liệu chúng ta thường xuyên phải sử dụng là định dạng text. Với loại dữ liệu này, một trong những cách để trực quan hóa hiệu quả là sử dụng wordcloud. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tạo wordcloud nhanh chóng theo phong cách của tidyverse với package ggwordcloud - một package mới trong hệ sinh thái của R.</description>
     </item>
     

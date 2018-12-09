@@ -6,10 +6,20 @@
     <description>Recent content in Ggplot2 on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tạo bản đồ với ggplot2</title>
+      <link>/blog/2018/11/01/2018-11-01-tao-ban-do-voi-ggplot2/</link>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/11/01/2018-11-01-tao-ban-do-voi-ggplot2/</guid>
+      <description>Giới thiệuKhi phân tích dữ liệu, xây dựng bản đồ là một trong những công cụ rất mạnh giúp cho việc trực quan hóa, đặc biệt trong lĩnh vực kinh doanh, marketing. Việc xây dựng bản đồ giúp truyền tài kết quả phân tích một cách nhanh chóng và hiệu quả.
+Với cách làm truyền thống, việc xây dựng bản đồ là không hề dễ dàng. Các packages như sp, sf hay tmap đều rất mạnh trong vẽ biểu đồ.</description>
+    </item>
     
     <item>
       <title>Tạo wordcloud với ggplot2</title>
@@ -17,6 +27,15 @@
       <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/blog/2018/10/01/2018-10-01-tao-word-cloud-voi-ggplot2/</guid>
+      <description>Khi phân tích dữ liệu, một trong những định dang dữ liệu chúng ta thường xuyên phải sử dụng là định dạng text. Với loại dữ liệu này, một trong những cách để trực quan hóa hiệu quả là sử dụng wordcloud. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tạo wordcloud nhanh chóng theo phong cách của tidyverse với package ggwordcloud - một package mới trong hệ sinh thái của R.</description>
+    </item>
+    
+    <item>
+      <title>Tạo wordcloud với ggplot2</title>
+      <link>/blog/2018/10/01/2018-10-01-tao-wordcloud-voi-ggplot2/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/10/01/2018-10-01-tao-wordcloud-voi-ggplot2/</guid>
       <description>Khi phân tích dữ liệu, một trong những định dang dữ liệu chúng ta thường xuyên phải sử dụng là định dạng text. Với loại dữ liệu này, một trong những cách để trực quan hóa hiệu quả là sử dụng wordcloud. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tạo wordcloud nhanh chóng theo phong cách của tidyverse với package ggwordcloud - một package mới trong hệ sinh thái của R.</description>
     </item>
     
@@ -46,6 +65,16 @@ Như các bạn đã biết, package ggplot2 trong R có thể giúp chúng ta �
       
       <guid>/blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/</guid>
       <description>Trong quá trình trực quan hóa dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc format lại dữ liệu để hiển thị tốt nhất. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một package rất hữu hiệu trong việc format lại dữ liệu trên trục biểu đồ là scales. Cách thức format dữ liệu trên biểu đồ trong nội dung bài viết này gồm 4 nhóm chính:</description>
+    </item>
+    
+    <item>
+      <title>Tùy chỉnh các thành phần cơ bản trong GGPLOT2</title>
+      <link>/blog/2018/07/31/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2/</link>
+      <pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/07/31/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2/</guid>
+      <description>Khi mới bắt đầu làm việc với GGPLOT2, sẽ rất khó để có thể tùy chỉnh các thành phần cơ bản trong biểu đồ. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tùy chỉnh những thành phần cơ bản nhất của biểu đồ với GGPLOT2.
+Khi đã tạo được các biểu đồ cơ bản, ta còn cần phải làm chủ được các thành phần khác của biểu đồ, trong đó quan trọng nhất gồm có:</description>
     </item>
     
   </channel>

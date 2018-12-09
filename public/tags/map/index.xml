@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Map on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/tags/map/</link>
+    <description>Recent content in Map on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/map/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tạo bản đồ với ggplot2</title>
+      <link>/blog/2018/11/01/2018-11-01-tao-ban-do-voi-ggplot2/</link>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/11/01/2018-11-01-tao-ban-do-voi-ggplot2/</guid>
+      <description>Giới thiệuKhi phân tích dữ liệu, xây dựng bản đồ là một trong những công cụ rất mạnh giúp cho việc trực quan hóa, đặc biệt trong lĩnh vực kinh doanh, marketing. Việc xây dựng bản đồ giúp truyền tài kết quả phân tích một cách nhanh chóng và hiệu quả.
+Với cách làm truyền thống, việc xây dựng bản đồ là không hề dễ dàng. Các packages như sp, sf hay tmap đều rất mạnh trong vẽ biểu đồ.</description>
+    </item>
+    
+  </channel>
+</rss>

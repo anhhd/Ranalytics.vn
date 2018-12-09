@@ -1,0 +1,98 @@
+---
+title: "Tạo bản đồ với ggplot2"
+author: "Hoàng Đức Anh"
+date: "2018-11-01"
+categories:
+  - Data Vizualization
+tags:
+  - ggplot2
+  - map
+summary: "Tạo bản đồ với ggplot2"
+banner: "img/banners/banner-20.png"
+---
+
+
+
+<div id="gii-thiu" class="section level1">
+<h1>Giới thiệu</h1>
+<p>Khi phân tích dữ liệu, xây dựng bản đồ là một trong những công cụ rất mạnh giúp cho việc trực quan hóa, đặc biệt trong lĩnh vực kinh doanh, marketing. Việc xây dựng bản đồ giúp truyền tài kết quả phân tích một cách nhanh chóng và hiệu quả.</p>
+<p>Với cách làm truyền thống, việc xây dựng bản đồ là không hề dễ dàng. Các packages như <code>sp</code>, <code>sf</code> hay <code>tmap</code> đều rất mạnh trong vẽ biểu đồ. Tuy nhiên, các packages này đều chưa thực sự tương thích với hệ sinh thái của <code>tidyverse</code>. Tuy nhiên, với <code>ggplot2</code> phiên bản từ <code>2.3</code> trở lên, việc xây dựng biểu đồ được thực hiện khá rất dễ dàng với sự tương thích của <code>tidyverse</code>.</p>
+<p>Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn vẽ biểu đồ Việt Nam một cách đơn giản.</p>
+<hr />
+<div id="buc-1-load-d-liu-ia-ly" class="section level2">
+<h2>Bước 1: Load dữ liệu địa lý</h2>
+<p>Để dọc dữ liệu địa lý định dang <code>.shp</code>, ta sử dụng package <code>sf</code> với hàm <code>st_read</code>. Dữ liệu về bản đồ Việt Nam được <code>Ranalytics</code> chuẩn bị ở đường link sau [<a href="https://github.com/anhhd/data/VNM_adm" class="uri">https://github.com/anhhd/data/VNM_adm</a>]</p>
+<pre class="r"><code>library(tidyverse)
+library(sf)
+vn &lt;- st_read(&quot;VNM_adm/VNM_adm1.shp&quot;)
+vn %&gt;% class</code></pre>
+<pre><code>## Reading layer `VNM_adm1&#39; from data source `E:\GitHub\Ranalytics.vn\static\data\VNM_adm\VNM_adm1.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 63 features and 9 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 102.145 ymin: 8.563332 xmax: 109.4694 ymax: 23.39273
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs</code></pre>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<hr />
+</div>
+<div id="buc-2-trc-quan-hoa-biu-" class="section level2">
+<h2>Bước 2: Trực quan hóa biểu đồ</h2>
+<p>Như chúng ta thấy, dữ liệu có định dang <code>sf</code> và <code>data.frame</code>. Với <code>ggplot2</code> từ 2.3, ta có thể trực quan hóa object <code>sf</code> như sau</p>
+<pre class="r"><code>theme_set(
+  theme_minimal() +
+  theme(axis.line = element_blank(), 
+        axis.text = element_blank(),
+        axis.ticks = element_blank(), 
+        axis.title = element_blank()))
+
+vn %&gt;% 
+  ggplot() +
+  geom_sf(aes(fill = NAME_1)) +
+  theme(legend.position = &quot;none&quot;) </code></pre>
+<p><img src="/blog/2018-11-01-tao-ban-do-voi-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="buc-3-tao-biu--nhit" class="section level2">
+<h2>Bước 3: Tạo biểu đồ nhiệt</h2>
+<p>Với định dạng <code>sf</code>, ta hoàn toàn có thể tạo thêm biến mới thể hiện doanh số bán hàng hoặc lượng dân cư và thể hiện dưới dạng biểu đồ nhiệt như sau.</p>
+<pre class="r"><code>#Tạo thêm biến sale
+df &lt;- vn %&gt;% mutate(sale = runif(63, 1, 10))
+df %&gt;% names</code></pre>
+<pre><code>##  [1] &quot;ID_0&quot;      &quot;ISO&quot;       &quot;NAME_0&quot;    &quot;ID_1&quot;      &quot;NAME_1&quot;   
+##  [6] &quot;TYPE_1&quot;    &quot;ENGTYPE_1&quot; &quot;NL_NAME_1&quot; &quot;VARNAME_1&quot; &quot;sale&quot;     
+## [11] &quot;geometry&quot;</code></pre>
+<pre class="r"><code>df %&gt;% 
+  ggplot() +
+  geom_sf(aes(fill = sale)) +
+  scale_fill_viridis_c()</code></pre>
+<p><img src="/blog/2018-11-01-tao-ban-do-voi-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="tao-biu--vi-cp-qun-thanh-ph" class="section level2">
+<h2>Tạo biểu đồ với cấp quận, thành phố</h2>
+<pre class="r"><code># Load biểu đồ cấp quận huyện
+vn2 &lt;- st_read(&quot;VNM_adm/VNM_adm2.shp&quot;)</code></pre>
+<pre><code>## Reading layer `VNM_adm2&#39; from data source `E:\GitHub\Ranalytics.vn\static\data\VNM_adm\VNM_adm2.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 678 features and 11 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 102.145 ymin: 8.563332 xmax: 109.4694 ymax: 23.39273
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs</code></pre>
+<pre class="r"><code># Lọc biểu đồ với 1 tỉnh
+vn2 %&gt;% 
+  filter(NAME_1 == &quot;Yên Bái&quot;) %&gt;% 
+  # Tạo thêm doanh số bán hàng
+  mutate(sale = runif(nrow(.), 1, 10)) %&gt;% 
+  ggplot() +
+  geom_sf(aes(fill = sale)) +
+  geom_sf_text(aes(label = VARNAME_2)) +
+  scale_fill_viridis_c() +
+  labs(title = &quot;Volume of Vodka in Yen Bai in 2018&quot;,
+       caption = &quot;Created by Ranalytics.vn&quot;)</code></pre>
+<p><img src="/blog/2018-11-01-tao-ban-do-voi-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<hr />
+<p>Như vậy chúng ta đã học được cách xây dựng biểu đồ cơ bản với <code>ggplot2</code>. Chúc các bạn làm việc hiệu quả với <code>Ranalytics.vn</code></p>
+</div>
+</div>
