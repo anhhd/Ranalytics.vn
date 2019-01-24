@@ -45,7 +45,7 @@
   <meta name="description" content="Site template made by devcows using hugo">	
   
 
-  <meta name="generator" content="Hugo 0.44" />
+  <meta name="generator" content="Hugo 0.53" />
 
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
 
@@ -226,7 +226,10 @@
                         <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Nguyễn Hải Trường</a> | 2018-09-14</p>
 
                         <div id="post-content">
-                          <p>Trong quá trình phân tích dữ liệu, ngoài việc đưa ra những con số thống kê “khô khan” chúng ta cần phải minh họa những con số bằng những hình vẽ hoặc biểu đồ để thu hút người đọc khi trình bày với đơn vị kinh doanh hay đối tác.</p>
+                          
+
+
+<p>Trong quá trình phân tích dữ liệu, ngoài việc đưa ra những con số thống kê “khô khan” chúng ta cần phải minh họa những con số bằng những hình vẽ hoặc biểu đồ để thu hút người đọc khi trình bày với đơn vị kinh doanh hay đối tác.</p>
 <p>Như các bạn đã biết, package <code>ggplot2</code> trong <code>R</code> có thể giúp chúng ta “visualize” một cách dễ dàng và đẹp mắt, hay nói cách khác là biến những con số “khô khan” thành những con số biết nói. Trong các biểu đồ, boxplot là một biểu đồ đặc biệt hiệu quả để so sánh giữa các nhóm. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn một số <strong>tips</strong> để xây dựng biểu đồ boxplot hiệu quả.</p>
 <pre class="r"><code># Loading package
 library(dplyr)
@@ -320,7 +323,7 @@ mean_sepal_length_by_species</code></pre>
     axis.ticks.x = element_blank()
   )</code></pre>
 <p><img src="../../../../../blog/2018-09-16-tips-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>Hoặc một cách khác, chúng ta có thể bỏ phần legend đi vì trên trục X đã mô tả những thông tin đó (<code>+</code> <code>theme(legend.position = &quot;none&quot;)</code>).</p>
+<p>Hoặc một cách khác, chúng ta có thể bỏ phần legend đi vì trên trục X đã mô tả những thông tin đó (<code>+</code> <code>theme(legend.position = "none")</code>).</p>
 <pre class="r"><code>iris %&gt;% 
   ggplot(aes(Species, Sepal.Length, fill = Species)) + 
   geom_boxplot() +
@@ -347,7 +350,7 @@ mean_sepal_length_by_species</code></pre>
                         
                         <div id="comments">
                             <div id="disqus_thread"></div>
-<script>
+<script type="application/javascript">
     var disqus_config = function () {
     
     
@@ -662,7 +665,7 @@ mean_sepal_length_by_species</code></pre>
     
 
     
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

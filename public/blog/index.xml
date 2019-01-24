@@ -124,7 +124,7 @@ Khi đã tạo được các biểu đồ cơ bản, ta còn cần phải làm c
       
       <guid>/blog/2018/07/15/2018-07-15-quan-ly-du-an-phan-tich-trong-r-voi-project/</guid>
       <description>Khi triển khai một dự án phân tích dữ liệu với R, thông thường, chúng ta sẽ cho toàn bộ code, kết quả đầu ra vào một folder chung. Khi đó, ta sẽ phải đổi toàn bộ thư mục làm việc working directory sang địa chỉ của thư mục dự án.
-Ví dụ, ta có dự án phân tích marketing đặt trên ổ D với đường dẫn như sau D:\marketing. Khi đó, toàn bộ code, để đơn giản, sẽ phải thay đổi thư mục làm việc.</description>
+Ví dụ, ta có dự án phân tích marketing đặt trên ổ D với đường dẫn như sau D:\marketing.</description>
     </item>
     
     <item>
@@ -192,8 +192,7 @@ Có một cách truyền thông để xử lý vấn đề trên, đó là copy 
       <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>/blog/2017/08/31/2017-08-31-huong-dan-cai-dat-r-va-rstudio/</guid>
-      <description>Khi bắt đầu học phân tích dữ liệu với R, RStudio là lựa chọn số một về IDE. Tuy nhiên, nhiều bạn chưa phân biệt được R &amp;amp; RStudio như thế nào cũng như cách cài đặt R &amp;amp; RStudio. Trong bài viết này, mình sẽ làm rõ sự khác biệt của R và RStudio cũng như hướng dẫn các bạn cách thức cài đặt hai phần mềm trên.
-Khác biệt giữa R &amp;amp; RStudioR là phần mềm phân tích thống kê/ đồ họa cho giới phân tích dữ liệu, thống kê.</description>
+      <description>Khi bắt đầu học phân tích dữ liệu với R, RStudio là lựa chọn số một về IDE. Tuy nhiên, nhiều bạn chưa phân biệt được R &amp;amp; RStudio như thế nào cũng như cách cài đặt R &amp;amp; RStudio. Trong bài viết này, mình sẽ làm rõ sự khác biệt của R và RStudio cũng như hướng dẫn các bạn cách thức cài đặt hai phần mềm trên.</description>
     </item>
     
     <item>
@@ -202,8 +201,7 @@ Khác biệt giữa R &amp;amp; RStudioR là phần mềm phân tích thống 
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>/blog/2017/01/01/2017-01-01-cac-vi-tri-cong-viec-trong-khoa-hoc-du-lieu/</guid>
-      <description>Trong khoa học dữ liệu, có rất nhiều vị trí khác nhau, không chỉ mỗi phân tích tìm kiếm insights và xây dựng mô hình dự báo. Do các vị trí này đều là những vị trí mới và tạm thời chưa có các thuật ngữ thống nhất ở Việt Nam, mình sẽ tạm dịch các vị trí như dưới đây trong khi giữ nguyên bản gốc tiếng Anh.
-Data Scientist - Chuyên viên khai phá dữ liệu và xây dựng mô hìnhData Analyst - Chuyên viên phân tích dữ liệuData Architect - Chuyên viên/chuyên gia kiến trúc dữ liệuData Engineer - Kỹ sư phát triển và tích hợp cơ sở dữ liệuStatistician - Chuyên viên phân tích thống kêDatabase Administrator - Chuyên viên quản trị cơ sở dữ liệuBusiness Analyst - Chuyên viên phân tích kinh doanhData &amp;amp; Analytics Manager - Quản lý (trưởng phòng/ giám đốc) phân tích dữ liệuInfographic dưới đây sẽ giúp các bạn hiểu rõ hơn công việc của từng vị trí trong khoa học dữ liệu</description>
+      <description>Trong khoa học dữ liệu, có rất nhiều vị trí khác nhau, không chỉ mỗi phân tích tìm kiếm insights và xây dựng mô hình dự báo. Do các vị trí này đều là những vị trí mới và tạm thời chưa có các thuật ngữ thống nhất ở Việt Nam, mình sẽ tạm dịch các vị trí như dưới đây trong khi giữ nguyên bản gốc tiếng Anh.</description>
     </item>
     
   </channel>

@@ -106,7 +106,7 @@ mean_sepal_length_by_species</code></pre>
     axis.ticks.x = element_blank()
   )</code></pre>
 <p><img src="/blog/2018-09-16-tips-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>Hoặc một cách khác, chúng ta có thể bỏ phần legend đi vì trên trục X đã mô tả những thông tin đó (<code>+</code> <code>theme(legend.position = &quot;none&quot;)</code>).</p>
+<p>Hoặc một cách khác, chúng ta có thể bỏ phần legend đi vì trên trục X đã mô tả những thông tin đó (<code>+</code> <code>theme(legend.position = "none")</code>).</p>
 <pre class="r"><code>iris %&gt;% 
   ggplot(aes(Species, Sepal.Length, fill = Species)) + 
   geom_boxplot() +

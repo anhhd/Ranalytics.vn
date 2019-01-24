@@ -62,13 +62,13 @@ p + scale_y_continuous(labels = dollar)</code></pre>
   date = seq(13000, 13200, by = 1) %&gt;% lubridate::as_date(),
   price = runif(201)*10*abs(rnorm(201,0,1)))
 head(df)</code></pre>
-<pre><code>##         date      price
-## 1 2005-08-05 0.13942979
-## 2 2005-08-06 0.05585222
-## 3 2005-08-07 9.78357345
-## 4 2005-08-08 0.97998067
-## 5 2005-08-09 2.32872248
-## 6 2005-08-10 0.05484107</code></pre>
+<pre><code>##         date     price
+## 1 2005-08-05 7.5631528
+## 2 2005-08-06 1.3581072
+## 3 2005-08-07 0.9049818
+## 4 2005-08-08 4.2038975
+## 5 2005-08-09 5.3697276
+## 6 2005-08-10 0.1386068</code></pre>
 <pre class="r"><code>p2 &lt;- ggplot(data=df, 
              aes(x=date, y=price)) + 
   geom_line(col = &quot;darkblue&quot;)
