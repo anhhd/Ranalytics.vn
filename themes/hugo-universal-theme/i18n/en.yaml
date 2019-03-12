@@ -69,3 +69,6 @@
 
 - id: publishedOn
   translation: "Thời gian"
+  
+  id: contactMobile
+  translation: "Mobile"

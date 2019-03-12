@@ -9,4 +9,9 @@ Bạn muốn nâng cao năng lực phân tích dữ liệu ứng dụng trong t�
 
 Vậy thì chắc chắc R và [RAnalytics.vn](Ranalytics.vn) sẽ là giải pháp đáng để bạn đầu tư.
 
-Hãy liên hệ ngay với chúng tôi qua email hoangducanh89[at]gmail[dot].com hoặc điền vào mẫu dưới đây để tìm hiểu cơ hội hợp tác.
+Hãy liên hệ ngay với chúng tôi thông qua cách phương thức sau đây:
+
+- Email: [hoangducanh89@gmail.com](hoangducanh89@gmail.com)
+- Mobile: +84 977 738 939
+
+Các bạn cũng có thể điền vào mẫu dưới đây để tìm hiểu cơ hội hợp tác và đào tạo phân tích dữ liệu với chúng tôi.

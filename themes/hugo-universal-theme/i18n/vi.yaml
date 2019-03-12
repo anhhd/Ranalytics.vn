@@ -24,7 +24,7 @@
 
 - id: contactMail
   translation: "Email"
-
+ 
 - id: contactMessage
   translation: "Nội dung"
 
@@ -69,3 +69,6 @@
 
 - id: publishedOn
   translation: "Thời gian"
+
+  id: contactMobile
+  translation: "Mobile"
