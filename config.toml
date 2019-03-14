@@ -30,7 +30,7 @@ googleAnalytics = "UA-117458816-1"
 [[menu.main]]
     name = "Khóa học"
     identifier = "courses"
-    url  = "/courses/"
+    url  = "/khoa-hoc-phan-tich-du-lieu/"
     weight = 2
 
 [[menu.main]]
