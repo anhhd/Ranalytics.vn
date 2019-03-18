@@ -1,0 +1,60 @@
+---
+title: "Đọc dữ liệu HTML với rvest"
+author: "Hoàng Đức Anh"
+date: "2018-11-15"
+categories:
+  - Data Manipulation
+tags:
+  - web
+  - semi structure data
+summary: "Cách chiết xuất dữ liệu từ website vào R"
+banner: "img/banners/banner-21.png"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+# Giới thiệu
+
+Một trong những nguồn dữ liệu phổ biến nhất hiện nay là dữ liệu được thể hiện sẵn trên website dưới hình thức bảng (có cấu trúc) hoặc dữ liệu dạng bán cấu trúc (semi-structured). Tuy nhiên, để có thể sử dụng các dạng dữ liệu này vào công việc phân tích, cần phải chiết xuất các loại dữ liệu này từ web. 
+
+Trong bài viết này, `Ranalytics` sẽ hướng dẫn các bạn cách thức đơn giản để trích xuất dữ liệu từ website và sử dụng trong phân tích dữ liệu. Trong bài hướng dẫn này, `RAnalytics` sẽ hướng dẫn các bạn lấy dữ liệu dân số Việt Nam từ trang web [https://tradingeconomics.com/vietnam/population](https://tradingeconomics.com/vietnam/population)
+
+---
+
+## Bước 1: Cài đặt package `rvest` và `selector gadget`
+
+Để có thể trích xuất dữ liệu từ website, ta cần sử dụng các công cụ sau
+
+- Package `rvest` : Package cho phép trích xuất dữ liệu từ file html
+- [selector gadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb): Đây là extension mở rộng của Chrome, cho phép xác định các `node` theo cấu trúc CSS định dạng trước của website. Ta cần cài đặt phần mềm này đồng thời sử dụng Google Chrome
+
+```{r}
+library(tidyverse)
+library(rvest)
+```
+
+
+## Bước 2: Sử dụng `selector gadget`
+
+Mỗi website được viết bằng ngôn ngữ HTML và được format theo định dạng của CSS. Mỗi thành phần trên 1 website đều được nhóm vào 1 hoặc nhiều định dạng format khác nhau. `selector gadget` cho phép xác đinh được các `node` mà dữ liệu được được sắp xếp trong 1 file html.
+
+
+
+```{r}
+link <- "https://tradingeconomics.com/vietnam/population"
+my_file <- link %>% 
+  read_html %>% 
+  html_node(".table")
+
+my_file %>% html_table()
+```
+
+---
+
+Như vậy chúng ta đã học được cách xây dựng biểu đồ cơ bản với `ggplot2`. Chúc các bạn làm việc hiệu quả với `Ranalytics.vn`
+
+
+
+

@@ -6,13 +6,23 @@ keywords = ["Khóa học","Phân tích","dữ liệu","r", "python", "analytics"
 
 ## 1. Phân tích và xử lý dữ liệu cơ bản với R
 
+Thông tin về khóa học gần nhất về "Business Analytics with R" như sau:
+
+- Thời gian: 14h-16h thứ 7 hàng tuần, dự kiến thứ 7 tuần tới (23/3/2019) 
+- Nội dung: Phân tích dữ liệu thực tiễn với R (7 buổi x 2 tiếng)
+- Điện thoại liên hệ: 0977 738 939
+
+Các bạn có thể đăng ký ngay tại link dưới đây.
+
+[<h3>Đăng ký</h2>](/contact)
+
+
 Thông tin chi tiết các bạn có thể xem ở slide dưới đây
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/tjVtnJiE1RIdFy" width="850" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/thekingin2039/gii-thiu-v-kha-hc-vi-r-ranalyticsvn" title="Giới thiệu về khóa học với R - Ranalytics.vn" target="_blank">Giới thiệu về khóa học với R - Ranalytics.vn</a> </strong> from <strong><a href="//www.slideshare.net/thekingin2039" target="_blank">Hoang Duc Anh</a></strong> </div>
 
-Tài liệu cho khóa học sẽ được cập nhật trong mỗi bài giảng. Các bạn có thể đăng ký ngay tại link dưới đây.
+Tài liệu cho khóa học sẽ được cập nhật trong mỗi bài giảng. 
 
-[<h3>Đăng ký</h2>](/contact)
 
 ---
 
