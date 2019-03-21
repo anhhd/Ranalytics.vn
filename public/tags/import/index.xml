@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Import on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/tags/import/</link>
+    <description>Recent content in Import on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 20 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/import/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Import và Export dữ liệu từ Excel vào R</title>
+      <link>/blog/2018/11/20/2018-11-20-import_export-excel_voi_r/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/11/20/2018-11-20-import_export-excel_voi_r/</guid>
+      <description>Để có thể thực hiện phân tích dữ liệu, trước tiên chúng ta cần phải có dữ liệu, mà dữ liệu có thể có từ nhiều nguồn khác nhau và được lưu trữ dưới các định dạng file khác nhau như .txt, .csv, .xlsx, hay database… Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách import và export dữ liệu từ file Excel vào R.
+Excel to RĐể import file Excel vào R, chúng ta có thể sử dụng package readxl.</description>
+    </item>
+    
+  </channel>
+</rss>

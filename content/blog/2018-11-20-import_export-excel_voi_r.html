@@ -1,0 +1,93 @@
+---
+title: "Import và Export dữ liệu từ Excel vào R"
+author: "Nguyễn Hải Trường"
+date: "2018-11-20"
+categories:
+  - Data Import
+tags:
+  - Import
+summary: "Cách import và export excel vào R"
+banner: "img/banners/banner-22.png"
+---
+
+
+
+<p>Để có thể thực hiện phân tích dữ liệu, trước tiên chúng ta cần phải có dữ liệu, mà dữ liệu có thể có từ nhiều nguồn khác nhau và được lưu trữ dưới các định dạng file khác nhau như <code>.txt</code>, <code>.csv</code>, <code>.xlsx</code>, hay database… Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách import và export dữ liệu từ file Excel vào <code>R</code>.</p>
+<div id="excel-to-r" class="section level1">
+<h1>Excel to R</h1>
+<p>Để import file Excel vào <code>R</code>, chúng ta có thể sử dụng package <code>readxl</code>.</p>
+<pre class="r"><code>library(readxl)
+library(dplyr)</code></pre>
+<p>Giả sử, chúng ta đang có 1 file Excel <code>datasets.xlsx</code> có sẵn trong thư mục package <code>readxl</code> trong đường dẫn sau:</p>
+<pre class="r"><code>path &lt;- readxl_example(&quot;datasets.xlsx&quot;)
+path</code></pre>
+<pre><code>## [1] &quot;E:/Rlibrary/readxl/extdata/datasets.xlsx&quot;</code></pre>
+<hr />
+<p><img src="/img/blog/20181120_excel_file_datasets.gif" /></p>
+<hr />
+<p>File Excel <code>datasets.xlsx</code> có 4 sheets: <code>iris</code>, <code>mtcars</code>, <code>chickwts</code>, <code>quakes</code>.</p>
+<p>Bây giờ để import dữ liệu <code>iris</code> (sheet đầu tiên trong file Excel này) vào <code>R</code>, chúng ta sẽ sử dụng hàm <code>read_excel()</code> với câu lệnh như sau:</p>
+<pre class="r"><code>iris &lt;- read_excel(path, # đường dẫn
+                   sheet = 1 # số thứ tự sheet
+                   )
+
+iris %&gt;% 
+  as.data.frame %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Tương tự như vậy, nếu chúng ta muốn import dữ liệu <code>mtcars</code> (sheet thứ 2 trong file Excel) vào <code>R</code>, chúng ta chỉ cần chọn option <code>sheet = 2</code>.</p>
+<pre class="r"><code>mtcars &lt;- read_excel(path, # đường dẫn
+                     sheet = 2 # số thứ tự sheet
+                     )
+
+mtcars %&gt;% 
+  as.data.frame %&gt;% 
+  head</code></pre>
+<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>Như vậy, để import dữ liệu của tất cả các sheet trong file Excel vào <code>R</code>, chúng ta có thể import từng sheet trong file Excel đó vào <code>R</code> bằng việc sử dụng câu lệnh ở trên. Tuy nhiên, việc làm “manual” đó chỉ thích hợp với trường hợp file Excel chỉ gồm 1 vài sheet, còn đối với những trường hợp file Excel bao gồm cả hàng chục hoặc hàng trăm sheet thì chúng ta cần một giải pháp khác thông minh hơn để xử lý vấn đề trên.</p>
+<p>Để giải quyết vấn đề trên, chúng ta có thể dùng cách sau:</p>
+<pre class="r"><code>library(openxlsx) # package cần dùng
+wb_obj &lt;- loadWorkbook(path) # thống kê những sheets có trong file excel
+sheet_names &lt;- sheets(wb_obj) # tên của các sheets
+for (i in 1:length(sheet_names)) {
+  
+  # Đối với lần lượt từng sheet trong file excel, câu lệnh sẽ import thành 1 data frame trong R với tên tương ứng theo từng sheet
+  assign(sheet_names[i], readWorkbook(wb_obj, sheet = i))
+  
+}</code></pre>
+<hr />
+<p><img src="/img/blog/20181120_import_all_excel_sheets_into_r.gif" /></p>
+<hr />
+<p>Kết quả: Tất cả các sheet trong file Excel sẽ được import vào <code>R</code> thành các data frame tương ứng (trong Global Environment).</p>
+</div>
+<div id="r-to-excel" class="section level1">
+<h1>R to Excel</h1>
+<p>Như vậy, chúng ta đã biết làm thế nào để import dữ liệu từ file Excel vào <code>R</code>. Câu hỏi đặt ra lúc này là: Vậy làm thế nào để export dữ liệu từ <code>R</code> ra file Excel?</p>
+<p>Câu trả lời là: Dùng hàm <code>write.xlsx()</code> trong package <code>xlsx</code>.</p>
+<pre class="r"><code>library(xlsx)
+write.xlsx(iris, # tên data 
+           file = paste0(getwd(),&quot;/&quot;,&quot;iris_data.xlsx&quot;), # đường dẫn
+           row.names = F
+           )</code></pre>
+<hr />
+<p><img src="/img/blog/20181120_export_r_to_excel.gif" /></p>
+<p>Tuy nhiên, với cách sử dụng <code>xlsx</code>, máy tính đòi hỏi phải cài đặt Java. Do đó, hiện này có một cách thuận tiện hơn, đó là sử dụng package <code>writexl</code></p>
+<pre class="r"><code>library(writexl)
+writexl::write_xlsx(iris, path = &quot;./iris_data.xlsx&quot;)</code></pre>
+<hr />
+<p>Kết quả: Dữ liệu <code>iris</code> đã được export từ <code>R</code> sang Excel (file <code>iris_data.xlsx</code>).</p>
+<p>Như vậy, chúng ta đã vừa được học cách import và export dữ liệu từ Excel vào <code>R</code>.
+Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
