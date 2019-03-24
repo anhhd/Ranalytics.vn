@@ -3,7 +3,7 @@ title: "Import và Export dữ liệu từ Excel vào R"
 author: "Nguyễn Hải Trường"
 date: "2018-11-20"
 categories:
-  - Data Import
+  - Data import
 tags:
   - Data Import
 summary: "Cách import và export excel vào R"

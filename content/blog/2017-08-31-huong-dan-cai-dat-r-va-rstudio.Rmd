@@ -4,7 +4,7 @@ author: 'Hoàng Đức Anh'
 date: '2017-08-31'
 slug: huong-dan-cai-dat-r-va-rstudio
 categories:
-  - R
+  - General
 tags:
   - Rstudio
   - R

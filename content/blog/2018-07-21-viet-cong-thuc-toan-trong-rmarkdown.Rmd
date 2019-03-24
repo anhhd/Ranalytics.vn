@@ -4,9 +4,8 @@ author: Hoàng Đức Anh
 date: '2018-07-18'
 slug: viet-cong-thuc-toan-trong-rmarkdown
 categories:
-  - RStudio
-tags:
-  - Rstudio
+  - Writing report
+tags: ["Rmarkdown"]
 summary: "Các công thức và ký hiệu toán học thường dùng trong Rmarkdown"
 banner: "img/banners/banner-10.png"
 ---

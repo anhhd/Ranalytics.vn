@@ -21,16 +21,6 @@
     </item>
     
     <item>
-      <title>Viết công thức toán trong rmarkdown</title>
-      <link>/blog/2018/07/18/2018-07-21-viet-cong-thuc-toan-trong-rmarkdown/</link>
-      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2018/07/18/2018-07-21-viet-cong-thuc-toan-trong-rmarkdown/</guid>
-      <description>Khi làm việc với rmarkdown và RStudio, ta có thể viết các công thức, ký hiệu toán học một cách rất dễ dàng. Để viết các công thức toán, có hai cách:
-Cách 1: Công thức toán nằm trong dấu $ công thức toán $. Khi đó, công thức sẽ hiển thị nằm trên cùng một dòng.Ví dụ: $ y = x^2 $ sẽ hiển thị kết quả là \(y = x^2\)</description>
-    </item>
-    
-    <item>
       <title>Các phím tắt hữu dụng trong RStudio</title>
       <link>/blog/2018/06/24/2018-06-24-cac-phim-tat-huu-dung-trong-rstudio/</link>
       <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>

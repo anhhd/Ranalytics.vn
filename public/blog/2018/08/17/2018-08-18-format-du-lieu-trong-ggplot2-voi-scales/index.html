@@ -277,13 +277,13 @@ p + scale_y_continuous(labels = dollar)</code></pre>
   date = seq(13000, 13200, by = 1) %&gt;% lubridate::as_date(),
   price = runif(201)*10*abs(rnorm(201,0,1)))
 head(df)</code></pre>
-<pre><code>##         date     price
-## 1 2005-08-05  0.950538
-## 2 2005-08-06 13.266148
-## 3 2005-08-07  7.728555
-## 4 2005-08-08  3.388654
-## 5 2005-08-09  6.496906
-## 6 2005-08-10  1.536182</code></pre>
+<pre><code>##         date       price
+## 1 2005-08-05 12.26523205
+## 2 2005-08-06 12.57299049
+## 3 2005-08-07  0.02048806
+## 4 2005-08-08  7.21665067
+## 5 2005-08-09  1.30968090
+## 6 2005-08-10  2.00408573</code></pre>
 <pre class="r"><code>p2 &lt;- ggplot(data=df, 
              aes(x=date, y=price)) + 
   geom_line(col = &quot;darkblue&quot;)
@@ -380,40 +380,28 @@ p2 + scale_x_date(breaks = date_breaks(&quot;months&quot;),
     <div class="panel-body">
         <ul class="nav nav-pills nav-stacked">
             
-            <li><a href="../../../../../categories/bi%e1%ba%bfn-%c4%91%e1%bb%95i-d%e1%bb%af-li%e1%bb%87u">biến-đổi-dữ-liệu (1)</a>
-            </li>
-            
             <li><a href="../../../../../categories/cloud-computing">cloud-computing (1)</a>
             </li>
             
-            <li><a href="../../../../../categories/data-import">data-import (2)</a>
+            <li><a href="../../../../../categories/data-import">data-import (4)</a>
             </li>
             
-            <li><a href="../../../../../categories/data-manipulation">data-manipulation (1)</a>
+            <li><a href="../../../../../categories/data-manipulation">data-manipulation (3)</a>
             </li>
             
             <li><a href="../../../../../categories/data-science">data-science (1)</a>
             </li>
             
-            <li><a href="../../../../../categories/data-vizualization">data-vizualization (3)</a>
+            <li><a href="../../../../../categories/data-vizualization">data-vizualization (7)</a>
             </li>
             
-            <li><a href="../../../../../categories/project">project (1)</a>
+            <li><a href="../../../../../categories/general">general (2)</a>
             </li>
             
-            <li><a href="../../../../../categories/r">r (5)</a>
+            <li><a href="../../../../../categories/tips">tips (3)</a>
             </li>
             
-            <li><a href="../../../../../categories/rstudio">rstudio (1)</a>
-            </li>
-            
-            <li><a href="../../../../../categories/sqlserver">sqlserver (1)</a>
-            </li>
-            
-            <li><a href="../../../../../categories/tips">tips (4)</a>
-            </li>
-            
-            <li><a href="../../../../../categories/vizualization">vizualization (4)</a>
+            <li><a href="../../../../../categories/writing-report">writing-report (1)</a>
             </li>
             
         </ul>
@@ -459,10 +447,13 @@ p2 + scale_x_date(breaks = date_breaks(&quot;months&quot;),
             <li><a href="../../../../../tags/import-data"><i class="fa fa-tags"></i> import-data</a>
             </li>
             
-            <li><a href="../../../../../tags/map"><i class="fa fa-tags"></i> map</a>
+            <li><a href="../../../../../tags/project"><i class="fa fa-tags"></i> project</a>
             </li>
             
             <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rmarkdown"><i class="fa fa-tags"></i> rmarkdown</a>
             </li>
             
             <li><a href="../../../../../tags/rstudio"><i class="fa fa-tags"></i> rstudio</a>

@@ -3,7 +3,7 @@ title: "Xử lý dữ liệu chuỗi với stringr"
 author: "Nguyen Hai Truong"
 date: "2018-09-02"
 categories:
-  - Data Manipulation
+  - Data manipulation
 tags:
   - stringr
 summary: "Xử lý dữ liệu chuỗi với stringR"

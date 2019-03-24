@@ -4,7 +4,7 @@ author: Nguyễn Hải Trường
 date: '2018-08-27'
 slug: xu-ly-du-lieu-thoi-gian-voi-lubridate
 categories:
-  - Biến đổi dữ liệu
+  - Data manipulation
 tags:
   - Date
 summary: "Các cách biến đổi dữ liệu thời gian cơ bản với lubridate"

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Set Up and Install on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/categories/set-up-and-install/</link>
+    <description>Recent content in Set Up and Install on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 31 Aug 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/set-up-and-install/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hướng dẫn cài đặt R &amp; RStudio</title>
+      <link>/blog/2017/08/31/2017-08-31-huong-dan-cai-dat-r-va-rstudio/</link>
+      <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2017/08/31/2017-08-31-huong-dan-cai-dat-r-va-rstudio/</guid>
+      <description>Khi bắt đầu học phân tích dữ liệu với R, RStudio là lựa chọn số một về IDE. Tuy nhiên, nhiều bạn chưa phân biệt được R &amp;amp; RStudio như thế nào cũng như cách cài đặt R &amp;amp; RStudio. Trong bài viết này, mình sẽ làm rõ sự khác biệt của R và RStudio cũng như hướng dẫn các bạn cách thức cài đặt hai phần mềm trên.</description>
+    </item>
+    
+  </channel>
+</rss>

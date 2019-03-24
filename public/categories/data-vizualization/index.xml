@@ -40,5 +40,43 @@ Với cách làm truyền thống, việc xây dựng bản đồ là không h�
 Như các bạn đã biết, package ggplot2 trong R có thể giúp chúng ta “visualize” một cách dễ dàng và đẹp mắt, hay nói cách khác là biến những con số “khô khan” thành những con số biết nói.</description>
     </item>
     
+    <item>
+      <title>Biểu đồ động với GGPLOT2 và PLOTLY</title>
+      <link>/blog/2018/08/20/2018-08-20-bieu-do-dong-voi-ggplot2-va-plotly/</link>
+      <pubDate>Mon, 20 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/08/20/2018-08-20-bieu-do-dong-voi-ggplot2-va-plotly/</guid>
+      <description>ggplot2 là package được sử dụng mặc định trong các vấn đề về trực quan hóa dữ liệu với R. Tuy nhiên, ggplot2 chỉ cho phép xây dựng các biểu đồ tĩnh (static plot) mà chưa hỗ trợ các biểu đồ có thể tương tác được với các lựa chọn như hover hay zoom. Hiện nay, có rất nhiều package trên R hỗ trợ biểu đồ tương tác như rCharts, Highcharter hay rbokeh.</description>
+    </item>
+    
+    <item>
+      <title>Format dữ liệu trong GGPLOT2 với scales</title>
+      <link>/blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/</guid>
+      <description>Trong quá trình trực quan hóa dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc format lại dữ liệu để hiển thị tốt nhất. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một package rất hữu hiệu trong việc format lại dữ liệu trên trục biểu đồ là scales. Cách thức format dữ liệu trên biểu đồ trong nội dung bài viết này gồm 4 nhóm chính:</description>
+    </item>
+    
+    <item>
+      <title>Tùy chỉnh các thành phần cơ bản trong GGPLOT2</title>
+      <link>/blog/2018/07/31/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2/</link>
+      <pubDate>Tue, 31 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/07/31/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2/</guid>
+      <description>Khi mới bắt đầu làm việc với GGPLOT2, sẽ rất khó để có thể tùy chỉnh các thành phần cơ bản trong biểu đồ. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tùy chỉnh những thành phần cơ bản nhất của biểu đồ với GGPLOT2.
+Khi đã tạo được các biểu đồ cơ bản, ta còn cần phải làm chủ được các thành phần khác của biểu đồ, trong đó quan trọng nhất gồm có:</description>
+    </item>
+    
+    <item>
+      <title>Thu gọn giá trị các factor trong biểu đồ</title>
+      <link>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</link>
+      <pubDate>Sun, 15 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</guid>
+      <description>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:
+library(dplyr)library(ggplot2)data &amp;lt;- data.frame(x = c(&amp;quot;Trung tam kinh doanh dien tu dien may va do gia dung&amp;quot;, &amp;quot;Trung tam 2&amp;quot;, &amp;quot;Trung tam kinh doanh my pham va dich vu&amp;quot;),y = c(5,3,7))# Vẽ biểu đồ thông thường, không xử lý với factordata %&amp;gt;% ggplot(aes(x, y)) + geom_bar(stat = &amp;quot;identity&amp;quot;, aes(fill = x)) +theme_bw() +theme(legend.</description>
+    </item>
+    
   </channel>
 </rss>

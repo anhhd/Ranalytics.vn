@@ -6,19 +6,9 @@
     <description>Recent content in Categories on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Biến Đổi Dữ Liệu</title>
-      <link>/categories/bi%E1%BA%BFn-%C4%91%E1%BB%95i-d%E1%BB%AF-li%E1%BB%87u/</link>
-      <pubDate>Mon, 27 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/bi%E1%BA%BFn-%C4%91%E1%BB%95i-d%E1%BB%AF-li%E1%BB%87u/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Cloud Computing</title>
@@ -66,38 +56,11 @@
     </item>
     
     <item>
-      <title>Project</title>
-      <link>/categories/project/</link>
+      <title>General</title>
+      <link>/categories/general/</link>
       <pubDate>Sun, 15 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/categories/project/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R</title>
-      <link>/categories/r/</link>
-      <pubDate>Sun, 15 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rstudio</title>
-      <link>/categories/rstudio/</link>
-      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/rstudio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sqlserver</title>
-      <link>/categories/sqlserver/</link>
-      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/sqlserver/</guid>
+      <guid>/categories/general/</guid>
       <description></description>
     </item>
     
@@ -111,11 +74,11 @@
     </item>
     
     <item>
-      <title>Vizualization</title>
-      <link>/categories/vizualization/</link>
-      <pubDate>Mon, 20 Aug 2018 00:00:00 +0000</pubDate>
+      <title>Writing Report</title>
+      <link>/categories/writing-report/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/categories/vizualization/</guid>
+      <guid>/categories/writing-report/</guid>
       <description></description>
     </item>
     

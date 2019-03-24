@@ -3,8 +3,9 @@ title: Thu gọn giá trị các factor trong biểu đồ
 author: Hoàng Đức Anh
 date: '2018-04-15'
 slug: thu-gon-gia-tri-cac-factor-trong-bieu-do
-categories: ["Tips"]
-tags: ["Tips", "factor"]
+categories: 
+  - Data vizualization
+tags: ["Tips"]
 summary: "Hướng dẫn thu gọn giá trị các factor khi vẽ biểu đồ với R"
 banner: "img/banners/banner-1.jpg"
 ---

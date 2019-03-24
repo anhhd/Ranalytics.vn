@@ -4,7 +4,7 @@ author: Hoàng Đức Anh
 date: '2018-07-31'
 slug: tuy-chinh-cac-thanh-phan-co-ban-trong-ggplog2
 categories:
-  - Vizualization
+  - Data vizualization
 tags:
   - vizualization
   - ggplot2

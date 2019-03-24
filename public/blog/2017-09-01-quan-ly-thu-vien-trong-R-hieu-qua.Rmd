@@ -4,7 +4,7 @@ author: 'Hoàng Đức Anh'
 date: '2017-09-01'
 slug: quan-ly-thu-vien-trong-r-hieu-qua
 categories:
-  - R
+  - Tips
 tags: ["R"]
 summary: "Hướng dẫn cách thức quản lý thư viện trong R hiệu quả"
 banner: "img/banners/banner-1.png"

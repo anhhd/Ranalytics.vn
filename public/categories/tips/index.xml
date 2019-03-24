@@ -31,23 +31,13 @@ Giả sử ta có 1 bảng dữ liệu từ excel và cần import vào R như s
     </item>
     
     <item>
-      <title>Import nhiều file cùng lúc vào R</title>
-      <link>/blog/2018/06/20/2018-06-20-import-nhieu-file-cung-luc-vao-r/</link>
-      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      <title>Quản lý thư viện trong R hiệu quả</title>
+      <link>/blog/2017/09/01/2017-09-01-quan-ly-thu-vien-trong-r-hieu-qua/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2018/06/20/2018-06-20-import-nhieu-file-cung-luc-vao-r/</guid>
-      <description>Trong thực tế, khi phân tích dữ liệu, ta thường xuyên phải làm việc với nhiều file có cấu trúc dữ liệu giống nhau được trích xuất từ những khoảng thời gian/đối tượng khác nhau. Khi phân tích, ta phải cùng lúc xử lý rất nhiều những file loại này. Trong blog này, RAnalytics sẽ hướng dẫn các bạn import cùng lúc nhiều file.
-Giả sử trong cùng 1 folder, ta có 10 file định dạng csv giống nhau chứa dữ liệu dạng iris như sau:</description>
-    </item>
-    
-    <item>
-      <title>Thu gọn giá trị các factor trong biểu đồ</title>
-      <link>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</link>
-      <pubDate>Sun, 15 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</guid>
-      <description>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:
-library(dplyr)library(ggplot2)data &amp;lt;- data.frame(x = c(&amp;quot;Trung tam kinh doanh dien tu dien may va do gia dung&amp;quot;, &amp;quot;Trung tam 2&amp;quot;, &amp;quot;Trung tam kinh doanh my pham va dich vu&amp;quot;),y = c(5,3,7))# Vẽ biểu đồ thông thường, không xử lý với factordata %&amp;gt;% ggplot(aes(x, y)) + geom_bar(stat = &amp;quot;identity&amp;quot;, aes(fill = x)) +theme_bw() +theme(legend.</description>
+      <guid>/blog/2017/09/01/2017-09-01-quan-ly-thu-vien-trong-r-hieu-qua/</guid>
+      <description>Khi mới bắt đầu sử dụng R, cài đặt và quản lý R có vẻ như chẳng có gì phức tạp cả. Tuy nhiên, mỗi khi cài đặt phiên bản update mới của R, các vấn đề bắt đầu xuất hiện. Trong phần lớn trường hợp, chúng ta phải cài đặt lại các library, việc này đặc biệt tốn thời gian.
+Có một cách truyền thông để xử lý vấn đề trên, đó là copy toàn bộ các library cũ vào folder chứa library mới.</description>
     </item>
     
   </channel>

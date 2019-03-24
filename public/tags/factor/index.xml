@@ -21,15 +21,5 @@
 Forcats packagePackage forcats là 1 package rất hữu dụng trong việc xử lý các biến rời rạc có thuộc tính là nhóm (factor) trong R.</description>
     </item>
     
-    <item>
-      <title>Thu gọn giá trị các factor trong biểu đồ</title>
-      <link>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</link>
-      <pubDate>Sun, 15 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do/</guid>
-      <description>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:
-library(dplyr)library(ggplot2)data &amp;lt;- data.frame(x = c(&amp;quot;Trung tam kinh doanh dien tu dien may va do gia dung&amp;quot;, &amp;quot;Trung tam 2&amp;quot;, &amp;quot;Trung tam kinh doanh my pham va dich vu&amp;quot;),y = c(5,3,7))# Vẽ biểu đồ thông thường, không xử lý với factordata %&amp;gt;% ggplot(aes(x, y)) + geom_bar(stat = &amp;quot;identity&amp;quot;, aes(fill = x)) +theme_bw() +theme(legend.</description>
-    </item>
-    
   </channel>
 </rss>

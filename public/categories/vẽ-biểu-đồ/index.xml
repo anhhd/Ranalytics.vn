@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vẽ Biểu Đồ on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/categories/v%E1%BA%BD-bi%E1%BB%83u-%C4%91%E1%BB%93/</link>
+    <description>Recent content in Vẽ Biểu Đồ on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/v%E1%BA%BD-bi%E1%BB%83u-%C4%91%E1%BB%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tạo wordcloud với ggplot2</title>
+      <link>/blog/2018/10/01/2018-10-01-tao-wordcloud-voi-ggplot2/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/10/01/2018-10-01-tao-wordcloud-voi-ggplot2/</guid>
+      <description>Khi phân tích dữ liệu, một trong những định dang dữ liệu chúng ta thường xuyên phải sử dụng là định dạng text. Với loại dữ liệu này, một trong những cách để trực quan hóa hiệu quả là sử dụng wordcloud. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn tạo wordcloud nhanh chóng theo phong cách của tidyverse với package ggwordcloud - một package mới trong hệ sinh thái của R.</description>
+    </item>
+    
+    <item>
+      <title>Vẽ biểu đồ boxplot hiệu quả với GGPLOT2</title>
+      <link>/blog/2018/09/14/2018-09-16-tips-ggplot2/</link>
+      <pubDate>Fri, 14 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/09/14/2018-09-16-tips-ggplot2/</guid>
+      <description>Trong quá trình phân tích dữ liệu, ngoài việc đưa ra những con số thống kê “khô khan” chúng ta cần phải minh họa những con số bằng những hình vẽ hoặc biểu đồ để thu hút người đọc khi trình bày với đơn vị kinh doanh hay đối tác.
+Như các bạn đã biết, package ggplot2 trong R có thể giúp chúng ta “visualize” một cách dễ dàng và đẹp mắt, hay nói cách khác là biến những con số “khô khan” thành những con số biết nói.</description>
+    </item>
+    
+    <item>
+      <title>Biểu đồ động với GGPLOT2 và PLOTLY</title>
+      <link>/blog/2018/08/20/2018-08-20-bieu-do-dong-voi-ggplot2-va-plotly/</link>
+      <pubDate>Mon, 20 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/08/20/2018-08-20-bieu-do-dong-voi-ggplot2-va-plotly/</guid>
+      <description>ggplot2 là package được sử dụng mặc định trong các vấn đề về trực quan hóa dữ liệu với R. Tuy nhiên, ggplot2 chỉ cho phép xây dựng các biểu đồ tĩnh (static plot) mà chưa hỗ trợ các biểu đồ có thể tương tác được với các lựa chọn như hover hay zoom. Hiện nay, có rất nhiều package trên R hỗ trợ biểu đồ tương tác như rCharts, Highcharter hay rbokeh.</description>
+    </item>
+    
+    <item>
+      <title>Format dữ liệu trong GGPLOT2 với scales</title>
+      <link>/blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/08/17/2018-08-18-format-du-lieu-trong-ggplot2-voi-scales/</guid>
+      <description>Trong quá trình trực quan hóa dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc format lại dữ liệu để hiển thị tốt nhất. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một package rất hữu hiệu trong việc format lại dữ liệu trên trục biểu đồ là scales. Cách thức format dữ liệu trên biểu đồ trong nội dung bài viết này gồm 4 nhóm chính:</description>
+    </item>
+    
+  </channel>
+</rss>

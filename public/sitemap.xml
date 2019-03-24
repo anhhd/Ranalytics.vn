@@ -113,12 +113,6 @@
   </url>
   
   <url>
-    <loc>/categories/bi%E1%BA%BFn-%C4%91%E1%BB%95i-d%E1%BB%AF-li%E1%BB%87u/</loc>
-    <lastmod>2018-08-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/blog/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -126,7 +120,6 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2018-08-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -209,6 +202,12 @@
   </url>
   
   <url>
+    <loc>/categories/general/</loc>
+    <lastmod>2018-07-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/ggplot2/</loc>
     <lastmod>2018-11-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -225,13 +224,7 @@
   </url>
   
   <url>
-    <loc>/tags/map/</loc>
-    <lastmod>2018-11-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/project/</loc>
+    <loc>/tags/project/</loc>
     <lastmod>2018-07-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -243,26 +236,20 @@
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2018-07-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/rstudio/</loc>
-    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
+    <loc>/tags/rmarkdown/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/rstudio/</loc>
-    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
+    <loc>/tags/rstudio/</loc>
+    <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -274,12 +261,6 @@
   
   <url>
     <loc>/tags/sqlserver/</loc>
-    <lastmod>2018-06-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/sqlserver/</loc>
     <lastmod>2018-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -323,14 +304,14 @@
   </url>
   
   <url>
-    <loc>/categories/vizualization/</loc>
-    <lastmod>2018-08-20T00:00:00+00:00</lastmod>
+    <loc>/tags/wordcloud/</loc>
+    <lastmod>2018-10-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/wordcloud/</loc>
-    <lastmod>2018-10-01T00:00:00+00:00</lastmod>
+    <loc>/categories/writing-report/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

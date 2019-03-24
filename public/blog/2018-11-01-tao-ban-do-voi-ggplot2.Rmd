@@ -3,10 +3,9 @@ title: "Tạo bản đồ với ggplot2"
 author: "Hoàng Đức Anh"
 date: "2018-11-01"
 categories:
-  - Data Vizualization
+  - Data vizualization
 tags:
   - ggplot2
-  - map
 summary: "Tạo bản đồ với ggplot2"
 banner: "img/banners/banner-20.png"
 ---
