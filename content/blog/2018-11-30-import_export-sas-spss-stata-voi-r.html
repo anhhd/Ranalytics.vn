@@ -1,0 +1,44 @@
+---
+title: "Import và Export dữ liệu SPSS, SAS, STATA vào R"
+author: "Hoàng Đức Anh"
+date: "2018-11-30"
+categories:
+  - Data Import
+tags:
+  - Data Import
+summary: "Cách import và export dữ liệu SPSS, SAS, STATA vào R"
+banner: "img/banners/banner-23.png"
+---
+
+
+
+<p>Hiện nay, ngày càng nhiều các bạn dịch chuyển từ việc sử dụng Stata, SPSS hay SAS sang R. Tuy nhiên, khi chuyển sang công cụ mới, ta thường vẫn muốn tiếp tục sử dụng dữ liệu trên các phần mềm trước đây từng sử dụng. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách import và export dữ liệu từ SAS, SPSS hoặc Stata vào <code>R</code>.</p>
+<p>Với ba loại định dạng dữ liệu trên, ta có thể sử dụng package <code>haven</code> được tích hợp sẵn trong tidyverse.</p>
+<div id="sas" class="section level1">
+<h1>SAS</h1>
+<pre class="r"><code>library(haven)
+# read data
+read_sas(&quot;mtcars.sas7bdat&quot;)
+# write data
+write_sas(mtcars, &quot;mtcars.sas7bdat&quot;)</code></pre>
+</div>
+<div id="spss" class="section level1">
+<h1>SPSS</h1>
+<pre class="r"><code># read data
+read_sav(&quot;mtcars.sav&quot;)
+# write data
+write_sav(mtcars, &quot;mtcars.sav&quot;)</code></pre>
+</div>
+<div id="stata" class="section level1">
+<h1>Stata</h1>
+<pre class="r"><code># Read data
+read_dta(&quot;mtcars.dta&quot;)
+# Write data
+write_dta(mtcars, &quot;mtcars.dta&quot;)</code></pre>
+<hr />
+<p>Đối với RStudio, các bạn có thể sử dụng chức năng import data set. Các bạn có thể xem hình minh họa dưới đây</p>
+<p><img src="/img/blog/20181130-spss-to-r.gif" /></p>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách import và export dữ liệu từ các định dạng của SAS, SPSS và STATA vào <code>R</code>.
+Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>

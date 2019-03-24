@@ -6,10 +6,19 @@
     <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Import và Export dữ liệu SPSS, SAS, STATA vào R</title>
+      <link>/blog/2018/11/30/2018-11-30-import_export-sas-spss-stata-voi-r/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/11/30/2018-11-30-import_export-sas-spss-stata-voi-r/</guid>
+      <description>Hiện nay, ngày càng nhiều các bạn dịch chuyển từ việc sử dụng Stata, SPSS hay SAS sang R. Tuy nhiên, khi chuyển sang công cụ mới, ta thường vẫn muốn tiếp tục sử dụng dữ liệu trên các phần mềm trước đây từng sử dụng. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách import và export dữ liệu từ SAS, SPSS hoặc Stata vào R.</description>
+    </item>
     
     <item>
       <title>Import và Export dữ liệu từ Excel vào R</title>
