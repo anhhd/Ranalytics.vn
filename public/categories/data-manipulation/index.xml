@@ -6,10 +6,19 @@
     <description>Recent content in Data Manipulation on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-manipulation/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hướng dẫn sử dụng case_when trong dplyr</title>
+      <link>/blog/2018/12/10/2018-12-10-su-dung-case-when/</link>
+      <pubDate>Mon, 10 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/12/10/2018-12-10-su-dung-case-when/</guid>
+      <description>Thông thường trong quá trình phân tích dữ liệu, chúng ta sẽ gặp phải vấn đề liên quan đến chất lượng dữ liệu. Do vậy, việc trước tiên chúng ta cần phải làm đó là xử lý, làm sạch dữ liệu. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một trong những hàm rất phổ biến và hữu dụng trong việc xử lý dữ liệu trong R - hàm case_when().</description>
+    </item>
     
     <item>
       <title>Xử lý dữ liệu chuỗi với stringr</title>

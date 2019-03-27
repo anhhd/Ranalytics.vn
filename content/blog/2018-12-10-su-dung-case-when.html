@@ -1,0 +1,86 @@
+---
+title: "Hướng dẫn sử dụng case_when trong dplyr"
+author: "Nguyễn Hải Trường"
+date: "2018-12-10"
+categories:
+  - data-manipulation
+tags:
+  - dplyr
+summary: "Cách import và export dữ liệu SPSS, SAS, STATA vào R"
+banner: "img/banners/banner-24.png"
+---
+
+
+
+<p>Thông thường trong quá trình phân tích dữ liệu, chúng ta sẽ gặp phải vấn đề liên quan đến chất lượng dữ liệu. Do vậy, việc trước tiên chúng ta cần phải làm đó là xử lý, làm sạch dữ liệu. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn sử dụng một trong những hàm rất phổ biến và hữu dụng trong việc xử lý dữ liệu trong <code>R</code> - hàm <code>case_when()</code>.</p>
+<p>Chúng ta sẽ sử dụng dữ liệu <code>iris</code> có sẵn trong <code>R</code> để làm ví dụ minh họa.</p>
+<pre class="r"><code>library(dplyr)
+data(&quot;iris&quot;)
+iris %&gt;% summary</code></pre>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<p>Giả sử chúng ta muốn tạo thêm 1 biến mới (ví dụ tên là <code>Range_Sepal_Length</code>) dựa vào biến có sẵn <code>Sepal.Length</code> với những điều kiện như sau:</p>
+<ul>
+<li><p>Sepal.Length &lt; 5 (cm): low</p></li>
+<li><p>5 &lt;= Sepal.Length &lt;= 6 (cm): medium</p></li>
+<li><p>Sepal.Length &gt; 6 (cm): high</p></li>
+</ul>
+<p>Như vậy, biến mới <code>Range_Sepal_Length</code> sẽ phải gồm 3 giá trị (<code>low</code>, <code>medium</code>, <code>high</code>) với những điều kiện nêu trên theo biến <code>Sepal.Length</code>.</p>
+<p>Trong <code>R</code>, chúng ta sẽ sử dụng hàm <code>case_when()</code> kết hợp hàm <code>mutate()</code> (hàm <code>mutate()</code> chúng ta sử dụng khi muốn thêm trường dữ liệu mới trong <code>R</code>):</p>
+<pre class="r"><code>iris %&gt;% 
+  mutate(Range_Sepal_Length = case_when(
+    Sepal.Length &lt; 5 ~ &quot;low&quot;,
+    Sepal.Length &gt;= 5 &amp; Sepal.Length &lt;= 6 ~ &quot;medium&quot;,
+    TRUE ~ &quot;high&quot;   # TRUE - với những trường hợp còn lại
+  ) %&gt;% as.factor) %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Range_Sepal_Length
+## 1             medium
+## 2                low
+## 3                low
+## 4                low
+## 5             medium
+## 6             medium</code></pre>
+<p>Như vậy, chúng ta đã vừa thêm trường dữ liệu mới <code>Range_Sepal_Length</code> - phái sinh từ trường <code>Sepal.Length</code>.</p>
+<p><strong>Lưu ý!!!</strong>: Đối với những ai đang sử dụng package <code>dplyr</code> version cũ, có thể sẽ gặp lỗi trong câu lệnh nói trên. Để khắc phục vấn đề trên, chúng ta có thể download package <code>dplyr</code> version mới nhất <strong>HOẶC</strong> đơn giản hơn là thêm <code>.$</code> vào trước biến để lọc điều kiện (trong trường hợp này là <code>Sepal.Length</code>) như sau:</p>
+<pre class="r"><code>iris %&gt;% 
+  mutate(Range_Sepal_Length = case_when(
+    .$Sepal.Length &lt; 5 ~ &quot;low&quot;,
+    .$Sepal.Length &gt;= 5 &amp; .$Sepal.Length &lt;= 6 ~ &quot;medium&quot;,
+    TRUE ~ &quot;high&quot;   # TRUE - với những trường hợp còn lại
+  ) %&gt;% as.factor) %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Range_Sepal_Length
+## 1             medium
+## 2                low
+## 3                low
+## 4                low
+## 5             medium
+## 6             medium</code></pre>
+<p>Như vậy, chúng ta đã vừa được làm quen với cách sử dụng hàm <code>case_when()</code> kết hợp <code>mutate()</code>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
