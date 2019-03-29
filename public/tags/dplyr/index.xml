@@ -6,20 +6,10 @@
     <description>Recent content in Dplyr on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/dplyr/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Hiển thị bảng hiệu quả trong rmarkdown</title>
-      <link>/blog/2018/12/20/2018-12-20-hien-thi-bang-hieu-qua-trong-rmarkdown/</link>
-      <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2018/12/20/2018-12-20-hien-thi-bang-hieu-qua-trong-rmarkdown/</guid>
-      <description>Khi phân tích dữ liệu, ta thường xuyên phải hiển thị dữ liệu dưới dạng bảng. Dữ liệu loại này có thể là dữ liệu chưa qua xử lý (dữ liệu thô) hoặc dữ liệu đã được tổng hợp và cần thể hiện để đơn vị kinh doanh có thể theo dõi.
-Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn hai cách thể hiện dữ liệu dạng bảng 1 cách hiệu quả trong rmarkdown với kable và DT::datatable</description>
-    </item>
     
     <item>
       <title>Hướng dẫn sử dụng case_when trong dplyr</title>
