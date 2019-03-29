@@ -28,17 +28,35 @@ library(knitr)
 mtcars %>% head %>% kable()
 ```
 
+&nbsp;
+
+---
+
+&nbsp;
+
 **Pro tips**: Ta có thể để bảng hiện thị dạng mặc định là `kable` bằng cách chọn option `Print data frame as: 'kable'` trong rmarkdown
 
+&nbsp;
+
 ![](/img/blog/20181220-table-in-rmarkdown.gif)
+
+&nbsp;
 
 # Hiển thị bảng động với DT::datatable
 
 `kable` tuy thể hiện tốt dữ liệu dạng bảng nhưng chỉ hỗ trợ các bảng khoảng 10-15 dòng. Trong những trường hợp bảng chứa nhiều thông tin hoặc muốn tương tác trực tiếp với bảng, ta có thể sử dụng package `DT` với hàm `datatable` như sau.
 
-```{r}
+```{r, eval = F}
 iris %>% DT::datatable()
 ```
+
+&nbsp;
+
+Kết quả hiển thị như sau:
+
+![](/img/blog/20181220-datatable.gif)
+
+&nbsp;
 
 Với `DT`, ta hoàn toàn có thể sort, tìm kiếm các thông tin trực tiếp ngay trên file kết quả của rmarkdown.
 
