@@ -34,7 +34,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thu gọn giá trị các factor trong biểu đồ</title>
+  <title>Biến đổi dữ liệu nhanh với mutate</title>
   <meta name="author" content="" />
 
   
@@ -84,9 +84,9 @@
   <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Thu gọn giá trị các factor trong biểu đồ" />
+  <meta property="og:title" content="Biến đổi dữ liệu nhanh với mutate" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do//" />
+  <meta property="og:url" content="/blog/2018/12/30/2018-12-30-bien-doi-nhanh-voi-mutate//" />
   <meta property="og:image" content="img/logo.png" />
 
   <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
@@ -109,9 +109,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="../../../../../">
-                    <img src="../../../../../img/logo.png" alt="Thu gọn giá trị các factor trong biểu đồ logo" class="hidden-xs hidden-sm">
-                    <img src="../../../../../img/logo-small.png" alt="Thu gọn giá trị các factor trong biểu đồ logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Thu gọn giá trị các factor trong biểu đồ - Về trang chủ</span>
+                    <img src="../../../../../img/logo.png" alt="Biến đổi dữ liệu nhanh với mutate logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Biến đổi dữ liệu nhanh với mutate logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Biến đổi dữ liệu nhanh với mutate - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -207,7 +207,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Thu gọn giá trị các factor trong biểu đồ</h1>
+                <h1>Biến đổi dữ liệu nhanh với mutate</h1>
             </div>
         </div>
     </div>
@@ -223,41 +223,136 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2018-04-15</p>
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Nguyễn Hải Trường</a> | 2018-12-30</p>
 
                         <div id="post-content">
                           
 
 
-<p>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:</p>
-<pre class="r"><code>library(dplyr)
-library(ggplot2)
+<p>Trong quá trình phân tích dữ liệu sẽ có thể phát sinh việc chúng ta muốn tạo thêm những biến mới - phái sinh từ những biến sẵn có trong dữ liệu. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách sử dụng hàm <code>mutate()</code> và nhóm hàm <code>mutate_if()</code>, <code>mutate_at()</code>, <code>mutate_all()</code> để thêm 1 hoặc nhiều biến vào tập dữ liệu.</p>
+<p>Sử dụng dữ liệu <code>iris</code> có sẵn trong <code>R</code>. Dữ liệu bao gồm những thông số (đơn vị: cm) về chiều dài/rộng cánh hoa và đài hoa của 3 loài hoa: <code>setosa</code>, <code>versicolor</code>, <code>virginica</code> (150 quan sát).</p>
+<pre class="r"><code># Package sử dụng
+library(dplyr)
 
-data &lt;- data.frame(x = c(&quot;Trung tam kinh doanh dien tu dien may va do gia dung&quot;, 
-                         &quot;Trung tam 2&quot;, 
-                         &quot;Trung tam kinh doanh my pham va dich vu&quot;),
-                   y = c(5,3,7))
+# Summary dữ liệu
+iris %&gt;% summary</code></pre>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<pre class="r"><code># 6 quan sát đầu tiên của tập dữ liệu
+iris %&gt;% head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Để tạo thêm 1 biến mới trong tập dữ liệu, chúng ta sử dụng hàm <code>mutate()</code>.</p>
+<pre class="r"><code>data &lt;- iris %&gt;% 
+  # Thêm biến mới sepal_length_range theo điều kiện sau:
+  mutate(sepal_length_range = case_when(
+    Sepal.Length &lt; 5 ~ &quot;low&quot;,
+    Sepal.Length &gt;= 5 &amp; Sepal.Length &lt;= 6 ~ &quot;medium&quot;,
+    TRUE ~ &quot;high&quot;
+  ) %&gt;% as.factor)
 
-# Vẽ biểu đồ thông thường, không xử lý với factor
-data %&gt;% 
-  ggplot(aes(x, y)) + 
-  geom_bar(stat = &quot;identity&quot;, aes(fill = x)) +
-  theme_bw() +
-  theme(legend.position = &quot;none&quot;) +
-  ggtitle(&quot;Vi du 1&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>Để khắc phục vấn đề trên, ta có thể sử dụng library <code>stringr</code> với hàm <code>str_wrap</code> để tự động co gọn lại giá trị của factor trên biểu đồ</p>
-<pre class="r"><code>library(stringr)
-data %&gt;% 
-  ggplot(aes(x, y)) + 
-  geom_bar(stat = &quot;identity&quot;, aes(fill = x)) +
-  theme_bw() +
-  theme(legend.position = &quot;none&quot;) +
-  scale_x_discrete(labels = str_wrap(levels(data$x), width = 20)) +
-  ggtitle(&quot;Vi du 2&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>Như vậy, với hàm đơn giả từ R, ta đã có thể xử lý được vấn đề hiển thị giá trị của factor quá dài!</p>
-<p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
+# 6 quan sát đầu tiên của tập dữ liệu sau khi thêm 1 biến mới
+data %&gt;% head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   sepal_length_range
+## 1             medium
+## 2                low
+## 3                low
+## 4                low
+## 5             medium
+## 6             medium</code></pre>
+<p>Đến lúc này, câu hỏi đặt ra là: Làm thế nào để thêm nhiều biến cùng 1 lúc?</p>
+<p>Câu trả lời là: Sử dùng nhóm hàm</p>
+<ul>
+<li><p><code>mutate_all()</code>: áp dụng đối với tất cả các biến trong tập dữ liệu</p></li>
+<li><p><code>mutate_at()</code>: chỉ áp dụng đối với những biến nhất định mà chúng ta chỉ định</p></li>
+<li><p><code>mutate_if()</code>: chỉ áp dụng đối với những biến thỏa mãn những điều kiện mà chúng ta đã đặt ra</p></li>
+</ul>
+<p>Giả sử, chúng ta muốn thêm các biến mới về chiều dài/rộng cánh hoa và đài hoa của các loài hoa (đơn vị: mm thay vì ban đầu là cm) -&gt; dùng hàm <code>mutate_all()</code></p>
+<pre class="r"><code>iris %&gt;% 
+  # Bỏ biến Species vì chỉ có thể áp dụng đối với những biến số
+  select(-Species) %&gt;% 
+  # Thêm những biến mới = những biến cũ nhân thêm 10 (tên biến lấy từ biến cũ thêm đuôi &quot;_mm&quot;)
+  mutate_all(funs(mm = . * 10)) %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Sepal.Length_mm
+## 1          5.1         3.5          1.4         0.2              51
+## 2          4.9         3.0          1.4         0.2              49
+## 3          4.7         3.2          1.3         0.2              47
+## 4          4.6         3.1          1.5         0.2              46
+## 5          5.0         3.6          1.4         0.2              50
+## 6          5.4         3.9          1.7         0.4              54
+##   Sepal.Width_mm Petal.Length_mm Petal.Width_mm
+## 1             35              14              2
+## 2             30              14              2
+## 3             32              13              2
+## 4             31              15              2
+## 5             36              14              2
+## 6             39              17              4</code></pre>
+<p>Trong trường hợp này, chúng ta cũng có thể dùng cách khác để chỉ áp dụng đối với những biến số (<code>numeric</code>) bằng việc sử dụng hàm <code>mutate_if()</code>.</p>
+<pre class="r"><code>iris %&gt;% 
+  mutate_if(is.numeric,        # Lọc điều kiện: Chỉ áp dụng đối với những biến numeric
+            funs(mm = . * 10)  # Các biến numeric sẽ nhân với 10 để lấy đơn vị mm
+            ) %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Sepal.Length_mm Sepal.Width_mm Petal.Length_mm Petal.Width_mm
+## 1              51             35              14              2
+## 2              49             30              14              2
+## 3              47             32              13              2
+## 4              46             31              15              2
+## 5              50             36              14              2
+## 6              54             39              17              4</code></pre>
+<p>Nếu chúng ta chỉ muốn thêm những biến mà phái sinh từ biến <code>Sepal.Length</code> và <code>Sepal.Width</code> thôi, thì có thể dùng hàm <code>mutate_at()</code></p>
+<pre class="r"><code>iris %&gt;% 
+  mutate_at(c(&quot;Sepal.Length&quot;, &quot;Sepal.Width&quot;), # Tạo thêm những biến mới phái sinh từ những biến này
+            funs(mm = . * 10)                
+            ) %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Sepal.Length_mm Sepal.Width_mm
+## 1              51             35
+## 2              49             30
+## 3              47             32
+## 4              46             31
+## 5              50             36
+## 6              54             39</code></pre>
+<p>Như vậy, chúng ta đã vừa được học cách thêm nhiều biến cùng 1 lúc bằng việc sử dụng nhóm hàm <code>mutate_if()</code>, <code>mutate_at()</code>, <code>mutate_all()</code> trong <code>dplyr</code>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
 
                         </div>
                         

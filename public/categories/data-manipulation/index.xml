@@ -6,10 +6,20 @@
     <description>Recent content in Data Manipulation on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-manipulation/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Biến đổi dữ liệu nhanh với mutate</title>
+      <link>/blog/2018/12/30/2018-12-30-bien-doi-nhanh-voi-mutate/</link>
+      <pubDate>Sun, 30 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2018/12/30/2018-12-30-bien-doi-nhanh-voi-mutate/</guid>
+      <description>Trong quá trình phân tích dữ liệu sẽ có thể phát sinh việc chúng ta muốn tạo thêm những biến mới - phái sinh từ những biến sẵn có trong dữ liệu. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách sử dụng hàm mutate() và nhóm hàm mutate_if(), mutate_at(), mutate_all() để thêm 1 hoặc nhiều biến vào tập dữ liệu.
+Sử dụng dữ liệu iris có sẵn trong R.</description>
+    </item>
     
     <item>
       <title>Hướng dẫn sử dụng case_when trong dplyr</title>

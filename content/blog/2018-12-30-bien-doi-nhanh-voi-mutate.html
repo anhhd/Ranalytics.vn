@@ -1,0 +1,138 @@
+---
+title: "Biến đổi dữ liệu nhanh với mutate"
+author: "Nguyễn Hải Trường"
+date: "2018-12-30"
+categories:
+  - data-manipulation
+tags:
+  - dplyr
+summary: "Biến đổi dữ liệu nhanh với mutate - mutate_if, mutate_at, mutate_all"
+banner: "img/banners/banner-26.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu sẽ có thể phát sinh việc chúng ta muốn tạo thêm những biến mới - phái sinh từ những biến sẵn có trong dữ liệu. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách sử dụng hàm <code>mutate()</code> và nhóm hàm <code>mutate_if()</code>, <code>mutate_at()</code>, <code>mutate_all()</code> để thêm 1 hoặc nhiều biến vào tập dữ liệu.</p>
+<p>Sử dụng dữ liệu <code>iris</code> có sẵn trong <code>R</code>. Dữ liệu bao gồm những thông số (đơn vị: cm) về chiều dài/rộng cánh hoa và đài hoa của 3 loài hoa: <code>setosa</code>, <code>versicolor</code>, <code>virginica</code> (150 quan sát).</p>
+<pre class="r"><code># Package sử dụng
+library(dplyr)
+
+# Summary dữ liệu
+iris %&gt;% summary</code></pre>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<pre class="r"><code># 6 quan sát đầu tiên của tập dữ liệu
+iris %&gt;% head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Để tạo thêm 1 biến mới trong tập dữ liệu, chúng ta sử dụng hàm <code>mutate()</code>.</p>
+<pre class="r"><code>data &lt;- iris %&gt;% 
+  # Thêm biến mới sepal_length_range theo điều kiện sau:
+  mutate(sepal_length_range = case_when(
+    Sepal.Length &lt; 5 ~ &quot;low&quot;,
+    Sepal.Length &gt;= 5 &amp; Sepal.Length &lt;= 6 ~ &quot;medium&quot;,
+    TRUE ~ &quot;high&quot;
+  ) %&gt;% as.factor)
+
+# 6 quan sát đầu tiên của tập dữ liệu sau khi thêm 1 biến mới
+data %&gt;% head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   sepal_length_range
+## 1             medium
+## 2                low
+## 3                low
+## 4                low
+## 5             medium
+## 6             medium</code></pre>
+<p>Đến lúc này, câu hỏi đặt ra là: Làm thế nào để thêm nhiều biến cùng 1 lúc?</p>
+<p>Câu trả lời là: Sử dùng nhóm hàm</p>
+<ul>
+<li><p><code>mutate_all()</code>: áp dụng đối với tất cả các biến trong tập dữ liệu</p></li>
+<li><p><code>mutate_at()</code>: chỉ áp dụng đối với những biến nhất định mà chúng ta chỉ định</p></li>
+<li><p><code>mutate_if()</code>: chỉ áp dụng đối với những biến thỏa mãn những điều kiện mà chúng ta đã đặt ra</p></li>
+</ul>
+<p>Giả sử, chúng ta muốn thêm các biến mới về chiều dài/rộng cánh hoa và đài hoa của các loài hoa (đơn vị: mm thay vì ban đầu là cm) -&gt; dùng hàm <code>mutate_all()</code></p>
+<pre class="r"><code>iris %&gt;% 
+  # Bỏ biến Species vì chỉ có thể áp dụng đối với những biến số
+  select(-Species) %&gt;% 
+  # Thêm những biến mới = những biến cũ nhân thêm 10 (tên biến lấy từ biến cũ thêm đuôi &quot;_mm&quot;)
+  mutate_all(funs(mm = . * 10)) %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Sepal.Length_mm
+## 1          5.1         3.5          1.4         0.2              51
+## 2          4.9         3.0          1.4         0.2              49
+## 3          4.7         3.2          1.3         0.2              47
+## 4          4.6         3.1          1.5         0.2              46
+## 5          5.0         3.6          1.4         0.2              50
+## 6          5.4         3.9          1.7         0.4              54
+##   Sepal.Width_mm Petal.Length_mm Petal.Width_mm
+## 1             35              14              2
+## 2             30              14              2
+## 3             32              13              2
+## 4             31              15              2
+## 5             36              14              2
+## 6             39              17              4</code></pre>
+<p>Trong trường hợp này, chúng ta cũng có thể dùng cách khác để chỉ áp dụng đối với những biến số (<code>numeric</code>) bằng việc sử dụng hàm <code>mutate_if()</code>.</p>
+<pre class="r"><code>iris %&gt;% 
+  mutate_if(is.numeric,        # Lọc điều kiện: Chỉ áp dụng đối với những biến numeric
+            funs(mm = . * 10)  # Các biến numeric sẽ nhân với 10 để lấy đơn vị mm
+            ) %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Sepal.Length_mm Sepal.Width_mm Petal.Length_mm Petal.Width_mm
+## 1              51             35              14              2
+## 2              49             30              14              2
+## 3              47             32              13              2
+## 4              46             31              15              2
+## 5              50             36              14              2
+## 6              54             39              17              4</code></pre>
+<p>Nếu chúng ta chỉ muốn thêm những biến mà phái sinh từ biến <code>Sepal.Length</code> và <code>Sepal.Width</code> thôi, thì có thể dùng hàm <code>mutate_at()</code></p>
+<pre class="r"><code>iris %&gt;% 
+  mutate_at(c(&quot;Sepal.Length&quot;, &quot;Sepal.Width&quot;), # Tạo thêm những biến mới phái sinh từ những biến này
+            funs(mm = . * 10)                
+            ) %&gt;% 
+  head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+##   Sepal.Length_mm Sepal.Width_mm
+## 1              51             35
+## 2              49             30
+## 3              47             32
+## 4              46             31
+## 5              50             36
+## 6              54             39</code></pre>
+<p>Như vậy, chúng ta đã vừa được học cách thêm nhiều biến cùng 1 lúc bằng việc sử dụng nhóm hàm <code>mutate_if()</code>, <code>mutate_at()</code>, <code>mutate_all()</code> trong <code>dplyr</code>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>

@@ -1,0 +1,94 @@
+---
+title: "Biến đổi dữ liệu nhanh với mutate"
+author: "Nguyễn Hải Trường"
+date: "2018-12-30"
+categories:
+  - data-manipulation
+tags:
+  - dplyr
+summary: "Biến đổi dữ liệu nhanh với mutate - mutate_if, mutate_at, mutate_all"
+banner: "img/banners/banner-26.png"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+
+Trong quá trình phân tích dữ liệu sẽ có thể phát sinh việc chúng ta muốn tạo thêm những biến mới - phái sinh từ những biến sẵn có trong dữ liệu. Trong bài viết này, `Ranalytics` sẽ hướng dẫn các bạn cách sử dụng hàm `mutate()` và nhóm hàm `mutate_if()`, `mutate_at()`, `mutate_all()` để thêm 1 hoặc nhiều biến vào tập dữ liệu.
+
+
+Sử dụng dữ liệu `iris` có sẵn trong `R`. Dữ liệu bao gồm những thông số (đơn vị: cm) về chiều dài/rộng cánh hoa và đài hoa của 3 loài hoa: `setosa`, `versicolor`, `virginica` (150 quan sát).
+
+```{r}
+# Package sử dụng
+library(dplyr)
+
+# Summary dữ liệu
+iris %>% summary
+
+# 6 quan sát đầu tiên của tập dữ liệu
+iris %>% head
+```
+
+Để tạo thêm 1 biến mới trong tập dữ liệu, chúng ta sử dụng hàm `mutate()`.
+
+```{r}
+data <- iris %>% 
+  # Thêm biến mới sepal_length_range theo điều kiện sau:
+  mutate(sepal_length_range = case_when(
+    Sepal.Length < 5 ~ "low",
+    Sepal.Length >= 5 & Sepal.Length <= 6 ~ "medium",
+    TRUE ~ "high"
+  ) %>% as.factor)
+
+# 6 quan sát đầu tiên của tập dữ liệu sau khi thêm 1 biến mới
+data %>% head
+```
+
+Đến lúc này, câu hỏi đặt ra là: Làm thế nào để thêm nhiều biến cùng 1 lúc?
+
+Câu trả lời là: Sử dùng nhóm hàm
+
+- `mutate_all()`: áp dụng đối với tất cả các biến trong tập dữ liệu
+
+- `mutate_at()`: chỉ áp dụng đối với những biến nhất định mà chúng ta chỉ định
+
+- `mutate_if()`: chỉ áp dụng đối với những biến thỏa mãn những điều kiện mà chúng ta đã đặt ra
+
+
+Giả sử, chúng ta muốn thêm các biến mới về chiều dài/rộng cánh hoa và đài hoa của các loài hoa (đơn vị: mm thay vì ban đầu là cm) -> dùng hàm `mutate_all()`
+
+```{r}
+iris %>% 
+  # Bỏ biến Species vì chỉ có thể áp dụng đối với những biến số
+  select(-Species) %>% 
+  # Thêm những biến mới = những biến cũ nhân thêm 10 (tên biến lấy từ biến cũ thêm đuôi "_mm")
+  mutate_all(funs(mm = . * 10)) %>% 
+  head
+```
+
+
+Trong trường hợp này, chúng ta cũng có thể dùng cách khác để chỉ áp dụng đối với những biến số (`numeric`) bằng việc sử dụng hàm `mutate_if()`.
+
+```{r}
+iris %>% 
+  mutate_if(is.numeric,        # Lọc điều kiện: Chỉ áp dụng đối với những biến numeric
+            funs(mm = . * 10)  # Các biến numeric sẽ nhân với 10 để lấy đơn vị mm
+            ) %>% 
+  head
+```
+
+
+Nếu chúng ta chỉ muốn thêm những biến mà phái sinh từ biến `Sepal.Length` và `Sepal.Width` thôi, thì có thể dùng hàm `mutate_at()`
+
+```{r}
+iris %>% 
+  mutate_at(c("Sepal.Length", "Sepal.Width"), # Tạo thêm những biến mới phái sinh từ những biến này
+            funs(mm = . * 10)                
+            ) %>% 
+  head
+```
+
+
+Như vậy, chúng ta đã vừa được học cách thêm nhiều biến cùng 1 lúc bằng việc sử dụng nhóm hàm `mutate_if()`, `mutate_at()`, `mutate_all()` trong `dplyr`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!
