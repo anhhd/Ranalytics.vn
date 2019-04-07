@@ -114,13 +114,4 @@ p2 <- p1 + geom_line(aes(as.numeric(country), y1977),
 p2
 ```
 
-```{r}
-ggsave(p2, filename = "banner-27.png", dpi = 1200,
-       height = 4,
-       width = 6)
-
-```
-
-
-
 Như vậy, chúng ta đã vừa được học vẽ biểu đồ `lollipop` với `ggplot2`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!
