@@ -270,7 +270,7 @@ googleAnalytics = "UA-117458816-1"
       img = "2-phamdinhduc.png"
       name = "Phạm Đình Đức"
       position = "Data Scientist"
-      bio = "8 năm kinh nghiệm phân tích số liệu, xây dựng hệ thống Data Warehouse & tự động hóa báo cáo  trong lĩnh vực ngân hàng, bán lẻ & Ecommerce, tốt nghiệp thạc sỹ tại vương quốc Anh"
+      bio = "9 năm kinh nghiệm phân tích số liệu, xây dựng hệ thống tối ưu hóa quảng cáo dựa trên ML và AI, xây dựng hệ thống Data Warehouse & tự động hóa báo cáo  trong lĩnh vực ngân hàng, bán lẻ & Ecommerce, tốt nghiệp thạc sỹ tại vương quốc Anh"
       social = [
         ["fa-linkedin", "https://www.linkedin.com/in/duc-pham-35910975/"]
       ]
@@ -280,7 +280,7 @@ googleAnalytics = "UA-117458816-1"
       name = "Hoàng Đức Anh"
       position = "Business Analytics Professional"
       # For bio markdown and even multiline strings are available.
-      bio = "Giảng viên phân tích dữ liệu của RStudio tại Việt Nam, 5 năm kinh nghiệm trong lĩnh vực phân tích số liệu, 3 năm kinh nghiệm trong E-Commerce & Mobile, 2 năm kinh nghiệm phân tích chuyên sâu các vấn đề trong ngân hàng, xây dựng team phân tích nâng cao cho VPBank. Tốt nghiệp thạc sỹ ngành phân tích định lượng trong kinh tế tại Warsaw"
+      bio = "Giảng viên phân tích dữ liệu của RStudio tại Việt Nam, 6 năm kinh nghiệm trong lĩnh vực phân tích số liệu, 3 năm kinh nghiệm trong E-Commerce & Mobile, 3 năm kinh nghiệm phân tích chuyên sâu các vấn đề trong ngân hàng, xây dựng team phân tích nâng cao cho VPBank. Tốt nghiệp thạc sỹ ngành phân tích định lượng trong kinh tế tại Warsaw"
       social = [
         ["fa-twitter", "https://twitter.com/AnhHoangDuc"],
         ["fa-linkedin", "https://www.linkedin.com/in/hoangducanh/"],
