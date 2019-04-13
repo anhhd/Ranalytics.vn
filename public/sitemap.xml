@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/</loc>
+    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/</loc>
     <lastmod>2019-01-15T00:00:00+00:00</lastmod>
   </url>
@@ -139,7 +144,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2019-01-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -153,13 +158,13 @@
   </url>
   
   <url>
-    <loc>/tags/cloud-computing/</loc>
+    <loc>/categories/cloud-computing/</loc>
     <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/cloud-computing/</loc>
+    <loc>/tags/cloud-computing/</loc>
     <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -173,13 +178,13 @@
   </url>
   
   <url>
-    <loc>/tags/data-import/</loc>
+    <loc>/categories/data-import/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/data-import/</loc>
+    <loc>/tags/data-import/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -191,13 +196,13 @@
   </url>
   
   <url>
-    <loc>/tags/data-science/</loc>
+    <loc>/categories/data-science/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/data-science/</loc>
+    <loc>/tags/data-science/</loc>
     <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -268,7 +273,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-01-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -317,14 +322,14 @@
   </url>
   
   <url>
-    <loc>/tags/tips/</loc>
-    <lastmod>2018-06-22T00:00:00+00:00</lastmod>
+    <loc>/categories/tips/</loc>
+    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/tips/</loc>
-    <lastmod>2018-12-20T00:00:00+00:00</lastmod>
+    <loc>/tags/tips/</loc>
+    <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

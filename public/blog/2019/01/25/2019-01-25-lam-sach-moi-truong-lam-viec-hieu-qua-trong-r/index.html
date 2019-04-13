@@ -34,7 +34,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Xử lý dữ liệu chuỗi với stringr</title>
+  <title>Làm sạch môi trường làm việc hiệu quả trong R</title>
   <meta name="author" content="" />
 
   
@@ -84,9 +84,9 @@
   <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Xử lý dữ liệu chuỗi với stringr" />
+  <meta property="og:title" content="Làm sạch môi trường làm việc hiệu quả trong R" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2018/09/02/2018-09-02-xu-ly-du-lieu-chuoi-voi-stringr//" />
+  <meta property="og:url" content="/blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r//" />
   <meta property="og:image" content="img/logo.png" />
 
   <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
@@ -109,9 +109,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="../../../../../">
-                    <img src="../../../../../img/logo.png" alt="Xử lý dữ liệu chuỗi với stringr logo" class="hidden-xs hidden-sm">
-                    <img src="../../../../../img/logo-small.png" alt="Xử lý dữ liệu chuỗi với stringr logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Xử lý dữ liệu chuỗi với stringr - Về trang chủ</span>
+                    <img src="../../../../../img/logo.png" alt="Làm sạch môi trường làm việc hiệu quả trong R logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Làm sạch môi trường làm việc hiệu quả trong R logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Làm sạch môi trường làm việc hiệu quả trong R - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -207,7 +207,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Xử lý dữ liệu chuỗi với stringr</h1>
+                <h1>Làm sạch môi trường làm việc hiệu quả trong R</h1>
             </div>
         </div>
     </div>
@@ -223,177 +223,41 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Nguyen Hai Truong</a> | 2018-09-02</p>
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2019-01-25</p>
 
                         <div id="post-content">
                           
 
 
-<p>Trong quá trình phân tích dữ liệu, chúng ta sẽ thường gặp phải những vấn đề liên quan đến việc xử lý text. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn sử dụng một số hàm cơ bản trong package <code>stringr</code> để xử lý vấn đề trên.</p>
+<p>Trong quá trình phân tích dữ liệu, ta thường xuyên phải tạo ra nhiều bảng tạm, biến đổi dữ liệu qua nhiều bước và cùng lúc làm việc với nhiều bảng khác nhau. Trong flow phân tích thông thường, ta sẽ phải tạo ra 1 bảng master chứa tất cả dữ liệu cần làm việc và phân tích dữ liệu từ trên tập dữ liệu đã được làm sạch đó. <code>RAnalytics</code> nhận thấy rất nhiều bạn chưa biết cách quản lý môi trường làm việc hiệu quả do để quá nhiều dataframe rác trong working environment. Trong bài viết này, <code>RAnalytics</code>sẽ hướng dẫn các bạn quản lý một cách <code>làm sạch</code> môi trường làm việc một cách hiệu quả.</p>
 <hr />
-<div id="stringr-package" class="section level3">
-<h3>Stringr package</h3>
-<p>Thông thường, dữ liệu text không phải lúc nào cũng “sạch” do gặp phải những vấn đề khi nhập liệu như: lúc viết hoa, lúc viết thường, thừa nhiều dấu cách, lẫn số hoặc ký tự đặc biệt trong text… Package <code>stringr</code> là 1 trong những package rất hữu dụng trong <code>R</code> để giải quyết những vấn đề trên.</p>
-<pre class="r"><code>library(stringr)
-library(dplyr)
-library(readxl)</code></pre>
-<hr />
-</div>
-<div id="ch-hoa---ch-thung" class="section level3">
-<h3>Chữ hoa - chữ thường</h3>
-<p>Trong một số trường hợp chúng ta muốn biểu thị text ở dạng viết hoa hoặc viết thường, chúng ta có thể dùng hàm <code>toupper()</code> (viết hoa), <code>tolower()</code> (viết thường).</p>
-<pre class="r"><code># Ví dụ dữ liệu thông tin của 10 bạn học sinh
-data &lt;- data.frame(
-  student = c(&quot;Nam&quot;, &quot;Viet&quot;, &quot;Ha&quot;, 
-              &quot;Tuan&quot;, &quot;Ngoc &quot;, &quot;Quang&quot;, &quot;Hai&quot;,
-              &quot;Son&quot;, &quot; Dong&quot;, &quot; duc&quot;),
-  address = c( &quot;Ho Chi Minh&quot;, &quot;Ha Noi &quot;, &quot;Hai Duong&quot;, 
-               &quot;Hai Phong&quot;, &quot;Nghe An&quot;, 
-               &quot;Ha Tinh&quot;, &quot;Bac Giang&quot;, 
-               &quot;Bac Ninh&quot;, 
-               &quot;Quang Binh&quot;,
-               &quot;Nha Trang&quot;),
-  dob = c(&quot;2002-12-03&quot;,&quot;2003-06-12&quot;,&quot;2003-12-20&quot;,
-          &quot;2004-06-28&quot;,&quot;2005-01-05&quot;,&quot;2005-07-15&quot;,
-          &quot;2002-01-21&quot;,&quot;2003-07-31&quot;,&quot;2005-02-06&quot;,
-          &quot;2006-08-16&quot;)
-)
+<p>Thông thường, ta có thể xóa các object không cần thiết một cách thủ công như sau.</p>
+<pre class="r"><code>library(dplyr)
+rm(name_object)</code></pre>
+<p>Trong trường hợp xóa tất cả các object, ta có thể sử dụng câu lệnh</p>
+<pre class="r"><code>rm(list = ls())</code></pre>
+<p>Tuy nhiên, ngoài hai trường hợp trên, có trường hợp trong môi trường làm việc của chúng ta đang có khoảng 10 bảng hoặc hơn thế và ta cần giữ lại phân tích 1 bảng duy nhất. Lúc đó, cả hai cách trên đều không thực sự tối ưu. Để xử lý vấn đề trên, ta có thể sử dụng hàm <code>setdiff</code>. Xem ví dụ dưới đây</p>
+<p>Giả sử trong môi trường làm việc của chúng ta đang có 10 file data đã qua các phép biến đổi dữ liệu và <code>data_10</code> là file cuối cùng ta muốn giữ lại.</p>
+<pre class="r"><code>for (i in 1:10){
+  assign(paste0(&quot;data_&quot;, i), mtcars)
+}
 
-data$address &lt;- data$address %&gt;% as.character()
-
-# Tolower giá trị của biến nơi sinh sống
-tolower(data$address)</code></pre>
-<pre><code>##  [1] &quot;ho chi minh&quot; &quot;ha noi &quot;     &quot;hai duong&quot;   &quot;hai phong&quot;   &quot;nghe an&quot;    
-##  [6] &quot;ha tinh&quot;     &quot;bac giang&quot;   &quot;bac ninh&quot;    &quot;quang binh&quot;  &quot;nha trang&quot;</code></pre>
-<pre class="r"><code># Toupper giá trị của biến biến nơi sinh sống
-toupper(data$address)</code></pre>
-<pre><code>##  [1] &quot;HO CHI MINH&quot; &quot;HA NOI &quot;     &quot;HAI DUONG&quot;   &quot;HAI PHONG&quot;   &quot;NGHE AN&quot;    
-##  [6] &quot;HA TINH&quot;     &quot;BAC GIANG&quot;   &quot;BAC NINH&quot;    &quot;QUANG BINH&quot;  &quot;NHA TRANG&quot;</code></pre>
+ls()</code></pre>
+<pre><code>##  [1] &quot;data_1&quot;  &quot;data_10&quot; &quot;data_2&quot;  &quot;data_3&quot;  &quot;data_4&quot;  &quot;data_5&quot;  &quot;data_6&quot; 
+##  [8] &quot;data_7&quot;  &quot;data_8&quot;  &quot;data_9&quot;  &quot;i&quot;</code></pre>
+<p>Lúc này, nếu xóa từng object đơn lẻ sẽ rất mất thời gian, ta sử dụng hàm <code>setdiff</code> như sau.</p>
+<pre class="r"><code>setdiff(ls(), # Tập mẹ
+        &quot;data_10&quot;) # Tập con </code></pre>
+<pre><code>##  [1] &quot;data_1&quot; &quot;data_2&quot; &quot;data_3&quot; &quot;data_4&quot; &quot;data_5&quot; &quot;data_6&quot; &quot;data_7&quot;
+##  [8] &quot;data_8&quot; &quot;data_9&quot; &quot;i&quot;</code></pre>
+<p>Như vậy, hàm <code>setdiff</code> cho phép chúng ta liệt kê các phần tử trong môi trường làm việc mà không chứa <code>data_10</code>. Đến lúc này, ta có thể xóa toàn bộ các object không cần thiết một cách đơn giản như sau.</p>
+<pre class="r"><code>rm(list = setdiff(ls(), &quot;data_10&quot;))
+ls()</code></pre>
+<pre><code>## [1] &quot;data_10&quot;</code></pre>
+<p>Trong trường hợp muốn giữ lại vài object cùng lúc, ví dụ <code>data_2</code> và <code>data_10</code>, ta có thể làm đơn giản như sau.</p>
+<pre class="r"><code>rm(list = setdiff(ls(), c(&quot;data_10&quot;, &quot;data_2&quot;)))</code></pre>
 <hr />
-</div>
-<div id="cat" class="section level3">
-<h3>Cat</h3>
-<p>Tuy cat không phải là hàm trong <code>stringr</code> nhưng là hàm rất hữu dụng khi làm việc với chuối. Để nối các chuỗi với nhau chúng ta có thể dùng hàm <code>cat</code>.</p>
-<pre class="r"><code>cat(&quot;address of student:&quot;, data$address)</code></pre>
-<pre><code>## address of student: Ho Chi Minh Ha Noi  Hai Duong Hai Phong Nghe An Ha Tinh Bac Giang Bac Ninh Quang Binh Nha Trang</code></pre>
-<p>Chúng ta có thể thêm <code>option sep</code> để ngăn cách các text theo ý muốn (giả sử ở đây dùng dấu phẩy để ngăn cách giữa các chuỗi)</p>
-<pre class="r"><code># Trường hợp hai
-cat(data$address, sep = &quot;,&quot;)</code></pre>
-<pre><code>## Ho Chi Minh,Ha Noi ,Hai Duong,Hai Phong,Nghe An,Ha Tinh,Bac Giang,Bac Ninh,Quang Binh,Nha Trang</code></pre>
-<hr />
-</div>
-<div id="subtring" class="section level3">
-<h3>Subtring</h3>
-<p>Trong package stringr chúng ta có thể sử dụng hàm <code>substr()</code> để lấy 1 phần (đoạn) nhất định của text.</p>
-<p><code>substr(x, start, stop)</code>: start - vị trí bắt đầu, stop - vị trí kết thúc.</p>
-<p>Trong ví dụ trên, nếu chúng ta tạo thêm biến mới là biến năm sinh ta có thể lấy 4 ký tự đầu tiên của biến <code>dob</code>.</p>
-<pre class="r"><code>data %&gt;% 
-  mutate(year = substr(dob,1,4))</code></pre>
-<pre><code>##    student     address        dob year
-## 1      Nam Ho Chi Minh 2002-12-03 2002
-## 2     Viet     Ha Noi  2003-06-12 2003
-## 3       Ha   Hai Duong 2003-12-20 2003
-## 4     Tuan   Hai Phong 2004-06-28 2004
-## 5    Ngoc      Nghe An 2005-01-05 2005
-## 6    Quang     Ha Tinh 2005-07-15 2005
-## 7      Hai   Bac Giang 2002-01-21 2002
-## 8      Son    Bac Ninh 2003-07-31 2003
-## 9     Dong  Quang Binh 2005-02-06 2005
-## 10     duc   Nha Trang 2006-08-16 2006</code></pre>
-<hr />
-</div>
-<div id="gsub-vs.-str_replace_all" class="section level3">
-<h3>Gsub vs. str_replace_all</h3>
-<p>Trong r-base, chúng ta có thể sử dụng hàm <code>gsub</code> để loại bỏ số, ký tự đặc biệt, dấu cách thừa… trong text một cách dễ dàng.</p>
-<pre class="r"><code># Tạo dataframe (trường hợp này biến address chưa được làm sạch)
-data2 &lt;- data.frame(
-  student = c(&quot;Nam&quot;,&quot;Viet&quot;,&quot;Ha&quot;,&quot;Tuan&quot;,&quot;Ngoc&quot;,
-  &quot;Quang&quot;,&quot;Hai&quot;,&quot;Son&quot;,&quot;Dong&quot;,&quot;Duc&quot;),
-  address = c(&quot;Ho CHi miNh&quot;,&quot;HA NOI&quot;,&quot;Hai  Duong&quot;,&quot;Hai pHong&quot;,&quot;Nghe 12430 An&quot;,&quot;@Ha 145 Tinh&quot;,&quot;{Bac Giang}&quot;,&quot;[Bac Ninh]&quot;,&quot;(Quang Binh123#&quot;,&quot;123Nha Trang02&quot;))
-
-data2 </code></pre>
-<pre><code>##    student         address
-## 1      Nam     Ho CHi miNh
-## 2     Viet          HA NOI
-## 3       Ha      Hai  Duong
-## 4     Tuan       Hai pHong
-## 5     Ngoc   Nghe 12430 An
-## 6    Quang    @Ha 145 Tinh
-## 7      Hai     {Bac Giang}
-## 8      Son      [Bac Ninh]
-## 9     Dong (Quang Binh123#
-## 10     Duc  123Nha Trang02</code></pre>
-<pre class="r"><code># Thay đổi giá trị biến address thành chữ viết hoa
-data2$address &lt;- data2$address %&gt;% tolower
-data2$address</code></pre>
-<pre><code>##  [1] &quot;ho chi minh&quot;     &quot;ha noi&quot;          &quot;hai  duong&quot;     
-##  [4] &quot;hai phong&quot;       &quot;nghe 12430 an&quot;   &quot;@ha 145 tinh&quot;   
-##  [7] &quot;{bac giang}&quot;     &quot;[bac ninh]&quot;      &quot;(quang binh123#&quot;
-## [10] &quot;123nha trang02&quot;</code></pre>
-<pre class="r"><code># Loại bỏ tất cả dấu cách
-data2$address &lt;- gsub(&quot;[[:space:]]&quot;, &quot;&quot;, data2$address)
-data2$address</code></pre>
-<pre><code>##  [1] &quot;hochiminh&quot;      &quot;hanoi&quot;          &quot;haiduong&quot;       &quot;haiphong&quot;      
-##  [5] &quot;nghe12430an&quot;    &quot;@ha145tinh&quot;     &quot;{bacgiang}&quot;     &quot;[bacninh]&quot;     
-##  [9] &quot;(quangbinh123#&quot; &quot;123nhatrang02&quot;</code></pre>
-<pre class="r"><code># Loại bỏ số
-data2$address &lt;- gsub(&quot;\\d&quot;, &quot;&quot;, data2$address)
-data2$address</code></pre>
-<pre><code>##  [1] &quot;hochiminh&quot;   &quot;hanoi&quot;       &quot;haiduong&quot;    &quot;haiphong&quot;    &quot;nghean&quot;     
-##  [6] &quot;@hatinh&quot;     &quot;{bacgiang}&quot;  &quot;[bacninh]&quot;   &quot;(quangbinh#&quot; &quot;nhatrang&quot;</code></pre>
-<pre class="r"><code># Loại bỏ tất cả các ký tự đặc biệt
-data2$address &lt;- gsub(&quot;[[:punct:]]&quot;, &quot;&quot;, data2$address)
-data2$address</code></pre>
-<pre><code>##  [1] &quot;hochiminh&quot; &quot;hanoi&quot;     &quot;haiduong&quot;  &quot;haiphong&quot;  &quot;nghean&quot;   
-##  [6] &quot;hatinh&quot;    &quot;bacgiang&quot;  &quot;bacninh&quot;   &quot;quangbinh&quot; &quot;nhatrang&quot;</code></pre>
-<pre class="r"><code># Như vậy biến address đã được làm sạch
-data2</code></pre>
-<pre><code>##    student   address
-## 1      Nam hochiminh
-## 2     Viet     hanoi
-## 3       Ha  haiduong
-## 4     Tuan  haiphong
-## 5     Ngoc    nghean
-## 6    Quang    hatinh
-## 7      Hai  bacgiang
-## 8      Son   bacninh
-## 9     Dong quangbinh
-## 10     Duc  nhatrang</code></pre>
-<p> </p>
-<p><strong>Sử dụng với stringr</strong></p>
-<p>Khi bắt đầu quen sử dụng <code>stringr</code>, ta hoàn toàn có thể sử dụng hàm <code>str_replcae_all</code> để thay thế cho <code>gsub</code>. Hàm này thuận tiện và đơn giản hơn so với <code>gsub</code> và tuân theo cấu trúc của <code>tidyverse</code>.</p>
-<pre class="r"><code>address &lt;- c(&quot;Ho CHi miNh&quot;,&quot;HA NOI&quot;,&quot;Hai  Duong&quot;,&quot;Hai pHong&quot;,&quot;Nghe 12430 An&quot;,&quot;@Ha 145 Tinh&quot;,&quot;{Bac Giang}&quot;,&quot;[Bac Ninh]&quot;,&quot;(Quang Binh123#&quot;,&quot;123Nha Trang02&quot;)
-
-address %&gt;% 
-  # Xóa ký tự đặc biệt
-  str_replace_all(&quot;[[:punct:]]&quot;, &quot;&quot;) %&gt;% 
-  # Xóa các số
-  str_replace_all(&quot;\\d&quot;, &quot;&quot;) %&gt;% 
-  # Xóa khoảng trắng
-  str_replace_all(&quot;[[:space:]]&quot;, &quot;&quot;) %&gt;% 
-  tolower</code></pre>
-<pre><code>##  [1] &quot;hochiminh&quot; &quot;hanoi&quot;     &quot;haiduong&quot;  &quot;haiphong&quot;  &quot;nghean&quot;   
-##  [6] &quot;hatinh&quot;    &quot;bacgiang&quot;  &quot;bacninh&quot;   &quot;quangbinh&quot; &quot;nhatrang&quot;</code></pre>
-<p>Ta hoàn toàn có thể kết hợp nhiều điều kiện như sau:</p>
-<pre class="r"><code>address %&gt;% 
-  str_replace_all(&quot;[[[:punct:]]\\d[[:space:]]]&quot;, 
-                  &quot;&quot;) %&gt;% 
-  tolower</code></pre>
-<pre><code>##  [1] &quot;hochiminh&quot; &quot;hanoi&quot;     &quot;haiduong&quot;  &quot;haiphong&quot;  &quot;nghean&quot;   
-##  [6] &quot;hatinh&quot;    &quot;bacgiang&quot;  &quot;bacninh&quot;   &quot;quangbinh&quot; &quot;nhatrang&quot;</code></pre>
-<hr />
-</div>
-<div id="loai-bo-khoang-trng-truc-ky-t" class="section level3">
-<h3>Loại bỏ khoảng trắng trước ký tự</h3>
-<p>Trong trường hợp giả sử chúng ta chỉ muốn loại bỏ dấu cách trước và sau text mà không muốn bỏ dấu cách ngăn cách giữa các từ trong text thì chúng ta có thể sử dụng hàm <code>str_trim()</code></p>
-<pre class="r"><code>address &lt;- c(&quot; Ha Noi&quot;, &quot;HCM  &quot;, &quot; Hai Phong &quot;)
-address</code></pre>
-<pre><code>## [1] &quot; Ha Noi&quot;     &quot;HCM  &quot;       &quot; Hai Phong &quot;</code></pre>
-<pre class="r"><code>str_trim(address)</code></pre>
-<pre><code>## [1] &quot;Ha Noi&quot;    &quot;HCM&quot;       &quot;Hai Phong&quot;</code></pre>
-<hr />
-<p>Như vậy, chúng ta đã vừa được làm quen với một số hàm cơ bản trong package stringr để xử lý text. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
-</div>
+<p>Như vậy, chúng ta đã học được cách làm sạch môi trường làm việc một cách hiệu quả. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
 
                         </div>
                         

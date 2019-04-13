@@ -1,0 +1,43 @@
+---
+title: "Làm sạch môi trường làm việc hiệu quả trong R"
+author: "Hoàng Đức Anh"
+date: '2019-01-25'
+categories:
+  - tips
+tags:
+  - tips
+summary: "Cách làm sạch môi trường làm việc hiệu quả trong R"
+banner: "img/banners/banner-29.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu, ta thường xuyên phải tạo ra nhiều bảng tạm, biến đổi dữ liệu qua nhiều bước và cùng lúc làm việc với nhiều bảng khác nhau. Trong flow phân tích thông thường, ta sẽ phải tạo ra 1 bảng master chứa tất cả dữ liệu cần làm việc và phân tích dữ liệu từ trên tập dữ liệu đã được làm sạch đó. <code>RAnalytics</code> nhận thấy rất nhiều bạn chưa biết cách quản lý môi trường làm việc hiệu quả do để quá nhiều dataframe rác trong working environment. Trong bài viết này, <code>RAnalytics</code>sẽ hướng dẫn các bạn quản lý một cách <code>làm sạch</code> môi trường làm việc một cách hiệu quả.</p>
+<hr />
+<p>Thông thường, ta có thể xóa các object không cần thiết một cách thủ công như sau.</p>
+<pre class="r"><code>library(dplyr)
+rm(name_object)</code></pre>
+<p>Trong trường hợp xóa tất cả các object, ta có thể sử dụng câu lệnh</p>
+<pre class="r"><code>rm(list = ls())</code></pre>
+<p>Tuy nhiên, ngoài hai trường hợp trên, có trường hợp trong môi trường làm việc của chúng ta đang có khoảng 10 bảng hoặc hơn thế và ta cần giữ lại phân tích 1 bảng duy nhất. Lúc đó, cả hai cách trên đều không thực sự tối ưu. Để xử lý vấn đề trên, ta có thể sử dụng hàm <code>setdiff</code>. Xem ví dụ dưới đây</p>
+<p>Giả sử trong môi trường làm việc của chúng ta đang có 10 file data đã qua các phép biến đổi dữ liệu và <code>data_10</code> là file cuối cùng ta muốn giữ lại.</p>
+<pre class="r"><code>for (i in 1:10){
+  assign(paste0(&quot;data_&quot;, i), mtcars)
+}
+
+ls()</code></pre>
+<pre><code>##  [1] &quot;data_1&quot;  &quot;data_10&quot; &quot;data_2&quot;  &quot;data_3&quot;  &quot;data_4&quot;  &quot;data_5&quot;  &quot;data_6&quot; 
+##  [8] &quot;data_7&quot;  &quot;data_8&quot;  &quot;data_9&quot;  &quot;i&quot;</code></pre>
+<p>Lúc này, nếu xóa từng object đơn lẻ sẽ rất mất thời gian, ta sử dụng hàm <code>setdiff</code> như sau.</p>
+<pre class="r"><code>setdiff(ls(), # Tập mẹ
+        &quot;data_10&quot;) # Tập con </code></pre>
+<pre><code>##  [1] &quot;data_1&quot; &quot;data_2&quot; &quot;data_3&quot; &quot;data_4&quot; &quot;data_5&quot; &quot;data_6&quot; &quot;data_7&quot;
+##  [8] &quot;data_8&quot; &quot;data_9&quot; &quot;i&quot;</code></pre>
+<p>Như vậy, hàm <code>setdiff</code> cho phép chúng ta liệt kê các phần tử trong môi trường làm việc mà không chứa <code>data_10</code>. Đến lúc này, ta có thể xóa toàn bộ các object không cần thiết một cách đơn giản như sau.</p>
+<pre class="r"><code>rm(list = setdiff(ls(), &quot;data_10&quot;))
+ls()</code></pre>
+<pre><code>## [1] &quot;data_10&quot;</code></pre>
+<p>Trong trường hợp muốn giữ lại vài object cùng lúc, ví dụ <code>data_2</code> và <code>data_10</code>, ta có thể làm đơn giản như sau.</p>
+<pre class="r"><code>rm(list = setdiff(ls(), c(&quot;data_10&quot;, &quot;data_2&quot;)))</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã học được cách làm sạch môi trường làm việc một cách hiệu quả. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>

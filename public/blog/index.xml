@@ -6,10 +6,19 @@
     <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Làm sạch môi trường làm việc hiệu quả trong R</title>
+      <link>/blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/</guid>
+      <description>Trong quá trình phân tích dữ liệu, ta thường xuyên phải tạo ra nhiều bảng tạm, biến đổi dữ liệu qua nhiều bước và cùng lúc làm việc với nhiều bảng khác nhau. Trong flow phân tích thông thường, ta sẽ phải tạo ra 1 bảng master chứa tất cả dữ liệu cần làm việc và phân tích dữ liệu từ trên tập dữ liệu đã được làm sạch đó.</description>
+    </item>
     
     <item>
       <title>Xử lý dữ liệu missing</title>
