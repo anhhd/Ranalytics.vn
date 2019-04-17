@@ -1,6 +1,6 @@
 ---
 title: "Sử dụng hàm select trong dplyr"
-author: "Hoàng Đức Anh"
+author: "Nguyễn Hải Trường"
 date: '2019-02-25'
 categories:
   - data-manipulation
