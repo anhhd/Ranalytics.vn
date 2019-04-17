@@ -1,0 +1,139 @@
+---
+title: "Sử dụng hàm select trong dplyr"
+author: "Hoàng Đức Anh"
+date: '2019-02-25'
+categories:
+  - data-manipulation
+tags:
+  - dplyr
+summary: "Sử dụng hàm select trong dplyr"
+banner: "img/banners/banner-30.png"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=F, message=F)
+```
+
+# Select thông thường
+
+Như các bạn đã biết để lấy dữ liệu theo biến (cột), thông thường chúng ta sẽ sử dụng hàm `select()` với cấu trúc như sau `select(tên biến)` hoặc `select(số thứ tự của biến)`.
+
+Ví dụ sử dụng dữ liệu `iris` có sẵn trong `R`
+
+
+```{r}
+library(dplyr) # package sử dụng
+
+# Các biến có trong data iris
+iris %>% names
+```
+
+Dữ liệu này có 5 biến với thứ tự lần lượt như trên.
+
+```{r}
+# Lấy 2 biến Sepal.Length và Sepal.Width
+iris %>% 
+  select(Sepal.Length, Sepal.Width) %>% 
+  head
+
+# Lấy biến thứ 2 và thứ 4 của dữ liệu
+iris %>% 
+  select(2,4) %>% 
+  head
+```
+
+Trong trường hợp này, dữ liệu của chúng ta chỉ có 5 biến (cột), do vậy để lấy dữ liệu theo biến, chúng ta có thể dùng hàm select liệt kê những biến mà chúng ta muốn lấy một cách manual.
+
+Còn trong trường hợp dữ liệu của chúng ta có nhiều biến, và có những biến mà tên có những ký tự giống nhau thì việc dùng hàm select một cách manual như trên sẽ rất mất nhiều thời gian và công sức. Trong trường hợp này, chúng ta nên sử dụng hàm select kết hợp với một số hàm như: `contains()`, `starts_with()`, `ends_with()`, `match()`.
+
+# select + contains
+
+Sử dụng dữ liệu `flights` trong package `nycflights13`. Dữ liệu bao gồm các chuyến bay khởi hành từ New York City trong năm 2013.
+
+```{r}
+library(nycflights13)
+data("flights")
+
+# Tên các biến trong dữ liệu
+flights %>% names
+
+# 6 quan sát đầu tiên
+library(knitr)
+flights %>% 
+  head %>% 
+  kable()
+```
+
+Hàm `select(contains("text"))` giúp chúng ta lấy các biến mà tên có chứa ký tự/cụm từ nhất định.
+
+Giả sử chúng ta muốn lấy các biến liên quan đến thời gian khởi hành (departure) -> dùng câu lệnh sau:
+
+```{r}
+flights %>% 
+  # Lấy các biến mà tên có chứa từ `dep`
+  select(contains("dep")) %>% 
+  head %>% 
+  kable
+```
+
+
+# select + starts_with
+
+Hàm `select(starts_with("text"))` giúp chúng ta lấy các biến mà tên bắt đầu với ký tự/cụm từ nhất định.
+
+Trong trường hợp chúng ta muốn lấy biến thời gian hạ cánh thực tế và thời gian chênh lệch giữa thời gian hạ cánh thực tế so với dự kiến -> dùng câu lệnh sau:
+
+```{r}
+flights %>% 
+  # Lấy các biến mà tên bắt đầu với từ `arr`
+  select(starts_with("arr")) %>% 
+  head %>% 
+  kable
+```
+
+
+# select + ends_with
+
+Hàm `select(end_with("text"))` giúp chúng ta lấy các biến mà tên kết thúc với ký tự/cụm từ nhất định.
+
+Trong trường hợp chúng ta muốn lấy các biến liên quan đến thời gian chênh lệch giữa thời gian khởi hành và hạ cánh thực tế so với dự kiến, chúng ta sử dụng câu lệnh sau:
+
+```{r}
+flights %>% 
+  # Lấy các biến mà tên kết thúc với từ `arr`
+  select(ends_with("delay")) %>% 
+  head %>% 
+  kable
+```
+
+
+# select + match
+
+Giả sử chúng ta có 2 tập dữ liệu như sau
+
+```{r}
+# data1 bao gồm 6 biến đầu tiên của dữ liệu `flights`
+data1 <- flights %>% select(1:6)
+data1 %>% names
+
+# data2 bao gồm 8 biến đầu tiên của dữ liệu `flights`
+data2 <- flights %>% select(1:8)
+data2 %>% names
+```
+
+Dữ liệu `data1` là tập con của `data2` (`data2` có thêm 2 biến từ `data1`).
+
+Giả sử đối với `data2` chúng ta chỉ muốn lấy ra những biến mà có trong `data1`, chúng ta sử dụng câu lệnh sau:
+
+```{r}
+data2 %>% 
+  select(match(names(data1),   # tên các biến trong data1
+               names(data2)    # tên các biến trong data2
+               )) %>% 
+  head %>% 
+  kable
+```
+
+---
+
+Như vậy, chúng ta đã vừa được học cách chọn biến đối với trường hợp dữ liệu bao gồm rất nhiều biến thông qua việc sử dụng hàm `select()` kết hợp `contains()`, `starts_with()`, `ends_with()`, `match()`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!

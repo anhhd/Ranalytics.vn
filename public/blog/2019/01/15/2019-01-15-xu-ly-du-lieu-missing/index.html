@@ -254,14 +254,14 @@
 
 data</code></pre>
 <pre><code>##     name age income_mil_VND   province
-## 1   Viet  24             NA  Hai Phong
-## 2    Nam  25             NA     Ha Noi
-## 3    Hai  25              8  Hai Duong
-## 4  Phong  22             11       &lt;NA&gt;
-## 5     Ha  22             15  Bac Giang
-## 6  Giang  23              6   Bac Ninh
-## 7    Bac  22             14    Yen Bai
-## 8   Ninh  NA              7     Ca Mau
+## 1   Viet  22             NA  Hai Phong
+## 2    Nam  23             NA     Ha Noi
+## 3    Hai  25             15  Hai Duong
+## 4  Phong  24             12       &lt;NA&gt;
+## 5     Ha  23              7  Bac Giang
+## 6  Giang  23              9   Bac Ninh
+## 7    Bac  24             11    Yen Bai
+## 8   Ninh  NA             10     Ca Mau
 ## 9     Ha  NA             80 Quang Ninh
 ## 10  Long  NA             NA Quang Binh</code></pre>
 <p>Dữ liệu bao gồm thông tin về thu nhập hàng tháng (triệu đồng) và quê quán của 10 người có độ tuổi từ 22-25.</p>
@@ -270,16 +270,16 @@ data</code></pre>
 data %&gt;% str</code></pre>
 <pre><code>## &#39;data.frame&#39;:    10 obs. of  4 variables:
 ##  $ name          : Factor w/ 9 levels &quot;Bac&quot;,&quot;Giang&quot;,..: 9 6 4 8 3 2 1 7 3 5
-##  $ age           : num  24 25 25 22 22 23 22 NA NA NA
-##  $ income_mil_VND: num  NA NA 8 11 15 6 14 7 80 NA
+##  $ age           : num  22 23 25 24 23 23 24 NA NA NA
+##  $ income_mil_VND: num  NA NA 15 12 7 9 11 10 80 NA
 ##  $ province      : Factor w/ 9 levels &quot;Bac Giang&quot;,&quot;Bac Ninh&quot;,..: 6 4 5 NA 1 2 9 3 8 7</code></pre>
 <pre class="r"><code>data %&gt;% summary</code></pre>
 <pre><code>##       name        age        income_mil_VND       province
-##  Ha     :2   Min.   :22.00   Min.   : 6.00   Bac Giang:1  
-##  Bac    :1   1st Qu.:22.00   1st Qu.: 7.50   Bac Ninh :1  
+##  Ha     :2   Min.   :22.00   Min.   : 7.00   Bac Giang:1  
+##  Bac    :1   1st Qu.:23.00   1st Qu.: 9.50   Bac Ninh :1  
 ##  Giang  :1   Median :23.00   Median :11.00   Ca Mau   :1  
-##  Hai    :1   Mean   :23.29   Mean   :20.14   Ha Noi   :1  
-##  Long   :1   3rd Qu.:24.50   3rd Qu.:14.50   Hai Duong:1  
+##  Hai    :1   Mean   :23.43   Mean   :20.57   Ha Noi   :1  
+##  Long   :1   3rd Qu.:24.00   3rd Qu.:13.50   Hai Duong:1  
 ##  Nam    :1   Max.   :25.00   Max.   :80.00   (Other)  :4  
 ##  (Other):3   NA&#39;s   :3       NA&#39;s   :3       NA&#39;s     :1</code></pre>
 <p>Biến tuổi (<code>age</code>) và biến thu nhập (<code>income_mil_VND</code>) đều có 3 quan sát bị missing (<code>NA</code>) trên tổng số 10 quan sát -&gt; tỷ lệ quan sát bị missing là 30%, vì vậy chúng ta cần phải thay thế những giá trị bị missing này bằng 1 giá trị nào đó khác.</p>
@@ -293,18 +293,18 @@ data %&gt;% str</code></pre>
 
 data</code></pre>
 <pre><code>##     name age income_mil_VND   province age_new
-## 1   Viet  24             NA  Hai Phong      24
-## 2    Nam  25             NA     Ha Noi      25
-## 3    Hai  25              8  Hai Duong      25
-## 4  Phong  22             11       &lt;NA&gt;      22
-## 5     Ha  22             15  Bac Giang      22
-## 6  Giang  23              6   Bac Ninh      23
-## 7    Bac  22             14    Yen Bai      22
-## 8   Ninh  NA              7     Ca Mau      24
+## 1   Viet  22             NA  Hai Phong      22
+## 2    Nam  23             NA     Ha Noi      23
+## 3    Hai  25             15  Hai Duong      25
+## 4  Phong  24             12       &lt;NA&gt;      24
+## 5     Ha  23              7  Bac Giang      23
+## 6  Giang  23              9   Bac Ninh      23
+## 7    Bac  24             11    Yen Bai      24
+## 8   Ninh  NA             10     Ca Mau      24
 ## 9     Ha  NA             80 Quang Ninh      24
 ## 10  Long  NA             NA Quang Binh      24</code></pre>
-<p>Như vậy, missing values của biến tuổi đã được thay thế bằng giá trị trung bình của biến tuổi (mean = 23.2857143 làm tròn thành 24).</p>
-<p>Còn đối với biến thu nhập, chúng ta thấy rằng 3/4 số người có mức thu nhập hàng tháng dưới 14.5 triệu đồng, trong khi đó có 1 người thu nhập lên đến 80 triệu đồng/tháng (outlier). Do đó, chúng ta không nên thay thế missing values của biến thu nhập bằng giá trị trung bình như trường hợp biến tuổi, vì điều đó sẽ không phản ánh đúng bản chất của dữ liệu. Thay vào đó, chúng ta nên thay thế missing values trong trường hợp này bằng giá trị trung vị (<code>median</code>).</p>
+<p>Như vậy, missing values của biến tuổi đã được thay thế bằng giá trị trung bình của biến tuổi (mean = 23.4285714 làm tròn thành 24).</p>
+<p>Còn đối với biến thu nhập, chúng ta thấy rằng 3/4 số người có mức thu nhập hàng tháng dưới 13.5 triệu đồng, trong khi đó có 1 người thu nhập lên đến 80 triệu đồng/tháng (outlier). Do đó, chúng ta không nên thay thế missing values của biến thu nhập bằng giá trị trung bình như trường hợp biến tuổi, vì điều đó sẽ không phản ánh đúng bản chất của dữ liệu. Thay vào đó, chúng ta nên thay thế missing values trong trường hợp này bằng giá trị trung vị (<code>median</code>).</p>
 <pre class="r"><code>data &lt;- data %&gt;% 
   # Thêm biến mới (income_new)
   mutate(income_new = case_when(
@@ -314,14 +314,14 @@ data</code></pre>
 
 data</code></pre>
 <pre><code>##     name age income_mil_VND   province age_new income_new
-## 1   Viet  24             NA  Hai Phong      24         11
-## 2    Nam  25             NA     Ha Noi      25         11
-## 3    Hai  25              8  Hai Duong      25          8
-## 4  Phong  22             11       &lt;NA&gt;      22         11
-## 5     Ha  22             15  Bac Giang      22         15
-## 6  Giang  23              6   Bac Ninh      23          6
-## 7    Bac  22             14    Yen Bai      22         14
-## 8   Ninh  NA              7     Ca Mau      24          7
+## 1   Viet  22             NA  Hai Phong      22         11
+## 2    Nam  23             NA     Ha Noi      23         11
+## 3    Hai  25             15  Hai Duong      25         15
+## 4  Phong  24             12       &lt;NA&gt;      24         12
+## 5     Ha  23              7  Bac Giang      23          7
+## 6  Giang  23              9   Bac Ninh      23          9
+## 7    Bac  24             11    Yen Bai      24         11
+## 8   Ninh  NA             10     Ca Mau      24         10
 ## 9     Ha  NA             80 Quang Ninh      24         80
 ## 10  Long  NA             NA Quang Binh      24         11</code></pre>
 <p>Như vậy, missing values của biến thu nhập đã được thay thế bằng giá trị trung vị của biến thu nhập (median = 11).</p>
@@ -333,13 +333,13 @@ Nếu như chúng ta thấy rằng quan sát này không quan trọng thì có t
 
 data2</code></pre>
 <pre><code>##    name age income_mil_VND   province age_new income_new
-## 1  Viet  24             NA  Hai Phong      24         11
-## 2   Nam  25             NA     Ha Noi      25         11
-## 3   Hai  25              8  Hai Duong      25          8
-## 4    Ha  22             15  Bac Giang      22         15
-## 5 Giang  23              6   Bac Ninh      23          6
-## 6   Bac  22             14    Yen Bai      22         14
-## 7  Ninh  NA              7     Ca Mau      24          7
+## 1  Viet  22             NA  Hai Phong      22         11
+## 2   Nam  23             NA     Ha Noi      23         11
+## 3   Hai  25             15  Hai Duong      25         15
+## 4    Ha  23              7  Bac Giang      23          7
+## 5 Giang  23              9   Bac Ninh      23          9
+## 6   Bac  24             11    Yen Bai      24         11
+## 7  Ninh  NA             10     Ca Mau      24         10
 ## 8    Ha  NA             80 Quang Ninh      24         80
 ## 9  Long  NA             NA Quang Binh      24         11</code></pre>
 <p>Như vậy, chúng ta đã vừa bỏ đi 1 quan sát của tập dữ liệu (từ 10 quan sát còn 9).</p>
@@ -359,14 +359,14 @@ data2</code></pre>
 
 data</code></pre>
 <pre><code>##     name age_new income_new province_new
-## 1   Viet      24         11    Hai Phong
-## 2    Nam      25         11       Ha Noi
-## 3    Hai      25          8    Hai Duong
-## 4  Phong      22         11      Missing
-## 5     Ha      22         15    Bac Giang
-## 6  Giang      23          6     Bac Ninh
-## 7    Bac      22         14      Yen Bai
-## 8   Ninh      24          7       Ca Mau
+## 1   Viet      22         11    Hai Phong
+## 2    Nam      23         11       Ha Noi
+## 3    Hai      25         15    Hai Duong
+## 4  Phong      24         12      Missing
+## 5     Ha      23          7    Bac Giang
+## 6  Giang      23          9     Bac Ninh
+## 7    Bac      24         11      Yen Bai
+## 8   Ninh      24         10       Ca Mau
 ## 9     Ha      24         80   Quang Ninh
 ## 10  Long      24         11   Quang Binh</code></pre>
 <hr />
@@ -452,13 +452,13 @@ data</code></pre>
             <li><a href="../../../../../categories/data-import">data-import (4)</a>
             </li>
             
-            <li><a href="../../../../../categories/data-manipulation">data-manipulation (5)</a>
+            <li><a href="../../../../../categories/data-manipulation">data-manipulation (7)</a>
             </li>
             
             <li><a href="../../../../../categories/data-science">data-science (1)</a>
             </li>
             
-            <li><a href="../../../../../categories/data-vizualization">data-vizualization (9)</a>
+            <li><a href="../../../../../categories/data-vizualization">data-vizualization (8)</a>
             </li>
             
             <li><a href="../../../../../categories/general">general (2)</a>
@@ -594,6 +594,19 @@ data</code></pre>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/02/25/2019-02-05-su-dung-select-trong-dplyr/">
+                          
+                            <img src="../../../../../img/banners/banner-30.png" class="img-responsive" alt="">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/02/25/2019-02-05-su-dung-select-trong-dplyr/">Sử dụng hàm select trong dplyr</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
                         <a href="../../../../../blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/">
                           
                             <img src="../../../../../img/banners/banner-29.png" class="img-responsive" alt="">
@@ -615,19 +628,6 @@ data</code></pre>
                     </div>
                     <div class="name same-height-always">
                         <h5><a href="../../../../../blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/">Xử lý dữ liệu missing</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="../../../../../blog/2019/01/10/2019-01-10-ve-bieu-do-lollipop-voi-ggplot2/">
-                          
-                            <img src="../../../../../img/banners/banner-27.png" class="img-responsive" alt="">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="../../../../../blog/2019/01/10/2019-01-10-ve-bieu-do-lollipop-voi-ggplot2/">Vẽ biểu đồ lollipop chart</a></h5>
                     </div>
                 </div>
                 

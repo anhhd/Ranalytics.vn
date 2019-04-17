@@ -6,20 +6,10 @@
     <description>Recent content in Data Vizualization on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-vizualization/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Xử lý dữ liệu missing</title>
-      <link>/blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/</guid>
-      <description>Trong quá trình xử lý, làm sạch dữ liệu, chúng ta sẽ thường gặp phải vấn đề dữ liệu bị missing. Nguyên nhân có thể do dữ liệu không đầy đủ hoặc có sai sót trong quá trình nhập liệu… Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn một số mẹo để xử lý giá trị missing (missing values) trong R.
-Vậy, làm thế nào để xử lý missing values?</description>
-    </item>
     
     <item>
       <title>Vẽ biểu đồ lollipop chart</title>

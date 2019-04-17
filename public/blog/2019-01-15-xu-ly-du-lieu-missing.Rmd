@@ -3,7 +3,7 @@ title: "Xử lý dữ liệu missing"
 author: "Nguyễn Hải Trường"
 date: '2019-01-15'
 categories:
-  - data-vizualization
+  - data-manipulation
 tags:
   - ggplot2
 summary: "Xử lý dữ liệu missing trong R"
