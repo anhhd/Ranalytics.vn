@@ -1,7 +1,7 @@
 ---
 title: "Sử dụng facet trong ggplot2"
 author: "Nguyễn Hải Trường"
-date: '2019-01-15'
+date: '2019-02-15'
 categories:
   - data-vizualization
 tags:

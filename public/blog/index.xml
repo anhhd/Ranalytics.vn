@@ -23,23 +23,23 @@ library(dplyr) # package sử dụng# Các biến có trong data irisiris %&am
     </item>
     
     <item>
+      <title>Sử dụng facet trong ggplot2</title>
+      <link>/blog/2019/02/15/2019-02-15-su-dung-facet-trong-ggplot2/</link>
+      <pubDate>Fri, 15 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/02/15/2019-02-15-su-dung-facet-trong-ggplot2/</guid>
+      <description>Sử dụng facet giúp chúng ta có thể chia nhỏ biểu đồ thành một ma trận các biểu đồ nhỏ (a matrix of panels). Mỗi panel sẽ hiển thị các dữ liệu con khác nhau của tập dữ liệu gốc ban đầu.
+Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách chia nhỏ biểu đồ bằng việc sử dụng facet trong package ggplot2.
+Có 2 hàm cơ bản là:</description>
+    </item>
+    
+    <item>
       <title>Làm sạch môi trường làm việc hiệu quả trong R</title>
       <link>/blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/</link>
       <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/</guid>
       <description>Trong quá trình phân tích dữ liệu, ta thường xuyên phải tạo ra nhiều bảng tạm, biến đổi dữ liệu qua nhiều bước và cùng lúc làm việc với nhiều bảng khác nhau. Trong flow phân tích thông thường, ta sẽ phải tạo ra 1 bảng master chứa tất cả dữ liệu cần làm việc và phân tích dữ liệu từ trên tập dữ liệu đã được làm sạch đó.</description>
-    </item>
-    
-    <item>
-      <title>Sử dụng facet trong ggplot2</title>
-      <link>/blog/2019/01/15/2019-02-15-su-dung-facet-trong-ggplot2/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2019/01/15/2019-02-15-su-dung-facet-trong-ggplot2/</guid>
-      <description>Sử dụng facet giúp chúng ta có thể chia nhỏ biểu đồ thành một ma trận các biểu đồ nhỏ (a matrix of panels). Mỗi panel sẽ hiển thị các dữ liệu con khác nhau của tập dữ liệu gốc ban đầu.
-Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách chia nhỏ biểu đồ bằng việc sử dụng facet trong package ggplot2.
-Có 2 hàm cơ bản là:</description>
     </item>
     
     <item>

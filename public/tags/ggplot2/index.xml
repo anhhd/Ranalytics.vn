@@ -6,17 +6,17 @@
     <description>Recent content in Ggplot2 on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sử dụng facet trong ggplot2</title>
-      <link>/blog/2019/01/15/2019-02-15-su-dung-facet-trong-ggplot2/</link>
-      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <link>/blog/2019/02/15/2019-02-15-su-dung-facet-trong-ggplot2/</link>
+      <pubDate>Fri, 15 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2019/01/15/2019-02-15-su-dung-facet-trong-ggplot2/</guid>
+      <guid>/blog/2019/02/15/2019-02-15-su-dung-facet-trong-ggplot2/</guid>
       <description>Sử dụng facet giúp chúng ta có thể chia nhỏ biểu đồ thành một ma trận các biểu đồ nhỏ (a matrix of panels). Mỗi panel sẽ hiển thị các dữ liệu con khác nhau của tập dữ liệu gốc ban đầu.
 Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách chia nhỏ biểu đồ bằng việc sử dụng facet trong package ggplot2.
 Có 2 hàm cơ bản là:</description>
