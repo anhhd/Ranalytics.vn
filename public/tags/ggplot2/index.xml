@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Sử dụng facet trong ggplot2</title>
+      <link>/blog/2019/01/15/2019-02-15-su-dung-facet-trong-ggplot2/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/01/15/2019-02-15-su-dung-facet-trong-ggplot2/</guid>
+      <description>Sử dụng facet giúp chúng ta có thể chia nhỏ biểu đồ thành một ma trận các biểu đồ nhỏ (a matrix of panels). Mỗi panel sẽ hiển thị các dữ liệu con khác nhau của tập dữ liệu gốc ban đầu.
+Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách chia nhỏ biểu đồ bằng việc sử dụng facet trong package ggplot2.
+Có 2 hàm cơ bản là:</description>
+    </item>
+    
+    <item>
       <title>Xử lý dữ liệu missing</title>
       <link>/blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/</link>
       <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
