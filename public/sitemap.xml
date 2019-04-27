@@ -3,13 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/blog/2019/02/25/2019-02-05-su-dung-select-trong-dplyr/</loc>
+    <loc>/blog/2019/02/25/2019-02-25-vao-water-fall-chart-voi-ggplot2/</loc>
     <lastmod>2019-02-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/blog/2019/02/15/2019-02-15-su-dung-facet-trong-ggplot2/</loc>
     <lastmod>2019-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/2019/02/05/2019-02-05-su-dung-select-trong-dplyr/</loc>
+    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -201,7 +206,7 @@
   
   <url>
     <loc>/categories/data-manipulation/</loc>
-    <lastmod>2019-02-25T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -219,7 +224,7 @@
   
   <url>
     <loc>/categories/data-vizualization/</loc>
-    <lastmod>2019-02-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -231,7 +236,7 @@
   
   <url>
     <loc>/tags/dplyr/</loc>
-    <lastmod>2019-02-25T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -255,7 +260,7 @@
   
   <url>
     <loc>/tags/ggplot2/</loc>
-    <lastmod>2019-02-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

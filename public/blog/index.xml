@@ -12,14 +12,14 @@
     
     
     <item>
-      <title>Sử dụng hàm select trong dplyr</title>
-      <link>/blog/2019/02/25/2019-02-05-su-dung-select-trong-dplyr/</link>
+      <title>Tạo water-fall chart với ggplot2</title>
+      <link>/blog/2019/02/25/2019-02-25-vao-water-fall-chart-voi-ggplot2/</link>
       <pubDate>Mon, 25 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2019/02/25/2019-02-05-su-dung-select-trong-dplyr/</guid>
-      <description>Select thông thườngNhư các bạn đã biết để lấy dữ liệu theo biến (cột), thông thường chúng ta sẽ sử dụng hàm select() với cấu trúc như sau select(tên biến) hoặc select(số thứ tự của biến).
-Ví dụ sử dụng dữ liệu iris có sẵn trong R
-library(dplyr) # package sử dụng# Các biến có trong data irisiris %&amp;gt;% names## [1] &amp;quot;Sepal.Length&amp;quot; &amp;quot;Sepal.Width&amp;quot; &amp;quot;Petal.Length&amp;quot; &amp;quot;Petal.Width&amp;quot; ## [5] &amp;quot;Species&amp;quot;Dữ liệu này có 5 biến với thứ tự lần lượt như trên.</description>
+      <guid>/blog/2019/02/25/2019-02-25-vao-water-fall-chart-voi-ggplot2/</guid>
+      <description>Trong thế giới công nghệ ngày nay, chỉ số active user là một trong những chỉ số rất quan trọng để thể hiện được hoạt động của một website/app theo thời gian. Active user tại thời điểm t có thể được tính toán như sau.
+\[active_{t} = active_{t-1} + new_{t} - churn_{t}\]
+Một cách hết sức tự nhiên, biểu đồ water-fall sẽ là biểu đồ được chọn để thể hiện chỉ số quan trọng này.</description>
     </item>
     
     <item>
@@ -31,6 +31,17 @@ library(dplyr) # package sử dụng# Các biến có trong data irisiris %&am
       <description>Sử dụng facet giúp chúng ta có thể chia nhỏ biểu đồ thành một ma trận các biểu đồ nhỏ (a matrix of panels). Mỗi panel sẽ hiển thị các dữ liệu con khác nhau của tập dữ liệu gốc ban đầu.
 Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách chia nhỏ biểu đồ bằng việc sử dụng facet trong package ggplot2.
 Có 2 hàm cơ bản là:</description>
+    </item>
+    
+    <item>
+      <title>Sử dụng hàm select trong dplyr</title>
+      <link>/blog/2019/02/05/2019-02-05-su-dung-select-trong-dplyr/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/02/05/2019-02-05-su-dung-select-trong-dplyr/</guid>
+      <description>Select thông thườngNhư các bạn đã biết để lấy dữ liệu theo biến (cột), thông thường chúng ta sẽ sử dụng hàm select() với cấu trúc như sau select(tên biến) hoặc select(số thứ tự của biến).
+Ví dụ sử dụng dữ liệu iris có sẵn trong R
+library(dplyr) # package sử dụng# Các biến có trong data irisiris %&amp;gt;% names## [1] &amp;quot;Sepal.Length&amp;quot; &amp;quot;Sepal.Width&amp;quot; &amp;quot;Petal.Length&amp;quot; &amp;quot;Petal.Width&amp;quot; ## [5] &amp;quot;Species&amp;quot;Dữ liệu này có 5 biến với thứ tự lần lượt như trên.</description>
     </item>
     
     <item>

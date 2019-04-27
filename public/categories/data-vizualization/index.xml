@@ -6,10 +6,21 @@
     <description>Recent content in Data Vizualization on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-vizualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tạo water-fall chart với ggplot2</title>
+      <link>/blog/2019/02/25/2019-02-25-vao-water-fall-chart-voi-ggplot2/</link>
+      <pubDate>Mon, 25 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/02/25/2019-02-25-vao-water-fall-chart-voi-ggplot2/</guid>
+      <description>Trong thế giới công nghệ ngày nay, chỉ số active user là một trong những chỉ số rất quan trọng để thể hiện được hoạt động của một website/app theo thời gian. Active user tại thời điểm t có thể được tính toán như sau.
+\[active_{t} = active_{t-1} + new_{t} - churn_{t}\]
+Một cách hết sức tự nhiên, biểu đồ water-fall sẽ là biểu đồ được chọn để thể hiện chỉ số quan trọng này.</description>
+    </item>
     
     <item>
       <title>Sử dụng facet trong ggplot2</title>

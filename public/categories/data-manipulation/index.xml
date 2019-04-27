@@ -6,17 +6,17 @@
     <description>Recent content in Data Manipulation on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-manipulation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sử dụng hàm select trong dplyr</title>
-      <link>/blog/2019/02/25/2019-02-05-su-dung-select-trong-dplyr/</link>
-      <pubDate>Mon, 25 Feb 2019 00:00:00 +0000</pubDate>
+      <link>/blog/2019/02/05/2019-02-05-su-dung-select-trong-dplyr/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2019/02/25/2019-02-05-su-dung-select-trong-dplyr/</guid>
+      <guid>/blog/2019/02/05/2019-02-05-su-dung-select-trong-dplyr/</guid>
       <description>Select thông thườngNhư các bạn đã biết để lấy dữ liệu theo biến (cột), thông thường chúng ta sẽ sử dụng hàm select() với cấu trúc như sau select(tên biến) hoặc select(số thứ tự của biến).
 Ví dụ sử dụng dữ liệu iris có sẵn trong R
 library(dplyr) # package sử dụng# Các biến có trong data irisiris %&amp;gt;% names## [1] &amp;quot;Sepal.Length&amp;quot; &amp;quot;Sepal.Width&amp;quot; &amp;quot;Petal.Length&amp;quot; &amp;quot;Petal.Width&amp;quot; ## [5] &amp;quot;Species&amp;quot;Dữ liệu này có 5 biến với thứ tự lần lượt như trên.</description>
