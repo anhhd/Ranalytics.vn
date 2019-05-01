@@ -34,7 +34,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tùy chỉnh các thành phần cơ bản trong GGPLOT2</title>
+  <title>Cách ghép các bảng dữ liệu với JOIN</title>
   <meta name="author" content="" />
 
   
@@ -84,9 +84,9 @@
   <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Tùy chỉnh các thành phần cơ bản trong GGPLOT2" />
+  <meta property="og:title" content="Cách ghép các bảng dữ liệu với JOIN" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2018/07/31/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2//" />
+  <meta property="og:url" content="/blog/2019/03/05/2019-03-05-cach-su-dung-join//" />
   <meta property="og:image" content="img/logo.png" />
 
   <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
@@ -109,9 +109,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="../../../../../">
-                    <img src="../../../../../img/logo.png" alt="Tùy chỉnh các thành phần cơ bản trong GGPLOT2 logo" class="hidden-xs hidden-sm">
-                    <img src="../../../../../img/logo-small.png" alt="Tùy chỉnh các thành phần cơ bản trong GGPLOT2 logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Tùy chỉnh các thành phần cơ bản trong GGPLOT2 - Về trang chủ</span>
+                    <img src="../../../../../img/logo.png" alt="Cách ghép các bảng dữ liệu với JOIN logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Cách ghép các bảng dữ liệu với JOIN logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Cách ghép các bảng dữ liệu với JOIN - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -207,7 +207,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Tùy chỉnh các thành phần cơ bản trong GGPLOT2</h1>
+                <h1>Cách ghép các bảng dữ liệu với JOIN</h1>
             </div>
         </div>
     </div>
@@ -223,235 +223,119 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2018-07-31</p>
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Nguyễn Hải Trường</a> | 2019-03-05</p>
 
                         <div id="post-content">
                           
 
 
-<p>Khi mới bắt đầu làm việc với GGPLOT2, sẽ rất khó để có thể tùy chỉnh các thành phần cơ bản trong biểu đồ. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn tùy chỉnh những thành phần cơ bản nhất của biểu đồ với GGPLOT2.</p>
-<hr />
-<p>Khi đã tạo được các biểu đồ cơ bản, ta còn cần phải làm chủ được các thành phần khác của biểu đồ, trong đó quan trọng nhất gồm có:</p>
-<ul>
-<li>Tên biểu đồ</li>
-<li>Trên các trục tọa độ (x, y)</li>
-<li>Nội dung phần chú giải</li>
-<li>Phần text trong từng trục</li>
-</ul>
-<p>Để thay đổi các thành phần này, ta dùng hàm <strong>theme</strong> để tạo layer theme mới cho biểu đồ đã tạo. Các thành phần tương ứng của hàm <strong>theme</strong> là:</p>
-<ul>
-<li>Tên biểu đồ: <code>plot.title</code></li>
-<li>Trên các trục tọa độ (x, y): <code>axis.title.x</code>, <code>axis.title.y</code></li>
-<li>Nội dung phần text trong từng trục: <code>axis.text.x</code>, <code>axis.text.y</code></li>
-<li>Phần chú giải: <code>legend.title</code>, <code>legend.text</code></li>
-</ul>
-<hr />
-<div id="d-liu-s-dung-ve-biu-" class="section level3">
-<h3>Dữ liệu sử dụng vẽ biểu đồ</h3>
+<p>Trong thực tế dữ liệu của chúng ta có thể lưu trữ rời rạc ở các bảng dữ liệu khác nhau, vì vậy sẽ có lúc chúng ta cần phải nối các bảng dữ liệu với nhau để có thêm thông tin phục vụ cho việc phân tích dữ liệu.</p>
+<p>Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách nối các bảng dữ liệu sử dụng nhóm hàm <strong>join</strong> trong <code>R</code>.</p>
+<div id="mutating-join" class="section level1">
+<h1>Mutating join</h1>
+<p>Giả sử chúng ta có 2 data về việc khách hàng sử dụng các sản phẩm ngân hàng như sau:</p>
+<pre class="r"><code># Data frame 1
+df1 &lt;- data.frame(CustomerId = c(1:6), Product = c(rep(&quot;CreditCard&quot;, 3), rep(&quot;HomeLoan&quot;, 3)))
+df1</code></pre>
+<pre><code>##   CustomerId    Product
+## 1          1 CreditCard
+## 2          2 CreditCard
+## 3          3 CreditCard
+## 4          4   HomeLoan
+## 5          5   HomeLoan
+## 6          6   HomeLoan</code></pre>
+<pre class="r"><code># Data frame 2
+df2 &lt;- data.frame(CustomerId = c(2, 4, 7), Province = c(rep(&quot;Hanoi&quot;, 2), rep(&quot;Hochiminh&quot;, 1)))
+df2</code></pre>
+<pre><code>##   CustomerId  Province
+## 1          2     Hanoi
+## 2          4     Hanoi
+## 3          7 Hochiminh</code></pre>
+<p>Hai bảng dữ liệu này có chung trường key là <code>CustomerId</code>.</p>
+<div id="left_join" class="section level2">
+<h2>left_join</h2>
+<p>Hàm <code>left_join()</code> sẽ lấy tất cả dữ liệu có trong bảng đầu tiên.</p>
 <pre class="r"><code>library(dplyr)
-library(ggplot2)
-data &lt;- diamonds %&gt;% sample_n(5000)
-data %&gt;% summary</code></pre>
-<pre><code>##      carat              cut       color       clarity         depth      
-##  Min.   :0.200   Fair     : 191   D: 640   SI1    :1194   Min.   :44.00  
-##  1st Qu.:0.400   Good     : 420   E: 925   VS2    :1132   1st Qu.:61.10  
-##  Median :0.700   Very Good:1089   F: 904   SI2    : 859   Median :61.80  
-##  Mean   :0.796   Premium  :1269   G:1042   VS1    : 788   Mean   :61.76  
-##  3rd Qu.:1.040   Ideal    :2031   H: 754   VVS2   : 466   3rd Qu.:62.50  
-##  Max.   :4.500                    I: 500   VVS1   : 333   Max.   :70.20  
-##                                   J: 235   (Other): 228                  
-##      table           price             x                y         
-##  Min.   :50.10   Min.   :  327   Min.   : 3.790   Min.   : 3.770  
-##  1st Qu.:56.00   1st Qu.:  945   1st Qu.: 4.700   1st Qu.: 4.710  
-##  Median :57.00   Median : 2444   Median : 5.700   Median : 5.710  
-##  Mean   :57.44   Mean   : 3904   Mean   : 5.728   Mean   : 5.739  
-##  3rd Qu.:59.00   3rd Qu.: 5240   3rd Qu.: 6.540   3rd Qu.: 6.540  
-##  Max.   :79.00   Max.   :18804   Max.   :10.230   Max.   :58.900  
-##                                                                   
-##        z        
-##  Min.   :0.000  
-##  1st Qu.:2.900  
-##  Median :3.530  
-##  Mean   :3.538  
-##  3rd Qu.:4.040  
-##  Max.   :8.060  
-## </code></pre>
-</div>
-<div id="tao-biu--gc" class="section level3">
-<h3>Tạo biểu đồ gốc</h3>
-<pre class="r"><code>#Tạo theme
-theme_set(theme_minimal())
 
-p &lt;- ggplot(data, aes(x=carat, y = price)) +
-  geom_point(aes(col=cut))
-p</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>#Bước 2: Tạo thêm &quot;layer&quot; cho phép tùy chỉnh các thành phần trong biểu đồ
-#Sử dụng layer &quot;theme&quot; để tùy chỉnh
-
-#Bước 2.1: Tạo biểu đồ có title &amp; subtitle
-p1 &lt;- p + 
-  labs(title = &quot;Diamonds - price vs. carat&quot;)
-p1</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+df1 %&gt;% 
+  left_join(df2, 
+            by = &quot;CustomerId&quot;   # nối theo trường key
+            )</code></pre>
+<pre><code>##   CustomerId    Product Province
+## 1          1 CreditCard     &lt;NA&gt;
+## 2          2 CreditCard    Hanoi
+## 3          3 CreditCard     &lt;NA&gt;
+## 4          4   HomeLoan    Hanoi
+## 5          5   HomeLoan     &lt;NA&gt;
+## 6          6   HomeLoan     &lt;NA&gt;</code></pre>
 </div>
-<div id="thay-i-title-cua-biu--vi-ham-theme" class="section level2">
-<h2>Thay đổi title của biểu đồ với hàm “theme”</h2>
-<ul>
-<li>Trường hợp 1: Cho to cỡ chữ và làm tên biểu đồ dạng “bold”</li>
-</ul>
-<pre class="r"><code>p1 + 
-  theme(plot.title = element_text(size = 15, face = &quot;bold&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 2: Thay đổi font chữ cho tên biểu đồ</li>
-</ul>
-<pre class="r"><code>#library(extrafont)
-p1 + 
-  theme(plot.title = element_text(size = 20, 
-                                  face = &quot;bold&quot;, 
-                                  family = &quot;serif&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 3: Xuống dòng cho tên trong biểu đồ</li>
-</ul>
-<pre class="r"><code>p + 
-  ggtitle(&quot;Diamonds \nprice vs. carat&quot;) + 
-  theme(plot.title = element_text(size = 20, 
-                                  face = &quot;bold&quot;, 
-                                  family = &quot;serif&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div id="right_join" class="section level2">
+<h2>right_join</h2>
+<p>Hàm <code>right_join()</code> sẽ lấy tất cả dữ liệu có trong bảng thứ hai.</p>
+<pre class="r"><code>df1 %&gt;% 
+  right_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+             )</code></pre>
+<pre><code>##   CustomerId    Product  Province
+## 1          2 CreditCard     Hanoi
+## 2          4   HomeLoan     Hanoi
+## 3          7       &lt;NA&gt; Hochiminh</code></pre>
 </div>
-<div id="tuy-chinh-tieu--tren-tng-truc-biu-" class="section level2">
-<h2>Tùy chỉnh tiêu đề trên từng trục biểu đồ</h2>
-<ul>
-<li>Trường hợp 1: Thay đổi cỡ chữ, làm đậm chữ của tiêu đề trục x</li>
-</ul>
-<pre class="r"><code>p + 
-  theme(axis.title.x = element_text(size = 11, 
-                                    face = &quot;bold&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 2: Thay đổi font chữ của trục x</li>
-</ul>
-<pre class="r"><code>p + 
-  theme(axis.title.x = element_text(family = &quot;serif&quot;, 
-                                    face = &quot;bold&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 3: Thay đổi kích cỡ, font chữ ở cả 2 trục</li>
-</ul>
-<pre class="r"><code>p + 
-  theme(axis.title = element_text(family = &quot;serif&quot;, 
-                                      face = &quot;bold&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="inner_join" class="section level2">
+<h2>inner_join</h2>
+<p>Hàm <code>inner_join()</code> sẽ lấy tất cả dữ liệu trùng key có trong cả 2 bảng.</p>
+<pre class="r"><code>df1 %&gt;% 
+  inner_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+             )</code></pre>
+<pre><code>##   CustomerId    Product Province
+## 1          2 CreditCard    Hanoi
+## 2          4   HomeLoan    Hanoi</code></pre>
 </div>
-<div id="tuy-chinh-thanh-phn-text-tren-tng-truc-biu-" class="section level2">
-<h2>Tùy chỉnh thành phần text trên từng trục biểu đồ</h2>
-<ul>
-<li>Trường hợp 1: Thay đổi kích thước, làm đậm chữ trên trục</li>
-</ul>
-<pre class="r"><code>p + 
-  theme(axis.text.x = element_text(size = 13, face = &quot;italic&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 2: Làm nghiêng chữ trên trục</li>
-</ul>
-<pre class="r"><code>p + 
-  theme(axis.text.x = element_text(size = 13, angle = 45))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<ul>
-<li>Trường hơp 3: Thay đổi cả 2 trục</li>
-</ul>
-<pre class="r"><code>p + 
-  theme(axis.text = element_text(size = 13, angle = 45))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div id="full_join" class="section level2">
+<h2>full_join</h2>
+<p>Hàm <code>full_join()</code> sẽ lấy tất cả dữ liệu có 1 trong 2 bảng.</p>
+<pre class="r"><code>df1 %&gt;% 
+  full_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+            )</code></pre>
+<pre><code>##   CustomerId    Product  Province
+## 1          1 CreditCard      &lt;NA&gt;
+## 2          2 CreditCard     Hanoi
+## 3          3 CreditCard      &lt;NA&gt;
+## 4          4   HomeLoan     Hanoi
+## 5          5   HomeLoan      &lt;NA&gt;
+## 6          6   HomeLoan      &lt;NA&gt;
+## 7          7       &lt;NA&gt; Hochiminh</code></pre>
 </div>
-<div id="tuy-chinh-phn-chu-giai-cua-biu-" class="section level2">
-<h2>Tùy chỉnh phần chú giải của biểu đồ</h2>
-<ul>
-<li>Trường hợp 1: Xóa toàn bộ legend</li>
-</ul>
-<pre class="r"><code>p + theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 2: Xóa tiêu đề của legend</li>
-</ul>
-<pre class="r"><code>p + theme(legend.title = element_blank())</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 3: Thay đổi kích thước, màu sắc của tên legend</li>
-</ul>
-<pre class="r"><code>p + 
-  theme(legend.title = element_text(size = 14, 
-                                    face = &quot;bold&quot;, 
-                                    color = &quot;red&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 4: Thay đổi tên trong legend</li>
-</ul>
-<pre class="r"><code>p + scale_colour_discrete(name = &quot;Type of diamonds&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 5: Thay đổi kích cỡ chữ trong phần legend</li>
-</ul>
-<pre class="r"><code>p + 
-  theme(legend.text = element_text(size =12, 
-                                   face = &quot;bold&quot;, 
-                                   family = &quot;serif&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p> </p>
+</div>
+<div id="filtering-join" class="section level1">
+<h1>Filtering join</h1>
+<div id="semi_join" class="section level2">
+<h2>semi_join</h2>
+<p>Hàm <code>semi_join()</code> lấy những quan sát <code>có</code> trong bảng đầu tiên và đồng thời <code>có</code> trong bảng thứ hai. Các biến/cột sẽ chỉ lấy theo bảng đầu tiên - đây chính là điểm khác biệt so với <code>inner_join()</code>.</p>
+<pre class="r"><code>df1 %&gt;% 
+  semi_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+            )</code></pre>
+<pre><code>##   CustomerId    Product
+## 1          2 CreditCard
+## 2          4   HomeLoan</code></pre>
+</div>
+<div id="anti_join" class="section level2">
+<h2>anti_join</h2>
+<p>Hàm <code>anti_join()</code> lấy những quan sát <code>có</code> trong bảng đầu tiên mà <code>ko có</code> trong bảng thứ hai. Các biến/cột sẽ chỉ lấy theo bảng đầu tiên.</p>
+<pre class="r"><code>df1 %&gt;% 
+  anti_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+            )</code></pre>
+<pre><code>##   CustomerId    Product
+## 1          1 CreditCard
+## 2          3 CreditCard
+## 3          5   HomeLoan
+## 4          6   HomeLoan</code></pre>
 <hr />
-</div>
-<div id="tuy-chinh-khung-mau-trong-biu-" class="section level2">
-<h2>Tùy chỉnh khung màu trong biểu đồ</h2>
-<p>Các màu mặc định của GGPLOT2 đáp ứng phần lớn các yêu cầu trong phân tích và báo cáo. Tuy nhiên, khi cần tùy chỉnh màu sắc mặc định này lại có thể rất khó khăn nếu ta không biết cách làm. Trong thực tế, các biểu đồ của các công ty lớn, hoặc các báo cáo phân tích đều phải tuân theo chuẩn màu sắc của cả công ty. Do đó, ta cần phải nắm được cách tùy chỉnh màu sắc của biểu đồ trong R.</p>
-<p>Một số mã màu sắc của R có thể tham khảo tại <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour">link</a></p>
-<div id="mau-cua-bin-ri-rac" class="section level3">
-<h3>Màu của biến rời rạc</h3>
-<ul>
-<li>Trường hợp 1: Tự điền mã màu</li>
-</ul>
-<pre class="r"><code>p + 
-  scale_color_manual(values = c(&quot;darkred&quot;, &quot;darkblue&quot;, &quot;violet&quot;, &quot;darkgreen&quot;, &quot;orange&quot;))</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<ul>
-<li>Trường hợp 2: Thay đổi màu sắc theo 1 số chế độ mặc đinh</li>
-</ul>
-<pre class="r"><code>#Sử dụng Brewer
-p + 
-  scale_colour_brewer(palette = &quot;Set1&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<pre class="r"><code>#Sử dụng bảng màu của Tableau
-library(ggthemes)
-p + 
-  scale_colour_tableau() + 
-  theme_tufte()</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
-</div>
-<div id="mau-cua-bin-lien-tuc" class="section level3">
-<h3>Màu của biến liên tục</h3>
-<p>Màu trên GGPLOT2 có thể thay đổi với dài màu liên tục. Xem ví dụ sau.</p>
-<pre class="r"><code># Tạo biểu đồ gốc
-p &lt;- ggplot(data, aes(x = carat, y = price)) +
-  geom_point(aes(col=price))
-p</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<ul>
-<li>Tạo màu theo biến liên tục với <code>scale_color_gradient</code></li>
-</ul>
-<pre class="r"><code>p + scale_color_gradient(low = &quot;darkblue&quot;, high = &quot;darkred&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<ul>
-<li>Tạo màu theo biến liên tục với <code>scale_color_gradient2</code></li>
-</ul>
-<pre class="r"><code>p + scale_color_gradient2(midpoint = mean(data$price), 
-                          low = &quot;blue4&quot;, 
-                          mid = &quot;white&quot;, 
-                          high = &quot;red4&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-07-31-tuy-chinh-cac-thanh-phan-co-ban-trong-ggplot2_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<hr />
-<p>Như vậy, chúng ta đã vừa biết xong những cách thay đổi các thuộc tính cơ bản nhất của biểu đồ với <code>ggplot2</code>. Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
+<p>Như vậy, chúng ta đã vừa được học cách nối các bảng dữ liệu với nhau sử dụng nhóm hàm <strong>join</strong>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
 </div>
 </div>
 

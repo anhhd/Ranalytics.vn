@@ -1,0 +1,123 @@
+---
+title: "Cách ghép các bảng dữ liệu với JOIN"
+author: "Nguyễn Hải Trường"
+date: '2019-03-05'
+categories:
+  - data-manipulation
+tags:
+  - dplyr
+summary: "Cách ghép các bảng dữ liệu với join"
+banner: "img/banners/banner-33.png"
+---
+
+
+
+<p>Trong thực tế dữ liệu của chúng ta có thể lưu trữ rời rạc ở các bảng dữ liệu khác nhau, vì vậy sẽ có lúc chúng ta cần phải nối các bảng dữ liệu với nhau để có thêm thông tin phục vụ cho việc phân tích dữ liệu.</p>
+<p>Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách nối các bảng dữ liệu sử dụng nhóm hàm <strong>join</strong> trong <code>R</code>.</p>
+<div id="mutating-join" class="section level1">
+<h1>Mutating join</h1>
+<p>Giả sử chúng ta có 2 data về việc khách hàng sử dụng các sản phẩm ngân hàng như sau:</p>
+<pre class="r"><code># Data frame 1
+df1 &lt;- data.frame(CustomerId = c(1:6), Product = c(rep(&quot;CreditCard&quot;, 3), rep(&quot;HomeLoan&quot;, 3)))
+df1</code></pre>
+<pre><code>##   CustomerId    Product
+## 1          1 CreditCard
+## 2          2 CreditCard
+## 3          3 CreditCard
+## 4          4   HomeLoan
+## 5          5   HomeLoan
+## 6          6   HomeLoan</code></pre>
+<pre class="r"><code># Data frame 2
+df2 &lt;- data.frame(CustomerId = c(2, 4, 7), Province = c(rep(&quot;Hanoi&quot;, 2), rep(&quot;Hochiminh&quot;, 1)))
+df2</code></pre>
+<pre><code>##   CustomerId  Province
+## 1          2     Hanoi
+## 2          4     Hanoi
+## 3          7 Hochiminh</code></pre>
+<p>Hai bảng dữ liệu này có chung trường key là <code>CustomerId</code>.</p>
+<div id="left_join" class="section level2">
+<h2>left_join</h2>
+<p>Hàm <code>left_join()</code> sẽ lấy tất cả dữ liệu có trong bảng đầu tiên.</p>
+<pre class="r"><code>library(dplyr)
+
+df1 %&gt;% 
+  left_join(df2, 
+            by = &quot;CustomerId&quot;   # nối theo trường key
+            )</code></pre>
+<pre><code>##   CustomerId    Product Province
+## 1          1 CreditCard     &lt;NA&gt;
+## 2          2 CreditCard    Hanoi
+## 3          3 CreditCard     &lt;NA&gt;
+## 4          4   HomeLoan    Hanoi
+## 5          5   HomeLoan     &lt;NA&gt;
+## 6          6   HomeLoan     &lt;NA&gt;</code></pre>
+</div>
+<div id="right_join" class="section level2">
+<h2>right_join</h2>
+<p>Hàm <code>right_join()</code> sẽ lấy tất cả dữ liệu có trong bảng thứ hai.</p>
+<pre class="r"><code>df1 %&gt;% 
+  right_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+             )</code></pre>
+<pre><code>##   CustomerId    Product  Province
+## 1          2 CreditCard     Hanoi
+## 2          4   HomeLoan     Hanoi
+## 3          7       &lt;NA&gt; Hochiminh</code></pre>
+</div>
+<div id="inner_join" class="section level2">
+<h2>inner_join</h2>
+<p>Hàm <code>inner_join()</code> sẽ lấy tất cả dữ liệu trùng key có trong cả 2 bảng.</p>
+<pre class="r"><code>df1 %&gt;% 
+  inner_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+             )</code></pre>
+<pre><code>##   CustomerId    Product Province
+## 1          2 CreditCard    Hanoi
+## 2          4   HomeLoan    Hanoi</code></pre>
+</div>
+<div id="full_join" class="section level2">
+<h2>full_join</h2>
+<p>Hàm <code>full_join()</code> sẽ lấy tất cả dữ liệu có 1 trong 2 bảng.</p>
+<pre class="r"><code>df1 %&gt;% 
+  full_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+            )</code></pre>
+<pre><code>##   CustomerId    Product  Province
+## 1          1 CreditCard      &lt;NA&gt;
+## 2          2 CreditCard     Hanoi
+## 3          3 CreditCard      &lt;NA&gt;
+## 4          4   HomeLoan     Hanoi
+## 5          5   HomeLoan      &lt;NA&gt;
+## 6          6   HomeLoan      &lt;NA&gt;
+## 7          7       &lt;NA&gt; Hochiminh</code></pre>
+</div>
+</div>
+<div id="filtering-join" class="section level1">
+<h1>Filtering join</h1>
+<div id="semi_join" class="section level2">
+<h2>semi_join</h2>
+<p>Hàm <code>semi_join()</code> lấy những quan sát <code>có</code> trong bảng đầu tiên và đồng thời <code>có</code> trong bảng thứ hai. Các biến/cột sẽ chỉ lấy theo bảng đầu tiên - đây chính là điểm khác biệt so với <code>inner_join()</code>.</p>
+<pre class="r"><code>df1 %&gt;% 
+  semi_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+            )</code></pre>
+<pre><code>##   CustomerId    Product
+## 1          2 CreditCard
+## 2          4   HomeLoan</code></pre>
+</div>
+<div id="anti_join" class="section level2">
+<h2>anti_join</h2>
+<p>Hàm <code>anti_join()</code> lấy những quan sát <code>có</code> trong bảng đầu tiên mà <code>ko có</code> trong bảng thứ hai. Các biến/cột sẽ chỉ lấy theo bảng đầu tiên.</p>
+<pre class="r"><code>df1 %&gt;% 
+  anti_join(df2, 
+             by = &quot;CustomerId&quot;   # nối theo trường key
+            )</code></pre>
+<pre><code>##   CustomerId    Product
+## 1          1 CreditCard
+## 2          3 CreditCard
+## 3          5   HomeLoan
+## 4          6   HomeLoan</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách nối các bảng dữ liệu với nhau sử dụng nhóm hàm <strong>join</strong>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
+</div>
