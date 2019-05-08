@@ -6,7 +6,7 @@ categories:
   - data-vizualization
 tags:
   - ggplot2
-summary: "Cách ghép các bảng dữ liệu với join"
+summary: "Cách lưu lại biểu đồ trong R"
 banner: "img/banners/banner-34.png"
 ---
 
@@ -39,7 +39,7 @@ iris %>%
 **Cách 1**: Plots panel -> Export -> Save as Image hoặc Save as PDF
 
 
-<center>![](./20190315_save_plot_in_r.png)</center>
+<center>![](/img/blog/20190315_save_plot_in_r.png)</center>
 
 ---
 
