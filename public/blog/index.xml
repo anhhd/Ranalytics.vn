@@ -6,10 +6,21 @@
     <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cách lưu biểu đồ dưới dạng ảnh</title>
+      <link>/blog/2019/03/15/2019-03-15-cach-luu-plot-trong-r/</link>
+      <pubDate>Fri, 15 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/03/15/2019-03-15-cach-luu-plot-trong-r/</guid>
+      <description>Trong quá trình phân tích dữ liệu sẽ có lúc phát sinh trường hợp các bạn muốn lưu biểu đồ dưới dạng ảnh để sau đó phục vụ mục đích lên slide trình bày với đơn vị kinh doanh hoặc cán bộ quản lý.
+Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách lưu biểu đồ dưới dạng ảnh trong R.
+Giả sử chúng ta vẽ biểu đồ boxplot sử dụng data iris có sẵn trong R như sau:</description>
+    </item>
     
     <item>
       <title>Cách ghép các bảng dữ liệu với JOIN</title>
