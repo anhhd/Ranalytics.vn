@@ -88,9 +88,14 @@ googleAnalytics = "UA-117458816-1"
     weight = 5
 
 [[menu.main]]
+    name = "Gallery"
+    url  = "/gallery/"
+    weight = 6
+
+[[menu.main]]
     name = "Liên hệ"
     url  = "/contact/"
-    weight = 6
+    weight = 9
 
 # Top bar social links menu
 
