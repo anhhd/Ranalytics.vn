@@ -58,7 +58,7 @@ keywords = ["FAQ","How do I","questions","what if"]
 
 ---
 
-### Jamja school - How to work with data in start-up? (5/2019)
+### Jamja school - How to work with data in start-up? (tháng 5, 2019)
 
 ![](/img/gallery/jamja_01.jpg)
 
@@ -66,5 +66,10 @@ keywords = ["FAQ","How do I","questions","what if"]
 
 ![](/img/gallery/jamja_02.jpg)
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 
