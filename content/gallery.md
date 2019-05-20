@@ -6,7 +6,7 @@ keywords = ["FAQ","How do I","questions","what if"]
 
 ### Diễn giả: "Practical Implementation of RPA, AI and Machine Learning in Financial Services, Singapore, 2019
 
-#### Working with AI & customer analytics for better engagement
+#### Chủ đề: Working with AI & Customer Analytics for Better Engagement
 
 
 ![Diễn giả hội thảo *Ứng dụng AI, ML và RPA trong lĩnh vực tài chính, bảo hiểm*, Singapore, 2019](/img/gallery/ifmg_2019_01.jpg)
@@ -58,7 +58,7 @@ keywords = ["FAQ","How do I","questions","what if"]
 
 ---
 
-### Jamja school - How to work with data in start-up?
+### Jamja school - How to work with data in start-up? (5/2019)
 
 ![](/img/gallery/jamja_01.jpg)
 
