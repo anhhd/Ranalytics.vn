@@ -1,6 +1,6 @@
 +++
-title = "Gallery"
-description = "Hình ảnh của RAnalytics"
+title = "Hoạt động khác"
+description = ""
 keywords = ["FAQ","How do I","questions","what if"]
 +++
 
@@ -29,36 +29,7 @@ keywords = ["FAQ","How do I","questions","what if"]
 
 ---
 
-### Một số hình ảnh học viên tốt nghiệp các khóa
-
-![](/img/gallery/k09_02.jpg)
-
-&nbsp;
-
-![](/img/gallery/k09_01.jpg)
-
-&nbsp;
-
-![](/img/gallery/k08_01.jpg)
-
-&nbsp;
-
-![](/img/gallery/k08_02.jpg)
-
-&nbsp;
-
-
-![](/img/gallery/k08_03.jpg)
-
-&nbsp;
-
-![](/img/gallery/k08_04.jpg)
-
-&nbsp;
-
----
-
-### Jamja school - How to work with data in start-up? (tháng 5, 2019)
+### Jamja school - How to work with data in start-up? (Tháng 5, 2019)
 
 ![](/img/gallery/jamja_01.jpg)
 

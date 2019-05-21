@@ -268,10 +268,6 @@
   </url>
   
   <url>
-    <loc>/gallery/</loc>
-  </url>
-  
-  <url>
     <loc>/categories/general/</loc>
     <lastmod>2018-07-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -284,6 +280,10 @@
   </url>
   
   <url>
+    <loc>/hoat-dong-khac/</loc>
+  </url>
+  
+  <url>
     <loc>/tags/import-data/</loc>
     <lastmod>2018-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -291,6 +291,10 @@
   
   <url>
     <loc>/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>/hoc-vien-tot-nghiep/</loc>
   </url>
   
   <url>

@@ -89,8 +89,27 @@ googleAnalytics = "UA-117458816-1"
 
 [[menu.main]]
     name = "Gallery"
-    url  = "/gallery/"
+    identifier = "gallery"
+    URL = "#"
     weight = 6
+
+[[menu.main]]
+    Name = "Học viên các khóa"
+    parent = "gallery"
+    url  = "/hoc-vien-tot-nghiep/"
+    Weight = 1
+
+[[menu.main]]
+    Name = "Hoạt động khác"
+    parent = "gallery"
+    url  = "/hoat-dong-khac/"
+    Weight = 2
+
+[[menu.main]]
+    name = "R cheatsheets"
+    parent = "material"
+    url  = "/cheatsheet/"
+    weight = 1
 
 [[menu.main]]
     name = "Liên hệ"
@@ -300,3 +319,9 @@ googleAnalytics = "UA-117458816-1"
       social = [
         ["fa-linkedin", "https://www.linkedin.com/in/duonglk/"]
       ]
+      
+      # Set ignore file
+      ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+      
+      
+      
