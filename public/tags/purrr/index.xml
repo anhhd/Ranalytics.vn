@@ -6,17 +6,17 @@
     <description>Recent content in Purrr on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/purrr/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Lập trình hàm với map</title>
-      <link>/blog/2019/04/18/2019-04-15-lap-trinh-ham-voi-map/</link>
-      <pubDate>Thu, 18 Apr 2019 00:00:00 +0000</pubDate>
+      <link>/blog/2019/04/15/2019-04-15-lap-trinh-ham-voi-map/</link>
+      <pubDate>Mon, 15 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2019/04/18/2019-04-15-lap-trinh-ham-voi-map/</guid>
+      <guid>/blog/2019/04/15/2019-04-15-lap-trinh-ham-voi-map/</guid>
       <description>Khi phân tích dữ liệu phức tạp, ta thường xuyên phải thực hiện một nhóm các phân tích tương tự nhau cho các nhóm dữ liệu khác nhau. Việc sử dụng các hàm làm đơn vị thao tác cơ bản và phối hợp các hàm với nhau được gọi là lập trình chức năng hàm (functional programming). Để đơn giản, ta xét ví dụ sau.
 Sử dụng tập dữ liệu iris, với mỗi nhóm của Species, xây dựng mô hình hồi quy giữa Sepal.</description>
     </item>
