@@ -6,19 +6,49 @@
     <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Lập trình hàm với map</title>
-      <link>/blog/2019/04/15/2019-04-15-lap-trinh-ham-voi-map/</link>
-      <pubDate>Mon, 15 Apr 2019 00:00:00 +0000</pubDate>
+      <title>Tạo biểu đồ cho mô hình với ggfortify</title>
+      <link>/blog/2019/04/20/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify/</link>
+      <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog/2019/04/15/2019-04-15-lap-trinh-ham-voi-map/</guid>
+      <guid>/blog/2019/04/20/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify/</guid>
+      <description>Khi xây dựng các mô hình đơn giản như hồi quy tuyến tính hoặc chuỗi thời gian ARIMA, các biểu đồ mặc định từ mô hình thường được vẽ với r-base. Do đó, các biểu đồ này thường không được đẹp mắt. Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn sử dụng package ggfortify để trực quan hóa kết quả từ các mô hình.
+ggfortify nằm trong hệ sinh thái của ggplot2.</description>
+    </item>
+    
+    <item>
+      <title>Lập trình hàm với map</title>
+      <link>/blog/2019/04/18/2019-04-15-lap-trinh-ham-voi-map/</link>
+      <pubDate>Thu, 18 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/04/18/2019-04-15-lap-trinh-ham-voi-map/</guid>
       <description>Khi phân tích dữ liệu phức tạp, ta thường xuyên phải thực hiện một nhóm các phân tích tương tự nhau cho các nhóm dữ liệu khác nhau. Việc sử dụng các hàm làm đơn vị thao tác cơ bản và phối hợp các hàm với nhau được gọi là lập trình chức năng hàm (functional programming). Để đơn giản, ta xét ví dụ sau.
 Sử dụng tập dữ liệu iris, với mỗi nhóm của Species, xây dựng mô hình hồi quy giữa Sepal.</description>
+    </item>
+    
+    <item>
+      <title>Thống kê dữ liệu theo dòng</title>
+      <link>/blog/2019/04/13/2019-04-13-thong-ke-theo-dong/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/04/13/2019-04-13-thong-ke-theo-dong/</guid>
+      <description>Thông thường trong quá trình phân tích dữ liệu chúng ta thống kê dữ liệu theo chiều (tức theo biến/cột) bằng việc sử dụng nhóm câu lệnh group_by() kết hợp summarise(). Tuy nhiên, đối với một số trường hợp chúng ta cần thống kê dữ liệu theo dòng.
+Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách sử dụng hàm rowSums(), rowMeans() để tính toán số tổng, trung bình theo từng quan sát (dòng).</description>
+    </item>
+    
+    <item>
+      <title>Thống kê dữ liệu theo dòng</title>
+      <link>/blog/2019/04/13/2019-04-18-thong-ke-theo-dong/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/04/13/2019-04-18-thong-ke-theo-dong/</guid>
+      <description>Thông thường trong quá trình phân tích dữ liệu chúng ta thống kê dữ liệu theo chiều (tức theo biến/cột) bằng việc sử dụng nhóm câu lệnh group_by() kết hợp summarise(). Tuy nhiên, đối với một số trường hợp chúng ta cần thống kê dữ liệu theo dòng.
+Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách sử dụng hàm rowSums(), rowMeans() để tính toán số tổng, trung bình theo từng quan sát (dòng).</description>
     </item>
     
     <item>
@@ -29,6 +59,16 @@ Sử dụng tập dữ liệu iris, với mỗi nhóm của Species, xây dựng
       <guid>/blog/2019/03/25/2019-03-25-dung-ham-summarise-all/</guid>
       <description>Trong quá trình phân tích dữ liệu sẽ có thể phát sinh việc chúng ta muốn summarise nhiều biến cùng lúc trong tập dữ liệu. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách sử dụng nhóm hàm summarise_if(), summarise_at(), summarise_all() để xử lý vấn đề trên.
 Về cơ bản, nhóm hàm trên sử dụng khi chúng ta muốn summarise nhiều biến cùng lúc, còn sự khác biệt của nhóm hàm trên là:</description>
+    </item>
+    
+    <item>
+      <title>Thống kê dữ liệu theo dòng</title>
+      <link>/blog/2019/03/20/2019-03-20-thong-ke-theo-dong/</link>
+      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/03/20/2019-03-20-thong-ke-theo-dong/</guid>
+      <description>Thông thường trong quá trình phân tích dữ liệu chúng ta thống kê dữ liệu theo chiều (tức theo biến/cột) bằng việc sử dụng nhóm câu lệnh group_by() kết hợp summarise(). Tuy nhiên, đối với một số trường hợp chúng ta cần thống kê dữ liệu theo dòng.
+Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách sử dụng hàm rowSums(), rowMeans() để tính toán số tổng, trung bình theo từng quan sát (dòng).</description>
     </item>
     
     <item>

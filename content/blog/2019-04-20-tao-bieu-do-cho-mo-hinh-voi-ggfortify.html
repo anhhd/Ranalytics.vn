@@ -1,0 +1,79 @@
+---
+title: "Tạo biểu đồ cho mô hình với ggfortify"
+author: "Hoàng Đức Anh"
+date: '2019-04-20'
+categories:
+  - data-vizualization
+tags:
+  - ggplot2
+summary: "Sử dụng ggfortify trong việc trực quan hóa kết quả mô hình"
+banner: "img/banners/banner-38.png"
+---
+
+
+
+<p>Khi xây dựng các mô hình đơn giản như hồi quy tuyến tính hoặc chuỗi thời gian ARIMA, các biểu đồ mặc định từ mô hình thường được vẽ với r-base. Do đó, các biểu đồ này thường không được đẹp mắt. Trong bài viết này, <code>RAnalytics</code> sẽ hướng dẫn các bạn sử dụng package <code>ggfortify</code> để trực quan hóa kết quả từ các mô hình.</p>
+<hr />
+<p><code>ggfortify</code> nằm trong hệ sinh thái của <code>ggplot2</code>. Package này có 2 hàm cơ bản:</p>
+<ul>
+<li><code>fortify</code>: Biến đổi một object ra data.frame</li>
+<li><code>autoplot</code>: Tự động biến object và vẽ biểu đồ với ggplot2</li>
+</ul>
+<pre class="r"><code>library(tidyverse)
+library(ggfortify)</code></pre>
+<hr />
+<div id="trong-mo-hinh-hi-quy-tuyn-tinh" class="section level2">
+<h2>Trong mô hình hồi quy tuyến tính</h2>
+<pre class="r"><code>model.full &lt;- lm(mpg ~ ., data = mtcars)  
+#Chọn mô hình tối ưu
+model.best &lt;- step(model.full, direction = &quot;both&quot;, trace = 0)</code></pre>
+<p>Ta có thể trực quan hóa các biểu đồ trong mô hình với câu lệnh <code>autoplot</code> như sau.</p>
+<pre class="r"><code>autoplot(model.best, ncol = 2) + 
+  theme_bw()</code></pre>
+<p><img src="/blog/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="mo-hinh-d-bao-vi-arima" class="section level2">
+<h2>Mô hình dự báo với ARIMA</h2>
+<p>Khi sử dụng <code>arima</code> xây dựng mô hình chuỗi thời gian, ta cũng có thể sử dụng <code>ggfortify</code> để trực quan hóa kết quả mô hình.</p>
+<pre class="r"><code># Dữ liệu AirPassengers
+AirPassengers</code></pre>
+<pre><code>##      Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+## 1949 112 118 132 129 121 135 148 148 136 119 104 118
+## 1950 115 126 141 135 125 149 170 170 158 133 114 140
+## 1951 145 150 178 163 172 178 199 199 184 162 146 166
+## 1952 171 180 193 181 183 218 230 242 209 191 172 194
+## 1953 196 196 236 235 229 243 264 272 237 211 180 201
+## 1954 204 188 235 227 234 264 302 293 259 229 203 229
+## 1955 242 233 267 269 270 315 364 347 312 274 237 278
+## 1956 284 277 317 313 318 374 413 405 355 306 271 306
+## 1957 315 301 356 348 355 422 465 467 404 347 305 336
+## 1958 340 318 362 348 363 435 491 505 404 359 310 337
+## 1959 360 342 406 396 420 472 548 559 463 407 362 405
+## 1960 417 391 419 461 472 535 622 606 508 461 390 432</code></pre>
+<pre class="r"><code>class(AirPassengers)</code></pre>
+<pre><code>## [1] &quot;ts&quot;</code></pre>
+<p>Dữ liệu <code>AirPassengers</code> là class chuỗi thời gian <code>ts</code>, ta có thể chuyển sang dạng dataframe với <code>fortify</code> như sau.</p>
+<pre class="r"><code>#fortify cho phép convert ra data.frame
+fortify(AirPassengers) %&gt;% head</code></pre>
+<pre><code>##        Index Data
+## 1 1949-01-01  112
+## 2 1949-02-01  118
+## 3 1949-03-01  132
+## 4 1949-04-01  129
+## 5 1949-05-01  121
+## 6 1949-06-01  135</code></pre>
+<pre class="r"><code>autoplot(AirPassengers, ts.colour = &quot;darkblue&quot;) + 
+  theme_minimal() +
+  labs(title = &quot;Air Passengers with ggfortify&quot;)</code></pre>
+<p><img src="/blog/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Khi xây dựng mô hình <code>arima</code>, hàm <code>autoplot</code> cho phép nhanh chóng trực quan hóa kết quả mô hình, bao gồm cả dữ liệu dự báo như sau.</p>
+<pre class="r"><code>library(forecast)
+d.arima &lt;- auto.arima(AirPassengers)
+d.forecast &lt;- forecast(d.arima, level = c(95), h = 50)
+autoplot(d.forecast) + 
+  theme_minimal() +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/blog/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách sử dụng <code>ggfortify</code> để trực quan hóa kết quả mô hình theo phong cách của <code>ggplot2</code>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>

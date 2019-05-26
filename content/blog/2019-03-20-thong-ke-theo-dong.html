@@ -1,0 +1,72 @@
+---
+title: "Thống kê dữ liệu theo dòng"
+author: "Nguyễn Hải Trường"
+date: '2019-03-20'
+categories:
+  - data-manipulation
+tags:
+  - dplyr
+summary: "Cách thống kê dữ liệu theo dòng trong R"
+banner: "img/banners/banner-37.png"
+---
+
+
+
+<p>Thông thường trong quá trình phân tích dữ liệu chúng ta thống kê dữ liệu theo chiều (tức theo biến/cột) bằng việc sử dụng nhóm câu lệnh <code>group_by()</code> kết hợp <code>summarise()</code>. Tuy nhiên, đối với một số trường hợp chúng ta cần thống kê dữ liệu theo dòng.</p>
+<p>Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách sử dụng hàm <code>rowSums()</code>, <code>rowMeans()</code> để tính toán số tổng, trung bình theo từng quan sát (dòng).</p>
+<hr />
+<p>Giả sử chúng ta sử dụng dữ liệu giả lập sau đây:</p>
+<pre class="r"><code>data &lt;- data.frame(
+  name = c(&quot;Viet&quot;, &quot;Nam&quot;, &quot;Hai&quot;, &quot;Phong&quot;, &quot;Hiep&quot;, &quot;Hoa&quot;),
+  maths = c(6,7,8,9,6,10),
+  english = c(7,8,9,6,8,9),
+  physics = c(10,8,8,7,6,9),
+  history = c(8,7,8,6,7,8)
+)
+
+data</code></pre>
+<pre><code>##    name maths english physics history
+## 1  Viet     6       7      10       8
+## 2   Nam     7       8       8       7
+## 3   Hai     8       9       8       8
+## 4 Phong     9       6       7       6
+## 5  Hiep     6       8       6       7
+## 6   Hoa    10       9       9       8</code></pre>
+<p>Dữ liệu bao gồm thông tin điểm thi cuối năm các môn: Toán, Tiếng Anh, Vật lý, Lịch sử của 6 học sinh cấp 3.</p>
+<p>Giả sử bây giờ chúng ta muốn tính tổng điểm và điểm trung bình các môn thi của từng học sinh trên.</p>
+<div id="rowsums" class="section level1">
+<h1>rowSums</h1>
+<p>Sử dụng hàm <code>rowSums()</code> để tính tổng điểm các môn thi của từng học sinh.</p>
+<pre class="r"><code>library(dplyr) 
+
+data1 &lt;- data %&gt;% 
+  # Tạo thêm cột mới `total` tính tổng điểm
+  mutate(total = rowSums(data %&gt;% select(-name)))
+
+data1</code></pre>
+<pre><code>##    name maths english physics history total
+## 1  Viet     6       7      10       8    31
+## 2   Nam     7       8       8       7    30
+## 3   Hai     8       9       8       8    33
+## 4 Phong     9       6       7       6    28
+## 5  Hiep     6       8       6       7    27
+## 6   Hoa    10       9       9       8    36</code></pre>
+</div>
+<div id="rowmeans" class="section level1">
+<h1>rowMeans</h1>
+<p>Sử dụng hàm <code>rowMeans()</code> để tính điểm trung bình các môn thi của từng học sinh.</p>
+<pre class="r"><code>data2 &lt;- data1 %&gt;% 
+  # Tạo thêm cột mới `mean` tính điểm trung bình các môn
+  mutate(mean = rowMeans(data %&gt;% select(-name)))
+
+data2</code></pre>
+<pre><code>##    name maths english physics history total mean
+## 1  Viet     6       7      10       8    31 7.75
+## 2   Nam     7       8       8       7    30 7.50
+## 3   Hai     8       9       8       8    33 8.25
+## 4 Phong     9       6       7       6    28 7.00
+## 5  Hiep     6       8       6       7    27 6.75
+## 6   Hoa    10       9       9       8    36 9.00</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách sử dụng hàm <code>rowSums()</code> và <code>rowMeans()</code> để tính toán số tổng và trung bình theo từng dòng (quan sát). Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>

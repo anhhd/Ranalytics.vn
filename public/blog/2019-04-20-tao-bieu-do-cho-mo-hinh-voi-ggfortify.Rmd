@@ -1,0 +1,86 @@
+---
+title: "Tạo biểu đồ cho mô hình với ggfortify"
+author: "Hoàng Đức Anh"
+date: '2019-04-20'
+categories:
+  - data-vizualization
+tags:
+  - ggplot2
+summary: "Sử dụng ggfortify trong việc trực quan hóa kết quả mô hình"
+banner: "img/banners/banner-38.png"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+Khi xây dựng các mô hình đơn giản như hồi quy tuyến tính hoặc chuỗi thời gian ARIMA, các biểu đồ mặc định từ mô hình thường được vẽ với r-base. Do đó, các biểu đồ này thường không được đẹp mắt. Trong bài viết này, `RAnalytics` sẽ hướng dẫn các bạn sử dụng package `ggfortify` để trực quan hóa kết quả từ các mô hình.
+
+---
+
+`ggfortify` nằm trong hệ sinh thái của `ggplot2`. Package này có 2 hàm cơ bản:
+
+- `fortify`: Biến đổi một object ra data.frame
+- `autoplot`: Tự động biến object và vẽ biểu đồ với ggplot2
+
+```{r}
+library(tidyverse)
+library(ggfortify)
+```
+
+---
+
+## Trong mô hình hồi quy tuyến tính
+
+```{r, warning = FALSE, message = FALSE}
+model.full <- lm(mpg ~ ., data = mtcars)  
+#Chọn mô hình tối ưu
+model.best <- step(model.full, direction = "both", trace = 0)
+```
+
+Ta có thể trực quan hóa các biểu đồ trong mô hình với câu lệnh `autoplot` như sau.
+
+```{r}
+autoplot(model.best, ncol = 2) + 
+  theme_bw()
+```
+
+## Mô hình dự báo với ARIMA
+
+Khi sử dụng `arima` xây dựng mô hình chuỗi thời gian, ta cũng có thể sử dụng `ggfortify` để trực quan hóa kết quả mô hình.
+
+
+```{r}
+# Dữ liệu AirPassengers
+AirPassengers
+class(AirPassengers)
+```
+
+Dữ liệu `AirPassengers` là class chuỗi thời gian `ts`, ta có thể chuyển sang dạng dataframe với `fortify` như sau.
+
+```{r}
+#fortify cho phép convert ra data.frame
+fortify(AirPassengers) %>% head
+```
+
+
+```{r}
+autoplot(AirPassengers, ts.colour = "darkblue") + 
+  theme_minimal() +
+  labs(title = "Air Passengers with ggfortify")
+```
+
+Khi xây dựng mô hình `arima`, hàm `autoplot` cho phép nhanh chóng trực quan hóa kết quả mô hình, bao gồm cả dữ liệu dự báo như sau.
+
+```{r, warning = FALSE, message = FALSE}
+library(forecast)
+d.arima <- auto.arima(AirPassengers)
+d.forecast <- forecast(d.arima, level = c(95), h = 50)
+autoplot(d.forecast) + 
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+---
+
+Như vậy, chúng ta đã vừa được học cách sử dụng `ggfortify` để trực quan hóa kết quả mô hình theo phong cách của `ggplot2`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!

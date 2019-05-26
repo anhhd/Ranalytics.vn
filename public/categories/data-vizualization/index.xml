@@ -6,10 +6,20 @@
     <description>Recent content in Data Vizualization on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-vizualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tạo biểu đồ cho mô hình với ggfortify</title>
+      <link>/blog/2019/04/20/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify/</link>
+      <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/04/20/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify/</guid>
+      <description>Khi xây dựng các mô hình đơn giản như hồi quy tuyến tính hoặc chuỗi thời gian ARIMA, các biểu đồ mặc định từ mô hình thường được vẽ với r-base. Do đó, các biểu đồ này thường không được đẹp mắt. Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn sử dụng package ggfortify để trực quan hóa kết quả từ các mô hình.
+ggfortify nằm trong hệ sinh thái của ggplot2.</description>
+    </item>
     
     <item>
       <title>Cách lưu biểu đồ dưới dạng ảnh</title>

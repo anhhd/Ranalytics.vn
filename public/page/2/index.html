@@ -742,29 +742,30 @@
                         <div class="top">
                             <div class="image" style="overflow:hidden">
                                 
-                                <img src="../../img/banners/banner-26.png" class="img-responsive" alt="" >
+                                <img src="../../img/banners/banner-30.png" class="img-responsive" alt="" >
                                 
                             </div>
                             <div class="bg"></div>
                             <div class="text">
                                 <p class="buttons">
-                                    <a href="../../blog/2018/12/30/2018-12-30-bien-doi-nhanh-voi-mutate/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Tìm hiểu thêm</a>
+                                    <a href="../../blog/2019/02/05/2019-02-05-su-dung-select-trong-dplyr/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Tìm hiểu thêm</a>
                                 </p>
                             </div>
                         </div>
 
                         <div class="content">
-                            <h4><a href="../../blog/2018/12/30/2018-12-30-bien-doi-nhanh-voi-mutate/">Biến đổi dữ liệu nhanh với mutate</a></h4>
+                            <h4><a href="../../blog/2019/02/05/2019-02-05-su-dung-select-trong-dplyr/">Sử dụng hàm select trong dplyr</a></h4>
                             <p class="author-category">
                             
                             Tác giả:  <a href="#">Nguyễn Hải Trường</a>
                             
-                             2018-12-30
+                             2019-02-05
                             </p>
-                            <p class="intro">Trong quá trình phân tích dữ liệu sẽ có thể phát sinh việc chúng ta muốn tạo thêm những biến mới - phái sinh từ những biến sẵn có trong dữ liệu. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách sử dụng hàm mutate() và nhóm hàm mutate_if(), mutate_at(), mutate_all() để thêm 1 hoặc nhiều biến vào tập dữ liệu.
-Sử dụng dữ liệu iris có sẵn trong R.</p>
+                            <p class="intro">Select thông thườngNhư các bạn đã biết để lấy dữ liệu theo biến (cột), thông thường chúng ta sẽ sử dụng hàm select() với cấu trúc như sau select(tên biến) hoặc select(số thứ tự của biến).
+Ví dụ sử dụng dữ liệu iris có sẵn trong R
+library(dplyr) # package sử dụng# Các biến có trong data irisiris %&gt;% names## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot; &quot;Petal.Length&quot; &quot;Petal.Width&quot; ## [5] &quot;Species&quot;Dữ liệu này có 5 biến với thứ tự lần lượt như trên.</p>
                             <p class="read-more">
-                              <a href="../../blog/2018/12/30/2018-12-30-bien-doi-nhanh-voi-mutate/" class="btn btn-template-main">Tìm hiểu thêm</a>
+                              <a href="../../blog/2019/02/05/2019-02-05-su-dung-select-trong-dplyr/" class="btn btn-template-main">Tìm hiểu thêm</a>
                             </p>
                         </div>
                     </div>
@@ -777,29 +778,28 @@ Sử dụng dữ liệu iris có sẵn trong R.</p>
                         <div class="top">
                             <div class="image" style="overflow:hidden">
                                 
-                                <img src="../../img/banners/banner-25.png" class="img-responsive" alt="" >
+                                <img src="../../img/banners/banner-29.png" class="img-responsive" alt="" >
                                 
                             </div>
                             <div class="bg"></div>
                             <div class="text">
                                 <p class="buttons">
-                                    <a href="../../blog/2018/12/20/2018-12-20-hien-thi-bang-hieu-qua-trong-rmarkdown/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Tìm hiểu thêm</a>
+                                    <a href="../../blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Tìm hiểu thêm</a>
                                 </p>
                             </div>
                         </div>
 
                         <div class="content">
-                            <h4><a href="../../blog/2018/12/20/2018-12-20-hien-thi-bang-hieu-qua-trong-rmarkdown/">Hiển thị bảng hiệu quả trong rmarkdown</a></h4>
+                            <h4><a href="../../blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/">Làm sạch môi trường làm việc hiệu quả trong R</a></h4>
                             <p class="author-category">
                             
                             Tác giả:  <a href="#">Hoàng Đức Anh</a>
                             
-                             2018-12-20
+                             2019-01-25
                             </p>
-                            <p class="intro">Khi phân tích dữ liệu, ta thường xuyên phải hiển thị dữ liệu dưới dạng bảng. Dữ liệu loại này có thể là dữ liệu chưa qua xử lý (dữ liệu thô) hoặc dữ liệu đã được tổng hợp và cần thể hiện để đơn vị kinh doanh có thể theo dõi.
-Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn hai cách thể hiện dữ liệu dạng bảng 1 cách hiệu quả trong rmarkdown với kable và DT::datatable</p>
+                            <p class="intro">Trong quá trình phân tích dữ liệu, ta thường xuyên phải tạo ra nhiều bảng tạm, biến đổi dữ liệu qua nhiều bước và cùng lúc làm việc với nhiều bảng khác nhau. Trong flow phân tích thông thường, ta sẽ phải tạo ra 1 bảng master chứa tất cả dữ liệu cần làm việc và phân tích dữ liệu từ trên tập dữ liệu đã được làm sạch đó.</p>
                             <p class="read-more">
-                              <a href="../../blog/2018/12/20/2018-12-20-hien-thi-bang-hieu-qua-trong-rmarkdown/" class="btn btn-template-main">Tìm hiểu thêm</a>
+                              <a href="../../blog/2019/01/25/2019-01-25-lam-sach-moi-truong-lam-viec-hieu-qua-trong-r/" class="btn btn-template-main">Tìm hiểu thêm</a>
                             </p>
                         </div>
                     </div>
@@ -812,28 +812,29 @@ Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn hai cách th�
                         <div class="top">
                             <div class="image" style="overflow:hidden">
                                 
-                                <img src="../../img/banners/banner-24.png" class="img-responsive" alt="" >
+                                <img src="../../img/banners/banner-28.png" class="img-responsive" alt="" >
                                 
                             </div>
                             <div class="bg"></div>
                             <div class="text">
                                 <p class="buttons">
-                                    <a href="../../blog/2018/12/10/2018-12-10-su-dung-case-when/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Tìm hiểu thêm</a>
+                                    <a href="../../blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Tìm hiểu thêm</a>
                                 </p>
                             </div>
                         </div>
 
                         <div class="content">
-                            <h4><a href="../../blog/2018/12/10/2018-12-10-su-dung-case-when/">Hướng dẫn sử dụng case_when trong dplyr</a></h4>
+                            <h4><a href="../../blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/">Xử lý dữ liệu missing</a></h4>
                             <p class="author-category">
                             
                             Tác giả:  <a href="#">Nguyễn Hải Trường</a>
                             
-                             2018-12-10
+                             2019-01-15
                             </p>
-                            <p class="intro">Thông thường trong quá trình phân tích dữ liệu, chúng ta sẽ gặp phải vấn đề liên quan đến chất lượng dữ liệu. Do vậy, việc trước tiên chúng ta cần phải làm đó là xử lý, làm sạch dữ liệu. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng một trong những hàm rất phổ biến và hữu dụng trong việc xử lý dữ liệu trong R - hàm case_when().</p>
+                            <p class="intro">Trong quá trình xử lý, làm sạch dữ liệu, chúng ta sẽ thường gặp phải vấn đề dữ liệu bị missing. Nguyên nhân có thể do dữ liệu không đầy đủ hoặc có sai sót trong quá trình nhập liệu… Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn một số mẹo để xử lý giá trị missing (missing values) trong R.
+Vậy, làm thế nào để xử lý missing values?</p>
                             <p class="read-more">
-                              <a href="../../blog/2018/12/10/2018-12-10-su-dung-case-when/" class="btn btn-template-main">Tìm hiểu thêm</a>
+                              <a href="../../blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/" class="btn btn-template-main">Tìm hiểu thêm</a>
                             </p>
                         </div>
                     </div>
@@ -846,28 +847,29 @@ Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn hai cách th�
                         <div class="top">
                             <div class="image" style="overflow:hidden">
                                 
-                                <img src="../../img/banners/banner-23.png" class="img-responsive" alt="" >
+                                <img src="../../img/banners/banner-27.png" class="img-responsive" alt="" >
                                 
                             </div>
                             <div class="bg"></div>
                             <div class="text">
                                 <p class="buttons">
-                                    <a href="../../blog/2018/11/30/2018-11-30-import_export-sas-spss-stata-voi-r/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Tìm hiểu thêm</a>
+                                    <a href="../../blog/2019/01/10/2019-01-10-ve-bieu-do-lollipop-voi-ggplot2/" class="btn btn-template-transparent-primary"><i class="fa fa-link"></i> Tìm hiểu thêm</a>
                                 </p>
                             </div>
                         </div>
 
                         <div class="content">
-                            <h4><a href="../../blog/2018/11/30/2018-11-30-import_export-sas-spss-stata-voi-r/">Import và Export dữ liệu SPSS, SAS, STATA vào R</a></h4>
+                            <h4><a href="../../blog/2019/01/10/2019-01-10-ve-bieu-do-lollipop-voi-ggplot2/">Vẽ biểu đồ lollipop chart</a></h4>
                             <p class="author-category">
                             
                             Tác giả:  <a href="#">Hoàng Đức Anh</a>
                             
-                             2018-11-30
+                             2019-01-10
                             </p>
-                            <p class="intro">Hiện nay, ngày càng nhiều các bạn dịch chuyển từ việc sử dụng Stata, SPSS hay SAS sang R. Tuy nhiên, khi chuyển sang công cụ mới, ta thường vẫn muốn tiếp tục sử dụng dữ liệu trên các phần mềm trước đây từng sử dụng. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách import và export dữ liệu từ SAS, SPSS hoặc Stata vào R.</p>
+                            <p class="intro">Trong trực quan hóa dữ liệu, lollipop chart tuy không phải là một trong những biểu đồ phổ biến nhưng lại rất hiệu quả khi muốn thể hiện sự dịch thay đổi của một chỉ số giữa hai điểm thời gian. Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn cách xây dựng biểu đồ lollipop chart với ggplot2.
+# Load librarylibrary(tidyverse)library(gapminder)Để xây dựng biểu đồ, ta sử dụng dữ liệu gapminder từ tập dữ liệu gapminder.</p>
                             <p class="read-more">
-                              <a href="../../blog/2018/11/30/2018-11-30-import_export-sas-spss-stata-voi-r/" class="btn btn-template-main">Tìm hiểu thêm</a>
+                              <a href="../../blog/2019/01/10/2019-01-10-ve-bieu-do-lollipop-voi-ggplot2/" class="btn btn-template-main">Tìm hiểu thêm</a>
                             </p>
                         </div>
                     </div>
@@ -919,40 +921,40 @@ Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn hai cách th�
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="../../blog/2019/04/15/2019-04-15-lap-trinh-ham-voi-map/">
+                        <a href="../../blog/2019/04/20/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify/">
+                          
+                            <img src="../../img/banners/banner-38.png" class="img-responsive" alt="">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../blog/2019/04/20/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify/">Tạo biểu đồ cho mô hình với ggfortify</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../blog/2019/04/18/2019-04-15-lap-trinh-ham-voi-map/">
                           
                             <img src="../../img/banners/banner-36.png" class="img-responsive" alt="">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="../../blog/2019/04/15/2019-04-15-lap-trinh-ham-voi-map/">Lập trình hàm với map</a></h5>
+                        <h5><a href="../../blog/2019/04/18/2019-04-15-lap-trinh-ham-voi-map/">Lập trình hàm với map</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="../../blog/2019/03/25/2019-03-25-dung-ham-summarise-all/">
+                        <a href="../../blog/2019/04/13/2019-04-13-thong-ke-theo-dong/">
                           
-                            <img src="../../img/banners/banner-35.png" class="img-responsive" alt="">
-                          
-                        </a>
-                    </div>
-                    <div class="name same-height-always">
-                        <h5><a href="../../blog/2019/03/25/2019-03-25-dung-ham-summarise-all/">Tổng hợp nhiều biến với hàm summarise</a></h5>
-                    </div>
-                </div>
-                
-                <div class="item same-height-row clearfix">
-                    <div class="image same-height-always">
-                        <a href="../../blog/2019/03/15/2019-03-15-cach-luu-plot-trong-r/">
-                          
-                            <img src="../../img/banners/banner-34.png" class="img-responsive" alt="">
+                            <img src="../../img/banners/banner-37.png" class="img-responsive" alt="">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="../../blog/2019/03/15/2019-03-15-cach-luu-plot-trong-r/">Cách lưu biểu đồ dưới dạng ảnh</a></h5>
+                        <h5><a href="../../blog/2019/04/13/2019-04-13-thong-ke-theo-dong/">Thống kê dữ liệu theo dòng</a></h5>
                     </div>
                 </div>
                 

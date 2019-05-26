@@ -1,7 +1,7 @@
 ---
 title: "Lập trình hàm với map"
 author: "Hoàng Đức Anh"
-date: '2019-04-15'
+date: '2019-04-18'
 categories:
   - data-manipulation
 tags:
@@ -140,4 +140,4 @@ map2(replicate(3, iris, simplify = F),
 ```
 ---
 
-Như vậy, chúng ta đã ừav được học cách sử dụng nhóm hàm `map` cơ bản với `purrr`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!
+Như vậy, chúng ta đã vừa được học cách sử dụng nhóm hàm `map` cơ bản với `purrr`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!
