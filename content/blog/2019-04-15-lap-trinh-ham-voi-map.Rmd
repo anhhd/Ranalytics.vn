@@ -1,0 +1,143 @@
+---
+title: "Lập trình hàm với map"
+author: "Hoàng Đức Anh"
+date: '2019-04-15'
+categories:
+  - data-manipulation
+tags:
+  - purrr
+summary: "Sử dụng hàm map trong purr"
+banner: "img/banners/banner-36.png"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+Khi phân tích dữ liệu phức tạp, ta thường xuyên phải thực hiện một nhóm các phân tích tương tự nhau cho các nhóm dữ liệu khác nhau. Việc sử dụng các hàm làm đơn vị thao tác cơ bản và phối hợp các hàm với nhau được gọi là lập trình chức năng hàm (functional programming). Để đơn giản, ta xét ví dụ sau.
+
+Sử dụng tập dữ liệu `iris`, với mỗi nhóm của `Species`, xây dựng mô hình hồi quy giữa `Sepal.Length` và `Petal.Length`, so sánh giá trị `r.squared` giữa các mô hình.
+
+Với cách làm thông thường, ta sẽ phải thức hiện theo thứ tự sau:
+
+- Tạo các data.frame cho từng giá trị của Species
+- Với mỗi data.frame vừa tạo, xây dựng mô hình `lm`
+- Với mỗi mô hình vừa tạo, chiết xuất giá trị `r.squared` và lưu vào một data.frame
+
+Cách triển khai trên có thể sử dụng vòng lặp trong R với phương án như sau
+
+```{r}
+library(dplyr)
+library(purrr)
+
+category <- iris$Species %>% levels %>% as.character()
+model_result <- data.frame()
+for (i in category){
+  df <- iris %>% filter(Species == i)
+  model <- lm(Sepal.Length ~ Sepal.Width, data = df)
+  model_summary <- summary(model)
+  df_temp <- data.frame(species = i,
+                        r.square = model_summary$r.squared)
+  model_result <- bind_rows(model_result, df_temp)
+}
+```
+
+Tuy nhiên, với lập trình chức năng hàm, ta có thể làm rất đơn giản như sau.
+
+```{r}
+library(purrr)
+iris %>% 
+  split(.$Species) %>% 
+  map(~lm(Sepal.Length ~ Sepal.Width, data = .)) %>% 
+  map(summary) %>% 
+  map_dbl("r.squared")
+```
+
+Trong bài viết này, chúng ta sẽ tìm hiểu các cách thức cơ bản lập trình chức năng hàm cơ bản với `map` qua package `purrr`. Việc nắm vững kiến thức và kỹ năng lập trình hàm có rất nhiều ứng dụng trong công việc phân tích, giúp giảm thiểu rất lớn thời gian phân tích, làm cho quá trình phân tích mạch lạc hơn rất nhiều trong các bài toán khám phá dữ liệu
+
+---
+
+Công thức tổng quát của nhóm hàm map
+
+```{r, eval = F}
+map(.x, .f, ...)
+```
+
+**Giải thích**: Với mỗi giá trị của `.x`, thực hiện `.f`. Trong đó, x là một list.
+
+Hàm map làm hàm tổng quát, ngoài ra, `map` còn có các biến thể chính sau
+
+| Câu lênh | Kết quả |
+|---------|----------|
+| map | list |
+| map_dbl | vector dạng double|
+| map_int | vector dạng int |
+| map_chr | vector dạng character |
+| map_df | data.frame|
+
+```{r}
+# Dạng list
+iris %>% map(class)
+# Dạng char
+iris %>% map_chr(class)
+# Dạng data.frame
+iris %>% map_df(class)
+```
+
+**Map theo điều kiện với `map_if` và `map_at`**
+
+Tương tự với `map`, nhóm `map_if` và `map_at` cho phép tính toán theo điều kiện hoặc vị trí của list. Xem ví dụ sau.
+
+```{r}
+# map_if
+iris %>% 
+  map_if(is.numeric, as.character) %>% 
+  as.data.frame %>% 
+  str
+# map_at
+iris %>% 
+  map_at(c(1,2), as.character) %>% 
+  str
+```
+
+---
+
+**Lưu ý**: Với trường hợp có hai biến đầu vào, có thể sử dụng nhóm hàm `map2`. Ví dụ
+
+```{r, eval = F}
+# Không chạy
+map_dbl(1:3, 4:6, sum)
+```
+
+```{r}
+map2_dbl(1:3, 4:6, sum)
+```
+
+Với các trường hợp phức tạp, ta cần vận dụng linh hoạt.
+
+**Ví dụ**: Với mỗi dòng trong iris , tách thành dataframe riêng và xoay chiều dữ liêu. Tên các cột trở thành biến `attribute`, giá trị các cột trở thành biến `value`.
+
+```{r}
+library(tidyverse)
+get_data <- function(data, i){
+ df <- data %>% 
+    slice(i) %>% t %>% 
+    as.data.frame
+ result <- data.frame(attribute = rownames(df),
+                      value = df[,1])
+ rownames(result) <- NULL
+ return(result)
+}
+
+get_data(mtcars, 3)
+get_data(iris, 1)
+```
+
+```{r}
+map2(replicate(3, iris, simplify = F),
+     c(1:3), get_data)
+
+```
+---
+
+Như vậy, chúng ta đã ừav được học cách sử dụng nhóm hàm `map` cơ bản với `purrr`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!

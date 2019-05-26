@@ -320,8 +320,8 @@ googleAnalytics = "UA-117458816-1"
         ["fa-linkedin", "https://www.linkedin.com/in/duonglk/"]
       ]
       
-      # Set ignore file
-      ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+# Set ignore file
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
       
       
       
