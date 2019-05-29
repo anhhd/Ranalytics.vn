@@ -32,16 +32,6 @@ Về cơ bản, nhóm hàm trên sử dụng khi chúng ta muốn summarise nhi�
     </item>
     
     <item>
-      <title>Thống kê dữ liệu theo dòng</title>
-      <link>/blog/2019/03/20/2019-03-20-thong-ke-theo-dong/</link>
-      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2019/03/20/2019-03-20-thong-ke-theo-dong/</guid>
-      <description>Thông thường trong quá trình phân tích dữ liệu chúng ta thống kê dữ liệu theo chiều (tức theo biến/cột) bằng việc sử dụng nhóm câu lệnh group_by() kết hợp summarise(). Tuy nhiên, đối với một số trường hợp chúng ta cần thống kê dữ liệu theo dòng.
-Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách sử dụng hàm rowSums(), rowMeans() để tính toán số tổng, trung bình theo từng quan sát (dòng).</description>
-    </item>
-    
-    <item>
       <title>Cách ghép các bảng dữ liệu với JOIN</title>
       <link>/blog/2019/03/05/2019-03-05-cach-su-dung-join/</link>
       <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>

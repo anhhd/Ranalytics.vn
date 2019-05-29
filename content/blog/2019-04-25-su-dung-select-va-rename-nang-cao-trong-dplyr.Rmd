@@ -1,0 +1,90 @@
+---
+title: "Sử dụng hàm select và rename nâng cao trong dplyr"
+author: "Nguyen Hai Truong"
+date: "2019-04-25"
+summary: "Sử dụng hàm select và rename nâng cao trong dplyr"
+banner: "img/banners/banner-39.png"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+Trong quá trình phân tích dữ liệu, chúng ta có thể phải xử lý những dữ liệu rất lớn lên đến hàng chục triệu dòng (quan sát) hoặc hàng trăm cột (biến).
+
+Trong bài viết này, `Ranalytics` sẽ hướng dẫn các bạn cách chọn và sửa tên biến nhanh đối với trường hợp dữ liệu lớn nói trên bằng việc sử dụng các hàm `select_all`, `select_if`, `select_at`, `rename_all`, `rename_if`, `rename_at`.
+
+---
+
+Sử dụng dữ liệu `iris` có sẵn trong `R`.
+
+```{r}
+library(dplyr)
+iris %>% head
+```
+
+
+Về bản chất, hàm `select()` dùng để chọn biến, còn hàm `rename()` dùng để sửa/thay đổi tên biến.
+
+Do vậy, về cơ bản nhóm hàm `select_all`, `select_if`, `select_at` sẽ khác nhóm hàm `rename_all`, `rename_if`, `rename_at` ở điểm: Nhóm hàm `select_*` sẽ bỏ đi những biến mà ko được chọn trong khi nhóm hàm `rename_*` vẫn giữ những biến đó lại và chỉ sửa tên những biến cần sửa.
+
+# select_all & rename_all
+
+```{r}
+# Chọn tất cả các biến, sau đó lower tên biến
+select_all(iris, tolower) %>% head
+
+# Sửa tên tất cả các biến thành chữ viết thường
+rename_all(iris, tolower) %>% head
+```
+
+`select_all` và `rename_all` cho ra kết quả giống nhau vì áp dụng đối với tất cả các biến trong dữ liệu.
+
+# select_if & rename_if
+
+```{r}
+# Chỉ chọn ra những biến là số (numeric), sau đó lower tên biến
+select_if(iris, is.numeric, tolower) %>% head
+
+# Sửa tên biến của những biến là số thành chữ viết thường,
+# còn những biến khác vẫn giữ nguyên tên
+rename_if(iris, is.numeric, tolower) %>% head
+```
+
+Trong trường hợp này, chúng ta đã thấy có sự khác biệt trong kết quả của 2 câu lệnh trên.
+
+- `select_if`: Chỉ lấy ra 4 biến là biến số, sau đó lower tên biến (không lấy biến `Species`)
+
+- `rename_if`: Vẫn hiển thị tất cả các biến, nhưng chỉ sửa tên của 4 biến là biến số, còn biến `Species` không sửa
+
+# select_at & rename_at
+
+```{r}
+# Chỉ chọn ra những biến chứa ký tự `Sepal`, sau đó tolower tên biến
+select_at(iris, 
+          vars(contains("Sepal")), # biến chứa ký tự `Sepal`
+          tolower
+          ) %>% 
+  head
+
+# Sửa tên của những biến chứa ký tự `Sepal` thành chữ viết thường,
+# còn những biến khác vẫn giữ nguyên tên
+rename_at(iris, 
+          vars(contains("Sepal")),
+          tolower
+          ) %>% 
+  head
+
+```
+
+Tương tự như trường hợp trước, trường hợp này kết quả trả ra cũng có sự khác biệt giữa 2 câu lệnh:
+
+- `select_at`: Chỉ lấy ra 2 biến có chứa ký tự `Sepal`, sau đó lower tên biến
+
+- `rename_at`: Vẫn hiển thị tất cả các biến, nhưng chỉ sửa tên của 2 biến chứa ký tự `Sepal`, còn các biến còn lại không sửa tên
+
+---
+
+Như vậy, chúng ta đã vừa được học cách chọn và sửa tên biến nhanh bằng việc sử dụng nhóm hàm `select_all`, `select_if`, `select_at` và nhóm hàm `rename_all`, `rename_if`, `rename_at` trong `dplyr`. 
+
+Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!

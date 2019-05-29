@@ -1,0 +1,112 @@
+---
+title: "Sử dụng hàm select và rename nâng cao trong dplyr"
+author: "Nguyen Hai Truong"
+date: "2019-04-25"
+summary: "Sử dụng hàm select và rename nâng cao trong dplyr"
+banner: "img/banners/banner-39.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu, chúng ta có thể phải xử lý những dữ liệu rất lớn lên đến hàng chục triệu dòng (quan sát) hoặc hàng trăm cột (biến).</p>
+<p>Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách chọn và sửa tên biến nhanh đối với trường hợp dữ liệu lớn nói trên bằng việc sử dụng các hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code>, <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code>.</p>
+<hr />
+<p>Sử dụng dữ liệu <code>iris</code> có sẵn trong <code>R</code>.</p>
+<pre class="r"><code>library(dplyr)
+iris %&gt;% head</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Về bản chất, hàm <code>select()</code> dùng để chọn biến, còn hàm <code>rename()</code> dùng để sửa/thay đổi tên biến.</p>
+<p>Do vậy, về cơ bản nhóm hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code> sẽ khác nhóm hàm <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code> ở điểm: Nhóm hàm <code>select_*</code> sẽ bỏ đi những biến mà ko được chọn trong khi nhóm hàm <code>rename_*</code> vẫn giữ những biến đó lại và chỉ sửa tên những biến cần sửa.</p>
+<div id="select_all-rename_all" class="section level1">
+<h1>select_all &amp; rename_all</h1>
+<pre class="r"><code># Chọn tất cả các biến, sau đó lower tên biến
+select_all(iris, tolower) %&gt;% head</code></pre>
+<pre><code>##   sepal.length sepal.width petal.length petal.width species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code># Sửa tên tất cả các biến thành chữ viết thường
+rename_all(iris, tolower) %&gt;% head</code></pre>
+<pre><code>##   sepal.length sepal.width petal.length petal.width species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p><code>select_all</code> và <code>rename_all</code> cho ra kết quả giống nhau vì áp dụng đối với tất cả các biến trong dữ liệu.</p>
+</div>
+<div id="select_if-rename_if" class="section level1">
+<h1>select_if &amp; rename_if</h1>
+<pre class="r"><code># Chỉ chọn ra những biến là số (numeric), sau đó lower tên biến
+select_if(iris, is.numeric, tolower) %&gt;% head</code></pre>
+<pre><code>##   sepal.length sepal.width petal.length petal.width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4</code></pre>
+<pre class="r"><code># Sửa tên biến của những biến là số thành chữ viết thường,
+# còn những biến khác vẫn giữ nguyên tên
+rename_if(iris, is.numeric, tolower) %&gt;% head</code></pre>
+<pre><code>##   sepal.length sepal.width petal.length petal.width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Trong trường hợp này, chúng ta đã thấy có sự khác biệt trong kết quả của 2 câu lệnh trên.</p>
+<ul>
+<li><p><code>select_if</code>: Chỉ lấy ra 4 biến là biến số, sau đó lower tên biến (không lấy biến <code>Species</code>)</p></li>
+<li><p><code>rename_if</code>: Vẫn hiển thị tất cả các biến, nhưng chỉ sửa tên của 4 biến là biến số, còn biến <code>Species</code> không sửa</p></li>
+</ul>
+</div>
+<div id="select_at-rename_at" class="section level1">
+<h1>select_at &amp; rename_at</h1>
+<pre class="r"><code># Chỉ chọn ra những biến chứa ký tự `Sepal`, sau đó tolower tên biến
+select_at(iris, 
+          vars(contains(&quot;Sepal&quot;)), # biến chứa ký tự `Sepal`
+          tolower
+          ) %&gt;% 
+  head</code></pre>
+<pre><code>##   sepal.length sepal.width
+## 1          5.1         3.5
+## 2          4.9         3.0
+## 3          4.7         3.2
+## 4          4.6         3.1
+## 5          5.0         3.6
+## 6          5.4         3.9</code></pre>
+<pre class="r"><code># Sửa tên của những biến chứa ký tự `Sepal` thành chữ viết thường,
+# còn những biến khác vẫn giữ nguyên tên
+rename_at(iris, 
+          vars(contains(&quot;Sepal&quot;)),
+          tolower
+          ) %&gt;% 
+  head</code></pre>
+<pre><code>##   sepal.length sepal.width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Tương tự như trường hợp trước, trường hợp này kết quả trả ra cũng có sự khác biệt giữa 2 câu lệnh:</p>
+<ul>
+<li><p><code>select_at</code>: Chỉ lấy ra 2 biến có chứa ký tự <code>Sepal</code>, sau đó lower tên biến</p></li>
+<li><p><code>rename_at</code>: Vẫn hiển thị tất cả các biến, nhưng chỉ sửa tên của 2 biến chứa ký tự <code>Sepal</code>, còn các biến còn lại không sửa tên</p></li>
+</ul>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách chọn và sửa tên biến nhanh bằng việc sử dụng nhóm hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code> và nhóm hàm <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code> trong <code>dplyr</code>.</p>
+<p>Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>

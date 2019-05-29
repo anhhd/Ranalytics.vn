@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/blog/2019/04/20/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <loc>/blog/2019/04/25/2019-04-25-su-dung-select-va-rename-nang-cao-trong-dplyr/</loc>
+    <lastmod>2019-04-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/2019/04/25/2019-04-20-tao-bieu-do-cho-mo-hinh-voi-ggfortify/</loc>
+    <lastmod>2019-04-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -20,11 +25,6 @@
   <url>
     <loc>/blog/2019/03/25/2019-03-25-dung-ham-summarise-all/</loc>
     <lastmod>2019-03-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/blog/2019/03/20/2019-03-20-thong-ke-theo-dong/</loc>
-    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -194,7 +194,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -241,7 +241,7 @@
   
   <url>
     <loc>/categories/data-manipulation/</loc>
-    <lastmod>2019-04-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -259,7 +259,7 @@
   
   <url>
     <loc>/categories/data-vizualization/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -295,7 +295,7 @@
   
   <url>
     <loc>/tags/ggplot2/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -337,7 +337,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

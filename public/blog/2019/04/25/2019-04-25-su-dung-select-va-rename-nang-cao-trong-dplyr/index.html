@@ -34,7 +34,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Import và Export dữ liệu từ Excel vào R</title>
+  <title>Sử dụng hàm select và rename nâng cao trong dplyr</title>
   <meta name="author" content="" />
 
   
@@ -84,9 +84,9 @@
   <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Import và Export dữ liệu từ Excel vào R" />
+  <meta property="og:title" content="Sử dụng hàm select và rename nâng cao trong dplyr" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2018/11/20/2018-11-20-import_export-excel_voi_r//" />
+  <meta property="og:url" content="/blog/2019/04/25/2019-04-25-su-dung-select-va-rename-nang-cao-trong-dplyr//" />
   <meta property="og:image" content="img/logo.png" />
 
   <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
@@ -109,9 +109,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="../../../../../">
-                    <img src="../../../../../img/logo.png" alt="Import và Export dữ liệu từ Excel vào R logo" class="hidden-xs hidden-sm">
-                    <img src="../../../../../img/logo-small.png" alt="Import và Export dữ liệu từ Excel vào R logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Import và Export dữ liệu từ Excel vào R - Về trang chủ</span>
+                    <img src="../../../../../img/logo.png" alt="Sử dụng hàm select và rename nâng cao trong dplyr logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Sử dụng hàm select và rename nâng cao trong dplyr logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Sử dụng hàm select và rename nâng cao trong dplyr - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -220,7 +220,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Import và Export dữ liệu từ Excel vào R</h1>
+                <h1>Sử dụng hàm select và rename nâng cao trong dplyr</h1>
             </div>
         </div>
     </div>
@@ -236,34 +236,18 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Nguyễn Hải Trường</a> | 2018-11-20</p>
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Nguyen Hai Truong</a> | 2019-04-25</p>
 
                         <div id="post-content">
                           
 
 
-<p>Để có thể thực hiện phân tích dữ liệu, trước tiên chúng ta cần phải có dữ liệu, mà dữ liệu có thể có từ nhiều nguồn khác nhau và được lưu trữ dưới các định dạng file khác nhau như <code>.txt</code>, <code>.csv</code>, <code>.xlsx</code>, hay database… Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách import và export dữ liệu từ file Excel vào <code>R</code>.</p>
-<div id="excel-to-r" class="section level1">
-<h1>Excel to R</h1>
-<p>Để import file Excel vào <code>R</code>, chúng ta có thể sử dụng package <code>readxl</code>.</p>
-<pre class="r"><code>library(readxl)
-library(dplyr)</code></pre>
-<p>Giả sử, chúng ta đang có 1 file Excel <code>datasets.xlsx</code> có sẵn trong thư mục package <code>readxl</code> trong đường dẫn sau:</p>
-<pre class="r"><code>path &lt;- readxl_example(&quot;datasets.xlsx&quot;)
-path</code></pre>
-<pre><code>## [1] &quot;E:/Rlibrary/readxl/extdata/datasets.xlsx&quot;</code></pre>
+<p>Trong quá trình phân tích dữ liệu, chúng ta có thể phải xử lý những dữ liệu rất lớn lên đến hàng chục triệu dòng (quan sát) hoặc hàng trăm cột (biến).</p>
+<p>Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách chọn và sửa tên biến nhanh đối với trường hợp dữ liệu lớn nói trên bằng việc sử dụng các hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code>, <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code>.</p>
 <hr />
-<p><img src="../../../../../img/blog/20181120_excel_file_datasets.gif" /></p>
-<hr />
-<p>File Excel <code>datasets.xlsx</code> có 4 sheets: <code>iris</code>, <code>mtcars</code>, <code>chickwts</code>, <code>quakes</code>.</p>
-<p>Bây giờ để import dữ liệu <code>iris</code> (sheet đầu tiên trong file Excel này) vào <code>R</code>, chúng ta sẽ sử dụng hàm <code>read_excel()</code> với câu lệnh như sau:</p>
-<pre class="r"><code>iris &lt;- read_excel(path, # đường dẫn
-                   sheet = 1 # số thứ tự sheet
-                   )
-
-iris %&gt;% 
-  as.data.frame %&gt;% 
-  head</code></pre>
+<p>Sử dụng dữ liệu <code>iris</code> có sẵn trong <code>R</code>.</p>
+<pre class="r"><code>library(dplyr)
+iris %&gt;% head</code></pre>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 1          5.1         3.5          1.4         0.2  setosa
 ## 2          4.9         3.0          1.4         0.2  setosa
@@ -271,55 +255,94 @@ iris %&gt;%
 ## 4          4.6         3.1          1.5         0.2  setosa
 ## 5          5.0         3.6          1.4         0.2  setosa
 ## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<p>Tương tự như vậy, nếu chúng ta muốn import dữ liệu <code>mtcars</code> (sheet thứ 2 trong file Excel) vào <code>R</code>, chúng ta chỉ cần chọn option <code>sheet = 2</code>.</p>
-<pre class="r"><code>mtcars &lt;- read_excel(path, # đường dẫn
-                     sheet = 2 # số thứ tự sheet
-                     )
-
-mtcars %&gt;% 
-  as.data.frame %&gt;% 
-  head</code></pre>
-<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-## 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-## 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-## 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-## 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-<p>Như vậy, để import dữ liệu của tất cả các sheet trong file Excel vào <code>R</code>, chúng ta có thể import từng sheet trong file Excel đó vào <code>R</code> bằng việc sử dụng câu lệnh ở trên. Tuy nhiên, việc làm “manual” đó chỉ thích hợp với trường hợp file Excel chỉ gồm 1 vài sheet, còn đối với những trường hợp file Excel bao gồm cả hàng chục hoặc hàng trăm sheet thì chúng ta cần một giải pháp khác thông minh hơn để xử lý vấn đề trên.</p>
-<p>Để giải quyết vấn đề trên, chúng ta có thể dùng cách sau:</p>
-<pre class="r"><code>library(openxlsx) # package cần dùng
-wb_obj &lt;- loadWorkbook(path) # thống kê những sheets có trong file excel
-sheet_names &lt;- sheets(wb_obj) # tên của các sheets
-for (i in 1:length(sheet_names)) {
-  
-  # Đối với lần lượt từng sheet trong file excel, câu lệnh sẽ import thành 1 data frame trong R với tên tương ứng theo từng sheet
-  assign(sheet_names[i], readWorkbook(wb_obj, sheet = i))
-  
-}</code></pre>
-<hr />
-<p><img src="../../../../../img/blog/20181120_import_all_excel_sheets_into_r.gif" /></p>
-<hr />
-<p>Kết quả: Tất cả các sheet trong file Excel sẽ được import vào <code>R</code> thành các data frame tương ứng (trong Global Environment).</p>
+<p>Về bản chất, hàm <code>select()</code> dùng để chọn biến, còn hàm <code>rename()</code> dùng để sửa/thay đổi tên biến.</p>
+<p>Do vậy, về cơ bản nhóm hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code> sẽ khác nhóm hàm <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code> ở điểm: Nhóm hàm <code>select_*</code> sẽ bỏ đi những biến mà ko được chọn trong khi nhóm hàm <code>rename_*</code> vẫn giữ những biến đó lại và chỉ sửa tên những biến cần sửa.</p>
+<div id="select_all-rename_all" class="section level1">
+<h1>select_all &amp; rename_all</h1>
+<pre class="r"><code># Chọn tất cả các biến, sau đó lower tên biến
+select_all(iris, tolower) %&gt;% head</code></pre>
+<pre><code>##   sepal.length sepal.width petal.length petal.width species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code># Sửa tên tất cả các biến thành chữ viết thường
+rename_all(iris, tolower) %&gt;% head</code></pre>
+<pre><code>##   sepal.length sepal.width petal.length petal.width species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p><code>select_all</code> và <code>rename_all</code> cho ra kết quả giống nhau vì áp dụng đối với tất cả các biến trong dữ liệu.</p>
 </div>
-<div id="r-to-excel" class="section level1">
-<h1>R to Excel</h1>
-<p>Như vậy, chúng ta đã biết làm thế nào để import dữ liệu từ file Excel vào <code>R</code>. Câu hỏi đặt ra lúc này là: Vậy làm thế nào để export dữ liệu từ <code>R</code> ra file Excel?</p>
-<p>Câu trả lời là: Dùng hàm <code>write.xlsx()</code> trong package <code>xlsx</code>.</p>
-<pre class="r"><code>library(xlsx)
-write.xlsx(iris, # tên data 
-           file = paste0(getwd(),&quot;/&quot;,&quot;iris_data.xlsx&quot;), # đường dẫn
-           row.names = F
-           )</code></pre>
+<div id="select_if-rename_if" class="section level1">
+<h1>select_if &amp; rename_if</h1>
+<pre class="r"><code># Chỉ chọn ra những biến là số (numeric), sau đó lower tên biến
+select_if(iris, is.numeric, tolower) %&gt;% head</code></pre>
+<pre><code>##   sepal.length sepal.width petal.length petal.width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4</code></pre>
+<pre class="r"><code># Sửa tên biến của những biến là số thành chữ viết thường,
+# còn những biến khác vẫn giữ nguyên tên
+rename_if(iris, is.numeric, tolower) %&gt;% head</code></pre>
+<pre><code>##   sepal.length sepal.width petal.length petal.width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Trong trường hợp này, chúng ta đã thấy có sự khác biệt trong kết quả của 2 câu lệnh trên.</p>
+<ul>
+<li><p><code>select_if</code>: Chỉ lấy ra 4 biến là biến số, sau đó lower tên biến (không lấy biến <code>Species</code>)</p></li>
+<li><p><code>rename_if</code>: Vẫn hiển thị tất cả các biến, nhưng chỉ sửa tên của 4 biến là biến số, còn biến <code>Species</code> không sửa</p></li>
+</ul>
+</div>
+<div id="select_at-rename_at" class="section level1">
+<h1>select_at &amp; rename_at</h1>
+<pre class="r"><code># Chỉ chọn ra những biến chứa ký tự `Sepal`, sau đó tolower tên biến
+select_at(iris, 
+          vars(contains(&quot;Sepal&quot;)), # biến chứa ký tự `Sepal`
+          tolower
+          ) %&gt;% 
+  head</code></pre>
+<pre><code>##   sepal.length sepal.width
+## 1          5.1         3.5
+## 2          4.9         3.0
+## 3          4.7         3.2
+## 4          4.6         3.1
+## 5          5.0         3.6
+## 6          5.4         3.9</code></pre>
+<pre class="r"><code># Sửa tên của những biến chứa ký tự `Sepal` thành chữ viết thường,
+# còn những biến khác vẫn giữ nguyên tên
+rename_at(iris, 
+          vars(contains(&quot;Sepal&quot;)),
+          tolower
+          ) %&gt;% 
+  head</code></pre>
+<pre><code>##   sepal.length sepal.width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Tương tự như trường hợp trước, trường hợp này kết quả trả ra cũng có sự khác biệt giữa 2 câu lệnh:</p>
+<ul>
+<li><p><code>select_at</code>: Chỉ lấy ra 2 biến có chứa ký tự <code>Sepal</code>, sau đó lower tên biến</p></li>
+<li><p><code>rename_at</code>: Vẫn hiển thị tất cả các biến, nhưng chỉ sửa tên của 2 biến chứa ký tự <code>Sepal</code>, còn các biến còn lại không sửa tên</p></li>
+</ul>
 <hr />
-<p><img src="../../../../../img/blog/20181120_export_r_to_excel.gif" /></p>
-<p>Tuy nhiên, với cách sử dụng <code>xlsx</code>, máy tính đòi hỏi phải cài đặt Java. Do đó, hiện này có một cách thuận tiện hơn, đó là sử dụng package <code>writexl</code></p>
-<pre class="r"><code>library(writexl)
-writexl::write_xlsx(iris, path = &quot;./iris_data.xlsx&quot;)</code></pre>
-<hr />
-<p>Kết quả: Dữ liệu <code>iris</code> đã được export từ <code>R</code> sang Excel (file <code>iris_data.xlsx</code>).</p>
-<p>Như vậy, chúng ta đã vừa được học cách import và export dữ liệu từ Excel vào <code>R</code>.
-Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+<p>Như vậy, chúng ta đã vừa được học cách chọn và sửa tên biến nhanh bằng việc sử dụng nhóm hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code> và nhóm hàm <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code> trong <code>dplyr</code>.</p>
+<p>Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
 </div>
 
                         </div>

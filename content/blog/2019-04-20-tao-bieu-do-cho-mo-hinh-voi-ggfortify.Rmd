@@ -1,9 +1,9 @@
 ---
 title: "Tạo biểu đồ cho mô hình với ggfortify"
 author: "Hoàng Đức Anh"
-date: '2019-04-20'
+date: '2019-04-25'
 categories:
-  - data-vizualization
+  - data-manipulation
 tags:
   - ggplot2
 summary: "Sử dụng ggfortify trong việc trực quan hóa kết quả mô hình"
