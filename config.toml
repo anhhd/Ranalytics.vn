@@ -256,17 +256,19 @@ googleAnalytics = "UA-117458816-1"
     link_text = "Xem ngay"
 
 [params.clients]
-    enable = false
+    enable = true
     # All clients are defined in their own files. You can find example items
     # at 'exampleSite/data/clients'.
     # For more informtion take a look at the README.
-    title = "Tài liệu"
-    subtitle = ""
+    title = "Học viên"
+    subtitle = "Học viên từ các tổ chức sau đã tham gia khóa học phân tích dữ liệu với RAnalytics"
+    weight = 98
 
 [params.recent_posts]
     enable = true
     title = "Các bài viết gần đây"
     subtitle = ""
+    weight = 99
 
 [params.see_more_2]
     enable = true
