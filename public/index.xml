@@ -6,10 +6,20 @@
     <description>Recent content on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Biến đổi dữ liệu nâng cao trong purrr</title>
+      <link>/blog/2019/05/05/2019-05-05-bien-doi-du-lieu-nang-cao-voi-modify-trong-purrr/</link>
+      <pubDate>Sun, 05 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/05/05/2019-05-05-bien-doi-du-lieu-nang-cao-voi-modify-trong-purrr/</guid>
+      <description>Bài viết này tiếp nối series về ứng dụng của purrr trong phân tích dữ liệu. Ở phần trước, chúng ta đã học về cách sử dụng map. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn sử dụng thêm 3 ứng dụng thường dùng của purrr:
+Thay đổi biến với modifyTạo các hàm khi sử dụng cùng mapTạo các chuỗi hàm với composeSửa đổi giá trị với modifyTương tự như map, modify cho áp dụng hàm vào một nhóm các list.</description>
+    </item>
     
     <item>
       <title>Sử dụng hàm select và rename nâng cao trong dplyr</title>

@@ -34,7 +34,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thu gọn giá trị các factor trong biểu đồ</title>
+  <title>Biến đổi dữ liệu nâng cao trong purrr</title>
   <meta name="author" content="" />
 
   
@@ -84,9 +84,9 @@
   <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Thu gọn giá trị các factor trong biểu đồ" />
+  <meta property="og:title" content="Biến đổi dữ liệu nâng cao trong purrr" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2018/04/15/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do//" />
+  <meta property="og:url" content="/blog/2019/05/05/2019-05-05-bien-doi-du-lieu-nang-cao-voi-modify-trong-purrr//" />
   <meta property="og:image" content="img/logo.png" />
 
   <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
@@ -109,9 +109,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="../../../../../">
-                    <img src="../../../../../img/logo.png" alt="Thu gọn giá trị các factor trong biểu đồ logo" class="hidden-xs hidden-sm">
-                    <img src="../../../../../img/logo-small.png" alt="Thu gọn giá trị các factor trong biểu đồ logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Thu gọn giá trị các factor trong biểu đồ - Về trang chủ</span>
+                    <img src="../../../../../img/logo.png" alt="Biến đổi dữ liệu nâng cao trong purrr logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Biến đổi dữ liệu nâng cao trong purrr logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Biến đổi dữ liệu nâng cao trong purrr - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -220,7 +220,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Thu gọn giá trị các factor trong biểu đồ</h1>
+                <h1>Biến đổi dữ liệu nâng cao trong purrr</h1>
             </div>
         </div>
     </div>
@@ -236,41 +236,101 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2018-04-15</p>
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2019-05-05</p>
 
                         <div id="post-content">
                           
 
 
-<p>Khi vẽ biểu đồ với R, trong một số trường hợp khi tên của factor quá dài, biểu đồ hiển thị ra sẽ không được thẩm mỹ. Xem ví dụ sau:</p>
-<pre class="r"><code>library(dplyr)
-library(ggplot2)
-
-data &lt;- data.frame(x = c(&quot;Trung tam kinh doanh dien tu dien may va do gia dung&quot;, 
-                         &quot;Trung tam 2&quot;, 
-                         &quot;Trung tam kinh doanh my pham va dich vu&quot;),
-                   y = c(5,3,7))
-
-# Vẽ biểu đồ thông thường, không xử lý với factor
-data %&gt;% 
-  ggplot(aes(x, y)) + 
-  geom_bar(stat = &quot;identity&quot;, aes(fill = x)) +
-  theme_bw() +
-  theme(legend.position = &quot;none&quot;) +
-  ggtitle(&quot;Vi du 1&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>Để khắc phục vấn đề trên, ta có thể sử dụng library <code>stringr</code> với hàm <code>str_wrap</code> để tự động co gọn lại giá trị của factor trên biểu đồ</p>
-<pre class="r"><code>library(stringr)
-data %&gt;% 
-  ggplot(aes(x, y)) + 
-  geom_bar(stat = &quot;identity&quot;, aes(fill = x)) +
-  theme_bw() +
-  theme(legend.position = &quot;none&quot;) +
-  scale_x_discrete(labels = str_wrap(levels(data$x), width = 20)) +
-  ggtitle(&quot;Vi du 2&quot;)</code></pre>
-<p><img src="../../../../../blog/2018-04-15-thu-gon-gia-tri-cac-factor-trong-bieu-do_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>Như vậy, với hàm đơn giả từ R, ta đã có thể xử lý được vấn đề hiển thị giá trị của factor quá dài!</p>
-<p>Chúc các bạn học và làm việc hiệu quả với <a href="ranalytics.vn">Ranalytics.vn</a>!</p>
+<p>Bài viết này tiếp nối series về ứng dụng của <code>purrr</code> trong phân tích dữ liệu. Ở phần trước, chúng ta đã học về cách sử dụng <code>map</code>. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn sử dụng thêm 3 ứng dụng thường dùng của <code>purrr</code>:</p>
+<ul>
+<li>Thay đổi biến với <code>modify</code></li>
+<li>Tạo các hàm khi sử dụng cùng map</li>
+<li>Tạo các chuỗi hàm với <code>compose</code></li>
+</ul>
+<hr />
+<div id="sa-i-gia-tri-vi-modify" class="section level2">
+<h2>Sửa đổi giá trị với <code>modify</code></h2>
+<p>Tương tự như <code>map</code>, <code>modify</code> cho áp dụng hàm vào một nhóm các list. Tuy nhiên, khác với <code>map</code>, <code>modify</code> cho ra kết quả với cấu trúc dữ liệu ban đâu.</p>
+<pre class="r"><code>library(tidyverse)
+# map đổi cấu trúc của dataframe
+iris %&gt;% 
+  map_if(is.factor, as.character) %&gt;% 
+  str</code></pre>
+<pre><code>## List of 5
+##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : chr [1:150] &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; ...</code></pre>
+<pre class="r"><code># modify giữ nguyên cấu trúc
+iris %&gt;% 
+  modify_if(is.factor, as.character) %&gt;% 
+  str</code></pre>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : chr  &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; ...</code></pre>
+</div>
+<div id="tao-ham-nhanh-vi-as_mapper" class="section level2">
+<h2>Tạo hàm nhanh với <code>as_mapper</code></h2>
+<p><code>as_mapper</code> cho phép tạo hàm nhanh, đặc biệt hữu ích khi ta chỉ muốn tạo và sử dụng một hàm trong một vài trường hợp đặc biệt.</p>
+<p>Công thức tổng quát</p>
+<pre class="r"><code># Với một tham số
+as_mapper(~f(.x))
+# Với hai tham số
+as_mapper(f(.x, .y))</code></pre>
+<p>Xem các ví dụ sau:</p>
+<pre class="r"><code># Cộng 10 vào mỗi giá trị
+map_dbl(1:3, ~ .x+10)</code></pre>
+<pre><code>## [1] 11 12 13</code></pre>
+<pre class="r"><code># Cộng hai vector với nhau
+map2_dbl(1:3, 5:7, ~.x + .y)</code></pre>
+<pre><code>## [1]  6  8 10</code></pre>
+<pre class="r"><code># Cách viết khác
+map2_dbl(1:3, 5:7, as_mapper(~.x + .y))</code></pre>
+<pre><code>## [1]  6  8 10</code></pre>
+</div>
+<div id="xay-dng-chui-cac-ham-lien-tip-vi-compose" class="section level2">
+<h2>Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></h2>
+<p>Hàm <code>compose</code> cho phép kết hợp nhiều hàm với nhau với hàm ở bên phải là input đầu vào cho hàm bên trái. Cấu trúc như sau.</p>
+<pre class="r"><code>compose(f_2, f_1) 
+# Tương đương với
+argument %&gt;% f_2 %&gt;% f_1</code></pre>
+<p>Xem ví dụ sau:</p>
+<pre class="r"><code>library(tidyverse)
+library(broom)
+lm(Sepal.Length ~ Sepal.Width, data = iris) %&gt;% 
+  tidy</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    6.53      0.479     13.6  6.47e-28
+## 2 Sepal.Width   -0.223     0.155     -1.44 1.52e- 1</code></pre>
+<p>Cách viết trên có thể thay thế như sau</p>
+<pre class="r"><code>tidy_lm &lt;- compose(tidy, lm)
+tidy_lm(Sepal.Length ~ Sepal.Width, data = iris)</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    6.53      0.479     13.6  6.47e-28
+## 2 Sepal.Width   -0.223     0.155     -1.44 1.52e- 1</code></pre>
+<p>Ta có thể thêm các nhóm hàm khác đi cùng với <code>compose</code> như <code>filter</code></p>
+<pre class="r"><code>my_func &lt;- compose(
+  as_mapper(~filter(.x, p.value &lt; 0.05)),
+  tidy, 
+  lm)
+my_func(Sepal.Length ~ Sepal.Width, data = iris)</code></pre>
+<pre><code>## # A tibble: 1 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     6.53     0.479      13.6 6.47e-28</code></pre>
+<hr />
+<p>Như vậy, với bài viết này, chúng ta đã sử dụng được các hàm thường dùng nhất của <code>purrr</code> là <code>map</code>, <code>modify</code> và <code>compose</code>.</p>
+<p>Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
 
                         </div>
                         
