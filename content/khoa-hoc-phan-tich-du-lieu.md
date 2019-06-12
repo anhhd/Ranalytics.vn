@@ -8,9 +8,10 @@ keywords = ["Khóa học","Phân tích","dữ liệu","r", "python", "analytics"
 
 Thông tin về khóa học gần nhất về "Business Analytics with R" như sau:
 
-- Thời gian: 14h-16h thứ 7 hàng tuần, dự kiến từ 25/06/2019 
+- Thời gian: 14h-16h thứ 7 hàng tuần, 29/06/2019
 - Nội dung: Phân tích dữ liệu thực tiễn với R (7 buổi x 2 tiếng)
 - Điện thoại liên hệ: 0977 738 939
+- Địa điểm: Số 9 Trung Liệt, Đống Đa, Hà Nội
 
 Các bạn có thể đăng ký ngay tại link dưới đây.
 
