@@ -1,0 +1,71 @@
+---
+title: "Tổ chức dữ liệu với spread và gather trong tidyverse"
+author: "Nguyen Hai Truong"
+date: "2019-05-15"
+summary: "Sử dụng spread và gather trong tidyr thay thế cho reshape2"
+banner: "img/banners/banner-41.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu, sẽ có lúc chúng ta muốn nhìn dữ liệu theo các chiều khác nhau. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách tổ chức dữ liệu theo cách mà chúng ta mong muốn bằng việc sử dụng hàm <code>gather()</code> và <code>spread()</code> trong package <code>tidyverse</code>.</p>
+<div id="gather" class="section level1">
+<h1>gather</h1>
+<p>Sử dụng dữ liệu giả định, bao gồm tổng điểm thi cuối năm 5 môn: Toán, Lý, Hóa, Anh, Văn của 3 bạn học sinh cấp 3 vào năm 2017, 2018.</p>
+<pre class="r"><code>library(tibble)
+table1 &lt;- tibble(
+  student = c(&quot;Viet&quot;, &quot;Nam&quot;, &quot;Quoc&quot;),
+  `2017` = c(37.5, 40, 45),
+  `2018` = c(40, 40, 42.5)
+)
+
+table1</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   student `2017` `2018`
+##   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Viet      37.5   40  
+## 2 Nam       40     40  
+## 3 Quoc      45     42.5</code></pre>
+<p>Giả sử bây giờ chúng ta muốn tổ chức dữ liệu theo một cách khác.</p>
+<p>Chúng ta sẽ nhóm 2 biến <code>2017</code> và <code>2018</code> thành giá trị của biến mới, sẽ đặt tên là <code>year</code>, còn biến chứa những giá trị của biến <code>2017</code> và <code>2018</code> lúc đầu sẽ được đặt tên là <code>total_score</code> (tổng điểm)</p>
+<p>Chúng ta sẽ sử dụng hàm <code>gather()</code> trong package <code>tidyverse</code> như sau:</p>
+<pre class="r"><code>library(tidyverse)
+table2 &lt;- table1 %&gt;% 
+  gather(
+    `2017`, `2018`,   # 2 biến cần nhóm lại (gather) 
+    key = &quot;year&quot;,     # Biến mới `year` bao gồm 2 giá trị 2017,2018
+    value = &quot;total_score&quot;  # Biến mới `total_score` chứa giá trị của 2 biến `2017` và `2018` ban đầu
+  )
+
+table2</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   student year  total_score
+##   &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
+## 1 Viet    2017         37.5
+## 2 Nam     2017         40  
+## 3 Quoc    2017         45  
+## 4 Viet    2018         40  
+## 5 Nam     2018         40  
+## 6 Quoc    2018         42.5</code></pre>
+<p>Quá trình biến đổi dữ liệu vừa rồi được mô tả bằng hình ảnh sau:</p>
+<p><img src="/img/blog/20190515_gather_flow.png" /></p>
+<hr />
+</div>
+<div id="spread" class="section level1">
+<h1>spread</h1>
+<p>Spreading là quá trình ngược lại của gathering.</p>
+<p>Cấu trúc hàm <code>spread()</code> như sau:</p>
+<pre class="r"><code>table2 %&gt;% 
+  spread(
+    key = year,   # spread biến year (các giá trị trong biến year thành các biến mới)
+    value = total_score 
+  )</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   student `2017` `2018`
+##   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Nam       40     40  
+## 2 Quoc      45     42.5
+## 3 Viet      37.5   40</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách tổ chức dữ liệu theo cách mà chúng ta mong muốn bằng việc sử dụng hàm <code>gather()</code> và <code>spread()</code> trong package <code>tidyverse</code>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>

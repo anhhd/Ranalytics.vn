@@ -34,7 +34,7 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sử dụng hàm select và rename nâng cao trong dplyr</title>
+  <title>Tổ chức dữ liệu với spread và gather trong tidyverse</title>
   <meta name="author" content="" />
 
   
@@ -84,9 +84,9 @@
   <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
 
   
-  <meta property="og:title" content="Sử dụng hàm select và rename nâng cao trong dplyr" />
+  <meta property="og:title" content="Tổ chức dữ liệu với spread và gather trong tidyverse" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="/blog/2019/04/25/2019-04-25-su-dung-select-va-rename-nang-cao-trong-dplyr//" />
+  <meta property="og:url" content="/blog/2019/05/15/2019-05-15-su-dung-gather-va-spread-voi-tidyr//" />
   <meta property="og:image" content="img/logo.png" />
 
   <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
@@ -109,9 +109,9 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand home" href="../../../../../">
-                    <img src="../../../../../img/logo.png" alt="Sử dụng hàm select và rename nâng cao trong dplyr logo" class="hidden-xs hidden-sm">
-                    <img src="../../../../../img/logo-small.png" alt="Sử dụng hàm select và rename nâng cao trong dplyr logo" class="visible-xs visible-sm">
-                    <span class="sr-only">Sử dụng hàm select và rename nâng cao trong dplyr - Về trang chủ</span>
+                    <img src="../../../../../img/logo.png" alt="Tổ chức dữ liệu với spread và gather trong tidyverse logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Tổ chức dữ liệu với spread và gather trong tidyverse logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Tổ chức dữ liệu với spread và gather trong tidyverse - Về trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -220,7 +220,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Sử dụng hàm select và rename nâng cao trong dplyr</h1>
+                <h1>Tổ chức dữ liệu với spread và gather trong tidyverse</h1>
             </div>
         </div>
     </div>
@@ -236,113 +236,72 @@
 
                     <div class="col-md-9" id="blog-post">
 
-                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Nguyen Hai Truong</a> | 2019-04-25</p>
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Nguyen Hai Truong</a> | 2019-05-15</p>
 
                         <div id="post-content">
                           
 
 
-<p>Trong quá trình phân tích dữ liệu, chúng ta có thể phải xử lý những dữ liệu rất lớn lên đến hàng chục triệu dòng (quan sát) hoặc hàng trăm cột (biến).</p>
-<p>Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách chọn và sửa tên biến nhanh đối với trường hợp dữ liệu lớn nói trên bằng việc sử dụng các hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code>, <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code>.</p>
+<p>Trong quá trình phân tích dữ liệu, sẽ có lúc chúng ta muốn nhìn dữ liệu theo các chiều khác nhau. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách tổ chức dữ liệu theo cách mà chúng ta mong muốn bằng việc sử dụng hàm <code>gather()</code> và <code>spread()</code> trong package <code>tidyverse</code>.</p>
+<div id="gather" class="section level1">
+<h1>gather</h1>
+<p>Sử dụng dữ liệu giả định, bao gồm tổng điểm thi cuối năm 5 môn: Toán, Lý, Hóa, Anh, Văn của 3 bạn học sinh cấp 3 vào năm 2017, 2018.</p>
+<pre class="r"><code>library(tibble)
+table1 &lt;- tibble(
+  student = c(&quot;Viet&quot;, &quot;Nam&quot;, &quot;Quoc&quot;),
+  `2017` = c(37.5, 40, 45),
+  `2018` = c(40, 40, 42.5)
+)
+
+table1</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   student `2017` `2018`
+##   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Viet      37.5   40  
+## 2 Nam       40     40  
+## 3 Quoc      45     42.5</code></pre>
+<p>Giả sử bây giờ chúng ta muốn tổ chức dữ liệu theo một cách khác.</p>
+<p>Chúng ta sẽ nhóm 2 biến <code>2017</code> và <code>2018</code> thành giá trị của biến mới, sẽ đặt tên là <code>year</code>, còn biến chứa những giá trị của biến <code>2017</code> và <code>2018</code> lúc đầu sẽ được đặt tên là <code>total_score</code> (tổng điểm)</p>
+<p>Chúng ta sẽ sử dụng hàm <code>gather()</code> trong package <code>tidyverse</code> như sau:</p>
+<pre class="r"><code>library(tidyverse)
+table2 &lt;- table1 %&gt;% 
+  gather(
+    `2017`, `2018`,   # 2 biến cần nhóm lại (gather) 
+    key = &quot;year&quot;,     # Biến mới `year` bao gồm 2 giá trị 2017,2018
+    value = &quot;total_score&quot;  # Biến mới `total_score` chứa giá trị của 2 biến `2017` và `2018` ban đầu
+  )
+
+table2</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   student year  total_score
+##   &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;
+## 1 Viet    2017         37.5
+## 2 Nam     2017         40  
+## 3 Quoc    2017         45  
+## 4 Viet    2018         40  
+## 5 Nam     2018         40  
+## 6 Quoc    2018         42.5</code></pre>
+<p>Quá trình biến đổi dữ liệu vừa rồi được mô tả bằng hình ảnh sau:</p>
+<p><img src="../../../../../img/blog/20190515_gather_flow.png" /></p>
 <hr />
-<p>Sử dụng dữ liệu <code>iris</code> có sẵn trong <code>R</code>.</p>
-<pre class="r"><code>library(dplyr)
-iris %&gt;% head</code></pre>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<p>Về bản chất, hàm <code>select()</code> dùng để chọn biến, còn hàm <code>rename()</code> dùng để sửa/thay đổi tên biến.</p>
-<p>Do vậy, về cơ bản nhóm hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code> sẽ khác nhóm hàm <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code> ở điểm: Nhóm hàm <code>select_*</code> sẽ bỏ đi những biến mà ko được chọn trong khi nhóm hàm <code>rename_*</code> vẫn giữ những biến đó lại và chỉ sửa tên những biến cần sửa.</p>
-<div id="select_all-rename_all" class="section level1">
-<h1>select_all &amp; rename_all</h1>
-<pre class="r"><code># Chọn tất cả các biến, sau đó lower tên biến
-select_all(iris, tolower) %&gt;% head</code></pre>
-<pre><code>##   sepal.length sepal.width petal.length petal.width species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<pre class="r"><code># Sửa tên tất cả các biến thành chữ viết thường
-rename_all(iris, tolower) %&gt;% head</code></pre>
-<pre><code>##   sepal.length sepal.width petal.length petal.width species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<p><code>select_all</code> và <code>rename_all</code> cho ra kết quả giống nhau vì áp dụng đối với tất cả các biến trong dữ liệu.</p>
 </div>
-<div id="select_if-rename_if" class="section level1">
-<h1>select_if &amp; rename_if</h1>
-<pre class="r"><code># Chỉ chọn ra những biến là số (numeric), sau đó lower tên biến
-select_if(iris, is.numeric, tolower) %&gt;% head</code></pre>
-<pre><code>##   sepal.length sepal.width petal.length petal.width
-## 1          5.1         3.5          1.4         0.2
-## 2          4.9         3.0          1.4         0.2
-## 3          4.7         3.2          1.3         0.2
-## 4          4.6         3.1          1.5         0.2
-## 5          5.0         3.6          1.4         0.2
-## 6          5.4         3.9          1.7         0.4</code></pre>
-<pre class="r"><code># Sửa tên biến của những biến là số thành chữ viết thường,
-# còn những biến khác vẫn giữ nguyên tên
-rename_if(iris, is.numeric, tolower) %&gt;% head</code></pre>
-<pre><code>##   sepal.length sepal.width petal.length petal.width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<p>Trong trường hợp này, chúng ta đã thấy có sự khác biệt trong kết quả của 2 câu lệnh trên.</p>
-<ul>
-<li><p><code>select_if</code>: Chỉ lấy ra 4 biến là biến số, sau đó lower tên biến (không lấy biến <code>Species</code>)</p></li>
-<li><p><code>rename_if</code>: Vẫn hiển thị tất cả các biến, nhưng chỉ sửa tên của 4 biến là biến số, còn biến <code>Species</code> không sửa</p></li>
-</ul>
-</div>
-<div id="select_at-rename_at" class="section level1">
-<h1>select_at &amp; rename_at</h1>
-<pre class="r"><code># Chỉ chọn ra những biến chứa ký tự `Sepal`, sau đó tolower tên biến
-select_at(iris, 
-          vars(contains(&quot;Sepal&quot;)), # biến chứa ký tự `Sepal`
-          tolower
-          ) %&gt;% 
-  head</code></pre>
-<pre><code>##   sepal.length sepal.width
-## 1          5.1         3.5
-## 2          4.9         3.0
-## 3          4.7         3.2
-## 4          4.6         3.1
-## 5          5.0         3.6
-## 6          5.4         3.9</code></pre>
-<pre class="r"><code># Sửa tên của những biến chứa ký tự `Sepal` thành chữ viết thường,
-# còn những biến khác vẫn giữ nguyên tên
-rename_at(iris, 
-          vars(contains(&quot;Sepal&quot;)),
-          tolower
-          ) %&gt;% 
-  head</code></pre>
-<pre><code>##   sepal.length sepal.width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<p>Tương tự như trường hợp trước, trường hợp này kết quả trả ra cũng có sự khác biệt giữa 2 câu lệnh:</p>
-<ul>
-<li><p><code>select_at</code>: Chỉ lấy ra 2 biến có chứa ký tự <code>Sepal</code>, sau đó lower tên biến</p></li>
-<li><p><code>rename_at</code>: Vẫn hiển thị tất cả các biến, nhưng chỉ sửa tên của 2 biến chứa ký tự <code>Sepal</code>, còn các biến còn lại không sửa tên</p></li>
-</ul>
+<div id="spread" class="section level1">
+<h1>spread</h1>
+<p>Spreading là quá trình ngược lại của gathering.</p>
+<p>Cấu trúc hàm <code>spread()</code> như sau:</p>
+<pre class="r"><code>table2 %&gt;% 
+  spread(
+    key = year,   # spread biến year (các giá trị trong biến year thành các biến mới)
+    value = total_score 
+  )</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   student `2017` `2018`
+##   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Nam       40     40  
+## 2 Quoc      45     42.5
+## 3 Viet      37.5   40</code></pre>
 <hr />
-<p>Như vậy, chúng ta đã vừa được học cách chọn và sửa tên biến nhanh bằng việc sử dụng nhóm hàm <code>select_all</code>, <code>select_if</code>, <code>select_at</code> và nhóm hàm <code>rename_all</code>, <code>rename_if</code>, <code>rename_at</code> trong <code>dplyr</code>.</p>
-<p>Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+<p>Như vậy, chúng ta đã vừa được học cách tổ chức dữ liệu theo cách mà chúng ta mong muốn bằng việc sử dụng hàm <code>gather()</code> và <code>spread()</code> trong package <code>tidyverse</code>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
 </div>
 
                         </div>
