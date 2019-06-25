@@ -2,6 +2,10 @@
 title: "Tổ chức dữ liệu với spread và gather trong tidyverse"
 author: "Nguyen Hai Truong"
 date: "2019-05-15"
+categories:
+  - data-manipulation
+tags:
+  - tidyr
 summary: "Sử dụng spread và gather trong tidyr thay thế cho reshape2"
 banner: "img/banners/banner-41.png"
 ---

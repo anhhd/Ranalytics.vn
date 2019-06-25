@@ -6,10 +6,20 @@
     <description>Recent content in Dplyr on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/dplyr/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sử dụng hàm select và rename nâng cao trong dplyr</title>
+      <link>/blog/2019/04/25/2019-04-25-su-dung-select-va-rename-nang-cao-trong-dplyr/</link>
+      <pubDate>Thu, 25 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/04/25/2019-04-25-su-dung-select-va-rename-nang-cao-trong-dplyr/</guid>
+      <description>Trong quá trình phân tích dữ liệu, chúng ta có thể phải xử lý những dữ liệu rất lớn lên đến hàng chục triệu dòng (quan sát) hoặc hàng trăm cột (biến).
+Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách chọn và sửa tên biến nhanh đối với trường hợp dữ liệu lớn nói trên bằng việc sử dụng các hàm select_all, select_if, select_at, rename_all, rename_if, rename_at.</description>
+    </item>
     
     <item>
       <title>Thống kê dữ liệu theo dòng</title>

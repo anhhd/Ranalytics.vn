@@ -6,10 +6,20 @@
     <description>Recent content in Data Science on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 25 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Khác biệt giữa vị trí BI analyst và Data Scientist</title>
+      <link>/blog/2019/05/25/2019-05-25-khac-biet-giua-vi-tri-bi-data-analyst-va-data-scientist/</link>
+      <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/05/25/2019-05-25-khac-biet-giua-vi-tri-bi-data-analyst-va-data-scientist/</guid>
+      <description>Thời gian gần đây, RAnalytics nhận được rất nhiều câu hỏi đề nghị làm rõ sự khác biệt giữa vị trí chuyên viên BI báo cáo (BI data analyst) và vị trí Data Scientist.
+Mặc dù đây là hai vị trí bổ trợ và cùng cần thiết trong hoạt động phân tích dữ liệu trong doanh nghiệp, hai vị trí đòi hỏi các kỹ năng và phạm vị công việc tương đối khác nhau.</description>
+    </item>
     
     <item>
       <title>Các vị trí công việc trong khoa học dữ liệu</title>

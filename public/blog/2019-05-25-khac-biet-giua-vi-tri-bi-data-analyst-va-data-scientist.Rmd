@@ -1,0 +1,28 @@
+---
+title: Khác biệt giữa vị trí BI analyst và Data Scientist
+author: Hoàng Đức Anh
+date: "2019-05-25"
+categories:
+  - data-science
+tags:
+  - Data Science
+summary: "Khác biệt giữa vị trí BI và Data Scientist"
+banner: "img/banners/banner-42.png"
+---
+
+Thời gian gần đây, RAnalytics nhận được rất nhiều câu hỏi đề nghị làm rõ sự khác biệt giữa vị trí chuyên viên BI báo cáo (BI data analyst) và vị trí Data Scientist. 
+
+Mặc dù đây là hai vị trí bổ trợ và cùng cần thiết trong hoạt động phân tích dữ liệu trong doanh nghiệp, hai vị trí đòi hỏi các kỹ năng và phạm vị công việc tương đối khác nhau.
+
+Infographic dưới đây sẽ giúp các bạn hiểu rõ hơn sự khác biệt của hai vị trí.
+
+---
+
+![](/img/blog/20190525-bi-ba.png){width=99%}
+
+---
+
+Hy vọng sau khi hiểu rõ hơn vị trí của từng công việc, các bạn sẽ thấy rõ hơn vị trí mình phù hợp để có định hướng công việc tốt hơn.
+
+Chúc các bạn học và làm việc hiệu quả với [Ranalytics.vn](ranalytics.vn)!
+
