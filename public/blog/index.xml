@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tách và gộp biến với separate và unite trong tidyverse</title>
+      <link>/blog/2019/05/30/2019-05-30-su-dung-seperate-va-unite/</link>
+      <pubDate>Thu, 30 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/05/30/2019-05-30-su-dung-seperate-va-unite/</guid>
+      <description>Trong quá trình phân tích dữ liệu, sẽ có lúc chúng ta muốn nhìn dữ liệu theo các chiều khác nhau. Trong bài viết này, Ranalytics sẽ hướng dẫn các bạn cách tách và gộp biến theo cách mà chúng ta mong muốn bằng việc sử dụng hàm separate() và unite() trong package tidyverse.
+Sử dụng dữ liệu giả lập, bao gồm thông tin ngày sinh và địa chỉ sinh sống của 3 học sinh cấp 3 sau đây:</description>
+    </item>
     
     <item>
       <title>Khác biệt giữa vị trí BI analyst và Data Scientist</title>

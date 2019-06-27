@@ -1,0 +1,77 @@
+---
+title: "Tách và gộp biến với separate và unite trong tidyverse"
+author: "Nguyễn Hải Trường"
+date: "2019-05-30"
+categories:
+  - data-mannipulation
+tags:
+  - tidyr
+summary: "Tách và gộp biến với separate và unite trong tidyr"
+banner: "img/banners/banner-43.png"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+Trong quá trình phân tích dữ liệu, sẽ có lúc chúng ta muốn nhìn dữ liệu theo các chiều khác nhau. Trong bài viết này, `Ranalytics` sẽ hướng dẫn các bạn cách tách và gộp biến theo cách mà chúng ta mong muốn bằng việc sử dụng hàm `separate()` và `unite()` trong package `tidyverse`. 
+
+
+Sử dụng dữ liệu giả lập, bao gồm thông tin ngày sinh và địa chỉ sinh sống của 3 học sinh cấp 3 sau đây:
+
+```{r}
+data1 <- data.frame(
+  student = c("Viet", "Nam", "Quoc"),
+  dob = as.Date(c("1990-05-06", "1992-12-01", "1989-03-05")),
+  address = c("Trung Phung, Dong Da, Ha Noi", "Khoi Nghia, Tien Lang, Hai Phong", "Ngoc Son, Hiep Hoa, Bac Giang")
+)
+
+data1
+```
+
+
+# separate
+
+Bây giờ chúng ta muốn tách biến `dob` (ngày sinh) thành các biến ngày, tháng, năm sinh, và đồng thời tách biến `address` thành các biến phường/xã, quận/huyện, tỉnh/TP.
+
+Chúng ta sẽ sử dụng hàm `separate()`
+
+
+```{r}
+library(tidyverse)
+data2 <- data1 %>% 
+  separate(dob,  # tách biến `dob` thành 3 biến `year`, `month`, `day`
+           into = c("year", "month", "day"), 
+           sep = "-"   # ngăn cách bằng ký tự `-`
+           ) %>% 
+  separate(address, # tách biến `address` thành 3 biến `commune`, `district`, `city`
+           into = c("commune", "district", "city"), 
+           sep = "," # ngăn cách bằng ký tự `,`
+           )
+
+data2
+```
+
+# unite
+
+Uniting là quá trình ngược lại với Separating
+
+Cấu trúc hàm `unite()` như sau:
+
+```{r}
+data2 %>% 
+  # Gộp các biến `year`, `month`, `day` thành 1 biến `ymd`
+  unite(ymd, # tên biến mới
+        year, month, day,  # 3 biến muốn gộp
+        sep = "-"  # ngăn cách bằng dấu "-"
+        ) %>% 
+  # Gộp các biến `commune`, `district`, `city` thành 1 biến `province`
+  unite(province,
+        commune, district, city,
+        sep = ","
+        )
+```
+
+---
+
+Như vậy, chúng ta đã vừa được học cách tách và gộp biến theo cách mà chúng ta mong muốn bằng việc sử dụng hàm `separate()` và `unite()` trong package `tidyverse`. Chúc các bạn học tập và làm việc hiệu quả với ``Ranalytics.vn``!

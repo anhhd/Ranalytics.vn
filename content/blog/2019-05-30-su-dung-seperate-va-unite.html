@@ -1,0 +1,70 @@
+---
+title: "Tách và gộp biến với separate và unite trong tidyverse"
+author: "Nguyễn Hải Trường"
+date: "2019-05-30"
+categories:
+  - data-mannipulation
+tags:
+  - tidyr
+summary: "Tách và gộp biến với separate và unite trong tidyr"
+banner: "img/banners/banner-43.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu, sẽ có lúc chúng ta muốn nhìn dữ liệu theo các chiều khác nhau. Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách tách và gộp biến theo cách mà chúng ta mong muốn bằng việc sử dụng hàm <code>separate()</code> và <code>unite()</code> trong package <code>tidyverse</code>.</p>
+<p>Sử dụng dữ liệu giả lập, bao gồm thông tin ngày sinh và địa chỉ sinh sống của 3 học sinh cấp 3 sau đây:</p>
+<pre class="r"><code>data1 &lt;- data.frame(
+  student = c(&quot;Viet&quot;, &quot;Nam&quot;, &quot;Quoc&quot;),
+  dob = as.Date(c(&quot;1990-05-06&quot;, &quot;1992-12-01&quot;, &quot;1989-03-05&quot;)),
+  address = c(&quot;Trung Phung, Dong Da, Ha Noi&quot;, &quot;Khoi Nghia, Tien Lang, Hai Phong&quot;, &quot;Ngoc Son, Hiep Hoa, Bac Giang&quot;)
+)
+
+data1</code></pre>
+<pre><code>##   student        dob                          address
+## 1    Viet 1990-05-06     Trung Phung, Dong Da, Ha Noi
+## 2     Nam 1992-12-01 Khoi Nghia, Tien Lang, Hai Phong
+## 3    Quoc 1989-03-05    Ngoc Son, Hiep Hoa, Bac Giang</code></pre>
+<div id="separate" class="section level1">
+<h1>separate</h1>
+<p>Bây giờ chúng ta muốn tách biến <code>dob</code> (ngày sinh) thành các biến ngày, tháng, năm sinh, và đồng thời tách biến <code>address</code> thành các biến phường/xã, quận/huyện, tỉnh/TP.</p>
+<p>Chúng ta sẽ sử dụng hàm <code>separate()</code></p>
+<pre class="r"><code>library(tidyverse)
+data2 &lt;- data1 %&gt;% 
+  separate(dob,  # tách biến `dob` thành 3 biến `year`, `month`, `day`
+           into = c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;), 
+           sep = &quot;-&quot;   # ngăn cách bằng ký tự `-`
+           ) %&gt;% 
+  separate(address, # tách biến `address` thành 3 biến `commune`, `district`, `city`
+           into = c(&quot;commune&quot;, &quot;district&quot;, &quot;city&quot;), 
+           sep = &quot;,&quot; # ngăn cách bằng ký tự `,`
+           )
+
+data2</code></pre>
+<pre><code>##   student year month day     commune   district       city
+## 1    Viet 1990    05  06 Trung Phung    Dong Da     Ha Noi
+## 2     Nam 1992    12  01  Khoi Nghia  Tien Lang  Hai Phong
+## 3    Quoc 1989    03  05    Ngoc Son   Hiep Hoa  Bac Giang</code></pre>
+</div>
+<div id="unite" class="section level1">
+<h1>unite</h1>
+<p>Uniting là quá trình ngược lại với Separating</p>
+<p>Cấu trúc hàm <code>unite()</code> như sau:</p>
+<pre class="r"><code>data2 %&gt;% 
+  # Gộp các biến `year`, `month`, `day` thành 1 biến `ymd`
+  unite(ymd, # tên biến mới
+        year, month, day,  # 3 biến muốn gộp
+        sep = &quot;-&quot;  # ngăn cách bằng dấu &quot;-&quot;
+        ) %&gt;% 
+  # Gộp các biến `commune`, `district`, `city` thành 1 biến `province`
+  unite(province,
+        commune, district, city,
+        sep = &quot;,&quot;
+        )</code></pre>
+<pre><code>##   student        ymd                         province
+## 1    Viet 1990-05-06     Trung Phung, Dong Da, Ha Noi
+## 2     Nam 1992-12-01 Khoi Nghia, Tien Lang, Hai Phong
+## 3    Quoc 1989-03-05    Ngoc Son, Hiep Hoa, Bac Giang</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách tách và gộp biến theo cách mà chúng ta mong muốn bằng việc sử dụng hàm <code>separate()</code> và <code>unite()</code> trong package <code>tidyverse</code>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
