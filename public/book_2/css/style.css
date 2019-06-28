@@ -1,14 +1,14 @@
 h1, h2 {
-    border-bottom: 2px solid #2c3e50;
+    border-bottom: 2px solid #3b556e;
 }
 h1, h2, h3, h4 {
-    color: #2c3e50;
-    font-family: Cambria, Georgia, serif;
+    color: #3b556e;
+    font-family: "Fira Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 table th {
-	background-color: #2c3e50;
-    color: #ffffff; /* Màu chữ heading */
+	background-color: #b2c2d2;
+    color: #333333;
     border: 1px;
     font-size: 11pt;
     height: 15px;
@@ -19,15 +19,14 @@ table th {
 p {
 	word-wrap: break-word;
     overflow: hidden;
-    color: #2c3e50;
+    color: #333;
     line-height: 1.7;
-    font-family: Cambria, Georgia, serif;
-	margin: 0 0 10.5px;
+    font-family: 'Merriweather', "Fira Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 
 .book.font-family-1 {
-    font-family: Cambria, Georgia, serif;
+    font-family: 'Merriweather', "Fira Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /*Quote*/
@@ -36,11 +35,11 @@ p {
     margin: 0 0 .85em;
     padding: 0 15px;
     opacity: 1; 
-    border-left: 4px solid #2c3e50;
+    border-left: 4px solid #3b556e;
 }
 
 blockquote {
-    background: #e8f3ff;
+    background: #b2c2d2;
     padding: 7px 20px 1px 20px;
     color: #000000;
 }
@@ -49,17 +48,16 @@ blockquote p {
 	font-style: italic;
 }
 
-/* Format code background màu xanh nhạt*/
+/* Format code background */
 .book .book-body .page-wrapper .page-inner section.normal pre {
-    background-color: #ecf0f1;
-    border: 1px solid #cccccc;
+    background: #eeeeee;
     padding: 5px 10px 5px 10px;
     margin: 0px 0px 5px 0px;
 }
 
 /* Format caption */
 p.caption {
-    color: #2c3e50;
+    color: #333333;
     background-color: #eeeeee;
     padding-left: 20px;
 }
@@ -71,8 +69,6 @@ p code {
 pre {
   word-break: normal;
   word-wrap: normal;
-  background-color: #ecf0f1;
-  border: 1px solid #cccccc;
 }
 pre code {
   white-space: inherit;
@@ -82,25 +78,19 @@ p.flushright {
 }
 
 
-/* Format code màu đen*/
+/* Format code */
 .book .book-body .page-wrapper .page-inner section.normal code {
     padding: .2em;
     margin: 0;
     font-size: .85em;
-	color: black;
+	color: #3b556e;
     background-color: #f7f7f7;
-}
-
-/* Format comment màu cam*/
-code span.co {
-    color: #007020;
-    font-style: italic;
 }
 
 /* Format mục lục*/
 
 summary {
-    font-family: Cambria, Georgia, serif;
+    font-family: "Fira Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 
@@ -122,7 +112,7 @@ summary {
 }
 
 .book .book-summary{
-    background: #2c3e50;
+    background: #3B556E;
 }
 
 .book .book-summary ul.summary li a {
@@ -132,7 +122,7 @@ summary {
 
 .book .book-summary ul.summary li a:hover {
     background-color: #aaaaaa;
-    color: #2c3e50;
+    color: #3b556e;
 }
 
 .book .book-summary ul.summary li.active>a {
@@ -150,29 +140,4 @@ summary {
     overflow: hidden;
     white-space: nowrap;
     position: relative;
-	font-family: Cambria, Georgia, serif;
-}
-
-/*Bảng*/
-
-table {
-    border-collapse: collapse;
-    max-width:100%;
-    border-top: 1px solid #666;
-    border-bottom: 1px solid #666;
-    table-layout: auto;
-}
-
-th, td {
-    text-align: left;
-    padding: 5px;
-    white-space: auto;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-    background-color: #2c3e50;
-    color: white;
-    border-bottom: 1px solid #666;
 }
