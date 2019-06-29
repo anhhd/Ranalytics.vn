@@ -20,10 +20,8 @@ Thông tin về khóa học gần nhất về "Business Analytics with R" như s
 	
 Để đăng ký khóa học tiếp theo, các bạn có thể đăng ký ngay tại link dưới đây.
 
-<center>
-<button onclick="window.location.href = '/contact';" style="background-color:darkblue;color:white;width:150px;
-height:40px;font-size:17px"><b>Đăng ký</b></button>
-</center>
+<button onclick="window.location.href = '/contact';" style="background-color:#467fbf; color:white;width:150px;
+height:40px;font-size:17px;"><b>Đăng ký</b></button>
 
 ---
 
