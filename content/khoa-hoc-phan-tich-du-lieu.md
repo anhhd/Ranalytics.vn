@@ -8,15 +8,24 @@ keywords = ["Khóa học","Phân tích","dữ liệu","r", "python", "analytics"
 
 Thông tin về khóa học gần nhất về "Business Analytics with R" như sau:
 
-- Thời gian: 14h-16h thứ 7 hàng tuần, 29/06/2019
-- Nội dung: Phân tích dữ liệu thực tiễn với R (7 buổi x 2 tiếng)
-- Điện thoại liên hệ: 0977 738 939
-- Địa điểm: Số 9 Trung Liệt, Đống Đa, Hà Nội
+- **Thời gian**: 14h-16h thứ 7 hàng tuần, từ 29/06/2019
+- **Nội dung**: Phân tích dữ liệu thực tiễn với R (7 buổi x 2 tiếng)
+- **Điện thoại liên hệ**: Hoàng Đức Anh, 0977 738 939
+- **Địa điểm**: Trung tâm PICEN, số 43A, ngõ 15 Phương Mai, Đống Đa, Hà Nội
+- **Cách di chuyển**:
+	- Đi vào ngõ 15 phố Phương Mai (cạnh bệnh viện da liễu Trung Ương, cạnh bệnh viện Bạch Mai)
+	- Đi vào ngõ khoảng 100m, đến số nhà 46 thì rẽ phải
 
-Các bạn có thể đăng ký ngay tại link dưới đây.
+---
+	
+Để đăng ký khóa học tiếp theo, các bạn có thể đăng ký ngay tại link dưới đây.
 
-[<h3>Đăng ký</h2>](/contact)
+<center>
+<button onclick="window.location.href = '/contact';" style="background-color:darkblue;color:white;width:150px;
+height:40px;font-size:17px"><b>Đăng ký</b></button>
+</center>
 
+---
 
 Thông tin chi tiết các bạn có thể xem ở slide dưới đây
 
