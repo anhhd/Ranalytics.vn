@@ -105,11 +105,36 @@ googleAnalytics = "UA-117458816-1"
     url  = "/hoat-dong-khac/"
     Weight = 2
 
+#[[menu.main]]
+#    name = "R cheatsheets"
+##    parent = "material"
+##   url  = "/cheatsheet/"
+#    weight = 1
+	
 [[menu.main]]
-    name = "R cheatsheets"
-    parent = "material"
-    url  = "/cheatsheet/"
+    Name = "Shiny Apps"
+    identifier = "shiny"
+    URL = "#"
+    Weight = 7
+    
+[[menu.main]]
+    enable = false
+    name = "Market basket analysis"
+    parent = "shiny"
+    url  = "https://anhhoangduc.shinyapps.io/basket_analysis/"
     weight = 1
+
+[[menu.main]]
+    name = "RFM segmentation"
+    parent = "shiny"
+    url  = "https://anhhoangduc.shinyapps.io/rfm_segmentation/"
+    weight = 2
+
+[[menu.main]]
+    name = "Static to Dynamic SQL"
+    parent = "shiny"
+    url  = "https://anhhoangduc.shinyapps.io/static-sql/"
+    weight = 3
 
 [[menu.main]]
     name = "Liên hệ"
