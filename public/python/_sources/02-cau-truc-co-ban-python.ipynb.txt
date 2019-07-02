@@ -1,0 +1,1415 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Hướng dẫn sử dụng Python cơ bản"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Cơ bản về Python "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Các cấu trúc dữ liệu của Python:\n",
+    "- Numbers Integer, long, float, complex\n",
+    "- Boolean: T/R\n",
+    "- Strings\n",
+    "- Lists: Tương ứng với list trong R\n",
+    "- Tuples: Vector có giá trị không thể thay đổi được\n",
+    "- Dictionary: Cấu trúc dữ liệu hai chiều có key và value"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Các thư viện thường dùng trong Python khi phân tích dữ liệu:\n",
+    "\n",
+    "- Numpy: Tính toán đại số\n",
+    "- Scipy: Tính toán các chỉ số khoa học\n",
+    "- Matplotlib: Vẽ biểu đồ\n",
+    "- Pandas: Tương ứng với data.table, dplyr, reshape2\n",
+    "- Scikit Learn: Machine learning"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Các cấu trúc cơ bản"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Tạo list"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['money', 'ball', 'người', True, 25]"
+      ]
+     },
+     "execution_count": 1,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_list = ['money', 'ball', 'người', True, 25]\n",
+    "my_list"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "list"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(my_list)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'ball'"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_list[1]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Array "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[10, 15],\n",
+       "       [11, 16],\n",
+       "       [12, 17],\n",
+       "       [13, 18],\n",
+       "       [14, 19]])"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "a = np.array(range(10, 15))\n",
+    "b = np.array(range(15, 20))\n",
+    "my_mat = np.column_stack([a, b])\n",
+    "my_mat"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "numpy.ndarray"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(my_mat)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([10, 15])"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_mat[0, ]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([15, 16, 17, 18, 19])"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_mat[:, 1]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### DataFrame"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "pandas.core.frame.DataFrame"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "data_set = pd.DataFrame({\n",
+    "'Name' : [\"Anh\", \"Linh\", \"Minh\"],\n",
+    "'Score' : [3,4,5]\n",
+    "})\n",
+    "type(data_set)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Name</th>\n",
+       "      <th>Score</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Anh</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Linh</td>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Minh</td>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Name  Score\n",
+       "0   Anh      3\n",
+       "1  Linh      4\n",
+       "2  Minh      5"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data_set"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Name     Linh\n",
+       "Score       4\n",
+       "Name: 1, dtype: object"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data_set.loc[1, ]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Name</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Anh</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Linh</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Minh</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Name\n",
+       "0   Anh\n",
+       "1  Linh\n",
+       "2  Minh"
+      ]
+     },
+     "execution_count": 27,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data_set[['Name']]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Name</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Anh</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Linh</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Minh</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Name\n",
+       "0   Anh\n",
+       "1  Linh\n",
+       "2  Minh"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data_set.loc[:, ['Name']]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Các vấn đề khác "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Điều kiện\n",
+    "\n",
+    "- Sử dụng if, elif hoặc else"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "a is smaller than b\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = 5\n",
+    "b = 10\n",
+    "if a >= b:\n",
+    "    print(\"a is larger than b\")\n",
+    "elif a == b:\n",
+    "    print(\"They are equal\")\n",
+    "else:\n",
+    "    print(\"a is smaller than b\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Hàm"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Hàm cơ bản"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- Sử dụng cấu trúc `def` - tương tự với R"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "I am from Hanoi\n"
+     ]
+    }
+   ],
+   "source": [
+    "def from_city(city = \"Hanoi\"):\n",
+    "    print(\"I am from \" + city)\n",
+    "from_city()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- Hàm trả ra giá trị: sử dụng `return`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def square(x):\n",
+    "    return(x**2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "16"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "square(4)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "81\n"
+     ]
+    }
+   ],
+   "source": [
+    "y = square(9)\n",
+    "print(y)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Lambda "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- Hảm ẩn, tương ứng với các hệ thống hàm ẩn của R và không cần khai báo với hàm `def`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "18"
+      ]
+     },
+     "execution_count": 1,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_func = lambda i: i*3\n",
+    "my_func(6)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## So sánh R với Python cơ bản"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Câu lệnh cơ bản"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "| Hàm | Python | R (reference) | Note |\n",
+    "|---|:----:|-----|-----|\n",
+    "| Install packages | `conda install x` | install.packages(\"x\") |\n",
+    "| Load package | `import library as x` | library(x) |\n",
+    "| Kiểm tra thư mục làm việc | `import os as os` <br/> os.getcwd() | getwd() | Current directory \n",
+    "| Đổi thư mục làm việc | `os.chdir` | setwd() | Change directory\n",
+    "| Liệt kê các file trong thư mục| `os.listdr()` | dir() | list directory \n",
+    "| Liệt kê các life trong environment | `globals()` | ls()\n",
+    "| Xóa object | `del(object)` | rm(object)|"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os as os"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'E:\\\\OneDrive - VPBank\\\\2. Python'"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "os.getcwd()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'__name__': '__main__',\n",
+       " '__doc__': 'Automatically created module for IPython interactive environment',\n",
+       " '__package__': None,\n",
+       " '__loader__': None,\n",
+       " '__spec__': None,\n",
+       " '__builtin__': <module 'builtins' (built-in)>,\n",
+       " '__builtins__': <module 'builtins' (built-in)>,\n",
+       " '_ih': ['',\n",
+       "  'my_func = lambda i: i*3\\nmy_func(6)',\n",
+       "  'import os as os',\n",
+       "  'os.cwd()',\n",
+       "  'os.getcwd()',\n",
+       "  'os.getcwd()',\n",
+       "  'os.listdr()',\n",
+       "  'os.listdr()',\n",
+       "  'globals()',\n",
+       "  'globals()',\n",
+       "  'globals()'],\n",
+       " '_oh': {1: 18,\n",
+       "  4: 'E:\\\\OneDrive - VPBank\\\\2. Python',\n",
+       "  5: 'E:\\\\OneDrive - VPBank\\\\2. Python',\n",
+       "  8: {...},\n",
+       "  9: {...}},\n",
+       " '_dh': ['E:\\\\OneDrive - VPBank\\\\2. Python'],\n",
+       " 'In': ['',\n",
+       "  'my_func = lambda i: i*3\\nmy_func(6)',\n",
+       "  'import os as os',\n",
+       "  'os.cwd()',\n",
+       "  'os.getcwd()',\n",
+       "  'os.getcwd()',\n",
+       "  'os.listdr()',\n",
+       "  'os.listdr()',\n",
+       "  'globals()',\n",
+       "  'globals()',\n",
+       "  'globals()'],\n",
+       " 'Out': {1: 18,\n",
+       "  4: 'E:\\\\OneDrive - VPBank\\\\2. Python',\n",
+       "  5: 'E:\\\\OneDrive - VPBank\\\\2. Python',\n",
+       "  8: {...},\n",
+       "  9: {...}},\n",
+       " 'get_ipython': <bound method InteractiveShell.get_ipython of <ipykernel.zmqshell.ZMQInteractiveShell object at 0x0000017C5F7F3F28>>,\n",
+       " 'exit': <IPython.core.autocall.ZMQExitAutocall at 0x17c6004e320>,\n",
+       " 'quit': <IPython.core.autocall.ZMQExitAutocall at 0x17c6004e320>,\n",
+       " '_': {...},\n",
+       " '__': {...},\n",
+       " '___': 'E:\\\\OneDrive - VPBank\\\\2. Python',\n",
+       " 'json': <module 'json' from 'C:\\\\Users\\\\Admin\\\\Anaconda3\\\\lib\\\\json\\\\__init__.py'>,\n",
+       " 'yapf_reformat': <function __main__.yapf_reformat(cell_text)>,\n",
+       " '_i': 'globals()',\n",
+       " '_ii': 'globals()',\n",
+       " '_iii': 'os.listdr()',\n",
+       " '_i1': 'my_func = lambda i: i*3\\nmy_func(6)',\n",
+       " 'my_func': <function __main__.<lambda>(i)>,\n",
+       " '_1': 18,\n",
+       " '_i2': 'import os as os',\n",
+       " 'os': <module 'os' from 'C:\\\\Users\\\\Admin\\\\Anaconda3\\\\lib\\\\os.py'>,\n",
+       " '_i3': 'os.cwd()',\n",
+       " '_i4': 'os.getcwd()',\n",
+       " '_4': 'E:\\\\OneDrive - VPBank\\\\2. Python',\n",
+       " '_i5': 'os.getcwd()',\n",
+       " '_5': 'E:\\\\OneDrive - VPBank\\\\2. Python',\n",
+       " '_i6': 'os.listdr()',\n",
+       " '_i7': 'os.listdr()',\n",
+       " '_i8': 'globals()',\n",
+       " '_8': {...},\n",
+       " '_i9': 'globals()',\n",
+       " '_9': {...},\n",
+       " '_i10': 'globals()'}"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "globals()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Tạo dataframe"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[-1.03848059,  0.12489222, -0.14049782,  1.9144369 , -1.0236959 ],\n",
+       "       [ 1.29072571, -0.46045389,  0.06554157, -1.7557788 , -1.2503696 ],\n",
+       "       [-1.3699976 , -0.23636166, -1.60736738, -0.59790733,  0.99350698],\n",
+       "       [ 1.08300865, -0.46459231,  0.28497251,  0.30178462, -1.16019443],\n",
+       "       [-1.05235875,  0.4009131 ,  0.04878918, -0.97599409,  0.0806648 ],\n",
+       "       [ 0.36266876, -0.22536505,  1.54180375,  2.37326478,  0.59447163]])"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "import pandas as pd\n",
+    "A = np.random.randn(6,5)\n",
+    "A"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "      <th>2</th>\n",
+       "      <th>3</th>\n",
+       "      <th>4</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>-1.038481</td>\n",
+       "      <td>0.124892</td>\n",
+       "      <td>-0.140498</td>\n",
+       "      <td>1.914437</td>\n",
+       "      <td>-1.023696</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1.290726</td>\n",
+       "      <td>-0.460454</td>\n",
+       "      <td>0.065542</td>\n",
+       "      <td>-1.755779</td>\n",
+       "      <td>-1.250370</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>-1.369998</td>\n",
+       "      <td>-0.236362</td>\n",
+       "      <td>-1.607367</td>\n",
+       "      <td>-0.597907</td>\n",
+       "      <td>0.993507</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1.083009</td>\n",
+       "      <td>-0.464592</td>\n",
+       "      <td>0.284973</td>\n",
+       "      <td>0.301785</td>\n",
+       "      <td>-1.160194</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>-1.052359</td>\n",
+       "      <td>0.400913</td>\n",
+       "      <td>0.048789</td>\n",
+       "      <td>-0.975994</td>\n",
+       "      <td>0.080665</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>0.362669</td>\n",
+       "      <td>-0.225365</td>\n",
+       "      <td>1.541804</td>\n",
+       "      <td>2.373265</td>\n",
+       "      <td>0.594472</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          0         1         2         3         4\n",
+       "0 -1.038481  0.124892 -0.140498  1.914437 -1.023696\n",
+       "1  1.290726 -0.460454  0.065542 -1.755779 -1.250370\n",
+       "2 -1.369998 -0.236362 -1.607367 -0.597907  0.993507\n",
+       "3  1.083009 -0.464592  0.284973  0.301785 -1.160194\n",
+       "4 -1.052359  0.400913  0.048789 -0.975994  0.080665\n",
+       "5  0.362669 -0.225365  1.541804  2.373265  0.594472"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df = pd.DataFrame(A)\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Lưu ý**: Index của dataframe trong Python bắt đầu từ 0\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###  Làm việc với data frame cơ bản"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "| Hàm | Python | R (reference) | Note |\n",
+    "|---|:----:|-----|-----|\n",
+    "| Tên hàng | `df.index` | rownames(df) |\n",
+    "| Tên cột | `df.columns` | colnames(df |\n",
+    "| Head | `df.head(3)` | head(df, 3) |\n",
+    "| Tail | `df.tail(3)` | tail(df, 3) |\n",
+    "| Dim | `df.shape` | dim(df) | `df.shape()` không chạy do shape không phải <br/> hàm mà là thuộc tính\n",
+    "| Summary | `df.describe()` | summary(df) | \n",
+    "| Đổi tên | `df.columns = [\"P\", \"Q\"]` | names(df) = c(\"P\", \"Q\") |"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "RangeIndex(start=0, stop=6, step=1)"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.index"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "      <th>2</th>\n",
+       "      <th>3</th>\n",
+       "      <th>4</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>-1.038481</td>\n",
+       "      <td>0.124892</td>\n",
+       "      <td>-0.140498</td>\n",
+       "      <td>1.914437</td>\n",
+       "      <td>-1.023696</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1.290726</td>\n",
+       "      <td>-0.460454</td>\n",
+       "      <td>0.065542</td>\n",
+       "      <td>-1.755779</td>\n",
+       "      <td>-1.250370</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>-1.369998</td>\n",
+       "      <td>-0.236362</td>\n",
+       "      <td>-1.607367</td>\n",
+       "      <td>-0.597907</td>\n",
+       "      <td>0.993507</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          0         1         2         3         4\n",
+       "0 -1.038481  0.124892 -0.140498  1.914437 -1.023696\n",
+       "1  1.290726 -0.460454  0.065542 -1.755779 -1.250370\n",
+       "2 -1.369998 -0.236362 -1.607367 -0.597907  0.993507"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head(3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "      <th>2</th>\n",
+       "      <th>3</th>\n",
+       "      <th>4</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1.083009</td>\n",
+       "      <td>-0.464592</td>\n",
+       "      <td>0.284973</td>\n",
+       "      <td>0.301785</td>\n",
+       "      <td>-1.160194</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>-1.052359</td>\n",
+       "      <td>0.400913</td>\n",
+       "      <td>0.048789</td>\n",
+       "      <td>-0.975994</td>\n",
+       "      <td>0.080665</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>0.362669</td>\n",
+       "      <td>-0.225365</td>\n",
+       "      <td>1.541804</td>\n",
+       "      <td>2.373265</td>\n",
+       "      <td>0.594472</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          0         1         2         3         4\n",
+       "3  1.083009 -0.464592  0.284973  0.301785 -1.160194\n",
+       "4 -1.052359  0.400913  0.048789 -0.975994  0.080665\n",
+       "5  0.362669 -0.225365  1.541804  2.373265  0.594472"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.tail(3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(6, 5)"
+      ]
+     },
+     "execution_count": 27,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>A</th>\n",
+       "      <th>B</th>\n",
+       "      <th>C</th>\n",
+       "      <th>D</th>\n",
+       "      <th>E</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>-1.038481</td>\n",
+       "      <td>0.124892</td>\n",
+       "      <td>-0.140498</td>\n",
+       "      <td>1.914437</td>\n",
+       "      <td>-1.023696</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1.290726</td>\n",
+       "      <td>-0.460454</td>\n",
+       "      <td>0.065542</td>\n",
+       "      <td>-1.755779</td>\n",
+       "      <td>-1.250370</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>-1.369998</td>\n",
+       "      <td>-0.236362</td>\n",
+       "      <td>-1.607367</td>\n",
+       "      <td>-0.597907</td>\n",
+       "      <td>0.993507</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1.083009</td>\n",
+       "      <td>-0.464592</td>\n",
+       "      <td>0.284973</td>\n",
+       "      <td>0.301785</td>\n",
+       "      <td>-1.160194</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>-1.052359</td>\n",
+       "      <td>0.400913</td>\n",
+       "      <td>0.048789</td>\n",
+       "      <td>-0.975994</td>\n",
+       "      <td>0.080665</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>0.362669</td>\n",
+       "      <td>-0.225365</td>\n",
+       "      <td>1.541804</td>\n",
+       "      <td>2.373265</td>\n",
+       "      <td>0.594472</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          A         B         C         D         E\n",
+       "0 -1.038481  0.124892 -0.140498  1.914437 -1.023696\n",
+       "1  1.290726 -0.460454  0.065542 -1.755779 -1.250370\n",
+       "2 -1.369998 -0.236362 -1.607367 -0.597907  0.993507\n",
+       "3  1.083009 -0.464592  0.284973  0.301785 -1.160194\n",
+       "4 -1.052359  0.400913  0.048789 -0.975994  0.080665\n",
+       "5  0.362669 -0.225365  1.541804  2.373265  0.594472"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.columns = [\"A\", \"B\", \"C\", \"D\", \"E\"]\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- Import dữ liệu iris vào môi trường của Python"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn import datasets\n",
+    "iris = datasets.load_iris()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df2 = pd.DataFrame(iris.data,\n",
+    "                  columns = iris.feature_names)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>sepal length (cm)</th>\n",
+       "      <th>sepal width (cm)</th>\n",
+       "      <th>petal length (cm)</th>\n",
+       "      <th>petal width (cm)</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>5.1</td>\n",
+       "      <td>3.5</td>\n",
+       "      <td>1.4</td>\n",
+       "      <td>0.2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>4.9</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>1.4</td>\n",
+       "      <td>0.2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>4.7</td>\n",
+       "      <td>3.2</td>\n",
+       "      <td>1.3</td>\n",
+       "      <td>0.2</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)\n",
+       "0                5.1               3.5                1.4               0.2\n",
+       "1                4.9               3.0                1.4               0.2\n",
+       "2                4.7               3.2                1.3               0.2"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df2.head(3)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.1"
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": true,
+   "sideBar": true,
+   "skip_h1_title": true,
+   "title_cell": "Mục lục",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {
+    "height": "calc(100% - 180px)",
+    "left": "10px",
+    "top": "150px",
+    "width": "303px"
+   },
+   "toc_section_display": true,
+   "toc_window_display": true
+  },
+  "toc-autonumbering": true,
+  "varInspector": {
+   "cols": {
+    "lenName": 16,
+    "lenType": 16,
+    "lenVar": 40
+   },
+   "kernels_config": {
+    "python": {
+     "delete_cmd_postfix": "",
+     "delete_cmd_prefix": "del ",
+     "library": "var_list.py",
+     "varRefreshCmd": "print(var_dic_list())"
+    },
+    "r": {
+     "delete_cmd_postfix": ") ",
+     "delete_cmd_prefix": "rm(",
+     "library": "var_list.r",
+     "varRefreshCmd": "cat(var_dic_list()) "
+    }
+   },
+   "types_to_exclude": [
+    "module",
+    "function",
+    "builtin_function_or_method",
+    "instance",
+    "_Feature"
+   ],
+   "window_display": true
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
