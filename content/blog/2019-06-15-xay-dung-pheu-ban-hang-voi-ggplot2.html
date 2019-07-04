@@ -1,0 +1,148 @@
+---
+title: "Xây dựng phễu bán hàng với ggplot2"
+author: "Hoàng Đức Anh"
+date: "2019-06-15"
+categories:
+  - data-vizualization
+tags:
+  - ggplot2
+summary: "Xây dựng phễu bán hàng với ggplot2"
+banner: "img/banners/banner-44.png"
+---
+
+
+
+<p>Trong quá trình phân tích bán hàng, phếu bán hàng (sale funnel) là một kỹ thuật rất hữu dụng để trực quan hóa kết quả kinh doanh theo từng nhóm. Tuy nhiên, hiện ít có biểu đồ nào thể hiện được phễu bán hàng một cách hiệu quả trên R.</p>
+<p>Trong bài viết này, <code>RAnalytics</code> sẽ hướng dẫn một ví dụ thực tiễn trực quan hóa phễu bán hàng một cách hiệu quả.</p>
+<hr />
+<p>Xem ví dụ điển hình về phễu bán hàng dưới đây</p>
+<pre class="r"><code>data &lt;- read.table(textConnection(
+          c(&quot;step;segment1;segment2;segment3;total
+          1_visit;1806;11663;12641;26110
+          2_register;1143;6476;5372;12991
+          3_login;1806;11663;2694;16163
+          4_subscribe;21;3322;2694;6037
+          5_paid;259;422;41;722&quot;)),
+        header = T, sep = &quot;;&quot;)
+# Dữ liệu
+data</code></pre>
+<pre><code>##                    step segment1 segment2 segment3 total
+## 1               1_visit     1806    11663    12641 26110
+## 2            2_register     1143     6476     5372 12991
+## 3               3_login     1806    11663     2694 16163
+## 4           4_subscribe       21     3322     2694  6037
+## 5                5_paid      259      422       41   722</code></pre>
+<p>Trong tập dữ liệu trên, ta sẽ mô phỏng dữ liệu phếu bán hàng của 3 phân khúc khách hàng trên một trang thương mại điện tử mà trong đó, khách hàng sẽ đi qua năm bước khác nhau:</p>
+<ul>
+<li>Ghé thăm website (visit)</li>
+<li>Đăng ký (register)</li>
+<li>Đăng nhập (login)</li>
+<li>Đăng ký cập nhật các thông tin sản phẩm (subscribe)</li>
+<li>Mua hàng và trả tiền thành công (paid)</li>
+</ul>
+<p>Để tạo một biểu đồ phễu bán hàng, ta sẽ thực hiện 3 bước lớn sau.</p>
+<ul>
+<li>Tạo <code>theme</code> cho biểu đồ</li>
+<li>Tạo các biểu đồ con cho phễu bán hàng</li>
+<li>Kết hợp các biểu đồ để tạo thành phễu bán hàng hoàn chỉnh</li>
+</ul>
+<pre class="r"><code># Gọi library
+library(tidyverse)
+library(reshape2)
+library(forcats)
+library(ggthemes)
+
+# Tạo theme trông cho chart
+funnel_theme &lt;- theme(axis.title = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.x = element_blank(),
+        legend.position = &quot;none&quot;,
+        panel.grid = element_blank()
+        )
+
+# Phân rã dữ liệu
+df &lt;- data %&gt;% melt(id.vars = &quot;step&quot;)
+
+# Tạo biểu đồ chính
+p1 &lt;- df %&gt;% 
+  mutate(step = fct_rev(step)) %&gt;% 
+  filter(variable != &quot;total&quot;) %&gt;% 
+  ggplot(aes(step, value)) +
+  geom_bar(aes(fill = variable), stat = &quot;identity&quot;) +
+  facet_grid(~variable, scale = &quot;free&quot;) +
+  coord_flip() + 
+  geom_text(aes(label = value),
+            position = position_stack(vjust = .5)) +
+  scale_fill_tableau() +
+  theme_minimal() +
+  scale_y_sqrt() +
+  funnel_theme +
+  theme(plot.margin=grid::unit(c(0,0,0,0), &quot;mm&quot;)) +
+  theme(
+  axis.text.y = element_blank(),
+  strip.text = element_text(size = 14, 
+                            face = &quot;bold&quot;)) +
+  theme(
+    panel.spacing = unit(0, &quot;mm&quot;)) +
+  annotate(&quot;rect&quot;, xmin = 0.5, xmax = 1.5, ymin = 0, ymax = Inf,
+           alpha = .2) +
+  annotate(&quot;rect&quot;, xmin = 2.5, xmax = 3.5, ymin = 0, ymax = Inf,
+           alpha = .2) +
+  annotate(&quot;rect&quot;, xmin = 4.5, xmax = 5.5, ymin = 0, ymax = Inf,
+           alpha = .2) +
+  theme(axis.text.y = element_blank())
+p1</code></pre>
+<p><img src="/blog/2019-06-15-xay-dung-pheu-ban-hang-voi-ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<ul>
+<li>Tạo thêm phần <code>label</code> tổng theo từng segment</li>
+</ul>
+<pre class="r"><code>df %&gt;%
+  mutate(step = fct_rev(step)) %&gt;%
+  filter(variable == &quot;total&quot;) %&gt;%
+  ggplot(aes(step, 0)) +
+  geom_label(aes(label = value),
+             col = &quot;white&quot;,
+             fill = &quot;darkred&quot;,
+             size = 4) +
+  coord_flip() +
+  facet_wrap(~variable) +
+  theme_minimal() +
+  theme(axis.text = element_blank()) +
+  funnel_theme +
+  theme(
+    strip.text.x = element_blank()
+  ) -&gt; p2
+p2</code></pre>
+<p><img src="/blog/2019-06-15-xay-dung-pheu-ban-hang-voi-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<ul>
+<li>Tạo thêm thứ tự các bước trong phễu bán hàng để dễ theo dõi hơn</li>
+</ul>
+<pre class="r"><code>df2 &lt;- data.frame(step = data$step,
+                  value = 1:5)
+df2 %&gt;% 
+  mutate(step = fct_rev(step)) %&gt;% 
+  ggplot(aes(step, 1)) +
+  geom_hline(yintercept = 1) +
+  geom_point(size = 10, col = &quot;darkgreen&quot;) +
+  geom_text(aes(label = value), 
+            col = &quot;white&quot;) +
+  coord_flip() +
+  theme_minimal() +
+  funnel_theme +
+  theme(
+    axis.text = element_text(size = 14)
+  ) -&gt; p3
+p3</code></pre>
+<p><img src="/blog/2019-06-15-xay-dung-pheu-ban-hang-voi-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<ul>
+<li>Cuối cùng, ta có thể tạo ghép các biểu đồ rời rạc để tạo thành phễu bán hàng hoàn chỉnh. Việc kết hợp các biểu đồ trên <code>ggplot2</code> có thể hoàn thành một cách đơn giản với <code>ggplot2</code></li>
+</ul>
+<pre class="r"><code>#devtools::install_github(&quot;thomasp85/patchwork&quot;)
+library(patchwork)
+p3 + 
+  labs(title = &quot;Sale funnel for 3 segments&quot;) +
+  p1 + p2 + 
+  plot_layout(nrow = 1, widths = c(1, 8, 1))</code></pre>
+<p><img src="/blog/2019-06-15-xay-dung-pheu-ban-hang-voi-ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<hr />
+<p>Như vậy, chúng ta đã hoàn thành phễu bán hàng rất chuyên nghiệp với <code>ggplot2</code>. Phễu bán hàng này đặc biệt hiệu quả khi cùng lúc phải so sánh nhiều phân khúc khách hàng khác nhau trên toàn bộ chuỗi bán hàng. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>

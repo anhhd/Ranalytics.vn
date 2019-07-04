@@ -6,10 +6,20 @@
     <description>Recent content in Ggplot2 on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Xây dựng phễu bán hàng với ggplot2</title>
+      <link>/blog/2019/06/15/2019-06-15-xay-dung-pheu-ban-hang-voi-ggplot2/</link>
+      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/06/15/2019-06-15-xay-dung-pheu-ban-hang-voi-ggplot2/</guid>
+      <description>Trong quá trình phân tích bán hàng, phếu bán hàng (sale funnel) là một kỹ thuật rất hữu dụng để trực quan hóa kết quả kinh doanh theo từng nhóm. Tuy nhiên, hiện ít có biểu đồ nào thể hiện được phễu bán hàng một cách hiệu quả trên R.
+Trong bài viết này, RAnalytics sẽ hướng dẫn một ví dụ thực tiễn trực quan hóa phễu bán hàng một cách hiệu quả.</description>
+    </item>
     
     <item>
       <title>Tạo biểu đồ cho mô hình với ggfortify</title>
