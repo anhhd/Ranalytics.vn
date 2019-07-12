@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 1 Khoa học dữ liệu và nghề phân tích dữ liệu | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 1 Khoa học dữ liệu và nghề phân tích dữ liệu | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 1 Khoa học dữ liệu và nghề phân tích dữ liệu | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chương 1 Khoa học dữ liệu và nghề phân tích dữ liệu | Phân tích dữ liệu thực tế với R" />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 1 Khoa học dữ liệu và nghề phân tích dữ liệu | Phân tích dữ liệu thực tế với R" />
+  
+  <meta name="twitter:description" content="Chương 1 Khoa học dữ liệu và nghề phân tích dữ liệu | Phân tích dữ liệu thực tế với R" />
+  
+
+<meta name="author" content="Hoàng Đức Anh" />
+
+
+<meta name="date" content="2019-07-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="li-m-u.html">
+<link rel="next" href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích dữ liệu thực tế với R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="li-m-u.html"><a href="li-m-u.html"><i class="fa fa-check"></i>Lời mở đầu</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Khoa học dữ liệu và nghề phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#khoa-hoc-d-liu-la-gi"><i class="fa fa-check"></i><b>1.1</b> Khoa học dữ liệu là gì</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#tai-sao-phan-tich-d-liu-la-ngh-kho"><i class="fa fa-check"></i><b>1.2</b> Tại sao phân tích dữ liệu là nghề khó?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#phan-loai-hoat-ng-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3</b> Phân loại hoạt động phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#da-theo-cach-thc-tac-ng-n-khach-hang"><i class="fa fa-check"></i><b>1.3.1</b> Dựa theo cách thức tác động đến khách hàng</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#da-theo-c-tinh-cua-ngh-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3.2</b> Dựa theo đặc tính của nghề phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#da-theo-chu-ky-cua-khach-hang-i-vi-san-phm"><i class="fa fa-check"></i><b>1.3.3</b> Dựa theo chu kỳ của khách hàng đối với sản phẩm</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#cach-xay-dng-nhom-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.4</b> Cách xây dựng nhóm phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#luu-y-khi-oc-tai-liu"><i class="fa fa-check"></i><b>1.5</b> Lưu ý khi đọc tài liệu</a></li>
+</ul></li>
+<li class="part"><span><b>I Kỹ thuật phân tích dữ liệu thực tế</b></span></li>
+<li class="chapter" data-level="2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><i class="fa fa-check"></i><b>2</b> Ngữ pháp của biến đổi dữ liệu với DPLYR</a><ul>
+<li class="chapter" data-level="2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#gii-thiu-v-pipe-operator"><i class="fa fa-check"></i><b>2.1</b> Giới thiệu về pipe operator</a></li>
+<li class="chapter" data-level="2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-co-ban-trong-dplyr"><i class="fa fa-check"></i><b>2.2</b> Các hàm cơ bản trong dplyr</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-truy-vn-d-liu"><i class="fa fa-check"></i><b>2.2.1</b> Nhóm câu lệnh truy vấn dữ liệu</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-bin-i-d-liu"><i class="fa fa-check"></i><b>2.2.2</b> Nhóm câu lệnh biến đổi dữ liệu</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-ham-tng-hp-d-liu-vi-summarise"><i class="fa fa-check"></i><b>2.2.3</b> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-nang-cao-trong-dplyr"><i class="fa fa-check"></i><b>2.3</b> Các hàm nâng cao trong dplyr</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#iu-kin-phan-nhom-vi-case_when"><i class="fa fa-check"></i><b>2.3.1</b> Điều kiện phân nhóm với <code>case_when</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at"><i class="fa fa-check"></i><b>2.3.2</b> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if"><i class="fa fa-check"></i><b>2.3.3</b> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html"><i class="fa fa-check"></i><b>3</b> Phân rã và xoay chiều dữ liệu</a><ul>
+<li class="chapter" data-level="3.1" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#phan-ra-d-liu-thanh-dang-doc-vi-gather"><i class="fa fa-check"></i><b>3.1</b> Phân rã dữ liệu thành dạng dọc với <code>gather</code></a></li>
+<li class="chapter" data-level="3.2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#xoay-chiu-d-liu-vi-spread"><i class="fa fa-check"></i><b>3.2</b> Xoay chiều dữ liệu với <code>spread</code></a></li>
+<li class="chapter" data-level="3.3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#tach-mt-bin-thanh-nhiu-bin-vi-separate"><i class="fa fa-check"></i><b>3.3</b> Tách một biến thành nhiều biến với <code>separate</code></a></li>
+<li class="chapter" data-level="3.4" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#gp-nhiu-bin-thanh-mt-bin-vi-unite"><i class="fa fa-check"></i><b>3.4</b> Gộp nhiều biến thành một biến với <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html"><i class="fa fa-check"></i><b>4</b> Các chỉ số thống kê mô tả cơ bản</a><ul>
+<li class="chapter" data-level="4.1" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#correlation"><i class="fa fa-check"></i><b>4.1</b> Correlation</a></li>
+<li class="chapter" data-level="4.2" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#anova"><i class="fa fa-check"></i><b>4.2</b> ANOVA</a></li>
+<li class="chapter" data-level="4.3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#kim-inh-quan-h-chi-binh-phuong"><i class="fa fa-check"></i><b>4.3</b> Kiểm định quan hệ Chi-bình phương</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html"><i class="fa fa-check"></i><b>5</b> Lập trình hàm</a><ul>
+<li class="chapter" data-level="5.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#quotes-vs.-unquotes"><i class="fa fa-check"></i><b>5.1</b> <strong>Quotes</strong> vs. <strong>Unquotes</strong></a></li>
+<li class="chapter" data-level="5.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hp-dung-quo_name"><i class="fa fa-check"></i><b>5.2</b> Trường hợp dùng <code>quo_name</code></a></li>
+<li class="chapter" data-level="5.3" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hop-nhiu-bin"><i class="fa fa-check"></i><b>5.3</b> Trường họp nhiều biến</a></li>
+<li class="chapter" data-level="5.4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ng-dung"><i class="fa fa-check"></i><b>5.4</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ham-tinh-toan-tng-hp-nhiu-bin"><i class="fa fa-check"></i><b>5.4.1</b> Hàm tính toán tổng hợp nhiều biến</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ve--thi-vi-ggplot2"><i class="fa fa-check"></i><b>5.4.2</b> Vẽ đồ thị với ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html"><i class="fa fa-check"></i><b>6</b> Lập trình chức năng hàm với purrr</a><ul>
+<li class="chapter" data-level="6.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#nhom-ham-map"><i class="fa fa-check"></i><b>6.1</b> Nhóm hàm map</a></li>
+<li class="chapter" data-level="6.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#sa-i-gia-tri-vi-modify"><i class="fa fa-check"></i><b>6.2</b> Sửa đổi giá trị với <code>modify</code></a></li>
+<li class="chapter" data-level="6.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#tao-ham-nhanh-vi-as_mapper"><i class="fa fa-check"></i><b>6.3</b> Tạo hàm nhanh với <code>as_mapper</code></a></li>
+<li class="chapter" data-level="6.4" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#xay-dng-chui-cac-ham-lien-tip-vi-compose"><i class="fa fa-check"></i><b>6.4</b> Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></a></li>
+<li class="chapter" data-level="6.5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#ng-dung-1"><i class="fa fa-check"></i><b>6.5</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#bin-i-d-liu-vi-modify-va-map_df"><i class="fa fa-check"></i><b>6.5.1</b> Biến đổi dữ liệu với <code>modify</code> và <code>map_df</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-nhom-khac-nhau-cung-luc"><i class="fa fa-check"></i><b>6.5.2</b> Phân tích nhiều nhóm khác nhau cùng lúc</a></li>
+<li class="chapter" data-level="6.5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-bin-trong-dataframe-cung-luc"><i class="fa fa-check"></i><b>6.5.3</b> Phân tích nhiều biến trong dataframe cùng lúc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html"><i class="fa fa-check"></i><b>7</b> Biến đổi dữ liệu text</a><ul>
+<li class="chapter" data-level="7.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#gii-thiu"><i class="fa fa-check"></i><b>7.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="7.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#regular-expression"><i class="fa fa-check"></i><b>7.2</b> Regular expression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#metadata"><i class="fa fa-check"></i><b>7.2.1</b> Metadata</a></li>
+<li class="chapter" data-level="7.2.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#sequences"><i class="fa fa-check"></i><b>7.2.2</b> Sequences</a></li>
+<li class="chapter" data-level="7.2.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#character-class"><i class="fa fa-check"></i><b>7.2.3</b> Character class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#posix-class"><i class="fa fa-check"></i><b>7.2.4</b> POSIX class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#quantifiers"><i class="fa fa-check"></i><b>7.2.5</b> Quantifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#cac-vi-du-tng-hp"><i class="fa fa-check"></i><b>7.3</b> Các ví dụ tổng hợp</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-1"><i class="fa fa-check"></i><b>7.3.1</b> Ví dụ 1</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-2"><i class="fa fa-check"></i><b>7.3.2</b> Ví dụ 2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-3"><i class="fa fa-check"></i><b>7.3.3</b> Ví dụ 3</a></li>
+<li class="chapter" data-level="7.3.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-4"><i class="fa fa-check"></i><b>7.3.4</b> Ví dụ 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#tai-liu-tham-khao"><i class="fa fa-check"></i><b>7.4</b> Tài liệu tham khảo</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><a href="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><i class="fa fa-check"></i><b>8</b> Quản lý kết quả phân tích từ nhiều mô hình</a></li>
+<li class="chapter" data-level="9" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html"><i class="fa fa-check"></i><b>9</b> Các nguyên lý dự báo</a><ul>
+<li class="chapter" data-level="9.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#gii-thiu-1"><i class="fa fa-check"></i><b>9.1</b> Giới thiệu</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nhanh-trong-hoc-may-machine-learning"><i class="fa fa-check"></i><b>9.1.1</b> Các nhánh trong học máy (machine learning)</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cach-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>9.1.2</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="9.1.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#s-dung-mo-hinh"><i class="fa fa-check"></i><b>9.1.3</b> Sử dụng mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nguyen-ly-trong-d-bao"><i class="fa fa-check"></i><b>9.2</b> Các nguyên lý trong dự báo</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#reducible-vs.-irreducible-error"><i class="fa fa-check"></i><b>9.2.1</b> Reducible vs. irreducible error</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#kha-nang-giai-thich-va-kha-nang-d-bao"><i class="fa fa-check"></i><b>9.2.2</b> Khả năng giải thích và khả năng dự báo</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#mo-hinh-co-tham-s-cho-truc-hoc-khong-co-tham-s-cho-truc-parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>9.2.3</b> Mô hình có tham số cho trước hoặc không có tham số cho trước (Parametric vs. Nonparametric)</a></li>
+<li class="chapter" data-level="9.2.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#nguyen-ly-ch-u"><i class="fa fa-check"></i><b>9.2.4</b> Nguyên lý chữ U</a></li>
+<li class="chapter" data-level="9.2.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#bias-variance-trade-off"><i class="fa fa-check"></i><b>9.2.5</b> Bias Variance Trade-Off</a></li>
+<li class="chapter" data-level="9.2.6" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#overfitting-regularization"><i class="fa fa-check"></i><b>9.2.6</b> Overfitting &amp; regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#quy-trinh-xay-dng-mo-hinh-d-bao"><i class="fa fa-check"></i><b>9.3</b> Quy trình xây dựng mô hình dự báo</a></li>
+<li class="chapter" data-level="9.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#ensemble-methods"><i class="fa fa-check"></i><b>9.4</b> Ensemble methods</a></li>
+<li class="chapter" data-level="9.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#luu-y"><i class="fa fa-check"></i><b>9.5</b> Lưu ý</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html"><i class="fa fa-check"></i><b>10</b> Mô hình OLS</a><ul>
+<li class="chapter" data-level="10.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#gii-thiu-2"><i class="fa fa-check"></i><b>10.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="10.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#xay-dng-mo-hinh-co-ban"><i class="fa fa-check"></i><b>10.2</b> Xây dựng mô hình cơ bản</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#mo-hinh-hi-quy-on-bin"><i class="fa fa-check"></i><b>10.2.1</b> Mô hình hồi quy đơn biến</a></li>
+<li class="chapter" data-level="10.2.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#din-giai-mo-hinh"><i class="fa fa-check"></i><b>10.2.2</b> Diễn giải mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#anh-gia-cht-lung-mo-hinh"><i class="fa fa-check"></i><b>10.3</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#sai-s-cua-mo-hinh"><i class="fa fa-check"></i><b>10.3.1</b> Sai số của mô hình</a></li>
+<li class="chapter" data-level="10.3.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#r-binh-phuong-r2"><i class="fa fa-check"></i><b>10.3.2</b> R bình phương <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="10.3.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#f-statistic"><i class="fa fa-check"></i><b>10.3.3</b> F statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#d-bao"><i class="fa fa-check"></i><b>10.4</b> Dự báo</a></li>
+<li class="chapter" data-level="10.5" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#thut-toan-ti-uu-vi-gradient-decent"><i class="fa fa-check"></i><b>10.5</b> Thuật toán tối ưu với gradient decent</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html"><i class="fa fa-check"></i><b>11</b> Mô hình hồi quy logistic</a><ul>
+<li class="chapter" data-level="11.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cach-xay-dng-mo-hinh-1"><i class="fa fa-check"></i><b>11.1</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="11.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#vi-du-xay-dng-mo-hinh-on-gian"><i class="fa fa-check"></i><b>11.2</b> Ví dụ xây dựng mô hình đơn giản</a></li>
+<li class="chapter" data-level="11.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cac-chi-s-cn-quan-tam-khac"><i class="fa fa-check"></i><b>11.3</b> Các chỉ số cần quan tâm khác</a></li>
+<li class="chapter" data-level="11.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#anh-gia-cht-lung-mo-hinh-1"><i class="fa fa-check"></i><b>11.4</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#confusion-matrix"><i class="fa fa-check"></i><b>11.4.1</b> Confusion Matrix</a></li>
+<li class="chapter" data-level="11.4.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#roc"><i class="fa fa-check"></i><b>11.4.2</b> ROC</a></li>
+<li class="chapter" data-level="11.4.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#gain-va-lift"><i class="fa fa-check"></i><b>11.4.3</b> Gain và Lift</a></li>
+<li class="chapter" data-level="11.4.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#kolmogorovsmirnov-statistics"><i class="fa fa-check"></i><b>11.4.4</b> Kolmogorov–Smirnov statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#thc-hanh"><i class="fa fa-check"></i><b>11.5</b> Thực hành</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#d-liu"><i class="fa fa-check"></i><b>11.5.1</b> Dữ liệu</a></li>
+<li class="chapter" data-level="11.5.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-tp-d-liu-gc"><i class="fa fa-check"></i><b>11.5.2</b> Xây dựng mô hình trên tập dữ liệu gốc</a></li>
+<li class="chapter" data-level="11.5.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-hai-tp-train-va-test"><i class="fa fa-check"></i><b>11.5.3</b> Xây dựng mô hình trên hai tập train và test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>11.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html"><i class="fa fa-check"></i><b>12</b> Cây quyết định</a><ul>
+<li class="chapter" data-level="12.1" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#gii-thiu-3"><i class="fa fa-check"></i><b>12.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="12.2" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#regression-trees"><i class="fa fa-check"></i><b>12.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="12.3" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#classification-trees"><i class="fa fa-check"></i><b>12.3</b> Classification Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html"><i class="fa fa-check"></i><b>13</b> Bagging - Boosting và Random Forest</a><ul>
+<li class="chapter" data-level="13.1" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#bagging"><i class="fa fa-check"></i><b>13.1</b> Bagging</a></li>
+<li class="chapter" data-level="13.2" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#random-forests"><i class="fa fa-check"></i><b>13.2</b> Random Forests</a></li>
+<li class="chapter" data-level="13.3" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#boosting"><i class="fa fa-check"></i><b>13.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>14</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="15" data-path="k-means.html"><a href="k-means.html"><i class="fa fa-check"></i><b>15</b> k-means</a><ul>
+<li class="chapter" data-level="15.1" data-path="k-means.html"><a href="k-means.html#gii-thiu-4"><i class="fa fa-check"></i><b>15.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="15.2" data-path="k-means.html"><a href="k-means.html#thut-toan"><i class="fa fa-check"></i><b>15.2</b> Thuật toán</a></li>
+<li class="chapter" data-level="15.3" data-path="k-means.html"><a href="k-means.html#uu-nhuc-im-cua-k-means"><i class="fa fa-check"></i><b>15.3</b> Ưu nhược điểm của K-means</a></li>
+<li class="chapter" data-level="15.4" data-path="k-means.html"><a href="k-means.html#thc-hanh-tren-r"><i class="fa fa-check"></i><b>15.4</b> Thực hành trên R</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>16</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="16.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>16.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="16.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>16.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="16.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>16.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>16.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="16.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>16.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="16.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>16.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>16.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>17</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="17.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>17.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>17.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="17.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>17.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>17.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>17.2.1</b> Biến đổi 1:1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Chuỗi thời gian</b></span></li>
+<li class="chapter" data-level="18" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>18</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="18.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>18.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="18.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>18.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="18.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>18.3</b> Smoothing</a></li>
+<li class="chapter" data-level="18.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>18.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="18.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>18.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>18.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="18.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>18.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="18.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>18.5.3</b> Tự động xây dựng mô hình</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>19</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="19.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>19.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="19.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>19.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="19.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>19.3</b> Ví dụ với R</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>20</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="20.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>20.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="20.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>20.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="20.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>20.3</b> Chuyển từ dataframe thành xts</a></li>
+</ul></li>
+<li class="part"><span><b>III Case study</b></span></li>
+<li class="chapter" data-level="21" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>21</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="21.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>21.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="21.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>21.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="21.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>21.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="21.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>21.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>22</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="22.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>22.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="22.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>22.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="22.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>22.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="22.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>22.4</b> Tự động render ra kết quả phân tích</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích dữ liệu thực tế với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">Chương 1</span> Khoa học dữ liệu và nghề phân tích dữ liệu</h1>
+<div id="khoa-hoc-d-liu-la-gi" class="section level2">
+<h2><span class="header-section-number">1.1</span> Khoa học dữ liệu là gì</h2>
+<p>Khoa học dữ liệu là nhóm ngành ứng dụng việc tổ chức và khai thác dữ liệu để hỗ trợ hoạt động ra quyết định. Phạm vi của khoa học dữ liệu rất rộng, từ việc tổ chức, quản lý, quản trị dữ liệu cho đến khai thác dữ liệu dưới dạng các báo cáo đơn giản cho đến các ứng dụng của Machine Learning, AI.</p>
+</div>
+<div id="tai-sao-phan-tich-d-liu-la-ngh-kho" class="section level2">
+<h2><span class="header-section-number">1.2</span> Tại sao phân tích dữ liệu là nghề khó?</h2>
+<p>Phân tích dữ liệu đòi hỏi cùng lúc thực hiện ba nhóm công việc sau:</p>
+<ul>
+<li>Hiểu biết về vấn đề kinh doanh. Nghe có vẻ đơn giản nhưng qua quá trình làm việc thực tế, kinh nghiệm của tác giả cho thấy đây có lẽ là phần dễ bị bỏ qua nhất bỏi lẽ mấy nguyên nhân sau.
+<ul>
+<li>Sự khác biệt của vận hành kinh doanh so với hoạt động phân tích dữ liệu.</li>
+<li>Tư duy và thái độ của nhóm phân tích dữ liệu. Các bạn phân tích kinh doanh (hoặc đôi khi được gọi là phân tích kinh doanh) thường tự coi mình là đơn vị hỗ trợ và <em>cung cấp</em> dữ liệu theo yêu cầu. Với lối tư duy thụ động này, các bạn sẽ không có nhu cầu tìm hiểu cặn kẽ các hoạt động kinh doanh, dẫn đến không hiểu hoạt động kinh doanh đủ sâu để có thể tư vấn và thuyết phục các bên kinh doanh trong việc triển khai các dự án phân tích dữ liệu mới.</li>
+<li>Nghiệp vụ kinh doanh rất phức tạp và thiếu hệ thống tài liệu ghi chép dưới góc độ khái quát cho hoạt động phân tích dữ liệu. Đây là vấn đề phần lớn các nhóm phân tích dữ liệu gặp phải. Để giải quyết vấn đề này, trong phần sau tác giả sẽ đưa ra phương pháp tìm hiểu hoạt động kinh doanh theo 6 nhóm vấn đề.</li>
+</ul></li>
+<li>Khai thác và phân tích dữ liệu</li>
+<li>Trình bày, thuyết phục và tư vấn cho các bên kinh doanh về kết quả phân tích dữ liệu.</li>
+</ul>
+<p><strong>Ba cấp độ của viết code</strong>: Khi sử dụng các công cụ phân tích dữ liệu (viết code), ta sẽ trải qua 3 cấp độ như sau:</p>
+<ol style="list-style-type: decimal">
+<li>Viết thứ đơn giản. Ở cấp độ này, các bạn thường mới nhập môn phân tích dữ liệu, đầy lo lắng và thiếu tự tin ở bản thân và bắt đầu với những bài phân tích đơn giản để áp dụng các kiến thức mới học.</li>
+<li>Viết càng nguy hiểm càng tốt. Ở giai đoạn này, các bạn đã có một lượng kiến thức nền tương đối vững và bắt đầu đi vào các phương pháp nâng cao. Do đó, các bạn thường có xu hướng khiến mọi thứ trở nên <em>nguy hiểm</em>, tô vẽ và đưa ra nhiều yếu tố không thực sự cần thiết. Với các bạn có xu hướng trực quan hóa, sẽ là đưa ra các biểu đồ đầy màu sắc và cực kỳ nguy hiểm. Với các bạn có xu hướng xây dựng mô hình dự báo, sẽ là dùng mô hình dự báo, học máy hoặc deep-learning mọi lúc, mọi nơi. Kết quả sẽ khiến người đọc ấn tượng nhưng có thể chưa thực sự có tính ứng dụng cao.</li>
+<li>Chỉ viết những thứ có khả năng tái sử dụng, giải quyết vấn đề bằng phương pháp đơn giản nhất có thể có. Ở giai đoạn này, các bạn đã dung hòa được rất nhiều kiến thức của nghành phân tích dữ liệu với nhau và tiếp cận các vấn đề một cách mạch lạc, logic và rất chặt chẽ. Các bạn nắm rất vững khi nào nên dùng các phương pháp phân tích khám phá dữ liệu đơn giản thay cho các thuật toán phức tạp trong việc giải quyết các vấn đề kinh doanh.</li>
+</ol>
+<p><strong>Công thức tổng quát khi viết code</strong>:</p>
+<p>Khi phân tích dữ liệu (hay bất cứ hoạt động nào cần phải viết code), công thức tổng quát cần phải ghi nhớ là:</p>
+<blockquote>
+<p><span class="math display">\[e = mc^2 \Leftrightarrow error = ({more\;code})^2\]</span></p>
+</blockquote>
+<p>Do đó, càng viết đơn giản, khả năng chúng ta giảm thiểu được các sai sót trong quá trình phân tích dữ liệu càng nhiều.</p>
+</div>
+<div id="phan-loai-hoat-ng-phan-tich-d-liu" class="section level2">
+<h2><span class="header-section-number">1.3</span> Phân loại hoạt động phân tích dữ liệu</h2>
+<div id="da-theo-cach-thc-tac-ng-n-khach-hang" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Dựa theo cách thức tác động đến khách hàng</h3>
+<p>Khi làm việc thực tế, có nhiều nhánh trong hoạt động phân tích dữ liệu dẫn tới việc gây hiểu nhầm giữa các khía cạnh khác nhau. Khái quát hóa có thể chia làm hai nhánh lớn sau.</p>
+<ul>
+<li><p>Phân tích dữ liệu để tác động lên khách hàng một cách trực tiếp. Với cách tiếp cận này, để có thể tác động trực tiếp lên khách hàng, kết quả của hoạt động phân tích dữ liệu phải được đưa vào thực tế dưới dạng API và tác động trực tiếp lên UI mà người dùng sử dụng. Các hệ thống <code>recommendation engine</code> trên các trang thương mại điện tử thuộc loại này</p></li>
+<li><p>Phân tích dữ liệu để tác động lên khách hàng thông qua những người ra quyết định. Đây là nhóm được sử dụng đặc biệt nhiều trong thực tế nhưng lại bị đánh giá thấp hơn so với nhóm đầu tiên. Nhánh ứng dụng phân tích dữ liệu này được dùng đặc biệt nhiều trong các tổ chức lớn như ngân hàng, bảo hiểm… Trong nhóm này lại tách thành hai nhóm nhỏ:</p>
+<ul>
+<li>Kết quả phân tích được thể hiện dưới dạng trình chiếu - công cụ thường hay được sử dụng nhất là powerpoint</li>
+<li>Kết quả được sử dụng dưới dạng phần mềm (data tools). Với dạng này, người ra quyết định sẽ sử dụng các kết quả từ các công cụ này để đánh giá và ra quyết định thay đổi chính sách, sản phẩm cho phù hợp với khách hàng. Các công cụ như Google Analytics, Tableau… thuộc dạng này.</li>
+</ul></li>
+</ul>
+<p><strong>Lưu ý</strong>:</p>
+<ul>
+<li>Đối với mô hình nâng cao hơn, kết quả phân loại, dự báo có thể được hiển thị trên các công cụ này và khiến người sử dụng dễ dàng hơn trong việc ra quyết định.</li>
+<li>Nguồn dữ liệu sử dụng để phân tích có thể tách ra thành hai nhóm lớn:
+<ul>
+<li>Dữ liệu trong nội bộ doanh nghiệp. Nguồn dữ liệu này thể hiện phần lớn hành vi, thói quen của khách hàng đối với sản phẩm, dịch vụ do doanh nghiệp nắm giữ. Tổ chức càng lớn, nguồn dữ liệu này càng khó được khai thác hết nếu không có hệ thống Data Warehouse tốt do gặp phải vấn đề phân tán và chất lượng dữ liệu. Các hệ thống như T24, W4, EBank, LOS của ngân hàng, Google Analytics trên website/apps… thuộc vào nhóm này</li>
+<li>Dữ liệu bên ngoài doanh nghiệp. Nguồn dữ liệu không do doanh nghiệp quản lý, phản ánh hành vi của khách hàng nói chung. Ví dụ - social network, blog, giao dịch trên các trang thương mại điện tử, etc.</li>
+</ul></li>
+</ul>
+<p>Mục tiêu toàn bộ của hoạt động phân tích dữ liệu là sử dụng dữ liệu, thông qua phân tích, dự báo để tác động lên hành vi khách hàng nhằm gia tăng giá trị của sản phẩm, dịch vụ của doanh nghiệp đối với khách hàng.</p>
+<p>Khái quát hóa hoạt động phân tích dữ liệu có thể thể hiện qua sơ đồ sau.</p>
+<center>
+<img src="Images/01-analysis-overview.png" />
+</center>
+</div>
+<div id="da-theo-c-tinh-cua-ngh-phan-tich-d-liu" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Dựa theo đặc tính của nghề phân tích dữ liệu</h3>
+<center>
+<img src="Images/01-data-science-job.png" />
+</center>
+<p>Nếu bám sát vào hoạt động của sơ đồ phía trên, ta có thể chia các hoạt động có liên quan đến khoa học dữ liệu thành 4 nhóm lớn.</p>
+<ul>
+<li><strong>Data Governance</strong> - Quản trị dữ liệu: Quản trị các hoạt động ghi nhận dữ liệu vào hệ thống của tổ chức, đưa ra các quy định, quy trình để đảm bảo dữ liệu được đưa vào hệ thống một cách chính xác và đảm bảo yêu cầu của hoạt động kinh doanh. Ví dụ, dữ liệu địa chỉ của khách hàng phải để dạng dropdown theo các đơn vị hành chính để tránh sai sót (quận/huyện, phường/xã, tỉnh, thành phố)</li>
+<li><strong>Data Management</strong> - Quản lý dữ liệu: Quản lý dữ liệu sau khi dữ liệu được đưa vào hệ thống của tổ chức, bao gổm làm sạch, tái cấu trúc, sắp xếp dữ liệu theo hệ thống để đảm bảo sẵn sàng sử dụng dữ liệu</li>
+<li><strong>Business Intelligence</strong>: Khai thác dữ liệu để hỗ trợ hoạt động kinh doanh và quá trình ra quyết định. Đối với hoạt động BI, có thể chia thành ba cấp độ.
+<ul>
+<li><strong>Data provider</strong> - cung cấp dữ liệu: Đơn vị kinh doanh/ nghiệp vụ yêu cầu như thế nào, cung cấp chính xác như vậy</li>
+<li><strong>Information &amp; basic insight provider</strong> - cung cấp thông tin &amp; các hiểu biết đơn giản về khách hàng và hoạt động kinh doanh: Đưa ra các nhận định, thông tin ở mức độ đơn giản nhưng rất hữu dụng cho hoạt động kinh doanh. Công cụ sử dụng cho cấp độ này phần lớn là Excel với pivot table đi kèm với các chỉ số thống kê cơ bản. <em>Ví dụ, top 10% khách hàng chiếm đến 90% doanh thu của cả công ty.</em></li>
+<li><strong>Advanced insights provider</strong> - cung cấp các hiểu biết sâu sắc về khách hàng và hoạt động kinh doanh. Để đưa ra các hiểu biết này, phải sử dụng nhiều đến các công cụ và mô hình thuộc nhóm <code>inference</code> nhằm tác động đến hoạt động kinh doanh. <em>Ví dụ, khách hàng nếu có ít nhất 3 loại giao dịch trong 2 tháng đầu tiên có khả năng ở lại với ngân hàng cao hơn 20% so với các khách hàng khác.</em></li>
+</ul></li>
+<li><strong>Predictive Modelling/ Optimization</strong> - Phân tích dự báo, tối ưu hóa. Ở mức độ này, công việc phân tích dữ liệu sẽ tập trung nhiều vào việc dự báo và tối ưu hóa. <em>Ví dụ: Khách hàng nào là khách hàng có nhiều khả năng bán chéo được sản phẩm thấu chi?</em> Các công cụ sử dụng trong cấp độ này là các phần mềm chuyên biệt về phân tích thống kê, dự báo như R/Python/SAS.</li>
+</ul>
+</div>
+<div id="da-theo-chu-ky-cua-khach-hang-i-vi-san-phm" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Dựa theo chu kỳ của khách hàng đối với sản phẩm</h3>
+<center>
+<img src="Images/1_customer_lifecycle.png" style="width:70.0%" />
+</center>
+<p>Xét về khía cạnh vòng đời sản phẩm, chu kỳ khách hàng, bất cứ hoạt động kinh doanh nào cũng có thể chia thành chu kỳ như sau.</p>
+<ul>
+<li><strong>Tim kiếm khách hàng</strong> - acquisition: Giai đoạn thu hút khách hàng mới, mục tiêu của giai đoạn này là đưa khách hàng mới về doanh nghiệp. Giai đoạn này, khách hàng chưa đem lại doanh số mà phần lớn chỉ là ở mức đăng ký dịch vụ, sản phẩm và trải nghiệm.</li>
+<li><strong>Kích hoạt khách hàng</strong> - activation: Sau khi một người đã trở thành khách hàng của doanh nghiệp, không có nghĩa người đó sẽ sử dụng sản phẩm dịch vụ mà thường phải có quá trình <code>on-boarding</code>. Mục tiêu của giai đoạn này không chỉ là để khách hàng có những trải nghiệm đầu tiên với sản phẩm dịch vụ mà còn khiến các sản phẩm đó trở nên quen thuộc và khách hàng bắt đầu <em>thực sự</em> sử dụng sản phẩm dịch vụ. Đây là giai đoạn rất nhiều doanh nghiệp lớn <em>quên</em> không sử dụng và đưa vào vận hành, khiến khách hàng vừa ở giai đoạn acquisition đã chuyển sang giai đoạn <code>churn</code></li>
+<li><strong>Khai thác khách hàng</strong> - deep farming: Chỉ sau khi khách hàng thực sự sử dụng sản phẩm, dịch vụ, lúc này doanh nghiệp mới có thể tiếp tục khai thác khách hàng. Thông thường có hai nhóm là bán chéo (cross-selling) và bán thêm (up-selling).</li>
+<li><strong>Giữ chân khách hàng</strong> - retaining customers: Sau một thời gian sử dụng sản phẩm, dịch vụ, khách hàng lúc này sẽ có xu hướng rời bỏ doanh nghiệp để sử dụng các sản phẩm khác cạnh tranh hơn. Do đó, mục tiêu phân tích trong giai đoạn này là dự báo, tìm kiếm và hỗ trợ các hoạt động kinh doanh giúp giảm <code>churn</code></li>
+<li><strong>Thu hồi nợ</strong> - collection/bad bank: Giai đoạn này thường chỉ sử dụng đối với các doanh nghiệp có hoạt động cho vay như ngân hàng. Mục tiêu phân tích là giảm tỷ lệ nợ, tỷ lệ nợ xấu</li>
+</ul>
+<p>Ngoài các giai đoạn lớn trên, hoạt động phân tích dữ liệu còn tập trung vào 2 mảng lớn:</p>
+<ul>
+<li><strong>Giữ chân khách hàng chủ động</strong> - proactively retaining customers: Phân tích để giữ chân khách hàng chủ động, ngay từ khi khách hàng chuyển qua giai đoạn có thể khai thác được. Nhiều doanh nghiệp lớn chưa chú trọng đến vấn đề này mà thường để đến khi khách hàng sắp rời bỏ doanh nghiệp mới tìm cách giữ chân. Khi đó, phần lớn mọi việc đã trở nên quá muộn.</li>
+<li><strong>Phân nhóm khách hàng</strong> - customers segmentation: Phân nhóm khách hàng theo các đặc trưng về hành vi, tính chất để có thể đưa ra các sản phẩm phù hợp</li>
+</ul>
+</div>
+</div>
+<div id="cach-xay-dng-nhom-phan-tich-d-liu" class="section level2">
+<h2><span class="header-section-number">1.4</span> Cách xây dựng nhóm phân tích dữ liệu</h2>
+<p>Để xây dựng nhóm phân tích dữ liệu, cần đảm bảo 3 nguyên tắc lớn sau:</p>
+<ul>
+<li>Nắm vững kỹ năng phân tích khám phá dữ liệu</li>
+<li>Bám sát hoạt động kinh doanh</li>
+<li>Đẩy mạnh tương tác nhóm &amp; phân nhóm kỹ năng dựa trên sở thích và tính cách cá nhân.</li>
+</ul>
+<p><strong>Thứ nhất</strong>, nền tảng của toàn bộ hoạt động phân tích dữ liệu (Analytics) phải giải quyết được bài toán kinh doanh dưới góc độ phân tích dữ liệu. Do đó, không nhất thiết phải xây dựng các mô hình phức tạp để giải quyết bài toán. Ngược lại, trong nhiều tình huống, ta nên sử dụng các phương pháp đơn giản bởi hai lý do: thứ nhất - có thể giải thích cho kinh doanh và thứ hai - rất nhiều vấn đề không cần xây mô hình cũng có thể giải quyết ngay được bởi các nguyên nhân từ vận hành, con người và sản phẩm. Chỉ khi nắm vững được kỹ năng phân tích khám phá dữ liệu ta mới có thể đưa ra các nhận định và kết quả một cách nhanh chóng và chính xác hỗ trợ hoạt động kinh doanh.</p>
+<p><strong>Thứ hai</strong>, hoạt động phân tích được sinh ra nhằm phục vụ kinh doanh. Do đó, nếu không nắm vững đến một mức độ nhất định hoạt động kinh doanh, ta không thể đưa ra các kết luận thực tế và có thể triển khai được. Rất nhiều trường hợp, nhóm phân tích dữ liệu quá chú trọng đến mặt kỹ thuật và thuật toán, đưa ra những kết luận phi thực tế. Điều này cần tránh dối với các tổ chức hướng đến việc ứng dụng phân tích dữ liệu thưc tiễn hỗ trợ kinh doanh.</p>
+<p><strong>Thứ ba</strong>, các nhà phân tích dữ liệu thường khá thông minh và thích làm việc tương đối độc lập. Không chỉ thế, có rất nhiều các khía cạnh khác nhau trong hoạt động phân tích dữ liệu. Có người ưa thích thuật toán và kiên trì và có thể tự học tốt nhưng lại yếu trong khâu giao tiếp và tương tác. Nhóm này nên khuyến khích phát triển các bài toán và vấn đề dự báo. Ngược lại, có nhóm rất thông minh, nhanh nhạy, thích thể hiện trước đông người nhưng lại thường xuyên cả thèm chóng chán. Nhóm này nên phát triển các kỹ năng khám phá dữ liệu, tìm kiếm insights và nên giao cho nhiệm vụ tương tác chính với kinh doanh. Ngoài ra, còn có nhóm trunh bình, việc gì cũng có thể làm ở mức độ khá nhưng không có việc gì thực sự nổi trội. Với nhóm này nên cố gắng bồi dưỡng để họ phát huy kiến thức tổng thể và hướng họ có thể back-up hai nhóm trên.</p>
+<p>Thêm vào đó, việc phân rã kỹ năng còn giúp cho kiến thức không bị quá tập trung vào 1-2 thành viên, điều này có thể khiến cho hoạt động phân tích dữ liệu bị chậm lại do gặp phải vấn đề bottle-neck của những thành viên đó.</p>
+</div>
+<div id="luu-y-khi-oc-tai-liu" class="section level2">
+<h2><span class="header-section-number">1.5</span> Lưu ý khi đọc tài liệu</h2>
+<p>Việc viết cuốn sách này xuất phát thuần túy từ nhu cầu cá nhân của tác giả. Trong quá trình làm việc thực tế, bản thân tác giả luôn có mong muốn tổng hợp và đúc rút các kiến thức phân tích thực tế. Tuy nhiên, khi bắt đầu bắt tay vào xây dựng cuốn sách, tác giả cũng có mong muốn có thể đúc kết và giúp cho các tổ chức, bộ phận muốn tập trung vào và khai thác sức mạnh của phân tích dữ liệu trong thực tế có thể có thêm các nguồn tài liệu và kinh nghiệm, vốn rất ít được chia sẻ thực tế, để có thể thành công hơn trong công việc triển khai.</p>
+<p>Thêm vào đó, trong quá trình làm việc và giảng dạy cho các học viên, tác giả luôn nhận được câu hỏi: <em>Thưa thày, em không được đào tạo bài bản về phân tích thống kê cũng như khoa học dữ liệu, liệu em có thể trở thành chuyên gia phân tích dữ liệu được không?</em></p>
+<p>Tác giả luôn trăn trở với câu hỏi trên cũng như với kinh nghiệm đào tạo thực tế và xây dựng năng lực phân tích dữ liệu ở VPBank, quyển sách này được viết ra theo cách tiếp cận <em>ứng dụng</em> của khoa học dữ liệu trong hoạt động kinh doanh. Do đó, ngôn ngữ cũng như cách tiếp cận trong cuốn sách này được cố gắng viết một cách đơn giản, dễ hiểu để trình bày các kiến thức, thuật ngữ khó hiểu của khoa học dữ liệu thành các ngôn ngữ bình dân phù hợp với nhiều đối tượng.</p>
+<p>Cuốn sách này sẽ không đi sâu vào lý thuyết của các thuật toán, mô hình thống kê mà sẽ cố gắng trả lời các khía cạnh sau.</p>
+<ul>
+<li>Thuật toán, mô hình đó là gì?</li>
+<li>Mô hình đó được sử dụng như thế nào?</li>
+<li>Khi giải thích cho các đơn vị kinh doanh, ta cần phải giải thích điều gì?</li>
+<li>Ứng dụng của mô hình trong thực tế</li>
+</ul>
+
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="li-m-u.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"split_by": "rmd"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

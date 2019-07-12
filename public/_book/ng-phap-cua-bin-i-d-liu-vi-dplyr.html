@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 2 Ngữ pháp của biến đổi dữ liệu với DPLYR | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 2 Ngữ pháp của biến đổi dữ liệu với DPLYR | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 2 Ngữ pháp của biến đổi dữ liệu với DPLYR | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chương 2 Ngữ pháp của biến đổi dữ liệu với DPLYR | Phân tích dữ liệu thực tế với R" />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 2 Ngữ pháp của biến đổi dữ liệu với DPLYR | Phân tích dữ liệu thực tế với R" />
+  
+  <meta name="twitter:description" content="Chương 2 Ngữ pháp của biến đổi dữ liệu với DPLYR | Phân tích dữ liệu thực tế với R" />
+  
+
+<meta name="author" content="Hoàng Đức Anh" />
+
+
+<meta name="date" content="2019-07-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="phan-ra-va-xoay-chiu-d-liu.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích dữ liệu thực tế với R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="li-m-u.html"><a href="li-m-u.html"><i class="fa fa-check"></i>Lời mở đầu</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Khoa học dữ liệu và nghề phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#khoa-hoc-d-liu-la-gi"><i class="fa fa-check"></i><b>1.1</b> Khoa học dữ liệu là gì</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#tai-sao-phan-tich-d-liu-la-ngh-kho"><i class="fa fa-check"></i><b>1.2</b> Tại sao phân tích dữ liệu là nghề khó?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#phan-loai-hoat-ng-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3</b> Phân loại hoạt động phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#da-theo-cach-thc-tac-ng-n-khach-hang"><i class="fa fa-check"></i><b>1.3.1</b> Dựa theo cách thức tác động đến khách hàng</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#da-theo-c-tinh-cua-ngh-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3.2</b> Dựa theo đặc tính của nghề phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#da-theo-chu-ky-cua-khach-hang-i-vi-san-phm"><i class="fa fa-check"></i><b>1.3.3</b> Dựa theo chu kỳ của khách hàng đối với sản phẩm</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#cach-xay-dng-nhom-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.4</b> Cách xây dựng nhóm phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#luu-y-khi-oc-tai-liu"><i class="fa fa-check"></i><b>1.5</b> Lưu ý khi đọc tài liệu</a></li>
+</ul></li>
+<li class="part"><span><b>I Kỹ thuật phân tích dữ liệu thực tế</b></span></li>
+<li class="chapter" data-level="2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><i class="fa fa-check"></i><b>2</b> Ngữ pháp của biến đổi dữ liệu với DPLYR</a><ul>
+<li class="chapter" data-level="2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#gii-thiu-v-pipe-operator"><i class="fa fa-check"></i><b>2.1</b> Giới thiệu về pipe operator</a></li>
+<li class="chapter" data-level="2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-co-ban-trong-dplyr"><i class="fa fa-check"></i><b>2.2</b> Các hàm cơ bản trong dplyr</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-truy-vn-d-liu"><i class="fa fa-check"></i><b>2.2.1</b> Nhóm câu lệnh truy vấn dữ liệu</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-bin-i-d-liu"><i class="fa fa-check"></i><b>2.2.2</b> Nhóm câu lệnh biến đổi dữ liệu</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-ham-tng-hp-d-liu-vi-summarise"><i class="fa fa-check"></i><b>2.2.3</b> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-nang-cao-trong-dplyr"><i class="fa fa-check"></i><b>2.3</b> Các hàm nâng cao trong dplyr</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#iu-kin-phan-nhom-vi-case_when"><i class="fa fa-check"></i><b>2.3.1</b> Điều kiện phân nhóm với <code>case_when</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at"><i class="fa fa-check"></i><b>2.3.2</b> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if"><i class="fa fa-check"></i><b>2.3.3</b> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html"><i class="fa fa-check"></i><b>3</b> Phân rã và xoay chiều dữ liệu</a><ul>
+<li class="chapter" data-level="3.1" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#phan-ra-d-liu-thanh-dang-doc-vi-gather"><i class="fa fa-check"></i><b>3.1</b> Phân rã dữ liệu thành dạng dọc với <code>gather</code></a></li>
+<li class="chapter" data-level="3.2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#xoay-chiu-d-liu-vi-spread"><i class="fa fa-check"></i><b>3.2</b> Xoay chiều dữ liệu với <code>spread</code></a></li>
+<li class="chapter" data-level="3.3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#tach-mt-bin-thanh-nhiu-bin-vi-separate"><i class="fa fa-check"></i><b>3.3</b> Tách một biến thành nhiều biến với <code>separate</code></a></li>
+<li class="chapter" data-level="3.4" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#gp-nhiu-bin-thanh-mt-bin-vi-unite"><i class="fa fa-check"></i><b>3.4</b> Gộp nhiều biến thành một biến với <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html"><i class="fa fa-check"></i><b>4</b> Các chỉ số thống kê mô tả cơ bản</a><ul>
+<li class="chapter" data-level="4.1" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#correlation"><i class="fa fa-check"></i><b>4.1</b> Correlation</a></li>
+<li class="chapter" data-level="4.2" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#anova"><i class="fa fa-check"></i><b>4.2</b> ANOVA</a></li>
+<li class="chapter" data-level="4.3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#kim-inh-quan-h-chi-binh-phuong"><i class="fa fa-check"></i><b>4.3</b> Kiểm định quan hệ Chi-bình phương</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html"><i class="fa fa-check"></i><b>5</b> Lập trình hàm</a><ul>
+<li class="chapter" data-level="5.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#quotes-vs.-unquotes"><i class="fa fa-check"></i><b>5.1</b> <strong>Quotes</strong> vs. <strong>Unquotes</strong></a></li>
+<li class="chapter" data-level="5.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hp-dung-quo_name"><i class="fa fa-check"></i><b>5.2</b> Trường hợp dùng <code>quo_name</code></a></li>
+<li class="chapter" data-level="5.3" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hop-nhiu-bin"><i class="fa fa-check"></i><b>5.3</b> Trường họp nhiều biến</a></li>
+<li class="chapter" data-level="5.4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ng-dung"><i class="fa fa-check"></i><b>5.4</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ham-tinh-toan-tng-hp-nhiu-bin"><i class="fa fa-check"></i><b>5.4.1</b> Hàm tính toán tổng hợp nhiều biến</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ve--thi-vi-ggplot2"><i class="fa fa-check"></i><b>5.4.2</b> Vẽ đồ thị với ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html"><i class="fa fa-check"></i><b>6</b> Lập trình chức năng hàm với purrr</a><ul>
+<li class="chapter" data-level="6.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#nhom-ham-map"><i class="fa fa-check"></i><b>6.1</b> Nhóm hàm map</a></li>
+<li class="chapter" data-level="6.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#sa-i-gia-tri-vi-modify"><i class="fa fa-check"></i><b>6.2</b> Sửa đổi giá trị với <code>modify</code></a></li>
+<li class="chapter" data-level="6.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#tao-ham-nhanh-vi-as_mapper"><i class="fa fa-check"></i><b>6.3</b> Tạo hàm nhanh với <code>as_mapper</code></a></li>
+<li class="chapter" data-level="6.4" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#xay-dng-chui-cac-ham-lien-tip-vi-compose"><i class="fa fa-check"></i><b>6.4</b> Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></a></li>
+<li class="chapter" data-level="6.5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#ng-dung-1"><i class="fa fa-check"></i><b>6.5</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#bin-i-d-liu-vi-modify-va-map_df"><i class="fa fa-check"></i><b>6.5.1</b> Biến đổi dữ liệu với <code>modify</code> và <code>map_df</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-nhom-khac-nhau-cung-luc"><i class="fa fa-check"></i><b>6.5.2</b> Phân tích nhiều nhóm khác nhau cùng lúc</a></li>
+<li class="chapter" data-level="6.5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-bin-trong-dataframe-cung-luc"><i class="fa fa-check"></i><b>6.5.3</b> Phân tích nhiều biến trong dataframe cùng lúc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html"><i class="fa fa-check"></i><b>7</b> Biến đổi dữ liệu text</a><ul>
+<li class="chapter" data-level="7.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#gii-thiu"><i class="fa fa-check"></i><b>7.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="7.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#regular-expression"><i class="fa fa-check"></i><b>7.2</b> Regular expression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#metadata"><i class="fa fa-check"></i><b>7.2.1</b> Metadata</a></li>
+<li class="chapter" data-level="7.2.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#sequences"><i class="fa fa-check"></i><b>7.2.2</b> Sequences</a></li>
+<li class="chapter" data-level="7.2.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#character-class"><i class="fa fa-check"></i><b>7.2.3</b> Character class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#posix-class"><i class="fa fa-check"></i><b>7.2.4</b> POSIX class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#quantifiers"><i class="fa fa-check"></i><b>7.2.5</b> Quantifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#cac-vi-du-tng-hp"><i class="fa fa-check"></i><b>7.3</b> Các ví dụ tổng hợp</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-1"><i class="fa fa-check"></i><b>7.3.1</b> Ví dụ 1</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-2"><i class="fa fa-check"></i><b>7.3.2</b> Ví dụ 2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-3"><i class="fa fa-check"></i><b>7.3.3</b> Ví dụ 3</a></li>
+<li class="chapter" data-level="7.3.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-4"><i class="fa fa-check"></i><b>7.3.4</b> Ví dụ 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#tai-liu-tham-khao"><i class="fa fa-check"></i><b>7.4</b> Tài liệu tham khảo</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><a href="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><i class="fa fa-check"></i><b>8</b> Quản lý kết quả phân tích từ nhiều mô hình</a></li>
+<li class="chapter" data-level="9" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html"><i class="fa fa-check"></i><b>9</b> Các nguyên lý dự báo</a><ul>
+<li class="chapter" data-level="9.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#gii-thiu-1"><i class="fa fa-check"></i><b>9.1</b> Giới thiệu</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nhanh-trong-hoc-may-machine-learning"><i class="fa fa-check"></i><b>9.1.1</b> Các nhánh trong học máy (machine learning)</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cach-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>9.1.2</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="9.1.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#s-dung-mo-hinh"><i class="fa fa-check"></i><b>9.1.3</b> Sử dụng mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nguyen-ly-trong-d-bao"><i class="fa fa-check"></i><b>9.2</b> Các nguyên lý trong dự báo</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#reducible-vs.-irreducible-error"><i class="fa fa-check"></i><b>9.2.1</b> Reducible vs. irreducible error</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#kha-nang-giai-thich-va-kha-nang-d-bao"><i class="fa fa-check"></i><b>9.2.2</b> Khả năng giải thích và khả năng dự báo</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#mo-hinh-co-tham-s-cho-truc-hoc-khong-co-tham-s-cho-truc-parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>9.2.3</b> Mô hình có tham số cho trước hoặc không có tham số cho trước (Parametric vs. Nonparametric)</a></li>
+<li class="chapter" data-level="9.2.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#nguyen-ly-ch-u"><i class="fa fa-check"></i><b>9.2.4</b> Nguyên lý chữ U</a></li>
+<li class="chapter" data-level="9.2.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#bias-variance-trade-off"><i class="fa fa-check"></i><b>9.2.5</b> Bias Variance Trade-Off</a></li>
+<li class="chapter" data-level="9.2.6" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#overfitting-regularization"><i class="fa fa-check"></i><b>9.2.6</b> Overfitting &amp; regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#quy-trinh-xay-dng-mo-hinh-d-bao"><i class="fa fa-check"></i><b>9.3</b> Quy trình xây dựng mô hình dự báo</a></li>
+<li class="chapter" data-level="9.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#ensemble-methods"><i class="fa fa-check"></i><b>9.4</b> Ensemble methods</a></li>
+<li class="chapter" data-level="9.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#luu-y"><i class="fa fa-check"></i><b>9.5</b> Lưu ý</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html"><i class="fa fa-check"></i><b>10</b> Mô hình OLS</a><ul>
+<li class="chapter" data-level="10.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#gii-thiu-2"><i class="fa fa-check"></i><b>10.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="10.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#xay-dng-mo-hinh-co-ban"><i class="fa fa-check"></i><b>10.2</b> Xây dựng mô hình cơ bản</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#mo-hinh-hi-quy-on-bin"><i class="fa fa-check"></i><b>10.2.1</b> Mô hình hồi quy đơn biến</a></li>
+<li class="chapter" data-level="10.2.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#din-giai-mo-hinh"><i class="fa fa-check"></i><b>10.2.2</b> Diễn giải mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#anh-gia-cht-lung-mo-hinh"><i class="fa fa-check"></i><b>10.3</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#sai-s-cua-mo-hinh"><i class="fa fa-check"></i><b>10.3.1</b> Sai số của mô hình</a></li>
+<li class="chapter" data-level="10.3.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#r-binh-phuong-r2"><i class="fa fa-check"></i><b>10.3.2</b> R bình phương <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="10.3.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#f-statistic"><i class="fa fa-check"></i><b>10.3.3</b> F statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#d-bao"><i class="fa fa-check"></i><b>10.4</b> Dự báo</a></li>
+<li class="chapter" data-level="10.5" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#thut-toan-ti-uu-vi-gradient-decent"><i class="fa fa-check"></i><b>10.5</b> Thuật toán tối ưu với gradient decent</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html"><i class="fa fa-check"></i><b>11</b> Mô hình hồi quy logistic</a><ul>
+<li class="chapter" data-level="11.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cach-xay-dng-mo-hinh-1"><i class="fa fa-check"></i><b>11.1</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="11.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#vi-du-xay-dng-mo-hinh-on-gian"><i class="fa fa-check"></i><b>11.2</b> Ví dụ xây dựng mô hình đơn giản</a></li>
+<li class="chapter" data-level="11.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cac-chi-s-cn-quan-tam-khac"><i class="fa fa-check"></i><b>11.3</b> Các chỉ số cần quan tâm khác</a></li>
+<li class="chapter" data-level="11.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#anh-gia-cht-lung-mo-hinh-1"><i class="fa fa-check"></i><b>11.4</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#confusion-matrix"><i class="fa fa-check"></i><b>11.4.1</b> Confusion Matrix</a></li>
+<li class="chapter" data-level="11.4.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#roc"><i class="fa fa-check"></i><b>11.4.2</b> ROC</a></li>
+<li class="chapter" data-level="11.4.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#gain-va-lift"><i class="fa fa-check"></i><b>11.4.3</b> Gain và Lift</a></li>
+<li class="chapter" data-level="11.4.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#kolmogorovsmirnov-statistics"><i class="fa fa-check"></i><b>11.4.4</b> Kolmogorov–Smirnov statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#thc-hanh"><i class="fa fa-check"></i><b>11.5</b> Thực hành</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#d-liu"><i class="fa fa-check"></i><b>11.5.1</b> Dữ liệu</a></li>
+<li class="chapter" data-level="11.5.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-tp-d-liu-gc"><i class="fa fa-check"></i><b>11.5.2</b> Xây dựng mô hình trên tập dữ liệu gốc</a></li>
+<li class="chapter" data-level="11.5.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-hai-tp-train-va-test"><i class="fa fa-check"></i><b>11.5.3</b> Xây dựng mô hình trên hai tập train và test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>11.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>12</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="13" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>13</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="13.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>13.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="13.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>13.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="13.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>13.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>13.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="13.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>13.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="13.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>13.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>13.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>14</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="14.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>14.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>14.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="14.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>14.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>14.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>14.2.1</b> Biến đổi 1:1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Chuỗi thời gian</b></span></li>
+<li class="chapter" data-level="15" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>15</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="15.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>15.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="15.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>15.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="15.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>15.3</b> Smoothing</a></li>
+<li class="chapter" data-level="15.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>15.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="15.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>15.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>15.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="15.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>15.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="15.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>15.5.3</b> Tự động xây dựng mô hình</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>16</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="16.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>16.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="16.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>16.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="16.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>16.3</b> Ví dụ với R</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>17</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="17.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>17.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="17.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>17.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="17.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>17.3</b> Chuyển từ dataframe thành xts</a></li>
+</ul></li>
+<li class="part"><span><b>III Case study</b></span></li>
+<li class="chapter" data-level="18" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>18</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="18.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>18.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="18.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>18.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="18.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>18.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="18.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>18.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>19</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="19.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>19.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="19.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>19.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="19.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>19.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="19.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>19.4</b> Tự động render ra kết quả phân tích</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích dữ liệu thực tế với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ng-phap-cua-bin-i-d-liu-vi-dplyr" class="section level1">
+<h1><span class="header-section-number">Chương 2</span> Ngữ pháp của biến đổi dữ liệu với DPLYR</h1>
+<p>Khi bắt tay vào công việc phân tích số liệu, việc đầu tiên ta cần phải làm là thu thập dữ liệu từ nhiều nguồn khác nhau. Sau khi hoàn thành xong bước này, ta sẽ phải dành phần lớn thời gian để làm sạch, biến đổi và tổng hợp dữ liệu nhằm tìm kiếm các insights hoặc chuẩn bị dữ liệu cho các bước xây dựng mô hình, dự báo.</p>
+<p>R rất mạnh trong việc biến đối dữ liệu và có rất nhiều package hỗ trợ cho công việc này. Tuy nhiên, thư viện nổi tiếng nhất trong R trong việc làm sạch và biến đổi dữ liệu là <code>dplyr</code>, một thư viện nổi tiếng với những tính năng chuyên cho việc xử lý, tổng hợp dữ liệu trước khi xây dựng mô hình phân tích dữ liệu. Chương này sẽ tập trung vào giới thiệu về những hàm cơ bản nhất của <code>dplyr</code>.</p>
+<p>Trước khi bắt đầu nội dung bài giảng, chúng ta có thể download và gọi gói dplyr.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb1-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
+<span id="cb1-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb1-2"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<div id="gii-thiu-v-pipe-operator" class="section level2">
+<h2><span class="header-section-number">2.1</span> Giới thiệu về pipe operator</h2>
+<p>Khi viết các câu lệnh, thông thường ta có 2 cách viết phổ biến sau.</p>
+<ul>
+<li><p>Cách 1: Viết với các câu lệnh lồng vào nhau (nested). Với cách viết này, các hàm sẽ được viết lồng vào nhau và kết quả của hàm sẽ được tính toán theo thứ tự từ trong ra ngoài.</p></li>
+<li><p>Cách 2: Viết lưu dưới dạng các đối tượng trung gian. Với cách viết này, từng đối tượng sẽ được tính toán từng phần và kết quả sẽ được hiển thị một cách mạch lạc hơn. Tuy nhiên, nhược điểm của phương pháp này là sẽ tạo ra rất nhiều đối tượng trung gian, gây ra khó khăn trong việc theo dõi và quản lỹ.</p></li>
+</ul>
+<p>Giả sử ta cần tính toán độ lệch chuẩn của véc-tơ x, công thức tính độ lệch chuẩn sẽ là</p>
+<p><span class="math display">\[\sigma = \frac{\sum_{i=1}^n(x_i-\overline{x})^2}{n-1}\]</span></p>
+<p>Với hai cách viết code khác nhau, ta có thể tính độ lệch chuẩn theo hai cách.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb2-1"></a><span class="co"># Cách 1</span></span>
+<span id="cb2-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb2-2"></a><span class="co"># Tạo vector x</span></span>
+<span id="cb2-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb2-3"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">100</span>, <span class="dv">2</span>)  </span>
+<span id="cb2-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb2-4"></a><span class="co"># Tính độ lệch chuẩn</span></span>
+<span id="cb2-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb2-5"></a><span class="kw">sqrt</span>(<span class="kw">sum</span>((x<span class="op">-</span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(<span class="kw">length</span>(x)<span class="op">-</span><span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] 29.15476</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb4-1"></a><span class="kw">sd</span>(x)</span></code></pre></div>
+<pre><code>## [1] 29.15476</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-1"></a><span class="co"># Cách 2</span></span>
+<span id="cb6-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-2"></a><span class="co"># Tạo vector x</span></span>
+<span id="cb6-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-3"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb6-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-4"></a><span class="co"># Tính tổng bình phương </span></span>
+<span id="cb6-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-5"></a>sum_sqr &lt;-<span class="st"> </span><span class="kw">sum</span>((x<span class="op">-</span><span class="kw">mean</span>(x))<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb6-6"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-6"></a>len_x &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
+<span id="cb6-7"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-7"></a>var &lt;-<span class="st"> </span>sum_sqr<span class="op">/</span>(len_x <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb6-8"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-8"></a>sd &lt;-<span class="st"> </span>var<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb6-9"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb6-9"></a>sd</span></code></pre></div>
+<pre><code>## [1] 29.15476</code></pre>
+<p>Ta thấy kết quả ở hai cách tính là như nhau. Tuy nhiên, cách viết hai sẽ tạo ra nhiều đối tượng trung gian hơn cách viết 1 rất nhiều. Khi phân tích dữ liệu thực tế, ta sẽ phải áp dụng cả 2 cách viết code để có thể vận dụng linh hoạt trong từng trường hợp cụ thể.</p>
+<p>Trong R, có cách viết code thứ ba, được gọi là cách suwr dụng <code>pipe operator</code> <code>(%&gt;%)</code>. <code>Toán tử Pipe</code> cho phép viết code theo cách đơn giản và dễ theo dõi giúp cho người đọc và người viết code trên R có thể theo dõi được code một cách dễ dàng nhất. Câu trúc của pipe như sau</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb8-1"></a><span class="kw">f</span>(x, y) =<span class="st"> </span>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">f</span>(., y) </span></code></pre></div>
+<p>Ví dụ của pipe.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb9-1"></a><span class="co"># Cách 1</span></span>
+<span id="cb9-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb9-2"></a><span class="kw">mean</span>(x)</span>
+<span id="cb9-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb9-3"></a><span class="co"># Cách 2</span></span>
+<span id="cb9-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb9-4"></a>x <span class="op">%&gt;%</span><span class="st"> </span>mean</span></code></pre></div>
+<p>Ta có thể xem xét ví dụ phức tạp hơn.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb10-1"></a><span class="co"># Cách 1 - dùng cách viết thường</span></span>
+<span id="cb10-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb10-2"></a><span class="kw">summary</span>(<span class="kw">head</span>(iris))</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width    
+##  Min.   :4.600   Min.   :3.000   Min.   :1.300   Min.   :0.2000  
+##  1st Qu.:4.750   1st Qu.:3.125   1st Qu.:1.400   1st Qu.:0.2000  
+##  Median :4.950   Median :3.350   Median :1.400   Median :0.2000  
+##  Mean   :4.950   Mean   :3.383   Mean   :1.450   Mean   :0.2333  
+##  3rd Qu.:5.075   3rd Qu.:3.575   3rd Qu.:1.475   3rd Qu.:0.2000  
+##  Max.   :5.400   Max.   :3.900   Max.   :1.700   Max.   :0.4000  
+##        Species 
+##  setosa    :6  
+##  versicolor:0  
+##  virginica :0  
+##                
+##                
+## </code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb12-1"></a><span class="co"># Cách 2 - dùng pipe</span></span>
+<span id="cb12-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb12-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>head <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width    
+##  Min.   :4.600   Min.   :3.000   Min.   :1.300   Min.   :0.2000  
+##  1st Qu.:4.750   1st Qu.:3.125   1st Qu.:1.400   1st Qu.:0.2000  
+##  Median :4.950   Median :3.350   Median :1.400   Median :0.2000  
+##  Mean   :4.950   Mean   :3.383   Mean   :1.450   Mean   :0.2333  
+##  3rd Qu.:5.075   3rd Qu.:3.575   3rd Qu.:1.475   3rd Qu.:0.2000  
+##  Max.   :5.400   Max.   :3.900   Max.   :1.700   Max.   :0.4000  
+##        Species 
+##  setosa    :6  
+##  versicolor:0  
+##  virginica :0  
+##                
+##                
+## </code></pre>
+<p>Cả hai cách đều cho ra kết quả giống nhau. Tuy nhiên, cách hai sẽ dễ theo dõi, dễ đọc hơn cách 1 rất nhiều. Cách đọc hiểu quá trình thực hiện pipe như sau:</p>
+<ol style="list-style-type: decimal">
+<li>Gọi tập dữ liệu <code>iris</code> để phân tích</li>
+<li>Thực hiện hàm <code>head</code> trên tập dữ liệu này, <em>được kết quả bao nhiêu</em>…</li>
+<li>… tiếp tục thực hiện hàm <code>summary</code></li>
+</ol>
+<p>Như ta thấy, cách viết theo phong cách của <code>pipe operator (%&gt;%)</code> cho phép ta thực hiện các phép tính theo đúng mạch tư duy logic của bản thân. Điều này là một điểm rất mạnh mà hiện tại, mới chỉ ở R có toán tử <code>%&gt;%</code> áp dụng được cho mọi hàm.</p>
+<p><strong>Một số đặc tính cơ bản của toán tử pipe</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Theo mặc định, Phía tay trái (LHS) sẽ được chuyển tiếp thành yếu tố đầu tiên của hàm được sử dụng phía tay phải (RHS), ví dụ:</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb14-1"></a><span class="kw">mean</span>(x) </span></code></pre></div>
+<pre><code>## [1] 51</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb16-1"></a><span class="co"># Tương đương với:</span></span>
+<span id="cb16-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb16-2"></a>x <span class="op">%&gt;%</span><span class="st"> </span>mean</span></code></pre></div>
+<pre><code>## [1] 51</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Khi LHS không còn là yếu tố đầu tiên của một hàm RHS, thì dấu “.” được sử dụng để định vị cho LHS, ví dụ:</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb18-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb18-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb18-2"></a><span class="co"># Cách 1</span></span>
+<span id="cb18-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb18-3"></a><span class="kw">summary</span>(<span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>cyl, <span class="dt">data =</span> mtcars))</span>
+<span id="cb18-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb18-4"></a></span>
+<span id="cb18-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb18-5"></a><span class="co"># Cách 2</span></span>
+<span id="cb18-6"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb18-6"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb18-7"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb18-7"></a><span class="st">  </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>cyl, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb18-8"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb18-8"></a><span class="st">  </span>summary</span></code></pre></div>
+<p>Trong tình huống trên, tham số về dữ liệu trong hàm lm không phải là ở đầu, mà sau phần công thức, nên chúng ta sẽ dùng dấu “.” như là đại diện của thực thể mtcars ở bên ngoài (LHS) của hàm lm.</p>
+</div>
+<div id="cac-ham-co-ban-trong-dplyr" class="section level2">
+<h2><span class="header-section-number">2.2</span> Các hàm cơ bản trong dplyr</h2>
+<p>Trong công việc biến đổi dữ liệu, bất kỳ ngôn ngữ phân tích nào cũng có 3 nhóm hàm lớn.</p>
+<ul>
+<li>Nhóm 1 - các hàm truy vấn dữ liệu: Lấy dữ liệu theo dòng, theo cột và theo điều kiện. Trong <code>dplyr</code> sẽ là các hàm <code>select</code>, <code>filter</code> và <code>slice</code></li>
+<li>Nhóm 2 - Các hàm tổng hợp dữ liệu: Tính toán tổng hợp dữ liệu theo chiều. Trong <code>dplyr</code> sẽ là các hàm <code>group_by</code>, <code>summarise</code></li>
+<li>Nhóm 3 - Các hàm biến đổi dữ liệu: Tạo mới, biến đổi các dữ liệu cũ thành các dữ liệu mới. Trong <code>dplyr</code> sẽ là các hàm thuộc nhóm <code>mutate</code>, <code>join</code>, <code>bind</code></li>
+</ul>
+<p>Trong phần này, chúng ta sẽ giới thiệu nhanh các nhóm câu lệnh cơ bản trên.</p>
+<div id="nhom-cau-lnh-truy-vn-d-liu" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Nhóm câu lệnh truy vấn dữ liệu</h3>
+<p>Khi truy vấn dữ liệu, ta thường phải thực hiện 3 nhóm công việc sau.</p>
+<ul>
+<li>Lấy theo cột</li>
+<li>Lấy theo dòng</li>
+<li>Lấy theo điều kiện</li>
+</ul>
+<p>Xét về mặt bản chất, lấy theo điều kiện là một trường hợp đặc biệt của việc lấy theo dòng. Đối với các ngôn ngữ như SQL, sẽ không phân biệt hai loại này. Tuy nhiên, vì R lưu thứ tự của từng quan sát trong dataframe, nên việc phân biệt được hai loại truy vấn trên là cần thiết.</p>
+<div id="ly-cac-ct-trong-dataframe-vi-select" class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> Lấy các cột trong dataframe với <code>select</code></h4>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb19-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(var1, var2, ...)</span></code></pre></div>
+<p>Trong đó, <code>var1</code>, <code>var2</code> là tên các cột cần truy vấn. Đặc biệt, R rất linh hoạt trong việc lọc theo cột. Ta có thể truy vấn theo tên, theo thứ tự hoặc thậm chí theo các khoảng thứ tự các biến. Xem ví dụ sau.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb20-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb20-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb20-2"></a><span class="co"># Xêm tên các biến trong mtcars</span></span>
+<span id="cb20-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb20-3"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span>names</span></code></pre></div>
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb22-1"></a><span class="co"># Chọn cột mpg và cyl</span></span>
+<span id="cb22-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb22-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(mpg, cyl) <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
+<pre><code>##                    mpg cyl
+## Mazda RX4         21.0   6
+## Mazda RX4 Wag     21.0   6
+## Datsun 710        22.8   4
+## Hornet 4 Drive    21.4   6
+## Hornet Sportabout 18.7   8
+## Valiant           18.1   6</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb24-1"></a><span class="co"># Chọn cột thứ nhất và thứ hai</span></span>
+<span id="cb24-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb24-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
+<pre><code>##                    mpg cyl
+## Mazda RX4         21.0   6
+## Mazda RX4 Wag     21.0   6
+## Datsun 710        22.8   4
+## Hornet 4 Drive    21.4   6
+## Hornet Sportabout 18.7   8
+## Valiant           18.1   6</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb26-1"></a><span class="co"># Chọn cột thứ 3 đến cột thứ 6</span></span>
+<span id="cb26-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb26-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>) <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
+<pre><code>##                   disp  hp drat    wt
+## Mazda RX4          160 110 3.90 2.620
+## Mazda RX4 Wag      160 110 3.90 2.875
+## Datsun 710         108  93 3.85 2.320
+## Hornet 4 Drive     258 110 3.08 3.215
+## Hornet Sportabout  360 175 3.15 3.440
+## Valiant            225 105 2.76 3.460</code></pre>
+<p> </p>
+<p>Ngoài ra, khi lấy chi tiết các cột (liệt kê từng cột) khi lấy dữ liệu trên 1 bảng, bạn có thể dùng một số hàm sau để hỗ trợ việc lấy trường dữ liệu được nhanh hơn:</p>
+<ul>
+<li><code>starts_with("Ký tự là thông tin mong muốn")</code>: các cột dữ liệu ccó tên hứa các ký tự mong muốn đứng ở đầu của tên, ví dụ:</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb28-1"></a>iris <span class="op">%&gt;%</span></span>
+<span id="cb28-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb28-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;Petal&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb28-3"></a><span class="st">  </span>head</span></code></pre></div>
+<pre><code>##   Petal.Length Petal.Width
+## 1          1.4         0.2
+## 2          1.4         0.2
+## 3          1.3         0.2
+## 4          1.5         0.2
+## 5          1.4         0.2
+## 6          1.7         0.4</code></pre>
+<ul>
+<li><code>ends_with("Ký tự là thông tin mong muốn")</code>: các cột dữ liệu có tên chứa các ký tự mong muốn ở cuối của tên, ví dụ:</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb30-1"></a>iris <span class="op">%&gt;%</span></span>
+<span id="cb30-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb30-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">ends_with</span>(<span class="st">&quot;Length&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb30-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb30-3"></a><span class="st">  </span>head</span></code></pre></div>
+<pre><code>##   Sepal.Length Petal.Length
+## 1          5.1          1.4
+## 2          4.9          1.4
+## 3          4.7          1.3
+## 4          4.6          1.5
+## 5          5.0          1.4
+## 6          5.4          1.7</code></pre>
+<ul>
+<li><code>contains("Ký tự là thông tin mong muốn")</code>: các cột dữ liệu có tên chứa chính xác các ký tự mong muốn ở bất kỳ vị trí nào của tên, ví dụ:</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb32-1"></a>iris <span class="op">%&gt;%</span></span>
+<span id="cb32-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb32-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">contains</span>(<span class="st">&quot;etal&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb32-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb32-3"></a><span class="st">  </span>head</span></code></pre></div>
+<pre><code>##   Petal.Length Petal.Width
+## 1          1.4         0.2
+## 2          1.4         0.2
+## 3          1.3         0.2
+## 4          1.5         0.2
+## 5          1.4         0.2
+## 6          1.7         0.4</code></pre>
+<ul>
+<li>matches(“Dạng ký tự là thông tin mong muốn”): các cột dữ liệu có tên chứa các ký tự có dạng ký tự mong muốn ở bất kỳ vị trí nào của tên, ví dụ:</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb34-1"></a>iris <span class="op">%&gt;%</span></span>
+<span id="cb34-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb34-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">matches</span>(<span class="st">&quot;.t.&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb34-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb34-3"></a><span class="st">  </span>head</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4</code></pre>
+<p>Trong ví dụ trên, R sẽ lấy tất cả các cột có tên chứa chữ t và có ký tự khác ở trước và sau (các ký tự chỉ chứa chữ t mà chữ t ở đâu hoặc cuối tên sẽ không được tính vào)</p>
+<p>Thêm vào đó, ta có thể đổi tên biến ngay trong khi lựa chọn các biến với <code>select</code> như sau:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb36-1"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb36-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb36-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">miles per gallon</span><span class="st">`</span> =<span class="st"> </span>mpg</span>
+<span id="cb36-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb36-3"></a>         , <span class="dt">cylinder =</span> cyl</span>
+<span id="cb36-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb36-4"></a>         , <span class="dt">weight =</span> wt) <span class="op">%&gt;%</span></span>
+<span id="cb36-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb36-5"></a><span class="st">  </span>head</span></code></pre></div>
+<pre><code>##                   miles per gallon cylinder weight
+## Mazda RX4                     21.0        6  2.620
+## Mazda RX4 Wag                 21.0        6  2.875
+## Datsun 710                    22.8        4  2.320
+## Hornet 4 Drive                21.4        6  3.215
+## Hornet Sportabout             18.7        8  3.440
+## Valiant                       18.1        6  3.460</code></pre>
+</div>
+<div id="ly-cac-dong-trong-dataframe-vi-slice" class="section level4">
+<h4><span class="header-section-number">2.2.1.2</span> Lấy các dòng trong dataframe với <code>slice</code></h4>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb38-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(observation)</span></code></pre></div>
+<p>Tương tự như lấy theo cột, ta có thể lấy các dòng trong một dataframe. Tuy nhiên, lưu ý hàm <code>slice</code> chỉ cho phép điều kiện lấy quan sát là một véc-tơ. Xem ví dụ sau.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb39-1"></a><span class="co"># Lấy dòng đầu tiên</span></span>
+<span id="cb39-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb39-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##   mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## 1  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb41-1"></a><span class="co"># Lấy dòng từ 1:3</span></span>
+<span id="cb41-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb41-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb43-1"></a><span class="co"># Lấy dòng 1:3 và 5</span></span>
+<span id="cb43-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb43-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">5</span>))</span></code></pre></div>
+<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## 4 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</code></pre>
+</div>
+<div id="loc-quan-sat-theo-iu-kin-vi-filter" class="section level4">
+<h4><span class="header-section-number">2.2.1.3</span> Lọc quan sát theo điều kiện với <code>filter</code></h4>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb45-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(condition)</span></code></pre></div>
+<p>Hàm filter cho phép ta sử dụng các điều kiện phức tạp để truy xuất dữ liệu từ dataframe. Các điều kiện thường dùng bao gồm.</p>
+<table style="width:67%;">
+<colgroup>
+<col width="27%" />
+<col width="13%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dấu</th>
+<th>Ký hiệu</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bằng</td>
+<td><code>==</code></td>
+<td><code>7==8</code></td>
+</tr>
+<tr class="even">
+<td>Khác</td>
+<td><code>!=</code></td>
+<td><code>7!=8</code></td>
+</tr>
+<tr class="odd">
+<td>Lớn hơn</td>
+<td><code>&gt;</code></td>
+<td><code>a &gt; b</code></td>
+</tr>
+<tr class="even">
+<td>Lớn hơn hoặc bằng</td>
+<td><code>&gt;=</code></td>
+<td><code>a &gt;= b</code></td>
+</tr>
+<tr class="odd">
+<td>Nhỏ hơn</td>
+<td><code>&lt;</code></td>
+<td><code>a &lt; b</code></td>
+</tr>
+<tr class="even">
+<td>Nhỏ hơn hoặc bằng</td>
+<td><code>&lt;=</code></td>
+<td><code>a &lt;= b</code></td>
+</tr>
+<tr class="odd">
+<td>Và</td>
+<td><code>&amp;</code></td>
+<td><code>a &gt; 7 &amp; b &lt; 9</code></td>
+</tr>
+</tbody>
+</table>
+<p>Xem ví dụ sau.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb46-1"></a><span class="co"># Lọc điều kiện mpg &gt; 20</span></span>
+<span id="cb46-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb46-2"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb46-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb46-3"></a><span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb46-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb46-4"></a><span class="st">  </span>dim</span></code></pre></div>
+<pre><code>## [1] 14 11</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb48-1"></a><span class="co"># Lọc điều kiện mpg &gt;20 hoặc mpg &lt;18</span></span>
+<span id="cb48-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb48-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb48-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb48-3"></a><span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">|</span><span class="st"> </span>mpg <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb48-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb48-4"></a><span class="st">  </span>dim</span></code></pre></div>
+<pre><code>## [1] 27 11</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb50-1"></a><span class="co"># Lọc điều kiện mpg &gt;=20 và cyl = 6</span></span>
+<span id="cb50-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb50-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb50-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb50-3"></a><span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>cyl <span class="op">==</span><span class="st"> </span><span class="dv">6</span>)</span></code></pre></div>
+<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## 3 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</code></pre>
+<p><strong>Lưu ý</strong>: Khi điều kiện <em>hoặc</em> là chuỗi các giá trị rời rạc áp dụng cho cùng một trường, chúng ta có thể làm ngắn gọn hơn với cấu trúc “%in%” thay vì cấu phải liệt kê tất cả các điều kiện đơn lẻ và ngăn cách nhau bởi dấu “|”:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb52-1"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb52-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb52-2"></a><span class="st"> </span><span class="kw">filter</span>(carb <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">|</span><span class="st"> </span>carb <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>carb <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## 5  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## 6  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## 7  19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## 8  17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## 9  16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## 10 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## 11 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## 12 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## 13 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## 14 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## 15 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## 16 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## 17 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## 18 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## 19 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## 20 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</code></pre>
+<p>Câu lệnh trên tương đương với:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb54-1"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb54-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb54-2"></a><span class="st">  </span><span class="kw">filter</span>(carb <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span></code></pre></div>
+</div>
+<div id="sp-xp-d-liu-vi-arrange" class="section level4">
+<h4><span class="header-section-number">2.2.1.4</span> Sắp xếp dữ liệu với <code>arrange</code></h4>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb55-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(var1, var2)</span></code></pre></div>
+<p>Ngoài việc lọc dữ liệu có điều kiện, chúng ta cũng thường xuyên thực hiện việc sắp xếp dữ liệu theo một trật tự nhất định nào đó khi xem dữ liệu. Hàm arrange() hỗ trợ công việc này. Cách thức sắp xếp dữ liệu mặc định là từ nhỏ đến lớn.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb56-1"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb56-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb56-2"></a><span class="st">  </span><span class="kw">arrange</span>(mpg) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb56-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb56-3"></a><span class="st">  </span>head</span></code></pre></div>
+<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## 1 10.4   8  472 205 2.93 5.250 17.98  0  0    3    4
+## 2 10.4   8  460 215 3.00 5.424 17.82  0  0    3    4
+## 3 13.3   8  350 245 3.73 3.840 15.41  0  0    3    4
+## 4 14.3   8  360 245 3.21 3.570 15.84  0  0    3    4
+## 5 14.7   8  440 230 3.23 5.345 17.42  0  0    3    4
+## 6 15.0   8  301 335 3.54 3.570 14.60  0  1    5    8</code></pre>
+<p>Khi có nhiều biến cần được sắp xếp, hàm <code>arrange</code> sẽ ưu tiên các biến theo thứ tự từ trái sang phải.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb58-1"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(mpg, cyl)</span></code></pre></div>
+<pre><code>##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## 1  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## 2  10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## 3  13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## 4  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## 5  14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## 6  15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## 7  15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## 8  15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## 9  15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## 10 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## 11 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## 12 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## 13 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## 14 18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## 15 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## 16 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## 17 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## 18 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## 19 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## 20 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## 21 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## 22 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## 23 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## 24 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## 25 22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## 26 24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## 28 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## 29 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## 30 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## 31 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## 32 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</code></pre>
+</div>
+<div id="i-ten-bin-vi-rename" class="section level4">
+<h4><span class="header-section-number">2.2.1.5</span> Đổi tên biến với <code>rename</code></h4>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb60-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">new_var =</span> old_var)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb61-1"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb61-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb61-2"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">displacement =</span> disp,</span>
+<span id="cb61-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb61-3"></a>         <span class="dt">miles_per_gallon =</span> mpg) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb61-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb61-4"></a><span class="st">  </span>names</span></code></pre></div>
+<pre><code>##  [1] &quot;miles_per_gallon&quot; &quot;cyl&quot;              &quot;displacement&quot;    
+##  [4] &quot;hp&quot;               &quot;drat&quot;             &quot;wt&quot;              
+##  [7] &quot;qsec&quot;             &quot;vs&quot;               &quot;am&quot;              
+## [10] &quot;gear&quot;             &quot;carb&quot;</code></pre>
+</div>
+</div>
+<div id="nhom-cau-lnh-bin-i-d-liu" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Nhóm câu lệnh biến đổi dữ liệu</h3>
+<div id="tao-mi-trung-d-liu-vi-mutate" class="section level5">
+<h5><span class="header-section-number">2.2.2.0.1</span> Tạo mới trường dữ liệu với <code>mutate</code></h5>
+<p>Trong quá trình xử lý dữ liệu, ta thường xuyên phải tạo thêm các trường dữ liệu mới (trường dữ liệu phát sinh). Hàm mutate() được sử dụng để làm công việc này. Cấu trúc của hàm rất đơn giản như sau.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb63-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">new_var =</span> statement)</span></code></pre></div>
+<p>Xem ví dụ sau:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb64-1"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb64-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb64-2"></a><span class="st">  </span><span class="kw">select</span>(mpg) <span class="op">%&gt;%</span></span>
+<span id="cb64-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb64-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new_mpg =</span> mpg <span class="op">*</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%&gt;%</span></span>
+<span id="cb64-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb64-4"></a><span class="st">  </span>head</span></code></pre></div>
+<pre><code>##    mpg new_mpg
+## 1 21.0    42.0
+## 2 21.0    42.0
+## 3 22.8    45.6
+## 4 21.4    42.8
+## 5 18.7    37.4
+## 6 18.1    36.2</code></pre>
+<p>Trong một số trường hợp, khi ta không muốn lấy các trường thông tin cũ mà chỉ muốn lấy các trường thông tin mới tạo thì có thể sử dụng hàm <code>transmute()</code> với cấu trúc giống như hàm mutate.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb66-1"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb66-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb66-2"></a><span class="st">  </span><span class="kw">select</span>(mpg) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb66-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb66-3"></a><span class="st">  </span><span class="kw">transmute</span>(<span class="dt">new_mpg =</span> mpg <span class="op">*</span><span class="st"> </span><span class="fl">1.61</span>) <span class="op">%&gt;%</span></span>
+<span id="cb66-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb66-4"></a><span class="st">  </span>head</span></code></pre></div>
+<pre><code>##   new_mpg
+## 1  33.810
+## 2  33.810
+## 3  36.708
+## 4  34.454
+## 5  30.107
+## 6  29.141</code></pre>
+</div>
+<div id="gp-nhiu-bang-vi-nhom-ham-join" class="section level5">
+<h5><span class="header-section-number">2.2.2.0.2</span> Gộp nhiều bảng với nhóm hàm <code>join</code></h5>
+<ul>
+<li>Hàm <code>inner_join(x, y, by = "key")</code>: lấy tất cả dữ liệu có trên bảng hai bảng khi trùng key, ví dụ:</li>
+</ul>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb68-1"></a>x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">student_id =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>), </span>
+<span id="cb68-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb68-2"></a>                <span class="dt">maths =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="fl">7.8</span>, <span class="dv">4</span>, </span>
+<span id="cb68-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb68-3"></a>                          <span class="fl">7.7</span>, <span class="dv">9</span>, <span class="fl">9.5</span>, <span class="fl">6.5</span>))</span>
+<span id="cb68-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb68-4"></a>y &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">student_id =</span> <span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">2</span>), </span>
+<span id="cb68-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb68-5"></a>                <span class="dt">physics =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="fl">9.5</span>, <span class="fl">7.5</span>, <span class="dv">6</span>, <span class="fl">5.5</span>, </span>
+<span id="cb68-6"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb68-6"></a>                            <span class="fl">6.5</span>, <span class="fl">7.8</span>, <span class="fl">8.2</span>, <span class="dv">8</span>, <span class="fl">7.5</span>))</span>
+<span id="cb68-7"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb68-7"></a>x</span></code></pre></div>
+<pre><code>##    student_id maths
+## 1           1  10.0
+## 2           2   8.0
+## 3           3   7.0
+## 4           4   6.0
+## 5           5   7.8
+## 6           6   4.0
+## 7           7   7.7
+## 8           8   9.0
+## 9           9   9.5
+## 10         10   6.5</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb70-1"></a>y</span></code></pre></div>
+<pre><code>##    student_id physics
+## 1           2     8.0
+## 2           4     9.5
+## 3           6     7.5
+## 4           8     6.0
+## 5          10     5.5
+## 6          12     6.5
+## 7          14     7.8
+## 8          16     8.2
+## 9          18     8.0
+## 10         20     7.5</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb72-1"></a><span class="co"># gộp 2 bảng dữ liệu x và y theo student_id</span></span>
+<span id="cb72-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb72-2"></a>x <span class="op">%&gt;%</span></span>
+<span id="cb72-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb72-3"></a><span class="st">  </span><span class="kw">inner_join</span>(y, <span class="dt">by =</span> <span class="st">&quot;student_id&quot;</span>) </span></code></pre></div>
+<pre><code>##   student_id maths physics
+## 1          2   8.0     8.0
+## 2          4   6.0     9.5
+## 3          6   4.0     7.5
+## 4          8   9.0     6.0
+## 5         10   6.5     5.5</code></pre>
+<hr />
+<ul>
+<li><strong>full_join</strong>: lấy tất cả dữ liệu có cả trên bảng x, y.</li>
+</ul>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb74-1"></a><span class="kw">full_join</span>(x, y, <span class="dt">by =</span> <span class="st">&quot;key&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb75-1"></a>x <span class="op">%&gt;%</span></span>
+<span id="cb75-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb75-2"></a><span class="st">  </span><span class="kw">full_join</span>(y, <span class="dt">by =</span> <span class="st">&quot;student_id&quot;</span>)</span></code></pre></div>
+<pre><code>##    student_id maths physics
+## 1           1  10.0      NA
+## 2           2   8.0     8.0
+## 3           3   7.0      NA
+## 4           4   6.0     9.5
+## 5           5   7.8      NA
+## 6           6   4.0     7.5
+## 7           7   7.7      NA
+## 8           8   9.0     6.0
+## 9           9   9.5      NA
+## 10         10   6.5     5.5
+## 11         12    NA     6.5
+## 12         14    NA     7.8
+## 13         16    NA     8.2
+## 14         18    NA     8.0
+## 15         20    NA     7.5</code></pre>
+<p>Trong ví dụ trên, các giá trị về điểm toán (maths) sẽ trả về NA cho các student_id không tồn tại trên bảng y và ngược lại cho bảng x với các giá trị điểm vật lý (physics) của các student_id không tồn tại trên bảng x.</p>
+<hr />
+<ul>
+<li>Hàm <strong>left_join</strong>: lấy dữ liệu chỉ có trên bảng x, ví dụ:</li>
+</ul>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb77-1"></a><span class="kw">left_join</span>(x, y, <span class="dt">by =</span> <span class="st">&quot;var&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb78-1"></a>x <span class="op">%&gt;%</span></span>
+<span id="cb78-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb78-2"></a><span class="st">  </span><span class="kw">left_join</span>(y, <span class="dt">by =</span> <span class="st">&quot;student_id&quot;</span>) </span></code></pre></div>
+<pre><code>##    student_id maths physics
+## 1           1  10.0      NA
+## 2           2   8.0     8.0
+## 3           3   7.0      NA
+## 4           4   6.0     9.5
+## 5           5   7.8      NA
+## 6           6   4.0     7.5
+## 7           7   7.7      NA
+## 8           8   9.0     6.0
+## 9           9   9.5      NA
+## 10         10   6.5     5.5</code></pre>
+<p>Với các <code>student_id</code> không có giá trị trên bảng y, cột physics sẽ trả về giá trị NA</p>
+<hr />
+<ul>
+<li>Hàm <strong>right_join</strong> : lấy dữ liệu chỉ có trên bảng y, ví dụ:</li>
+</ul>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb80-1"></a><span class="kw">right_join</span>(x, y, <span class="dt">by =</span> <span class="st">&quot;var&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb81-1"></a>x <span class="op">%&gt;%</span></span>
+<span id="cb81-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb81-2"></a><span class="st">  </span><span class="kw">right_join</span>(y, <span class="dt">by =</span> <span class="st">&quot;student_id&quot;</span>) </span></code></pre></div>
+<pre><code>##    student_id maths physics
+## 1           2   8.0     8.0
+## 2           4   6.0     9.5
+## 3           6   4.0     7.5
+## 4           8   9.0     6.0
+## 5          10   6.5     5.5
+## 6          12    NA     6.5
+## 7          14    NA     7.8
+## 8          16    NA     8.2
+## 9          18    NA     8.0
+## 10         20    NA     7.5</code></pre>
+<p>Với các <code>student_id</code> không có giá trị trên bảng x, cột maths sẽ trả về giá trị NA</p>
+<p><strong>Lưu ý</strong>: Trong trường hợp cột dữ liệu dùng để nối các bảng có tên khác nhau, ta có thể sử dụng cấu trúc sau:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb83-1"></a><span class="kw">left_join</span>(x, y, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;key_x&quot;</span> =<span class="st"> &quot;key_y&quot;</span>))</span></code></pre></div>
+<p>Xem ví dụ sau:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb84-1"></a><span class="kw">names</span>(x)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;student_id1&quot;</span></span>
+<span id="cb84-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb84-2"></a><span class="kw">names</span>(y)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;student_id2&quot;</span></span>
+<span id="cb84-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb84-3"></a></span>
+<span id="cb84-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb84-4"></a>x <span class="op">%&gt;%</span></span>
+<span id="cb84-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb84-5"></a><span class="st">  </span><span class="kw">inner_join</span>(y, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;student_id1&quot;</span> =<span class="st"> &quot;student_id2&quot;</span>)) </span></code></pre></div>
+<pre><code>##   student_id1 maths physics
+## 1           2   8.0     8.0
+## 2           4   6.0     9.5
+## 3           6   4.0     7.5
+## 4           8   9.0     6.0
+## 5          10   6.5     5.5</code></pre>
+</div>
+<div id="ghep-nhiu-bang-theo-dong-hoc-ct-vi-nhom-ham-bind" class="section level5">
+<h5><span class="header-section-number">2.2.2.0.3</span> Ghép nhiều bảng theo dòng hoặc cột với nhóm hàm <code>bind</code></h5>
+<p>Bên cạnh các hàm <code>join</code>, khi xử lý dữ liệu trong thực tiễn, ta có thể phải <em>ghép</em> các bảng dữ liệu theo hàng hoặc cột. Trong dplyr, có hai hàm rất hữu dụng trong hai trường hợp trên là <code>bind_col</code> và <code>bind_rows</code></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb86-1"></a><span class="kw">bind_cols</span>(data1, data2)</span>
+<span id="cb86-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb86-2"></a><span class="kw">bind_rows</span>(data1, data2)</span></code></pre></div>
+<p>Xem hai ví dụ sau.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-1"></a>df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,</span>
+<span id="cb87-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-2"></a>                  <span class="dt">income =</span> <span class="dv">8</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb87-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-3"></a>df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">9</span>,</span>
+<span id="cb87-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-4"></a>                  <span class="dt">income =</span> <span class="dv">8</span><span class="op">:</span><span class="dv">13</span>)</span>
+<span id="cb87-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-5"></a>df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,</span>
+<span id="cb87-6"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-6"></a>                  <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>))</span>
+<span id="cb87-7"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-7"></a></span>
+<span id="cb87-8"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-8"></a><span class="co"># Nối theo dòng</span></span>
+<span id="cb87-9"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb87-9"></a>df1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(df2)</span></code></pre></div>
+<pre><code>##   id income
+## 1  1      8
+## 2  2      9
+## 3  3     10
+## 4  4      8
+## 5  5      9
+## 6  6     10
+## 7  7     11
+## 8  8     12
+## 9  9     13</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb89-1"></a><span class="co"># Nối theo cột</span></span>
+<span id="cb89-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb89-2"></a>df1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_cols</span>(df3)</span></code></pre></div>
+<pre><code>##   id income id1 gender
+## 1  1      8   1      F
+## 2  2      9   2      F
+## 3  3     10   3      M</code></pre>
+</div>
+</div>
+<div id="nhom-ham-tng-hp-d-liu-vi-summarise" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></h3>
+<p>Trong quá trình xử lý dữ liệu, ta thường xuyên phải tổng hợp dữ liệu theo các cách như: tính tổng, tính số dư bình quân, phương sai, tổng số lượng quan sát… Với <code>dplyr</code>, ta có thể sử dụng hàm <code>summarise()</code> để thực hiện công việc này.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb91-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb91-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb91-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">var_name =</span> <span class="kw">calculate_stats</span>(var))</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb92-1"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb92-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb92-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg),</span>
+<span id="cb92-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb92-3"></a>            <span class="dt">sd_mpg =</span> <span class="kw">sd</span>(mpg))</span></code></pre></div>
+<pre><code>##   mean_mpg   sd_mpg
+## 1 20.09062 6.026948</code></pre>
+<p>Đây là ví dụ đơn giản nhất với <code>summarise</code> mà ta có thể thay thế bằng <code>summary()</code> trên R base. Tuy nhiên, kết hợp giữa hàm <code>summarise()</code> và hàm group_by() trên dplyr sẽ cho chúng ta có cái nhìn về dữ liệu tổng hợp một cách đa chiều hơn. Hàm group_by() cho phép dữ liệu tổng hợp được gộp lại theo một hoặc nhiều trường thông tin khác nhau, giúp người phân tích có thể nhìn dữ liệu theo từ chiều riêng biệt hoặc gộp các chiều thông tin với nhau.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb94-1"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb94-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb94-2"></a><span class="st">  </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb94-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb94-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg),</span>
+<span id="cb94-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb94-4"></a>            <span class="dt">mean_disp =</span> <span class="kw">mean</span>(disp))</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##     cyl mean_mpg mean_disp
+##   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1     4     26.7      105.
+## 2     6     19.7      183.
+## 3     8     15.1      353.</code></pre>
+</div>
+</div>
+<div id="cac-ham-nang-cao-trong-dplyr" class="section level2">
+<h2><span class="header-section-number">2.3</span> Các hàm nâng cao trong dplyr</h2>
+<p>Bên cạnh các nhóm hàm cơ bản đã trình bày ở phần trên, <code>dplyr</code> còn có một số hàm nâng cao khác đặc biệt hữu dụng trong quá trình biến đổi, tổng hợp dữ liệu, bao gồm <code>case_when</code>, <code>mutate_at</code> &amp; <code>summarise_at</code></p>
+<div id="iu-kin-phan-nhom-vi-case_when" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Điều kiện phân nhóm với <code>case_when</code></h3>
+<p>Trong quá trình phân tích và xử lý dữ liệu, chúng ta thường phải tạo thêm các trường mới hoặc tính toán dữ liệu dựa vào từng điều kiện khác nhau để đưa ra giá trị của trường hoặc cách tính cho dữ liệu. Ví dụ, khi ta muốn tính thưởng cho KH thì sẽ phải dùng nhiều công thức khác nhau như KH thuộc VIP sẽ nhân 1 tỷ lệ, KH thuộc nhóm trung bình sẽ có 1 tỷ lệ khác, hay KH thông thường thì sẽ 1 tỷ lệ khác….</p>
+<p>Trong dplyr, hàm <code>case_when()</code> xử lý các trường hợp trên rất nhanh chóng.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb96-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">new_var =</span> <span class="kw">case_when</span>(</span>
+<span id="cb96-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb96-2"></a>                   condition_<span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;value_1&quot;</span>,</span>
+<span id="cb96-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb96-3"></a>                   condition_<span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;value_2&quot;</span>,...,</span>
+<span id="cb96-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb96-4"></a>                   <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;value_n&quot;</span></span>
+<span id="cb96-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb96-5"></a>                 ))</span></code></pre></div>
+<p>Ta xem ví dụ sau:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb97-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">number =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) </span>
+<span id="cb97-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb97-2"></a></span>
+<span id="cb97-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb97-3"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">nhom =</span> <span class="kw">case_when</span>(</span>
+<span id="cb97-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb97-4"></a>  number <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;nhom_1&quot;</span>, <span class="co"># nhóm 1: số từ 1 đến 5</span></span>
+<span id="cb97-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb97-5"></a>  number <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span> <span class="op">&amp;</span><span class="st"> </span>number <span class="op">&lt;=</span><span class="st"> </span><span class="dv">8</span> <span class="op">~</span><span class="st"> &quot;nhom_2&quot;</span>, <span class="co"># nhóm 2: số từ 6 đến 8</span></span>
+<span id="cb97-6"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb97-6"></a>  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;nhom_3&quot;</span> <span class="co"># các số còn lại</span></span>
+<span id="cb97-7"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb97-7"></a>  ))</span></code></pre></div>
+<pre><code>##    number   nhom
+## 1       1 nhom_1
+## 2       2 nhom_1
+## 3       3 nhom_1
+## 4       4 nhom_1
+## 5       5 nhom_1
+## 6       6 nhom_2
+## 7       7 nhom_2
+## 8       8 nhom_2
+## 9       9 nhom_3
+## 10     10 nhom_3</code></pre>
+</div>
+<div id="tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></h3>
+<p>Khi phân tích, ta có thể tạo thêm biến mới khi các biến trong dataframe thỏa mãn điều kiện nào đó.</p>
+<blockquote>
+<p>data %&gt;% mutate_if(condition, function)</p>
+</blockquote>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb99-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb99-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb99-2"></a>  <span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</span>
+<span id="cb99-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb99-3"></a>  <span class="dt">gender =</span> <span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>),</span>
+<span id="cb99-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb99-4"></a>  <span class="dt">income =</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
+<span id="cb99-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb99-5"></a>)</span>
+<span id="cb99-6"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb99-6"></a>df <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>##        id    gender     income 
+##  Min.   :1   F:3    Min.   :3  
+##  1st Qu.:2   M:2    1st Qu.:4  
+##  Median :3          Median :5  
+##  Mean   :3          Mean   :5  
+##  3rd Qu.:4          3rd Qu.:6  
+##  Max.   :5          Max.   :7</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb101-1"></a><span class="co"># Biến đổi các biến factor thành character</span></span>
+<span id="cb101-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb101-2"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_if</span>(is.factor, </span>
+<span id="cb101-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb101-3"></a>                 as.character) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb101-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb101-4"></a><span class="st">  </span>summary</span></code></pre></div>
+<pre><code>##        id       gender              income 
+##  Min.   :1   Length:5           Min.   :3  
+##  1st Qu.:2   Class :character   1st Qu.:4  
+##  Median :3   Mode  :character   Median :5  
+##  Mean   :3                      Mean   :5  
+##  3rd Qu.:4                      3rd Qu.:6  
+##  Max.   :5                      Max.   :7</code></pre>
+<p>Ngoài ra, ta có thể tự tạo các hàm mới và áp dụng với <code>mutate_if</code>. Xem ví dụ sau.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb103-1"></a>my_func &lt;-<span class="st"> </span><span class="cf">function</span>(x){x<span class="op">*</span><span class="dv">100</span>}</span>
+<span id="cb103-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb103-2"></a><span class="co"># Nhân các biến numeric lên 100 lần</span></span>
+<span id="cb103-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb103-3"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb103-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb103-4"></a><span class="st">  </span><span class="kw">mutate_if</span>(is.numeric, my_func)</span></code></pre></div>
+<pre><code>##    id gender income
+## 1 100      F    400
+## 2 200      M    500
+## 3 300      M    300
+## 4 400      F    600
+## 5 500      F    700</code></pre>
+<p>Đối với <code>mutate_at</code>, ta cũng có thể thực hiện tương tự. Cấu trúc tổng quát của <code>mutate_at</code> như sau.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb105-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb105-2"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(var1, var2, ...), <span class="cf">function</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb106-1"></a>df </span></code></pre></div>
+<pre><code>##   id gender income
+## 1  1      F      4
+## 2  2      M      5
+## 3  3      M      3
+## 4  4      F      6
+## 5  5      F      7</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb108-1"></a><span class="co"># Nhân biến income lên 100 lần</span></span>
+<span id="cb108-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb108-2"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(income), my_func)</span></code></pre></div>
+<pre><code>##   id gender income
+## 1  1      F    400
+## 2  2      M    500
+## 3  3      M    300
+## 4  4      F    600
+## 5  5      F    700</code></pre>
+</div>
+<div id="tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></h3>
+<p>Tương tự như <code>mutate_at</code> và <code>mutate_if</code>, ta có thể tổng hợp nhanh dữ liệu theo điều kiện.</p>
+<p>Cấu trúc tổng quát của <code>summarise_at</code></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb110-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb110-2"></a><span class="st">     </span><span class="kw">group_by</span>(var) (không bắt buộc)</span>
+<span id="cb110-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb110-3"></a>     <span class="kw">summarise_at</span>(<span class="kw">vars</span>(variables), <span class="kw">funs</span>(functions))</span></code></pre></div>
+<p>Xem ví dụ sau</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb111-1"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb111-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb111-2"></a><span class="st">  </span><span class="kw">group_by</span>(am) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb111-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb111-3"></a><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(mpg, disp),</span>
+<span id="cb111-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb111-4"></a>               <span class="kw">funs</span>(mean, max, median))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 7
+##      am mpg_mean disp_mean mpg_max disp_max mpg_median disp_median
+##   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+## 1     0     17.1      290.    24.4      472       17.3        276.
+## 2     1     24.4      144.    33.9      351       22.8        120.</code></pre>
+<p>Tương tự, ta có cấu trúc tổng quát của <code>summarise_if</code></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb113-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb113-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb113-2"></a><span class="st">   </span><span class="kw">group_by</span>(var) (không bắt buộc)</span>
+<span id="cb113-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb113-3"></a>   <span class="kw">summarise_if</span>(condition, <span class="kw">funs</span>(functions))</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb114-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb114-2"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb114-2"></a><span class="st">  </span><span class="kw">select</span>(Species, Sepal.Length, Sepal.Width) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb114-3"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb114-3"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb114-4"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb114-4"></a><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric,</span>
+<span id="cb114-5"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cb114-5"></a>               <span class="kw">funs</span>(mean, median))</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 5
+##   Species Sepal.Length_me~ Sepal.Width_mean Sepal.Length_me~
+##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 setosa              5.01             3.43              5  
+## 2 versic~             5.94             2.77              5.9
+## 3 virgin~             6.59             2.97              6.5
+## # ... with 1 more variable: Sepal.Width_median &lt;dbl&gt;</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="phan-ra-va-xoay-chiu-d-liu.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"split_by": "rmd"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 4 Các chỉ số thống kê mô tả cơ bản | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 4 Các chỉ số thống kê mô tả cơ bản | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 4 Các chỉ số thống kê mô tả cơ bản | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chương 4 Các chỉ số thống kê mô tả cơ bản | Phân tích dữ liệu thực tế với R" />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 4 Các chỉ số thống kê mô tả cơ bản | Phân tích dữ liệu thực tế với R" />
+  
+  <meta name="twitter:description" content="Chương 4 Các chỉ số thống kê mô tả cơ bản | Phân tích dữ liệu thực tế với R" />
+  
+
+<meta name="author" content="Hoàng Đức Anh" />
+
+
+<meta name="date" content="2019-07-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="phan-ra-va-xoay-chiu-d-liu.html">
+<link rel="next" href="lp-trinh-ham.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích dữ liệu thực tế với R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="li-m-u.html"><a href="li-m-u.html"><i class="fa fa-check"></i>Lời mở đầu</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Khoa học dữ liệu và nghề phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#khoa-hoc-d-liu-la-gi"><i class="fa fa-check"></i><b>1.1</b> Khoa học dữ liệu là gì</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#tai-sao-phan-tich-d-liu-la-ngh-kho"><i class="fa fa-check"></i><b>1.2</b> Tại sao phân tích dữ liệu là nghề khó?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#phan-loai-hoat-ng-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3</b> Phân loại hoạt động phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#da-theo-cach-thc-tac-ng-n-khach-hang"><i class="fa fa-check"></i><b>1.3.1</b> Dựa theo cách thức tác động đến khách hàng</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#da-theo-c-tinh-cua-ngh-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3.2</b> Dựa theo đặc tính của nghề phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#da-theo-chu-ky-cua-khach-hang-i-vi-san-phm"><i class="fa fa-check"></i><b>1.3.3</b> Dựa theo chu kỳ của khách hàng đối với sản phẩm</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#cach-xay-dng-nhom-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.4</b> Cách xây dựng nhóm phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#luu-y-khi-oc-tai-liu"><i class="fa fa-check"></i><b>1.5</b> Lưu ý khi đọc tài liệu</a></li>
+</ul></li>
+<li class="part"><span><b>I Kỹ thuật phân tích dữ liệu thực tế</b></span></li>
+<li class="chapter" data-level="2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><i class="fa fa-check"></i><b>2</b> Ngữ pháp của biến đổi dữ liệu với DPLYR</a><ul>
+<li class="chapter" data-level="2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#gii-thiu-v-pipe-operator"><i class="fa fa-check"></i><b>2.1</b> Giới thiệu về pipe operator</a></li>
+<li class="chapter" data-level="2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-co-ban-trong-dplyr"><i class="fa fa-check"></i><b>2.2</b> Các hàm cơ bản trong dplyr</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-truy-vn-d-liu"><i class="fa fa-check"></i><b>2.2.1</b> Nhóm câu lệnh truy vấn dữ liệu</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-bin-i-d-liu"><i class="fa fa-check"></i><b>2.2.2</b> Nhóm câu lệnh biến đổi dữ liệu</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-ham-tng-hp-d-liu-vi-summarise"><i class="fa fa-check"></i><b>2.2.3</b> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-nang-cao-trong-dplyr"><i class="fa fa-check"></i><b>2.3</b> Các hàm nâng cao trong dplyr</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#iu-kin-phan-nhom-vi-case_when"><i class="fa fa-check"></i><b>2.3.1</b> Điều kiện phân nhóm với <code>case_when</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at"><i class="fa fa-check"></i><b>2.3.2</b> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if"><i class="fa fa-check"></i><b>2.3.3</b> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html"><i class="fa fa-check"></i><b>3</b> Phân rã và xoay chiều dữ liệu</a><ul>
+<li class="chapter" data-level="3.1" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#phan-ra-d-liu-thanh-dang-doc-vi-gather"><i class="fa fa-check"></i><b>3.1</b> Phân rã dữ liệu thành dạng dọc với <code>gather</code></a></li>
+<li class="chapter" data-level="3.2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#xoay-chiu-d-liu-vi-spread"><i class="fa fa-check"></i><b>3.2</b> Xoay chiều dữ liệu với <code>spread</code></a></li>
+<li class="chapter" data-level="3.3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#tach-mt-bin-thanh-nhiu-bin-vi-separate"><i class="fa fa-check"></i><b>3.3</b> Tách một biến thành nhiều biến với <code>separate</code></a></li>
+<li class="chapter" data-level="3.4" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#gp-nhiu-bin-thanh-mt-bin-vi-unite"><i class="fa fa-check"></i><b>3.4</b> Gộp nhiều biến thành một biến với <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html"><i class="fa fa-check"></i><b>4</b> Các chỉ số thống kê mô tả cơ bản</a><ul>
+<li class="chapter" data-level="4.1" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#correlation"><i class="fa fa-check"></i><b>4.1</b> Correlation</a></li>
+<li class="chapter" data-level="4.2" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#anova"><i class="fa fa-check"></i><b>4.2</b> ANOVA</a></li>
+<li class="chapter" data-level="4.3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#kim-inh-quan-h-chi-binh-phuong"><i class="fa fa-check"></i><b>4.3</b> Kiểm định quan hệ Chi-bình phương</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html"><i class="fa fa-check"></i><b>5</b> Lập trình hàm</a><ul>
+<li class="chapter" data-level="5.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#quotes-vs.-unquotes"><i class="fa fa-check"></i><b>5.1</b> <strong>Quotes</strong> vs. <strong>Unquotes</strong></a></li>
+<li class="chapter" data-level="5.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hp-dung-quo_name"><i class="fa fa-check"></i><b>5.2</b> Trường hợp dùng <code>quo_name</code></a></li>
+<li class="chapter" data-level="5.3" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hop-nhiu-bin"><i class="fa fa-check"></i><b>5.3</b> Trường họp nhiều biến</a></li>
+<li class="chapter" data-level="5.4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ng-dung"><i class="fa fa-check"></i><b>5.4</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ham-tinh-toan-tng-hp-nhiu-bin"><i class="fa fa-check"></i><b>5.4.1</b> Hàm tính toán tổng hợp nhiều biến</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ve--thi-vi-ggplot2"><i class="fa fa-check"></i><b>5.4.2</b> Vẽ đồ thị với ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html"><i class="fa fa-check"></i><b>6</b> Lập trình chức năng hàm với purrr</a><ul>
+<li class="chapter" data-level="6.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#nhom-ham-map"><i class="fa fa-check"></i><b>6.1</b> Nhóm hàm map</a></li>
+<li class="chapter" data-level="6.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#sa-i-gia-tri-vi-modify"><i class="fa fa-check"></i><b>6.2</b> Sửa đổi giá trị với <code>modify</code></a></li>
+<li class="chapter" data-level="6.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#tao-ham-nhanh-vi-as_mapper"><i class="fa fa-check"></i><b>6.3</b> Tạo hàm nhanh với <code>as_mapper</code></a></li>
+<li class="chapter" data-level="6.4" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#xay-dng-chui-cac-ham-lien-tip-vi-compose"><i class="fa fa-check"></i><b>6.4</b> Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></a></li>
+<li class="chapter" data-level="6.5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#ng-dung-1"><i class="fa fa-check"></i><b>6.5</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#bin-i-d-liu-vi-modify-va-map_df"><i class="fa fa-check"></i><b>6.5.1</b> Biến đổi dữ liệu với <code>modify</code> và <code>map_df</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-nhom-khac-nhau-cung-luc"><i class="fa fa-check"></i><b>6.5.2</b> Phân tích nhiều nhóm khác nhau cùng lúc</a></li>
+<li class="chapter" data-level="6.5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-bin-trong-dataframe-cung-luc"><i class="fa fa-check"></i><b>6.5.3</b> Phân tích nhiều biến trong dataframe cùng lúc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html"><i class="fa fa-check"></i><b>7</b> Biến đổi dữ liệu text</a><ul>
+<li class="chapter" data-level="7.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#gii-thiu"><i class="fa fa-check"></i><b>7.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="7.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#regular-expression"><i class="fa fa-check"></i><b>7.2</b> Regular expression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#metadata"><i class="fa fa-check"></i><b>7.2.1</b> Metadata</a></li>
+<li class="chapter" data-level="7.2.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#sequences"><i class="fa fa-check"></i><b>7.2.2</b> Sequences</a></li>
+<li class="chapter" data-level="7.2.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#character-class"><i class="fa fa-check"></i><b>7.2.3</b> Character class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#posix-class"><i class="fa fa-check"></i><b>7.2.4</b> POSIX class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#quantifiers"><i class="fa fa-check"></i><b>7.2.5</b> Quantifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#cac-vi-du-tng-hp"><i class="fa fa-check"></i><b>7.3</b> Các ví dụ tổng hợp</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-1"><i class="fa fa-check"></i><b>7.3.1</b> Ví dụ 1</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-2"><i class="fa fa-check"></i><b>7.3.2</b> Ví dụ 2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-3"><i class="fa fa-check"></i><b>7.3.3</b> Ví dụ 3</a></li>
+<li class="chapter" data-level="7.3.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-4"><i class="fa fa-check"></i><b>7.3.4</b> Ví dụ 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#tai-liu-tham-khao"><i class="fa fa-check"></i><b>7.4</b> Tài liệu tham khảo</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><a href="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><i class="fa fa-check"></i><b>8</b> Quản lý kết quả phân tích từ nhiều mô hình</a></li>
+<li class="chapter" data-level="9" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html"><i class="fa fa-check"></i><b>9</b> Các nguyên lý dự báo</a><ul>
+<li class="chapter" data-level="9.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#gii-thiu-1"><i class="fa fa-check"></i><b>9.1</b> Giới thiệu</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nhanh-trong-hoc-may-machine-learning"><i class="fa fa-check"></i><b>9.1.1</b> Các nhánh trong học máy (machine learning)</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cach-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>9.1.2</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="9.1.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#s-dung-mo-hinh"><i class="fa fa-check"></i><b>9.1.3</b> Sử dụng mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nguyen-ly-trong-d-bao"><i class="fa fa-check"></i><b>9.2</b> Các nguyên lý trong dự báo</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#reducible-vs.-irreducible-error"><i class="fa fa-check"></i><b>9.2.1</b> Reducible vs. irreducible error</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#kha-nang-giai-thich-va-kha-nang-d-bao"><i class="fa fa-check"></i><b>9.2.2</b> Khả năng giải thích và khả năng dự báo</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#mo-hinh-co-tham-s-cho-truc-hoc-khong-co-tham-s-cho-truc-parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>9.2.3</b> Mô hình có tham số cho trước hoặc không có tham số cho trước (Parametric vs. Nonparametric)</a></li>
+<li class="chapter" data-level="9.2.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#nguyen-ly-ch-u"><i class="fa fa-check"></i><b>9.2.4</b> Nguyên lý chữ U</a></li>
+<li class="chapter" data-level="9.2.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#bias-variance-trade-off"><i class="fa fa-check"></i><b>9.2.5</b> Bias Variance Trade-Off</a></li>
+<li class="chapter" data-level="9.2.6" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#overfitting-regularization"><i class="fa fa-check"></i><b>9.2.6</b> Overfitting &amp; regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#quy-trinh-xay-dng-mo-hinh-d-bao"><i class="fa fa-check"></i><b>9.3</b> Quy trình xây dựng mô hình dự báo</a></li>
+<li class="chapter" data-level="9.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#ensemble-methods"><i class="fa fa-check"></i><b>9.4</b> Ensemble methods</a></li>
+<li class="chapter" data-level="9.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#luu-y"><i class="fa fa-check"></i><b>9.5</b> Lưu ý</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html"><i class="fa fa-check"></i><b>10</b> Mô hình OLS</a><ul>
+<li class="chapter" data-level="10.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#gii-thiu-2"><i class="fa fa-check"></i><b>10.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="10.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#xay-dng-mo-hinh-co-ban"><i class="fa fa-check"></i><b>10.2</b> Xây dựng mô hình cơ bản</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#mo-hinh-hi-quy-on-bin"><i class="fa fa-check"></i><b>10.2.1</b> Mô hình hồi quy đơn biến</a></li>
+<li class="chapter" data-level="10.2.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#din-giai-mo-hinh"><i class="fa fa-check"></i><b>10.2.2</b> Diễn giải mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#anh-gia-cht-lung-mo-hinh"><i class="fa fa-check"></i><b>10.3</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#sai-s-cua-mo-hinh"><i class="fa fa-check"></i><b>10.3.1</b> Sai số của mô hình</a></li>
+<li class="chapter" data-level="10.3.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#r-binh-phuong-r2"><i class="fa fa-check"></i><b>10.3.2</b> R bình phương <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="10.3.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#f-statistic"><i class="fa fa-check"></i><b>10.3.3</b> F statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#d-bao"><i class="fa fa-check"></i><b>10.4</b> Dự báo</a></li>
+<li class="chapter" data-level="10.5" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#thut-toan-ti-uu-vi-gradient-decent"><i class="fa fa-check"></i><b>10.5</b> Thuật toán tối ưu với gradient decent</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html"><i class="fa fa-check"></i><b>11</b> Mô hình hồi quy logistic</a><ul>
+<li class="chapter" data-level="11.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cach-xay-dng-mo-hinh-1"><i class="fa fa-check"></i><b>11.1</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="11.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#vi-du-xay-dng-mo-hinh-on-gian"><i class="fa fa-check"></i><b>11.2</b> Ví dụ xây dựng mô hình đơn giản</a></li>
+<li class="chapter" data-level="11.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cac-chi-s-cn-quan-tam-khac"><i class="fa fa-check"></i><b>11.3</b> Các chỉ số cần quan tâm khác</a></li>
+<li class="chapter" data-level="11.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#anh-gia-cht-lung-mo-hinh-1"><i class="fa fa-check"></i><b>11.4</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#confusion-matrix"><i class="fa fa-check"></i><b>11.4.1</b> Confusion Matrix</a></li>
+<li class="chapter" data-level="11.4.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#roc"><i class="fa fa-check"></i><b>11.4.2</b> ROC</a></li>
+<li class="chapter" data-level="11.4.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#gain-va-lift"><i class="fa fa-check"></i><b>11.4.3</b> Gain và Lift</a></li>
+<li class="chapter" data-level="11.4.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#kolmogorovsmirnov-statistics"><i class="fa fa-check"></i><b>11.4.4</b> Kolmogorov–Smirnov statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#thc-hanh"><i class="fa fa-check"></i><b>11.5</b> Thực hành</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#d-liu"><i class="fa fa-check"></i><b>11.5.1</b> Dữ liệu</a></li>
+<li class="chapter" data-level="11.5.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-tp-d-liu-gc"><i class="fa fa-check"></i><b>11.5.2</b> Xây dựng mô hình trên tập dữ liệu gốc</a></li>
+<li class="chapter" data-level="11.5.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-hai-tp-train-va-test"><i class="fa fa-check"></i><b>11.5.3</b> Xây dựng mô hình trên hai tập train và test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>11.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html"><i class="fa fa-check"></i><b>12</b> Cây quyết định</a><ul>
+<li class="chapter" data-level="12.1" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#gii-thiu-3"><i class="fa fa-check"></i><b>12.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="12.2" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#regression-trees"><i class="fa fa-check"></i><b>12.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="12.3" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#classification-trees"><i class="fa fa-check"></i><b>12.3</b> Classification Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html"><i class="fa fa-check"></i><b>13</b> Bagging - Boosting và Random Forest</a><ul>
+<li class="chapter" data-level="13.1" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#bagging"><i class="fa fa-check"></i><b>13.1</b> Bagging</a></li>
+<li class="chapter" data-level="13.2" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#random-forests"><i class="fa fa-check"></i><b>13.2</b> Random Forests</a></li>
+<li class="chapter" data-level="13.3" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#boosting"><i class="fa fa-check"></i><b>13.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>14</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="15" data-path="k-means.html"><a href="k-means.html"><i class="fa fa-check"></i><b>15</b> k-means</a><ul>
+<li class="chapter" data-level="15.1" data-path="k-means.html"><a href="k-means.html#gii-thiu-4"><i class="fa fa-check"></i><b>15.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="15.2" data-path="k-means.html"><a href="k-means.html#thut-toan"><i class="fa fa-check"></i><b>15.2</b> Thuật toán</a></li>
+<li class="chapter" data-level="15.3" data-path="k-means.html"><a href="k-means.html#uu-nhuc-im-cua-k-means"><i class="fa fa-check"></i><b>15.3</b> Ưu nhược điểm của K-means</a></li>
+<li class="chapter" data-level="15.4" data-path="k-means.html"><a href="k-means.html#thc-hanh-tren-r"><i class="fa fa-check"></i><b>15.4</b> Thực hành trên R</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>16</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="16.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>16.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="16.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>16.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="16.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>16.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>16.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="16.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>16.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="16.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>16.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>16.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>17</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="17.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>17.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>17.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="17.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>17.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>17.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>17.2.1</b> Biến đổi 1:1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Chuỗi thời gian</b></span></li>
+<li class="chapter" data-level="18" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>18</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="18.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>18.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="18.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>18.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="18.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>18.3</b> Smoothing</a></li>
+<li class="chapter" data-level="18.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>18.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="18.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>18.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>18.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="18.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>18.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="18.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>18.5.3</b> Tự động xây dựng mô hình</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>19</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="19.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>19.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="19.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>19.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="19.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>19.3</b> Ví dụ với R</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>20</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="20.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>20.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="20.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>20.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="20.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>20.3</b> Chuyển từ dataframe thành xts</a></li>
+</ul></li>
+<li class="part"><span><b>III Case study</b></span></li>
+<li class="chapter" data-level="21" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>21</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="21.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>21.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="21.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>21.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="21.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>21.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="21.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>21.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>22</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="22.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>22.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="22.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>22.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="22.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>22.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="22.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>22.4</b> Tự động render ra kết quả phân tích</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích dữ liệu thực tế với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cac-chi-s-thng-ke-mo-ta-co-ban" class="section level1">
+<h1><span class="header-section-number">Chương 4</span> Các chỉ số thống kê mô tả cơ bản</h1>
+<p>Trong quá trình phân tích dữ liệu, việc làm phân tích khám phá dữ liệu (exploratory data analysis) rất quan trọng, vì nó giúp chúng ta có cái nhìn tổng quan về tập dữ liệu mà chúng ta đang có. Để làm được điều đó thì chúng ta cần phải biết đọc hiểu những chỉ số thống kê cơ bản như: <strong>min</strong>, <strong>max</strong>, <strong>median</strong>, <strong>mean</strong>, <strong>quantile 25%</strong>, <strong>quantile 75%</strong>.</p>
+<p>Ngoài ra, chúng ta cũng cần phải biết những phương pháp kiểm định phổ biến thường hay sử dụng trong thực tế như: <strong>Chi-square</strong>, <strong>correlation</strong>, <strong>ANOVA</strong>… Trong chương này, tác giả muốn giới thiệu với các bạn lần lượt những chỉ số thống kê cơ bản cũng như các phương pháp kiểm định quan trọng nói trên.</p>
+<hr />
+<p>Trước hết, chúng ta sẽ cùng nhau tìm hiểu cách đọc hiểu những chỉ số thống kê cơ bản như: min, max, median, mean, quantile 25%, quantile 75%.</p>
+<p>Trong chương này, chúng ta sẽ sử dụng dữ liệu <code>iris</code> có sẵn trong R, dữ liệu bao gồm kích thước chiều dài, chiều rộng cánh hoa và đài hoa của 3 loài hoa khác nhau: setosa, versicolor, virginica (đơn vị đo: cm). Mỗi loài hoa có 50 bông hoa với kích thước khác nhau.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb138-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb138-2"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb138-2"></a><span class="kw">data</span>(<span class="st">&quot;iris&quot;</span>)</span>
+<span id="cb138-3"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb138-3"></a>iris <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<p>Câu lệnh <code>summary()</code> cho ta biết các chỉ số thống kê cơ bản của một hoặc nhiều biến số trong tập dữ liệu như:</p>
+<ul>
+<li><p>Min: giá trị nhỏ nhất</p></li>
+<li><p>Max: giá trị lớn nhất</p></li>
+<li><p>First quantile: quantile 25%</p></li>
+<li><p>Median: giá trị trung vị</p></li>
+<li><p>Third quantile: quantile 75%</p></li>
+<li><p>Mean: giá trị trung bình</p></li>
+</ul>
+<p>Để giải thích cách đọc hiểu các chỉ số thống kê nói trên, chúng ta sẽ cùng xem tổng quan kích thước chiều dài cánh hoa (biến <code>Petal.Length</code>) của các loài hoa trên.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb140-1"></a>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-2"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb140-2"></a><span class="st">  </span><span class="kw">select</span>(Petal.Length) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-3"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb140-3"></a><span class="st">  </span>summary</span></code></pre>
+<pre><code>##   Petal.Length  
+##  Min.   :1.000  
+##  1st Qu.:1.600  
+##  Median :4.350  
+##  Mean   :3.758  
+##  3rd Qu.:5.100  
+##  Max.   :6.900</code></pre>
+<p>Thông qua kết quả trên, chúng ta có thể biết một số thông tin sau:</p>
+<ul>
+<li><p>Cánh hoa ngắn nhất có chiều dài 1cm</p></li>
+<li><p>25% trên tổng số 150 bông hoa có chiều dài cánh hoa nhỏ hơn 1.6 cm</p></li>
+<li><p>50% trên tổng số 150 bông hoa có chiều dài cánh hoa nhỏ hơn 4.35 cm</p></li>
+<li><p>Chiều dài trung bình của tất cả 150 bông hoa là 3.758 cm</p></li>
+<li><p>75% trên tổng số 150 bông hoa có chiều dài cánh hoa nhỏ hơn 5.1 cm</p></li>
+<li><p>Cánh hoa dài nhất có chiều dài 6.9 cm</p></li>
+</ul>
+<p>Như vậy, chúng ta đã có thể đọc hiểu những chỉ số thống kê cơ bản như: giá trị nhỏ nhất/lớn nhất, giá trị trung bình/trung vị, giá trị quantile 25%, 75% với việc sử dụng một câu lệnh <code>summary()</code> đơn giản trong <code>R</code>.</p>
+<div id="correlation" class="section level2">
+<h2><span class="header-section-number">4.1</span> Correlation</h2>
+<p><strong>Hệ số tương quan</strong></p>
+<p>Hệ số tương quan (correlation coefficient) là một chỉ số thống kê, được sử dụng để đo lường mối liên hệ tương quan tuyến tính giữa 2 biến định lượng hay còn gọi là biến liên tục (quantitative/continuous variables). Hay nói một cách dễ hiểu hơn, hệ số tương quan cho ta biết rằng giữa 2 biến liên tục có mối liên hệ nào hay không.</p>
+<p>Hệ số tương quan có giá trị từ -1 đến 1. Dấu “+” hoặc “-” của hệ số tương quan cho ta biết 2 biến có mối liên hệ tương quan tuyến tính cùng chiều hoặc ngược chiều tương ứng. Nếu hệ số tương quan của 2 biến mang dấu “+” có nghĩa là khi biến này tăng thì biến kia cũng tăng, còn nếu hệ số tương quan của 2 biến mang dấu “-” thì có nghĩa là khi biến này tăng thì biến kia sẽ giảm.</p>
+<p>Hệ số tương quan của 2 biến bằng 0 có nghĩa là 2 biến không có mối liên hệ tương quan tuyến tính (no relationships), hệ số tương quan bằng -1 hoặc 1 có nghĩa là 2 biến có mối liên hệ tương quan tuyến tính tuyệt đối.</p>
+<p>Tiếp tục sử dụng dữ liệu <code>iris</code>, chúng ta tính toán hệ số tương quan của từng cặp biến chiều dài, chiều rộng cánh hoa và đài hoa của các loài hoa để xem 4 biến trên có mối liên hệ với nhau như thế nào. Để tính hệ số tương quan trong <code>R</code>, chúng ta có thể sử dụng hàm <code>cor()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb142-1"></a><span class="kw">cor</span>(iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>))</span></code></pre>
+<pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
+## Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
+## Sepal.Width    -0.1175698   1.0000000   -0.4284401  -0.3661259
+## Petal.Length    0.8717538  -0.4284401    1.0000000   0.9628654
+## Petal.Width     0.8179411  -0.3661259    0.9628654   1.0000000</code></pre>
+<p>Kết quả cho ta thấy <code>Sepal.Length</code> và <code>Petal.Length</code> có mối liên hệ tương quan tuyến tính cùng chiều (hệ số tương quan 0.87), trong khi đó, <code>Sepal.Length</code> và <code>Sepal.Width</code> có mối liên hệ tương quan tuyến tính ngược chiều (hệ số tương quan -0.11).</p>
+<p><strong>Kiểm định hệ số tương quan</strong></p>
+<p>Như vậy, chúng ta đã hiểu bản chất của hệ số tương quan và biết cách tính hệ số tương quan trong <code>R</code>. Câu hỏi đặt ra lúc này là làm thế nào để biết được thực sự hệ số tương quan được tính toán có ý nghĩa về mặt thống kê hay không, hay nói cách khác, giữa 2 biến có thực sự có mối liên hệ hay không. Vì vậy, chúng ta cần kiểm định hệ số tương quan.</p>
+<p>Giả sử, chúng ta muốn biết xem 2 biến <code>Sepal.Length</code> và <code>Petal.Length</code> có mối liên hệ hay không.
+Như đã tính toán ở phần trước, hệ số tương quan của 2 biến này là 0.87, chúng ta sẽ kiểm định xem hệ số tương quan này có ý nghĩa về mặt thống kê hay không, tức chúng ta cần kiểm định xem hệ số tương quan của 2 biến này có khác 0 hay không. Chúng ta có cặp giả thuyết sau:</p>
+<ul>
+<li><p>Ho: 2 biến không có mối liên hệ (hệ số tương quan = 0)</p></li>
+<li><p>H1: 2 biến có mối liên hệ (hệ số tương quan khác 0)</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb144-1"></a><span class="kw">cor.test</span>(iris<span class="op">$</span>Sepal.Length,iris<span class="op">$</span>Petal.Length)</span></code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  iris$Sepal.Length and iris$Petal.Length
+## t = 21.646, df = 148, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8270363 0.9055080
+## sample estimates:
+##       cor 
+## 0.8717538</code></pre>
+<p>Kết quả cho ta thấy p-value &lt; 2.2e-16, như vậy, chúng ta bác bỏ giả thuyết Ho, thừa nhận H1, tức 2 biến trên có mối liên hệ với nhau, cụ thể hơn là tương quan tuyến tính cùng chiều (hệ số tương quan 0.87).</p>
+</div>
+<div id="anova" class="section level2">
+<h2><span class="header-section-number">4.2</span> ANOVA</h2>
+<p><strong>ANOVA</strong> viết tắt của từ <em>analysis of variance</em>, tức phân tích phương sai.
+Phương pháp ANOVA được sử dụng khi chúng ta muốn so sánh giữa 2 hoặc nhiều nhóm đối tượng khác nhau dựa vào 1 tiêu chí nhất định nào đó, ví dụ như so sánh <em>độ tuổi của nhóm khách hàng thường và khách VIP</em>, hay so sánh <em>thu nhập của nhóm khách hàng nam và khách hàng nữ</em>… Để giải thích một cách dễ hiểu hơn, chúng ta sẽ làm ví dụ sau.</p>
+<p>Giả sử chúng ta muốn so sánh chiều dài đài hoa của 3 loài hoa trong tập dữ liệu <code>iris</code>.</p>
+<p>Chúng ta sẽ vẽ biểu đồ boxplot so sánh <code>Sepal.Length</code> giữa các loài hoa (<code>Species</code>).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb146-2"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb146-3"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Species, Sepal.Length, <span class="dt">fill =</span> Species)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb146-4"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb146-5"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-5"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb146-6"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-6"></a>   <span class="dt">title =</span> <span class="st">&quot;Overview of Iris Sepal Length by Species&quot;</span>, </span>
+<span id="cb146-7"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-7"></a>       <span class="dt">x =</span> <span class="st">&quot;Species&quot;</span>,                                          </span>
+<span id="cb146-8"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-8"></a>       <span class="dt">y =</span> <span class="st">&quot;Sepal Length (cm)&quot;</span>) <span class="op">+</span></span>
+<span id="cb146-9"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-9"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)) <span class="op">+</span></span>
+<span id="cb146-10"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-10"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st">  </span><span class="co"># Background đen trắng</span></span>
+<span id="cb146-11"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb146-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)  <span class="co"># Bỏ legend</span></span></code></pre>
+<p><img src="05-cac-chi-so-thong-ke_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Nhìn vào biểu đồ boxplot trên, ta thấy chiều dài đài hoa của loài hoa <code>virginica</code> lớn hơn so với 2 loài hoa còn lại ở cả giá trị median, quantile 25% và quantile 75%. Trong khi đó, <code>setosa</code> có chiều dài đài hoa ngắn nhất trong 3 loài hoa.</p>
+<p>Tuy nhiên, để chắc chắn khẳng định rằng thực sự có sự khác biệt chiều dài đài hoa giữa các loài hoa hay không thì chúng ta cần phải sử dụng kiểm định ANOVA.</p>
+<p>Kiểm định ANOVA sẽ giúp chung ta so sánh chiều dài đài hoa trung bình giữa các loài hoa, sau đó tính toán chênh lệch chiều dài đài hoa trung bình giữa các loài hoa, và cuối cùng sẽ kiểm định xem những sự chênh lệch đó thực sự có ý nghĩa về mặt thống kê hay không. Hay nói cách khác, phương pháp ANOVA kiểm định cặp giả thuyết sau:</p>
+<ul>
+<li><p>Ho: Không có sự khác biệt giữa chiều dài đài hoa của các loài hoa (tức chênh lệch chiều dài đài hoa trung bình = 0)</p></li>
+<li><p>H1: Có sự khác biệt giữa chiều dài đài hoa của các loài hoa (chênh lệch chiều dài đài hoa trung bình khác 0)</p></li>
+</ul>
+<p>Trước tiên chúng ta sẽ so sánh chiều dài đài hoa trung bình của các loài hoa.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb147-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb147-2"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb147-2"></a>iris <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb147-3"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb147-3"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb147-4"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb147-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Sepal.Length),</span>
+<span id="cb147-5"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb147-5"></a>            <span class="dt">sd =</span> <span class="kw">sd</span>(Sepal.Length))</span></code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   Species     mean    sd
+##   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 setosa      5.01 0.352
+## 2 versicolor  5.94 0.516
+## 3 virginica   6.59 0.636</code></pre>
+<p>Kết quả cho ta thấy rằng chiều dài đài hoa trung bình của loài hoa <code>sentosa</code> là 5.01 cm, của <code>versicolor</code> là 5.94 cm, của <code>virginica</code> là 6.59 cm.</p>
+<p>Tiếp theo chúng ta sẽ sử dụng phương pháp ANOVA để kiểm định xem thực sự có sự khác biệt giữa chiều dài đài hoa trung bình giữa các loài hoa hay không bằng việc sử dụng hàm <code>aov()</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb149-1"></a><span class="co">#ANOVA</span></span>
+<span id="cb149-2"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb149-2"></a>model &lt;-<span class="st"> </span><span class="kw">aov</span>(Sepal.Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> iris) </span>
+<span id="cb149-3"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb149-3"></a>model <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre>
+<pre><code>##              Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## Species       2  63.21  31.606   119.3 &lt;2e-16 ***
+## Residuals   147  38.96   0.265                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Kết quả trên mô hình cho thấy chỉ số <code>p value</code> rất nhỏ, điều này cho phép chúng ta bác bỏ <span class="math inline">\(H_0\)</span> và chấp nhận <span class="math inline">\(H_1\)</span>, tức là có sự khác biệt của giá trị trung bình của <code>Sepal.Length</code> giữa các loài hoa.</p>
+<p>Tuy nhiên, trong thực tế, câu hỏi <em>có khác biệt hay không</em> chưa đủ, mà ta còn phải trả lời câu hỏi: “Sự khác biệt là bao nhiêu?”</p>
+<p>Để trả lời cho câu hỏi trên, ta có thể sử dụng kiểm định <code>TukeyHSD</code> để tìm ra sự khác biệt giữa các nhóm.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb151-1"></a>model <span class="op">%&gt;%</span><span class="st"> </span>TukeyHSD</span></code></pre>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = Sepal.Length ~ Species, data = iris)
+## 
+## $Species
+##                       diff       lwr       upr p adj
+## versicolor-setosa    0.930 0.6862273 1.1737727     0
+## virginica-setosa     1.582 1.3382273 1.8257727     0
+## virginica-versicolor 0.652 0.4082273 0.8957727     0</code></pre>
+<p>Giải thích ý nghĩa của bảng kết quả:</p>
+<ul>
+<li><p>Cột <code>diff</code>: chênh lệch giá trị trung bình chiều dài đài hoa giữa các loài hoa</p></li>
+<li><p><code>lwr</code> và <code>upr</code>: khoảng tin cậy 95% (lwr &lt; diff &lt; upr)</p></li>
+<li><p><code>p adj</code>: giá trị p-value, nếu p-value &lt; 0.05 thì chúng ta đủ cơ sở để bác bỏ giả thuyết Ho, chấp nhận H1.</p></li>
+</ul>
+<p>Kết quả trong trường hợp này cho ta thấy thực sự có sự khác biệt giữa chiều dài đài hoa của các loài hoa (các giá trị p-value = 0).</p>
+<hr />
+<p>Như vậy, trong chương này, chúng ta đã cùng nhau tìm hiểu cách đọc hiểu những chỉ số thống kê cơ bản như: <strong>min/max</strong> (giá trị nhỏ nhất/lớn nhất), <strong>median</strong> (giá trị trung vị), <strong>mean</strong> (giá trị trung bình), <strong>quantile 25%</strong> và <strong>quantile 75%</strong>.</p>
+<p>Ngoài ra, chúng ta cũng đã biết những kiểm định quan trọng và phổ biến như:</p>
+<ul>
+<li><p><strong>Chi-square test</strong>: sử dụng để xem giữa các biến rời rạc (discrete/categorical variables) có mối quan hệ độc lập hay phụ thuộc lẫn nhau</p></li>
+<li><p><strong>Correlation test</strong>: sử dụng để xem giữa các biến liên tục (continuous/numeric variables) có mối liên hệ hay không (tương quan tuyến tính)</p></li>
+<li><p><strong>ANOVA test</strong>: sử dụng để so sánh giữa các nhóm đối tượng khác nhau dựa vào giá trị trung bình của 1 biến nhất định nào đó</p></li>
+</ul>
+</div>
+<div id="kim-inh-quan-h-chi-binh-phuong" class="section level2">
+<h2><span class="header-section-number">4.3</span> Kiểm định quan hệ Chi-bình phương</h2>
+<p>Một trong những câu hỏi ta thường xuyên phải giải quyết trong quá trình phân tích dữ liệu là tìm kiếm mối quan hệ giữa các biến rời rạc. Một trong những kỹ thuật phổ biến để tìm kiếm mối quan hệ này là sử dụng kiểm định Chi-square (Khi bình phương).</p>
+<p>Để thực hiện phân tích mối quan hệ này, ta cần thực hiện ba bước:</p>
+<ul>
+<li>Bước một, xây dựng bảng phân phối tần xuất hai chiều.</li>
+<li>Bước hai, tính toán chỉ số <span class="math inline">\(\chi^2\)</span> để kiểm định giả thuyết độc lập giữa hai biến</li>
+<li>Bước ba, đưa ra kết luận về mối quan hệ vừa được kiểm định</li>
+</ul>
+<p>Để hiểu hơn về kiểm định <span class="math inline">\(\chi^2\)</span>, ta xem xét ví dụ dưới đây.</p>
+<p><strong>Ví dụ</strong>: Một trang web quảng cáo muốn phân tích về mối quan hệ giữa <strong>phương thức quảng cáo</strong> và <strong>thiết bị sử dụng</strong>. Dữ liệu trong một tháng về số lượt người dùng truy cập website được thể hiện như bảng dưới đây (đơn vị <em>nghìn user</em>)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-1"></a>order_dc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Total&quot;</span>, <span class="st">&quot;Phone&quot;</span>, <span class="st">&quot;Tablet&quot;</span>, <span class="st">&quot;Desktop&quot;</span>)</span>
+<span id="cb153-2"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-2"></a>order_ch &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Organic Search&quot;</span>, <span class="st">&quot;Paid Search&quot;</span>, <span class="st">&quot;Email&quot;</span>, <span class="st">&quot;Display&quot;</span>, <span class="st">&quot;Total&quot;</span>)</span>
+<span id="cb153-3"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-3"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">device_category =</span> <span class="kw">c</span>(<span class="st">&quot;Desktop&quot;</span>, <span class="st">&quot;Tablet&quot;</span>, <span class="st">&quot;Phone&quot;</span>, <span class="st">&quot;Total&quot;</span>),</span>
+<span id="cb153-4"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-4"></a>                 <span class="dt">organic_search =</span> <span class="kw">c</span>(<span class="dv">25</span>,<span class="dv">20</span>,<span class="dv">35</span>,<span class="dv">80</span>),</span>
+<span id="cb153-5"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-5"></a>                 <span class="dt">paid_search =</span> <span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">15</span>,<span class="dv">65</span>),</span>
+<span id="cb153-6"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-6"></a>                 <span class="dt">email =</span> <span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">25</span>,<span class="dv">10</span>,<span class="dv">80</span>),</span>
+<span id="cb153-7"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-7"></a>                 <span class="dt">display =</span> <span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">40</span>,<span class="dv">85</span>),</span>
+<span id="cb153-8"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-8"></a>                 <span class="dt">total =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">100</span>,<span class="dv">100</span>,<span class="dv">300</span>))</span>
+<span id="cb153-9"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb153-9"></a>df</span></code></pre>
+<pre><code>##   device_category organic_search paid_search email display total
+## 1         Desktop             25          20    35      20   100
+## 2          Tablet             20          30    25      25   100
+## 3           Phone             35          15    10      40   100
+## 4           Total             80          65    80      85   300</code></pre>
+<p>Để phân tích mối quan hệ giữa hai biến, ta có giả thuyết như sau:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: Phương thức quảng cáo và thiết bị sử dụng không có mối liên hệ với nhau (hai biến độc lập)</li>
+<li><span class="math inline">\(H_1\)</span>: Phương thức quảng cáo và thiết bị sử dụng có mối liên hệ với nhau (tồn tại mối quan hệ giữa hai biến)</li>
+</ul>
+<p>Chỉ số <span class="math inline">\(\chi^2\)</span> được tính như sau:</p>
+<p><span class="math display">\[\chi^2 = \sum\frac{(O_i - E_i)^2}{E_i}\]</span></p>
+<p>Trong đó:</p>
+<ul>
+<li><span class="math inline">\(O\)</span> là giá trị quan sát được thực tế (ví dụ: Desktop/Organic Search có 25 ngàn user)</li>
+<li><span class="math inline">\(E\)</span> là giá trị kỳ vọng của mỗi cặp giá trị.</li>
+</ul>
+<p>Ta tính giá trị <em>kỳ vọng</em> như sau:</p>
+<ul>
+<li>Tính tổng từng cột và từng dòng (giá trị " <em>Total</em> ")</li>
+<li>Nhân từng dòng với từng hàng và chia cho tổng số quan sát</li>
+</ul>
+<p><strong>Ví dụ</strong>: Giá trị kỳ vọng của <em>Desktop</em> và <em>Organic Search</em> có thể được tính như sau:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Users_{expected} &amp;= \frac{r_1}{T} \times \frac{c_1}{T} \times T \\
+&amp;= \frac{100}{300} \times \frac{80}{300} \times 300 \\
+&amp;= .33 \times .27 \times 300 \\
+&amp;= 26.67 \\
+&amp;= 27
+\end{aligned}
+\]</span></p>
+<p>Giá trị kỳ vọng của tất cả các giá trị có kết quả như sau</p>
+<pre><code>##   device_category organic_search paid_search email display
+## 1         Desktop          26.67       21.67 23.33   28.33
+## 2          Tablet          26.67       21.67 23.33   28.33
+## 3           Phone          26.67       21.67 23.33   28.33</code></pre>
+<p>Tiếp đó, ta tính toán sự khác biệt giữa giá trị kỳ vọng và giá trị thực tế. Sau đó tính <span class="math inline">\(\chi^2\)</span> như sau:</p>
+<ul>
+<li>Tính độ sai lệch</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;= Users_o - Users_e \\
+&amp;= 25 - 26.67 \\
+&amp;= -1.67
+\end{aligned}
+\]</span>
+- Tính giá trị bình phương</p>
+<p><span class="math display">\[-1.67^2=2.78\]</span></p>
+<ul>
+<li>Chia giá trị vừa tính được cho giá trị kỳ vọng:</li>
+</ul>
+<p><span class="math display">\[\frac{2.78}{27} = 0.10\]</span></p>
+<p>Tương tự, ta tính được cho tất cả các biến như sau:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb156-1"></a>df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">device_category =</span> <span class="kw">c</span>(<span class="st">&quot;Desktop&quot;</span>, <span class="st">&quot;Tablet&quot;</span>, <span class="st">&quot;Phone&quot;</span>),</span>
+<span id="cb156-2"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb156-2"></a>                 <span class="dt">organic_search =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">1.67</span>, <span class="fl">2.6</span>),</span>
+<span id="cb156-3"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb156-3"></a>                 <span class="dt">paid_search =</span> <span class="kw">c</span>(<span class="fl">0.13</span>, <span class="fl">3.2</span>, <span class="fl">2.05</span>),</span>
+<span id="cb156-4"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb156-4"></a>                 <span class="dt">email =</span> <span class="kw">c</span>(<span class="fl">5.83</span>, <span class="fl">0.12</span>, <span class="fl">7.62</span>),</span>
+<span id="cb156-5"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb156-5"></a>                 <span class="dt">display =</span> <span class="kw">c</span>(<span class="fl">2.45</span>, <span class="fl">0.39</span>, <span class="fl">4.8</span>))</span>
+<span id="cb156-6"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb156-6"></a>df3</span></code></pre>
+<pre><code>##   device_category organic_search paid_search email display
+## 1         Desktop           0.10        0.13  5.83    2.45
+## 2          Tablet           1.67        3.20  0.12    0.39
+## 3           Phone           2.60        2.05  7.62    4.80</code></pre>
+<p><span class="math inline">\(\chi^2\)</span> thực tế được tính bằng tổng các giá trị trên <span class="math inline">\(\chi^2 = 30.96\)</span></p>
+<p>Với dữ liệu trên, ta có 4 cột và 3 hàng. Như vậy, bậc tự do trong phân phôi <span class="math inline">\(\chi^2\)</span> là <span class="math inline">\((4-1)*(3-1) = 6\)</span>. Ta có thể so sánh giá trị vừa tìm được với giá trị <span class="math inline">\(\chi^2\)</span> tại
+<a href="http://www.danielsoper.com/statcalc/calculator.aspx?id=12">đây</a>. Với <span class="math inline">\(\alpha\)</span> bằng .1 và 6 bậc tự do, giá trị của <span class="math inline">\(\chi\)</span><sup>2</sup> là 10.64. Với giá trị thực tế lớn hơn giá trị lý thuyết, ta bác bỏ <span class="math inline">\(H_0\)</span>. Như vậy, về mặt thống kê, tồn tại mối quan hệ giữa phương thức marketing và thiết bị sử dụng.</p>
+<hr />
+<p><strong>Ví dụ với R</strong></p>
+<p>Trong thực tế, khi phân tích dữ liệu, ta có thể ra quyết định nhanh chóng về mối quan hệ giữa hai biến rời rạc thông qua <code>p-value</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#cb158-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">chisq.test</span>()</span></code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  .
+## X-squared = 30.908, df = 12, p-value = 0.002035</code></pre>
+<p>Với <span class="math inline">\(p-value = 0.002035\)</span>, ta bác bỏ <span class="math inline">\(H_0\)</span>, chấp nhận <span class="math inline">\(H_1\)</span>. Nghĩa là tồn tại mối quan hệ giữa phương thức quảng cáo và thiết bị sử dụng.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="phan-ra-va-xoay-chiu-d-liu.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lp-trinh-ham.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"split_by": "rmd"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

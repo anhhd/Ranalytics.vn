@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 15 Giới thiệu về chuỗi thời gian | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 15 Giới thiệu về chuỗi thời gian | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 15 Giới thiệu về chuỗi thời gian | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chương 15 Giới thiệu về chuỗi thời gian | Phân tích dữ liệu thực tế với R" />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 15 Giới thiệu về chuỗi thời gian | Phân tích dữ liệu thực tế với R" />
+  
+  <meta name="twitter:description" content="Chương 15 Giới thiệu về chuỗi thời gian | Phân tích dữ liệu thực tế với R" />
+  
+
+<meta name="author" content="Hoàng Đức Anh" />
+
+
+<meta name="date" content="2019-07-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="feature-engineering.html">
+<link rel="next" href="mo-hinh-arima.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích dữ liệu thực tế với R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="li-m-u.html"><a href="li-m-u.html"><i class="fa fa-check"></i>Lời mở đầu</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Khoa học dữ liệu và nghề phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#khoa-hoc-d-liu-la-gi"><i class="fa fa-check"></i><b>1.1</b> Khoa học dữ liệu là gì</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#tai-sao-phan-tich-d-liu-la-ngh-kho"><i class="fa fa-check"></i><b>1.2</b> Tại sao phân tích dữ liệu là nghề khó?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#phan-loai-hoat-ng-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3</b> Phân loại hoạt động phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#da-theo-cach-thc-tac-ng-n-khach-hang"><i class="fa fa-check"></i><b>1.3.1</b> Dựa theo cách thức tác động đến khách hàng</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#da-theo-c-tinh-cua-ngh-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3.2</b> Dựa theo đặc tính của nghề phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#da-theo-chu-ky-cua-khach-hang-i-vi-san-phm"><i class="fa fa-check"></i><b>1.3.3</b> Dựa theo chu kỳ của khách hàng đối với sản phẩm</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#cach-xay-dng-nhom-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.4</b> Cách xây dựng nhóm phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#luu-y-khi-oc-tai-liu"><i class="fa fa-check"></i><b>1.5</b> Lưu ý khi đọc tài liệu</a></li>
+</ul></li>
+<li class="part"><span><b>I Kỹ thuật phân tích dữ liệu thực tế</b></span></li>
+<li class="chapter" data-level="2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><i class="fa fa-check"></i><b>2</b> Ngữ pháp của biến đổi dữ liệu với DPLYR</a><ul>
+<li class="chapter" data-level="2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#gii-thiu-v-pipe-operator"><i class="fa fa-check"></i><b>2.1</b> Giới thiệu về pipe operator</a></li>
+<li class="chapter" data-level="2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-co-ban-trong-dplyr"><i class="fa fa-check"></i><b>2.2</b> Các hàm cơ bản trong dplyr</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-truy-vn-d-liu"><i class="fa fa-check"></i><b>2.2.1</b> Nhóm câu lệnh truy vấn dữ liệu</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-bin-i-d-liu"><i class="fa fa-check"></i><b>2.2.2</b> Nhóm câu lệnh biến đổi dữ liệu</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-ham-tng-hp-d-liu-vi-summarise"><i class="fa fa-check"></i><b>2.2.3</b> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-nang-cao-trong-dplyr"><i class="fa fa-check"></i><b>2.3</b> Các hàm nâng cao trong dplyr</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#iu-kin-phan-nhom-vi-case_when"><i class="fa fa-check"></i><b>2.3.1</b> Điều kiện phân nhóm với <code>case_when</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at"><i class="fa fa-check"></i><b>2.3.2</b> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if"><i class="fa fa-check"></i><b>2.3.3</b> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html"><i class="fa fa-check"></i><b>3</b> Phân rã và xoay chiều dữ liệu</a><ul>
+<li class="chapter" data-level="3.1" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#phan-ra-d-liu-thanh-dang-doc-vi-gather"><i class="fa fa-check"></i><b>3.1</b> Phân rã dữ liệu thành dạng dọc với <code>gather</code></a></li>
+<li class="chapter" data-level="3.2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#xoay-chiu-d-liu-vi-spread"><i class="fa fa-check"></i><b>3.2</b> Xoay chiều dữ liệu với <code>spread</code></a></li>
+<li class="chapter" data-level="3.3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#tach-mt-bin-thanh-nhiu-bin-vi-separate"><i class="fa fa-check"></i><b>3.3</b> Tách một biến thành nhiều biến với <code>separate</code></a></li>
+<li class="chapter" data-level="3.4" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#gp-nhiu-bin-thanh-mt-bin-vi-unite"><i class="fa fa-check"></i><b>3.4</b> Gộp nhiều biến thành một biến với <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html"><i class="fa fa-check"></i><b>4</b> Các chỉ số thống kê mô tả cơ bản</a><ul>
+<li class="chapter" data-level="4.1" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#correlation"><i class="fa fa-check"></i><b>4.1</b> Correlation</a></li>
+<li class="chapter" data-level="4.2" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#anova"><i class="fa fa-check"></i><b>4.2</b> ANOVA</a></li>
+<li class="chapter" data-level="4.3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#kim-inh-quan-h-chi-binh-phuong"><i class="fa fa-check"></i><b>4.3</b> Kiểm định quan hệ Chi-bình phương</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html"><i class="fa fa-check"></i><b>5</b> Lập trình hàm</a><ul>
+<li class="chapter" data-level="5.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#quotes-vs.-unquotes"><i class="fa fa-check"></i><b>5.1</b> <strong>Quotes</strong> vs. <strong>Unquotes</strong></a></li>
+<li class="chapter" data-level="5.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hp-dung-quo_name"><i class="fa fa-check"></i><b>5.2</b> Trường hợp dùng <code>quo_name</code></a></li>
+<li class="chapter" data-level="5.3" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hop-nhiu-bin"><i class="fa fa-check"></i><b>5.3</b> Trường họp nhiều biến</a></li>
+<li class="chapter" data-level="5.4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ng-dung"><i class="fa fa-check"></i><b>5.4</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ham-tinh-toan-tng-hp-nhiu-bin"><i class="fa fa-check"></i><b>5.4.1</b> Hàm tính toán tổng hợp nhiều biến</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ve--thi-vi-ggplot2"><i class="fa fa-check"></i><b>5.4.2</b> Vẽ đồ thị với ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html"><i class="fa fa-check"></i><b>6</b> Lập trình chức năng hàm với purrr</a><ul>
+<li class="chapter" data-level="6.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#nhom-ham-map"><i class="fa fa-check"></i><b>6.1</b> Nhóm hàm map</a></li>
+<li class="chapter" data-level="6.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#sa-i-gia-tri-vi-modify"><i class="fa fa-check"></i><b>6.2</b> Sửa đổi giá trị với <code>modify</code></a></li>
+<li class="chapter" data-level="6.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#tao-ham-nhanh-vi-as_mapper"><i class="fa fa-check"></i><b>6.3</b> Tạo hàm nhanh với <code>as_mapper</code></a></li>
+<li class="chapter" data-level="6.4" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#xay-dng-chui-cac-ham-lien-tip-vi-compose"><i class="fa fa-check"></i><b>6.4</b> Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></a></li>
+<li class="chapter" data-level="6.5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#ng-dung-1"><i class="fa fa-check"></i><b>6.5</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#bin-i-d-liu-vi-modify-va-map_df"><i class="fa fa-check"></i><b>6.5.1</b> Biến đổi dữ liệu với <code>modify</code> và <code>map_df</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-nhom-khac-nhau-cung-luc"><i class="fa fa-check"></i><b>6.5.2</b> Phân tích nhiều nhóm khác nhau cùng lúc</a></li>
+<li class="chapter" data-level="6.5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-bin-trong-dataframe-cung-luc"><i class="fa fa-check"></i><b>6.5.3</b> Phân tích nhiều biến trong dataframe cùng lúc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html"><i class="fa fa-check"></i><b>7</b> Biến đổi dữ liệu text</a><ul>
+<li class="chapter" data-level="7.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#gii-thiu"><i class="fa fa-check"></i><b>7.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="7.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#regular-expression"><i class="fa fa-check"></i><b>7.2</b> Regular expression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#metadata"><i class="fa fa-check"></i><b>7.2.1</b> Metadata</a></li>
+<li class="chapter" data-level="7.2.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#sequences"><i class="fa fa-check"></i><b>7.2.2</b> Sequences</a></li>
+<li class="chapter" data-level="7.2.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#character-class"><i class="fa fa-check"></i><b>7.2.3</b> Character class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#posix-class"><i class="fa fa-check"></i><b>7.2.4</b> POSIX class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#quantifiers"><i class="fa fa-check"></i><b>7.2.5</b> Quantifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#cac-vi-du-tng-hp"><i class="fa fa-check"></i><b>7.3</b> Các ví dụ tổng hợp</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-1"><i class="fa fa-check"></i><b>7.3.1</b> Ví dụ 1</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-2"><i class="fa fa-check"></i><b>7.3.2</b> Ví dụ 2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-3"><i class="fa fa-check"></i><b>7.3.3</b> Ví dụ 3</a></li>
+<li class="chapter" data-level="7.3.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-4"><i class="fa fa-check"></i><b>7.3.4</b> Ví dụ 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#tai-liu-tham-khao"><i class="fa fa-check"></i><b>7.4</b> Tài liệu tham khảo</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><a href="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><i class="fa fa-check"></i><b>8</b> Quản lý kết quả phân tích từ nhiều mô hình</a></li>
+<li class="chapter" data-level="9" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html"><i class="fa fa-check"></i><b>9</b> Các nguyên lý dự báo</a><ul>
+<li class="chapter" data-level="9.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#gii-thiu-1"><i class="fa fa-check"></i><b>9.1</b> Giới thiệu</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nhanh-trong-hoc-may-machine-learning"><i class="fa fa-check"></i><b>9.1.1</b> Các nhánh trong học máy (machine learning)</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cach-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>9.1.2</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="9.1.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#s-dung-mo-hinh"><i class="fa fa-check"></i><b>9.1.3</b> Sử dụng mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nguyen-ly-trong-d-bao"><i class="fa fa-check"></i><b>9.2</b> Các nguyên lý trong dự báo</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#reducible-vs.-irreducible-error"><i class="fa fa-check"></i><b>9.2.1</b> Reducible vs. irreducible error</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#kha-nang-giai-thich-va-kha-nang-d-bao"><i class="fa fa-check"></i><b>9.2.2</b> Khả năng giải thích và khả năng dự báo</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#mo-hinh-co-tham-s-cho-truc-hoc-khong-co-tham-s-cho-truc-parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>9.2.3</b> Mô hình có tham số cho trước hoặc không có tham số cho trước (Parametric vs. Nonparametric)</a></li>
+<li class="chapter" data-level="9.2.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#nguyen-ly-ch-u"><i class="fa fa-check"></i><b>9.2.4</b> Nguyên lý chữ U</a></li>
+<li class="chapter" data-level="9.2.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#bias-variance-trade-off"><i class="fa fa-check"></i><b>9.2.5</b> Bias Variance Trade-Off</a></li>
+<li class="chapter" data-level="9.2.6" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#overfitting-regularization"><i class="fa fa-check"></i><b>9.2.6</b> Overfitting &amp; regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#quy-trinh-xay-dng-mo-hinh-d-bao"><i class="fa fa-check"></i><b>9.3</b> Quy trình xây dựng mô hình dự báo</a></li>
+<li class="chapter" data-level="9.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#ensemble-methods"><i class="fa fa-check"></i><b>9.4</b> Ensemble methods</a></li>
+<li class="chapter" data-level="9.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#luu-y"><i class="fa fa-check"></i><b>9.5</b> Lưu ý</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html"><i class="fa fa-check"></i><b>10</b> Mô hình OLS</a><ul>
+<li class="chapter" data-level="10.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#gii-thiu-2"><i class="fa fa-check"></i><b>10.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="10.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#xay-dng-mo-hinh-co-ban"><i class="fa fa-check"></i><b>10.2</b> Xây dựng mô hình cơ bản</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#mo-hinh-hi-quy-on-bin"><i class="fa fa-check"></i><b>10.2.1</b> Mô hình hồi quy đơn biến</a></li>
+<li class="chapter" data-level="10.2.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#din-giai-mo-hinh"><i class="fa fa-check"></i><b>10.2.2</b> Diễn giải mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#anh-gia-cht-lung-mo-hinh"><i class="fa fa-check"></i><b>10.3</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#sai-s-cua-mo-hinh"><i class="fa fa-check"></i><b>10.3.1</b> Sai số của mô hình</a></li>
+<li class="chapter" data-level="10.3.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#r-binh-phuong-r2"><i class="fa fa-check"></i><b>10.3.2</b> R bình phương <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="10.3.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#f-statistic"><i class="fa fa-check"></i><b>10.3.3</b> F statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#d-bao"><i class="fa fa-check"></i><b>10.4</b> Dự báo</a></li>
+<li class="chapter" data-level="10.5" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#thut-toan-ti-uu-vi-gradient-decent"><i class="fa fa-check"></i><b>10.5</b> Thuật toán tối ưu với gradient decent</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html"><i class="fa fa-check"></i><b>11</b> Mô hình hồi quy logistic</a><ul>
+<li class="chapter" data-level="11.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cach-xay-dng-mo-hinh-1"><i class="fa fa-check"></i><b>11.1</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="11.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#vi-du-xay-dng-mo-hinh-on-gian"><i class="fa fa-check"></i><b>11.2</b> Ví dụ xây dựng mô hình đơn giản</a></li>
+<li class="chapter" data-level="11.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cac-chi-s-cn-quan-tam-khac"><i class="fa fa-check"></i><b>11.3</b> Các chỉ số cần quan tâm khác</a></li>
+<li class="chapter" data-level="11.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#anh-gia-cht-lung-mo-hinh-1"><i class="fa fa-check"></i><b>11.4</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#confusion-matrix"><i class="fa fa-check"></i><b>11.4.1</b> Confusion Matrix</a></li>
+<li class="chapter" data-level="11.4.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#roc"><i class="fa fa-check"></i><b>11.4.2</b> ROC</a></li>
+<li class="chapter" data-level="11.4.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#gain-va-lift"><i class="fa fa-check"></i><b>11.4.3</b> Gain và Lift</a></li>
+<li class="chapter" data-level="11.4.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#kolmogorovsmirnov-statistics"><i class="fa fa-check"></i><b>11.4.4</b> Kolmogorov–Smirnov statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#thc-hanh"><i class="fa fa-check"></i><b>11.5</b> Thực hành</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#d-liu"><i class="fa fa-check"></i><b>11.5.1</b> Dữ liệu</a></li>
+<li class="chapter" data-level="11.5.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-tp-d-liu-gc"><i class="fa fa-check"></i><b>11.5.2</b> Xây dựng mô hình trên tập dữ liệu gốc</a></li>
+<li class="chapter" data-level="11.5.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-hai-tp-train-va-test"><i class="fa fa-check"></i><b>11.5.3</b> Xây dựng mô hình trên hai tập train và test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>11.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>12</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="13" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>13</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="13.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>13.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="13.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>13.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="13.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>13.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>13.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="13.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>13.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="13.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>13.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>13.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>14</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="14.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>14.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>14.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="14.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>14.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>14.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>14.2.1</b> Biến đổi 1:1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Chuỗi thời gian</b></span></li>
+<li class="chapter" data-level="15" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>15</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="15.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>15.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="15.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>15.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="15.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>15.3</b> Smoothing</a></li>
+<li class="chapter" data-level="15.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>15.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="15.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>15.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>15.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="15.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>15.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="15.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>15.5.3</b> Tự động xây dựng mô hình</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>16</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="16.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>16.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="16.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>16.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="16.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>16.3</b> Ví dụ với R</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>17</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="17.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>17.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="17.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>17.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="17.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>17.3</b> Chuyển từ dataframe thành xts</a></li>
+</ul></li>
+<li class="part"><span><b>III Case study</b></span></li>
+<li class="chapter" data-level="18" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>18</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="18.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>18.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="18.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>18.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="18.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>18.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="18.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>18.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>19</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="19.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>19.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="19.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>19.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="19.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>19.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="19.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>19.4</b> Tự động render ra kết quả phân tích</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích dữ liệu thực tế với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gii-thiu-v-chui-thi-gian" class="section level1">
+<h1><span class="header-section-number">Chương 15</span> Giới thiệu về chuỗi thời gian</h1>
+<p>Khi phân tích dữ liệu, có hai khái niệm đều được gọi là <em>dự báo</em> khi được dịch sang tiếng Việt, đó là <code>forcast</code> và <code>predict</code>. Tuy nhiên, hai khái niệm này rất khác nhau.</p>
+<ul>
+<li><strong>Predict</strong>: Thường được dùng để chỉ việc dự báo xác suất xảy ra các sự kiện. Ví dụ, xác suất vỡ nợ, xác suất khách hàng churn,…</li>
+<li><strong>Forecast</strong>: Thường dùng trong việc dự báo chuỗi thời gian. Ví dụ, dựa vào lịch sử biến động của tổng khách hàng uống cafe theo tuần, ta có thể <em>dự báo</em> được số lượng khách hàng uống cafe của 1 tuần tới, hai tuần tới,…</li>
+</ul>
+<p>Trong phần trước, chúng ta đã bàn nhiều về nhóm <code>predict</code>, trong phần này, ta sẽ bàn thêm về nhóm <code>forecast</code>, về các cấu phần và cách thức dự báo đối với chuỗi thời gian. Do đó, trong phần này, khi nói về dự báo, chúng ta đang bàn về vấn đề <code>forecast</code>.</p>
+<p><strong>Phân biệt <code>dự báo</code>, <code>mục tiêu</code> và <code>kế hoạch</code></strong></p>
+<p><strong>Dự báo</strong>: là quá trình sử dụng các thông tin hiện hữu đưa ra các nhận định chính xác nhất có thể có trong tương lai trong một khoảng thời gian xác định về một chỉ số nào đó.</p>
+<p><strong>Mục tiêu</strong>: là thứ mà cá nhân, tổ chức mong muốn đạt được trong một khoảng thời gian xác định trong tương lai. Thường thì mục tiêu được đặt mà không quan tâm đến bất kỳ đến việc dự báo nào cả. Ví dụ, mục tiêu tăng trưởng của doanh nghiệp thường là năm sau cao gấp đôi năm trước trong khi dự báo chỉ có thể tăng được 30%.</p>
+<p><strong>Kế hoạch</strong>: Là phản ứng của tổ chức, cá nhân đối với <em>dự báo</em> và <em>mục tiêu</em>. Việc lập kế hoạch đòi hỏi nhiều hành động cụ thể để điều hướng dự báo sát sát với mục tiêu (hoặc vượt mục tiêu)</p>
+<p>Xét về yếu tố thời gian, việc dự báo có thể chia thành dự báo ngắn hạn, trung hạn và dài hạn.</p>
+<p><strong>Các điểm khi dự báo</strong></p>
+<p>Khi dự báo, có hai điểm quan trọng chúng ta phải trả lời.</p>
+<ul>
+<li>Thứ nhất, ta cần dự báo điều gì? Dự báo với từng sản phẩm hay với cả nhóm sản phẩm? Dự báo doanh số bán hàng của từng cửa hàng hay của toàn hệ thống?</li>
+<li>Thứ hai, yếu tố thời gian xét trong vấn đề dự báo này là gì? Ta cần dự báo trong bao lâu? Tần xuất như thế nào? Ví dụ, dư báo doanh số bán hàng mỗi tháng/tuần 1 lần trong 1 năm tới?</li>
+</ul>
+<blockquote>
+<p><strong>Lưu ý</strong>: Các bạn phân tích dữ liệu cần phải tìm hiểu các đơn vị nghiệp vụ sẽ sử dụng kết quả dự báo như thế nào, để tránh việc bỏ quá nhiều thời gian và công sức dự báo nhưng không ai sử dụng.</p>
+</blockquote>
+<div id="thanh-phn-cua-chui-thi-gian" class="section level2">
+<h2><span class="header-section-number">15.1</span> Thành phần của chuỗi thời gian</h2>
+<p>Trong bất cứ chuỗi thời gian nào, cũng có 3 thành phần sau.</p>
+<ul>
+<li><strong>Xu hướng</strong> (trend) thể hiện chiều hướng tăng hay giảm dài hạn của chuỗi thời gian</li>
+<li><strong>Mùa vụ</strong> (seasonal) thể hiện sự biến đổi của chuỗi thời gian theo chu kỳ biết trước. Ví dụ, vào cuối tuần, khách hàng có xu hướng đi ăn nhà hàng nhiều hơn.</li>
+<li><strong>Chu kỳ kinh doanh</strong> (cyclic) thể hiện xu hướng biến đổi dài hạn của chuỗi thời gian, thường ít nhất hai năm. Chu kỳ kinh doanh khác với yếu tố mùa vụ ở chỗ, chu kỳ biến đổi của yếu tố mùa vụ thường là đã được biết trước và mang tính ngắn hạn.</li>
+</ul>
+<p>Khi phân tích chuỗi thời gian tập trung vào 2 câu hỏi:</p>
+<ul>
+<li>Cái gì đã xảy ra</li>
+<li>Cái gì sẽ xảy ra, với độ tin cậy bao nhiêu phần trăm</li>
+</ul>
+<p>Phân tích chuỗi thời gian sử dụng rất nhiều trong việc dự báo tăng trưởng, lên kế hoạch. Mô hình này dùng rất nhiều trong Macroeconomics, Finance…</p>
+<p><strong>Lưu ý</strong>:</p>
+<ul>
+<li>Để phân tích chuỗi thời gian, R lưu object dưới dạng ts (time series)</li>
+<li>Chuỗi thời gian có 1 loạt các kỹ thuật và câu lệnh phân tích riêng biệt</li>
+</ul>
+</div>
+<div id="d-liu-chui-thi-gian" class="section level2">
+<h2><span class="header-section-number">15.2</span> Dữ liệu chuỗi thời gian</h2>
+<p>Khi lưu trữ trong R, chuỗi thời gian được lưu dưới dạng <code>ts</code> như sau.</p>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="gii-thiu-v-chui-thi-gian.html#cb584-1"></a><span class="co">#Tạo chuỗi thời gian</span></span>
+<span id="cb584-2"><a href="gii-thiu-v-chui-thi-gian.html#cb584-2"></a>sales &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">round</span>(<span class="kw">rnorm</span>(<span class="dv">24</span>,<span class="dv">50</span>,<span class="dv">10</span>),<span class="dv">0</span>))</span>
+<span id="cb584-3"><a href="gii-thiu-v-chui-thi-gian.html#cb584-3"></a><span class="co">#Tạo object ts</span></span>
+<span id="cb584-4"><a href="gii-thiu-v-chui-thi-gian.html#cb584-4"></a>tsales &lt;-<span class="st"> </span><span class="kw">ts</span>(sales, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">2003</span>,<span class="dv">1</span>), <span class="dt">frequency =</span> <span class="dv">12</span>)</span>
+<span id="cb584-5"><a href="gii-thiu-v-chui-thi-gian.html#cb584-5"></a>tsales</span></code></pre></div>
+<pre><code>##      Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+## 2003  42  46  49  44  58  56  47  55  76  43  38  53
+## 2004  50  40  31  60  34  63  72  59  67  54  56  51</code></pre>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="gii-thiu-v-chui-thi-gian.html#cb586-1"></a><span class="co">#Các chỉ số cơ bản</span></span>
+<span id="cb586-2"><a href="gii-thiu-v-chui-thi-gian.html#cb586-2"></a><span class="co">#plot</span></span>
+<span id="cb586-3"><a href="gii-thiu-v-chui-thi-gian.html#cb586-3"></a><span class="kw">plot</span>(tsales, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="gii-thiu-v-chui-thi-gian.html#cb587-1"></a><span class="co">#Thời điểm bắt đầu</span></span>
+<span id="cb587-2"><a href="gii-thiu-v-chui-thi-gian.html#cb587-2"></a><span class="kw">start</span>(tsales)</span></code></pre></div>
+<pre><code>## [1] 2003    1</code></pre>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="gii-thiu-v-chui-thi-gian.html#cb589-1"></a><span class="co">#Thời điểm kết thúc</span></span>
+<span id="cb589-2"><a href="gii-thiu-v-chui-thi-gian.html#cb589-2"></a><span class="kw">end</span>(tsales)</span></code></pre></div>
+<pre><code>## [1] 2004   12</code></pre>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="gii-thiu-v-chui-thi-gian.html#cb591-1"></a><span class="co">#Frequency</span></span>
+<span id="cb591-2"><a href="gii-thiu-v-chui-thi-gian.html#cb591-2"></a><span class="kw">frequency</span>(tsales)</span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="gii-thiu-v-chui-thi-gian.html#cb593-1"></a><span class="co">#Tạo subset</span></span>
+<span id="cb593-2"><a href="gii-thiu-v-chui-thi-gian.html#cb593-2"></a>tsales.subset &lt;-<span class="st"> </span><span class="kw">window</span>(tsales, <span class="dt">start  =</span> <span class="kw">c</span>(<span class="dv">2003</span>,<span class="dv">9</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2004</span>,<span class="dv">3</span>))</span>
+<span id="cb593-3"><a href="gii-thiu-v-chui-thi-gian.html#cb593-3"></a>tsales.subset</span></code></pre></div>
+<pre><code>##      Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+## 2003                                  76  43  38  53
+## 2004  50  40  31</code></pre>
+</div>
+<div id="smoothing" class="section level2">
+<h2><span class="header-section-number">15.3</span> Smoothing</h2>
+<p>Centered Moving Average là kỹ thuật làm trơn để giảm đi các yếu tố gây nhiễu trong chuỗi thời gian.</p>
+<p><span class="math display">\[S_t=\frac{Y_{t-q}+...+Y_t+...+Y_{t+q}}{2q+1}\]</span></p>
+<p><span class="math inline">\(S_t\)</span> được gọi là giá trị làm trơn (smoothed value) tại thời điểm t, <span class="math inline">\(k=2q+1\)</span> là số quan sát được lấy giá trị trung bình. k thường là giá trị lẻ.</p>
+<p>Mô hình trên được gọi là Moving Average (MA)</p>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="gii-thiu-v-chui-thi-gian.html#cb595-1"></a><span class="kw">library</span>(forecast)</span>
+<span id="cb595-2"><a href="gii-thiu-v-chui-thi-gian.html#cb595-2"></a><span class="kw">library</span>(ggfortify)</span>
+<span id="cb595-3"><a href="gii-thiu-v-chui-thi-gian.html#cb595-3"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb595-4"><a href="gii-thiu-v-chui-thi-gian.html#cb595-4"></a><span class="kw">plot</span>(Nile)</span>
+<span id="cb595-5"><a href="gii-thiu-v-chui-thi-gian.html#cb595-5"></a><span class="kw">plot</span>(<span class="kw">ma</span>(Nile, <span class="dv">3</span>), <span class="dt">main =</span> <span class="st">&quot;Moving Average with k=3&quot;</span>)</span>
+<span id="cb595-6"><a href="gii-thiu-v-chui-thi-gian.html#cb595-6"></a><span class="kw">plot</span>(<span class="kw">ma</span>(Nile, <span class="dv">10</span>), <span class="dt">main =</span> <span class="st">&quot;Moving Average with k=10&quot;</span>)</span>
+<span id="cb595-7"><a href="gii-thiu-v-chui-thi-gian.html#cb595-7"></a><span class="kw">plot</span>(<span class="kw">ma</span>(Nile, <span class="dv">15</span>), <span class="dt">main =</span> <span class="st">&quot;Moving Average with k=15&quot;</span>)</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="seasonal-decomposition" class="section level2">
+<h2><span class="header-section-number">15.4</span> Seasonal decomposition</h2>
+<p>Bất kỳ mô hình times series nào cũng được cấu thành bởi ba yếu tố</p>
+<ul>
+<li>Trend: Xu hương phát triển theo thời gian</li>
+<li>Seasonal: Yếu tố chu kỳ</li>
+<li>Irregular component (error): Các yếu tố gây nhiễu</li>
+</ul>
+<p>Mô hình chuỗi thời gian cơ bản có hai dạng:</p>
+<ul>
+<li>Additive: <span class="math inline">\(Y_t=Trend_t + Seasonal_t + Irregular_t\)</span></li>
+<li>Multiplicative: <span class="math inline">\(Y_t=Trend_t * Seasonal_t * Irregular_t\)</span></li>
+</ul>
+<p>Do đó, để phân tích chuỗi thời gian, ta cũng cần bóc tách chuỗi thời gian thành 3 yếu tố như trên bằng hàm stl (Seasonal Decomposition of Time Series by Loess)</p>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="gii-thiu-v-chui-thi-gian.html#cb596-1"></a><span class="kw">stl</span>(ts, <span class="dt">s.window =</span> , <span class="dt">t.window =</span>)</span></code></pre></div>
+<p><strong>Lưu ý</strong>:</p>
+<ul>
+<li>Hàm trên chỉ dùng được cho Additive model</li>
+<li>Đối với Multiplicative, ta cần biến đổi như sau;</li>
+</ul>
+<p><span class="math display">\[log(Y_t) = log(Trend_t * Seasonal_t * Irregular_t)=log(Trend_t)+log(Seasonal_t)+log(Irregular_t)\]</span></p>
+<ul>
+<li>s.window: kiểm soát yếu tố thời vụ (seasonal) ảnh hưởng đên chuối thời gian thế nào. Nếu <span class="math inline">\(s.window=&quot;period&quot;\)</span> thì yếu tố thời vụ sẽ giống hệt nhau qua các năm</li>
+<li>t.window: kiểm soát yếu tố xu hướng (trend) thay đổi theo thời gian thế nào</li>
+</ul>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="gii-thiu-v-chui-thi-gian.html#cb597-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb597-2"><a href="gii-thiu-v-chui-thi-gian.html#cb597-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb597-3"><a href="gii-thiu-v-chui-thi-gian.html#cb597-3"></a><span class="co">#Mô hình có dạng Multiplicative</span></span>
+<span id="cb597-4"><a href="gii-thiu-v-chui-thi-gian.html#cb597-4"></a><span class="kw">plot</span>(AirPassengers)</span>
+<span id="cb597-5"><a href="gii-thiu-v-chui-thi-gian.html#cb597-5"></a><span class="co">#Chuyển sang dạng Additive</span></span>
+<span id="cb597-6"><a href="gii-thiu-v-chui-thi-gian.html#cb597-6"></a>lAirPassengers &lt;-<span class="st"> </span><span class="kw">log</span>(AirPassengers)</span>
+<span id="cb597-7"><a href="gii-thiu-v-chui-thi-gian.html#cb597-7"></a><span class="kw">plot</span>(AirPassengers)</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="gii-thiu-v-chui-thi-gian.html#cb598-1"></a><span class="co">#Phân tích thành phần ts</span></span>
+<span id="cb598-2"><a href="gii-thiu-v-chui-thi-gian.html#cb598-2"></a>fit &lt;-<span class="st"> </span><span class="kw">stl</span>(lAirPassengers, <span class="dt">s.window =</span> <span class="st">&quot;period&quot;</span>)</span>
+<span id="cb598-3"><a href="gii-thiu-v-chui-thi-gian.html#cb598-3"></a><span class="kw">autoplot</span>(fit) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="gii-thiu-v-chui-thi-gian.html#cb599-1"></a><span class="co">#Quay lại dữ liệu gốc</span></span>
+<span id="cb599-2"><a href="gii-thiu-v-chui-thi-gian.html#cb599-2"></a>fit<span class="op">$</span>time.series <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
+<pre><code>##         seasonal    trend   remainder
+## [1,] -0.09164042 4.829389 -0.01924936
+## [2,] -0.11402828 4.830368  0.05434477
+## [3,]  0.01586585 4.831348  0.03558845
+## [4,] -0.01402759 4.833377  0.04046325
+## [5,] -0.01502478 4.835406 -0.02459053
+## [6,]  0.10978976 4.838166 -0.04268143</code></pre>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="gii-thiu-v-chui-thi-gian.html#cb601-1"></a>fit<span class="op">$</span>time.series <span class="op">%&gt;%</span><span class="st"> </span>exp <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
+<pre><code>##       seasonal    trend remainder
+## [1,] 0.9124332 125.1344 0.9809347
+## [2,] 0.8922327 125.2571 1.0558486
+## [3,] 1.0159924 125.3798 1.0362293
+## [4,] 0.9860703 125.6345 1.0412930
+## [5,] 0.9850875 125.8897 0.9757094
+## [6,] 1.1160434 126.2377 0.9582166</code></pre>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="gii-thiu-v-chui-thi-gian.html#cb603-1"></a><span class="co">#Phân tích xu hướng theo tháng và seasonal</span></span>
+<span id="cb603-2"><a href="gii-thiu-v-chui-thi-gian.html#cb603-2"></a><span class="kw">monthplot</span>(AirPassengers)</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="gii-thiu-v-chui-thi-gian.html#cb604-1"></a><span class="kw">seasonplot</span>(AirPassengers, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<p><strong>Lưu ý</strong>: Nhìn vào bảng, ta có thể có các nhận định sau:</p>
+<ul>
+<li>Tháng một, yếu tố thời vụ khiến khách hàng giảm 9% (seasonal=-0.091)</li>
+<li>Tháng bảy, yếu tố thời vụ khiến khách hàng tăng 21% (seasonal = 0.216)</li>
+</ul>
+</div>
+<div id="exponential-forecasting-model" class="section level2">
+<h2><span class="header-section-number">15.5</span> Exponential Forecasting Model</h2>
+<p>Mô hình dạng này rất đơn giản nhưng có thể đưa ra các dự báo ngắn hạn khá chính xác. Có 3 dạng:</p>
+<ul>
+<li>Single Exponential Model (Simple Exponential Model)</li>
+<li>Double Exponential Model (Hold Exponential Model)</li>
+<li>Triple Exponential Model (Hold-Winters Exponential Model)</li>
+</ul>
+<div id="single-exponential-model" class="section level3">
+<h3><span class="header-section-number">15.5.1</span> Single Exponential Model</h3>
+<p><span class="math display">\[Y_t=level + irregular_t\]</span></p>
+<p>Dự báo giá trị của <span class="math inline">\(Y_{t+1}\)</span> (1-step ahead forecast) là:</p>
+<p><span class="math display">\[Y_{t+1}=c_0Y_t + c_1Y_{t-1}+c_2Y_{t-2}+...\]</span></p>
+<p>với
+<span class="math display">\[c_i=\alpha(1-\alpha)^i\]</span>,
+<span class="math display">\[\sum c_i=1\]</span>,
+<span class="math display">\[i=0,1,2...\]</span>,
+<span class="math display">\[\alpha\in[0,1]\]</span></p>
+<p>đo lường độ ảnh hưởng của các biến trước đó đến giá trị dự báo <span class="math inline">\(Y_{t+1}\)</span>:</p>
+<ul>
+<li>càng gần 1, các biến càng gần có trọng số càng lớn</li>
+<li>càng gần 0, các biến càng xa có trọng số càng lớn</li>
+</ul>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="gii-thiu-v-chui-thi-gian.html#cb605-1"></a><span class="kw">library</span>(forecast)</span>
+<span id="cb605-2"><a href="gii-thiu-v-chui-thi-gian.html#cb605-2"></a>fit &lt;-<span class="st"> </span><span class="kw">ets</span>(<span class="dt">y =</span> nhtemp, <span class="dt">model =</span> <span class="st">&quot;ANN&quot;</span>)</span>
+<span id="cb605-3"><a href="gii-thiu-v-chui-thi-gian.html#cb605-3"></a>fit</span></code></pre></div>
+<pre><code>## ETS(A,N,N) 
+## 
+## Call:
+##  ets(y = nhtemp, model = &quot;ANN&quot;) 
+## 
+##   Smoothing parameters:
+##     alpha = 0.182 
+## 
+##   Initial states:
+##     l = 50.2759 
+## 
+##   sigma:  1.1263
+## 
+##      AIC     AICc      BIC 
+## 265.9298 266.3584 272.2129</code></pre>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="gii-thiu-v-chui-thi-gian.html#cb607-1"></a><span class="kw">forecast</span>(fit,<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##      Point Forecast    Lo 80    Hi 80    Lo 95   Hi 95
+## 1972       51.87045 50.42708 53.31382 49.66301 54.0779</code></pre>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="gii-thiu-v-chui-thi-gian.html#cb609-1"></a><span class="kw">autoplot</span>(<span class="kw">forecast</span>(fit, <span class="dv">1</span>), <span class="dt">xlab=</span><span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb609-2"><a href="gii-thiu-v-chui-thi-gian.html#cb609-2"></a>    <span class="dt">ylab=</span><span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;Temperature (&quot;</span>, degree<span class="op">*</span>F,<span class="st">&quot;)&quot;</span>,)), </span>
+<span id="cb609-3"><a href="gii-thiu-v-chui-thi-gian.html#cb609-3"></a>    <span class="dt">main=</span><span class="st">&quot;New Haven Annual Mean Temperature&quot;</span>) <span class="op">+</span></span>
+<span id="cb609-4"><a href="gii-thiu-v-chui-thi-gian.html#cb609-4"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="gii-thiu-v-chui-thi-gian.html#cb610-1"></a><span class="kw">accuracy</span>(fit)</span></code></pre></div>
+<pre><code>##                     ME     RMSE       MAE       MPE     MAPE      MASE
+## Training set 0.1460295 1.126268 0.8951331 0.2418693 1.748922 0.7512497
+##                     ACF1
+## Training set -0.00653111</code></pre>
+<p><strong>Giải thích</strong>:</p>
+<ul>
+<li><span class="math inline">\(\alpha=0.182\)</span> cho thấy rất nhiều quan sát được tính đến trong mô hình.</li>
+<li>Độ chính xác của mô hình được tính bằng các chỉ số thông dụng sau</li>
+</ul>
+<table>
+<colgroup>
+<col width="44%" />
+<col width="13%" />
+<col width="41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chỉ số</th>
+<th>Viết tắt</th>
+<th>Cách tính</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean error</td>
+<td>ME</td>
+<td><span class="math inline">\(mean(\epsilon_t)\)</span></td>
+</tr>
+<tr class="even">
+<td>Root mean squared error</td>
+<td>RMSE</td>
+<td><span class="math inline">\(sqrt(mean(\epsilon_t^2))\)</span></td>
+</tr>
+<tr class="odd">
+<td>Mean absolute error</td>
+<td>MAE</td>
+<td><span class="math inline">\(mean(\epsilon_t)\)</span></td>
+</tr>
+<tr class="even">
+<td>Mean percentage error</td>
+<td>MPE</td>
+<td><span class="math inline">\(mean(100*\epsilon_t/Y_t)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Mean absolute percentage error</td>
+<td>MAPE</td>
+<td><span class="math inline">\(mean( 100*\epsilon_t/Y_t)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>ME (mean ), RMSE, MAE, MPE, MAPE, MASE</p>
+</div>
+<div id="hold-holt-winters-exponential-smoothing" class="section level3">
+<h3><span class="header-section-number">15.5.2</span> Hold &amp; Holt-Winters exponential smoothing</h3>
+<p><strong>Hold exponential smoothing</strong></p>
+<p><span class="math display">\[Y_t=level + slope*t + irregular_t\]</span></p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span>: Độ ảnh hưởng của các biến y trong quá khứ đến biến hiện tại</li>
+<li><span class="math inline">\(\beta\)</span>: Độ ảnh hưởng của biến xu hướng trong quá khứ đến hiện tại</li>
+</ul>
+<p><strong>Hold-Winters exponential smoothing</strong></p>
+<p><span class="math display">\[Y_t=level + slope*t + s_t + irregular_t\]</span></p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span>: Độ ảnh hưởng của các biến y trong quá khứ đến biến hiện tại</li>
+<li><span class="math inline">\(\beta\)</span>: Độ ảnh hưởng của biến xu hướng trong quá khứ đến hiện tại</li>
+<li><span class="math inline">\(\gamma\)</span>: Độ ảnh hường của biến chu kỳ đến hiện tại</li>
+</ul>
+<p><strong>Lưu ý</strong>: Các ảnh hưởng của slope và chu kỳ (và ) đến giá trị hiện tại được tính theo công thức giống như alpha</p>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="gii-thiu-v-chui-thi-gian.html#cb612-1"></a><span class="kw">library</span>(forecast)</span>
+<span id="cb612-2"><a href="gii-thiu-v-chui-thi-gian.html#cb612-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb612-3"><a href="gii-thiu-v-chui-thi-gian.html#cb612-3"></a>fit &lt;-<span class="st"> </span><span class="kw">ets</span>(<span class="kw">log</span>(AirPassengers), <span class="dt">model =</span> <span class="st">&quot;AAA&quot;</span>)</span>
+<span id="cb612-4"><a href="gii-thiu-v-chui-thi-gian.html#cb612-4"></a>fit</span></code></pre></div>
+<pre><code>## ETS(A,A,A) 
+## 
+## Call:
+##  ets(y = log(AirPassengers), model = &quot;AAA&quot;) 
+## 
+##   Smoothing parameters:
+##     alpha = 0.6534 
+##     beta  = 1e-04 
+##     gamma = 1e-04 
+## 
+##   Initial states:
+##     l = 4.8022 
+##     b = 0.01 
+##     s=-0.1047 -0.2186 -0.0761 0.0636 0.2083 0.217
+##            0.1145 -0.011 -0.0111 0.0196 -0.1111 -0.0905
+## 
+##   sigma:  0.0359
+## 
+##       AIC      AICc       BIC 
+## -208.3619 -203.5047 -157.8750</code></pre>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="gii-thiu-v-chui-thi-gian.html#cb614-1"></a><span class="co">#Dự báo</span></span>
+<span id="cb614-2"><a href="gii-thiu-v-chui-thi-gian.html#cb614-2"></a>pred &lt;-<span class="st"> </span><span class="kw">forecast</span>(fit, <span class="dv">5</span>)</span>
+<span id="cb614-3"><a href="gii-thiu-v-chui-thi-gian.html#cb614-3"></a>pred</span></code></pre></div>
+<pre><code>##          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
+## Jan 1961       6.103667 6.057633 6.149701 6.033264 6.174070
+## Feb 1961       6.093102 6.038107 6.148096 6.008995 6.177208
+## Mar 1961       6.233814 6.171126 6.296502 6.137940 6.329688
+## Apr 1961       6.213130 6.143591 6.282668 6.106780 6.319480
+## May 1961       6.223273 6.147500 6.299047 6.107388 6.339159</code></pre>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="gii-thiu-v-chui-thi-gian.html#cb616-1"></a><span class="kw">autoplot</span>(pred, <span class="dt">main=</span><span class="st">&quot;Forecast for Air Travel&quot;</span>, </span>
+<span id="cb616-2"><a href="gii-thiu-v-chui-thi-gian.html#cb616-2"></a>    <span class="dt">ylab=</span><span class="st">&quot;Log(AirPassengers)&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Time&quot;</span>) <span class="op">+</span></span>
+<span id="cb616-3"><a href="gii-thiu-v-chui-thi-gian.html#cb616-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="gii-thiu-v-chui-thi-gian.html#cb617-1"></a>pred<span class="op">$</span>mean &lt;-<span class="st"> </span><span class="kw">exp</span>(pred<span class="op">$</span>mean)           </span>
+<span id="cb617-2"><a href="gii-thiu-v-chui-thi-gian.html#cb617-2"></a>pred<span class="op">$</span>lower &lt;-<span class="st"> </span><span class="kw">exp</span>(pred<span class="op">$</span>lower)</span>
+<span id="cb617-3"><a href="gii-thiu-v-chui-thi-gian.html#cb617-3"></a>pred<span class="op">$</span>upper &lt;-<span class="st"> </span><span class="kw">exp</span>(pred<span class="op">$</span>upper)</span>
+<span id="cb617-4"><a href="gii-thiu-v-chui-thi-gian.html#cb617-4"></a>p &lt;-<span class="st"> </span><span class="kw">cbind</span>(pred<span class="op">$</span>mean, pred<span class="op">$</span>lower, pred<span class="op">$</span>upper)</span>
+<span id="cb617-5"><a href="gii-thiu-v-chui-thi-gian.html#cb617-5"></a><span class="kw">dimnames</span>(p)[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;Lo 80&quot;</span>, <span class="st">&quot;Lo 95&quot;</span>, <span class="st">&quot;Hi 80&quot;</span>, <span class="st">&quot;Hi 95&quot;</span>)</span>
+<span id="cb617-6"><a href="gii-thiu-v-chui-thi-gian.html#cb617-6"></a>p <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
+<pre><code>##          mean    Lo 80    Lo 95    Hi 80    Hi 95
+## [1,] 447.4958 427.3626 417.0741 468.5774 480.1365
+## [2,] 442.7926 419.0991 407.0741 467.8256 481.6452
+## [3,] 509.6958 478.7246 463.0988 542.6706 560.9814
+## [4,] 499.2613 465.7230 448.8908 535.2148 555.2839
+## [5,] 504.3514 467.5469 449.1637 544.0531 566.3198</code></pre>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="gii-thiu-v-chui-thi-gian.html#cb619-1"></a><span class="kw">class</span>(p)</span></code></pre></div>
+<pre><code>## [1] &quot;mts&quot;    &quot;ts&quot;     &quot;matrix&quot;</code></pre>
+</div>
+<div id="t-ng-xay-dng-mo-hinh" class="section level3">
+<h3><span class="header-section-number">15.5.3</span> Tự động xây dựng mô hình</h3>
+<p>Hàm <strong>ets</strong> cho phép tự động lựa chọn mô hình tốt nhất theo phương pháp maximum likelihood.</p>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="gii-thiu-v-chui-thi-gian.html#cb621-1"></a><span class="kw">library</span>(forecast)</span>
+<span id="cb621-2"><a href="gii-thiu-v-chui-thi-gian.html#cb621-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb621-3"><a href="gii-thiu-v-chui-thi-gian.html#cb621-3"></a>(fit &lt;-<span class="st"> </span><span class="kw">ets</span>(JohnsonJohnson)) </span></code></pre></div>
+<pre><code>## ETS(M,A,M) 
+## 
+## Call:
+##  ets(y = JohnsonJohnson) 
+## 
+##   Smoothing parameters:
+##     alpha = 0.1481 
+##     beta  = 0.0912 
+##     gamma = 0.4908 
+## 
+##   Initial states:
+##     l = 0.6146 
+##     b = 0.005 
+##     s=0.692 1.2644 0.9666 1.077
+## 
+##   sigma:  0.0889
+## 
+##      AIC     AICc      BIC 
+## 166.6964 169.1289 188.5738</code></pre>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="gii-thiu-v-chui-thi-gian.html#cb623-1"></a><span class="kw">forecast</span>(fit) <span class="op">%&gt;%</span><span class="st"> </span>autoplot <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="60-chuoi-thoi-gian_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="feature-engineering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mo-hinh-arima.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"split_by": "rmd"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

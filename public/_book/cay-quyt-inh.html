@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 12 Cây quyết định | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 12 Cây quyết định | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 12 Cây quyết định | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chương 12 Cây quyết định | Phân tích dữ liệu thực tế với R" />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 12 Cây quyết định | Phân tích dữ liệu thực tế với R" />
+  
+  <meta name="twitter:description" content="Chương 12 Cây quyết định | Phân tích dữ liệu thực tế với R" />
+  
+
+<meta name="author" content="Hoàng Đức Anh" />
+
+
+<meta name="date" content="2019-07-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mo-hinh-hi-quy-logistic.html">
+<link rel="next" href="bagging-boosting-va-random-forest.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích dữ liệu thực tế với R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="li-m-u.html"><a href="li-m-u.html"><i class="fa fa-check"></i>Lời mở đầu</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Khoa học dữ liệu và nghề phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#khoa-hoc-d-liu-la-gi"><i class="fa fa-check"></i><b>1.1</b> Khoa học dữ liệu là gì</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#tai-sao-phan-tich-d-liu-la-ngh-kho"><i class="fa fa-check"></i><b>1.2</b> Tại sao phân tích dữ liệu là nghề khó?</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#phan-loai-hoat-ng-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3</b> Phân loại hoạt động phân tích dữ liệu</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#da-theo-cach-thc-tac-ng-n-khach-hang"><i class="fa fa-check"></i><b>1.3.1</b> Dựa theo cách thức tác động đến khách hàng</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#da-theo-c-tinh-cua-ngh-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.3.2</b> Dựa theo đặc tính của nghề phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#da-theo-chu-ky-cua-khach-hang-i-vi-san-phm"><i class="fa fa-check"></i><b>1.3.3</b> Dựa theo chu kỳ của khách hàng đối với sản phẩm</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#cach-xay-dng-nhom-phan-tich-d-liu"><i class="fa fa-check"></i><b>1.4</b> Cách xây dựng nhóm phân tích dữ liệu</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#luu-y-khi-oc-tai-liu"><i class="fa fa-check"></i><b>1.5</b> Lưu ý khi đọc tài liệu</a></li>
+</ul></li>
+<li class="part"><span><b>I Kỹ thuật phân tích dữ liệu thực tế</b></span></li>
+<li class="chapter" data-level="2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><i class="fa fa-check"></i><b>2</b> Ngữ pháp của biến đổi dữ liệu với DPLYR</a><ul>
+<li class="chapter" data-level="2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#gii-thiu-v-pipe-operator"><i class="fa fa-check"></i><b>2.1</b> Giới thiệu về pipe operator</a></li>
+<li class="chapter" data-level="2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-co-ban-trong-dplyr"><i class="fa fa-check"></i><b>2.2</b> Các hàm cơ bản trong dplyr</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-truy-vn-d-liu"><i class="fa fa-check"></i><b>2.2.1</b> Nhóm câu lệnh truy vấn dữ liệu</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-bin-i-d-liu"><i class="fa fa-check"></i><b>2.2.2</b> Nhóm câu lệnh biến đổi dữ liệu</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-ham-tng-hp-d-liu-vi-summarise"><i class="fa fa-check"></i><b>2.2.3</b> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-nang-cao-trong-dplyr"><i class="fa fa-check"></i><b>2.3</b> Các hàm nâng cao trong dplyr</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#iu-kin-phan-nhom-vi-case_when"><i class="fa fa-check"></i><b>2.3.1</b> Điều kiện phân nhóm với <code>case_when</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at"><i class="fa fa-check"></i><b>2.3.2</b> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if"><i class="fa fa-check"></i><b>2.3.3</b> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html"><i class="fa fa-check"></i><b>3</b> Phân rã và xoay chiều dữ liệu</a><ul>
+<li class="chapter" data-level="3.1" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#phan-ra-d-liu-thanh-dang-doc-vi-gather"><i class="fa fa-check"></i><b>3.1</b> Phân rã dữ liệu thành dạng dọc với <code>gather</code></a></li>
+<li class="chapter" data-level="3.2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#xoay-chiu-d-liu-vi-spread"><i class="fa fa-check"></i><b>3.2</b> Xoay chiều dữ liệu với <code>spread</code></a></li>
+<li class="chapter" data-level="3.3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#tach-mt-bin-thanh-nhiu-bin-vi-separate"><i class="fa fa-check"></i><b>3.3</b> Tách một biến thành nhiều biến với <code>separate</code></a></li>
+<li class="chapter" data-level="3.4" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#gp-nhiu-bin-thanh-mt-bin-vi-unite"><i class="fa fa-check"></i><b>3.4</b> Gộp nhiều biến thành một biến với <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html"><i class="fa fa-check"></i><b>4</b> Các chỉ số thống kê mô tả cơ bản</a><ul>
+<li class="chapter" data-level="4.1" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#correlation"><i class="fa fa-check"></i><b>4.1</b> Correlation</a></li>
+<li class="chapter" data-level="4.2" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#anova"><i class="fa fa-check"></i><b>4.2</b> ANOVA</a></li>
+<li class="chapter" data-level="4.3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#kim-inh-quan-h-chi-binh-phuong"><i class="fa fa-check"></i><b>4.3</b> Kiểm định quan hệ Chi-bình phương</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html"><i class="fa fa-check"></i><b>5</b> Lập trình hàm</a><ul>
+<li class="chapter" data-level="5.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#quotes-vs.-unquotes"><i class="fa fa-check"></i><b>5.1</b> <strong>Quotes</strong> vs. <strong>Unquotes</strong></a></li>
+<li class="chapter" data-level="5.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hp-dung-quo_name"><i class="fa fa-check"></i><b>5.2</b> Trường hợp dùng <code>quo_name</code></a></li>
+<li class="chapter" data-level="5.3" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hop-nhiu-bin"><i class="fa fa-check"></i><b>5.3</b> Trường họp nhiều biến</a></li>
+<li class="chapter" data-level="5.4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ng-dung"><i class="fa fa-check"></i><b>5.4</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ham-tinh-toan-tng-hp-nhiu-bin"><i class="fa fa-check"></i><b>5.4.1</b> Hàm tính toán tổng hợp nhiều biến</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ve--thi-vi-ggplot2"><i class="fa fa-check"></i><b>5.4.2</b> Vẽ đồ thị với ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html"><i class="fa fa-check"></i><b>6</b> Lập trình chức năng hàm với purrr</a><ul>
+<li class="chapter" data-level="6.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#nhom-ham-map"><i class="fa fa-check"></i><b>6.1</b> Nhóm hàm map</a></li>
+<li class="chapter" data-level="6.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#sa-i-gia-tri-vi-modify"><i class="fa fa-check"></i><b>6.2</b> Sửa đổi giá trị với <code>modify</code></a></li>
+<li class="chapter" data-level="6.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#tao-ham-nhanh-vi-as_mapper"><i class="fa fa-check"></i><b>6.3</b> Tạo hàm nhanh với <code>as_mapper</code></a></li>
+<li class="chapter" data-level="6.4" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#xay-dng-chui-cac-ham-lien-tip-vi-compose"><i class="fa fa-check"></i><b>6.4</b> Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></a></li>
+<li class="chapter" data-level="6.5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#ng-dung-1"><i class="fa fa-check"></i><b>6.5</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#bin-i-d-liu-vi-modify-va-map_df"><i class="fa fa-check"></i><b>6.5.1</b> Biến đổi dữ liệu với <code>modify</code> và <code>map_df</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-nhom-khac-nhau-cung-luc"><i class="fa fa-check"></i><b>6.5.2</b> Phân tích nhiều nhóm khác nhau cùng lúc</a></li>
+<li class="chapter" data-level="6.5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-bin-trong-dataframe-cung-luc"><i class="fa fa-check"></i><b>6.5.3</b> Phân tích nhiều biến trong dataframe cùng lúc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html"><i class="fa fa-check"></i><b>7</b> Biến đổi dữ liệu text</a><ul>
+<li class="chapter" data-level="7.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#gii-thiu"><i class="fa fa-check"></i><b>7.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="7.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#regular-expression"><i class="fa fa-check"></i><b>7.2</b> Regular expression</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#metadata"><i class="fa fa-check"></i><b>7.2.1</b> Metadata</a></li>
+<li class="chapter" data-level="7.2.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#sequences"><i class="fa fa-check"></i><b>7.2.2</b> Sequences</a></li>
+<li class="chapter" data-level="7.2.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#character-class"><i class="fa fa-check"></i><b>7.2.3</b> Character class</a></li>
+<li class="chapter" data-level="7.2.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#posix-class"><i class="fa fa-check"></i><b>7.2.4</b> POSIX class</a></li>
+<li class="chapter" data-level="7.2.5" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#quantifiers"><i class="fa fa-check"></i><b>7.2.5</b> Quantifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#cac-vi-du-tng-hp"><i class="fa fa-check"></i><b>7.3</b> Các ví dụ tổng hợp</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-1"><i class="fa fa-check"></i><b>7.3.1</b> Ví dụ 1</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-2"><i class="fa fa-check"></i><b>7.3.2</b> Ví dụ 2</a></li>
+<li class="chapter" data-level="7.3.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-3"><i class="fa fa-check"></i><b>7.3.3</b> Ví dụ 3</a></li>
+<li class="chapter" data-level="7.3.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-4"><i class="fa fa-check"></i><b>7.3.4</b> Ví dụ 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#tai-liu-tham-khao"><i class="fa fa-check"></i><b>7.4</b> Tài liệu tham khảo</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><a href="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><i class="fa fa-check"></i><b>8</b> Quản lý kết quả phân tích từ nhiều mô hình</a></li>
+<li class="chapter" data-level="9" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html"><i class="fa fa-check"></i><b>9</b> Các nguyên lý dự báo</a><ul>
+<li class="chapter" data-level="9.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#gii-thiu-1"><i class="fa fa-check"></i><b>9.1</b> Giới thiệu</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nhanh-trong-hoc-may-machine-learning"><i class="fa fa-check"></i><b>9.1.1</b> Các nhánh trong học máy (machine learning)</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cach-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>9.1.2</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="9.1.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#s-dung-mo-hinh"><i class="fa fa-check"></i><b>9.1.3</b> Sử dụng mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nguyen-ly-trong-d-bao"><i class="fa fa-check"></i><b>9.2</b> Các nguyên lý trong dự báo</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#reducible-vs.-irreducible-error"><i class="fa fa-check"></i><b>9.2.1</b> Reducible vs. irreducible error</a></li>
+<li class="chapter" data-level="9.2.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#kha-nang-giai-thich-va-kha-nang-d-bao"><i class="fa fa-check"></i><b>9.2.2</b> Khả năng giải thích và khả năng dự báo</a></li>
+<li class="chapter" data-level="9.2.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#mo-hinh-co-tham-s-cho-truc-hoc-khong-co-tham-s-cho-truc-parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>9.2.3</b> Mô hình có tham số cho trước hoặc không có tham số cho trước (Parametric vs. Nonparametric)</a></li>
+<li class="chapter" data-level="9.2.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#nguyen-ly-ch-u"><i class="fa fa-check"></i><b>9.2.4</b> Nguyên lý chữ U</a></li>
+<li class="chapter" data-level="9.2.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#bias-variance-trade-off"><i class="fa fa-check"></i><b>9.2.5</b> Bias Variance Trade-Off</a></li>
+<li class="chapter" data-level="9.2.6" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#overfitting-regularization"><i class="fa fa-check"></i><b>9.2.6</b> Overfitting &amp; regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#quy-trinh-xay-dng-mo-hinh-d-bao"><i class="fa fa-check"></i><b>9.3</b> Quy trình xây dựng mô hình dự báo</a></li>
+<li class="chapter" data-level="9.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#ensemble-methods"><i class="fa fa-check"></i><b>9.4</b> Ensemble methods</a></li>
+<li class="chapter" data-level="9.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#luu-y"><i class="fa fa-check"></i><b>9.5</b> Lưu ý</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html"><i class="fa fa-check"></i><b>10</b> Mô hình OLS</a><ul>
+<li class="chapter" data-level="10.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#gii-thiu-2"><i class="fa fa-check"></i><b>10.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="10.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#xay-dng-mo-hinh-co-ban"><i class="fa fa-check"></i><b>10.2</b> Xây dựng mô hình cơ bản</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#mo-hinh-hi-quy-on-bin"><i class="fa fa-check"></i><b>10.2.1</b> Mô hình hồi quy đơn biến</a></li>
+<li class="chapter" data-level="10.2.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#din-giai-mo-hinh"><i class="fa fa-check"></i><b>10.2.2</b> Diễn giải mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#anh-gia-cht-lung-mo-hinh"><i class="fa fa-check"></i><b>10.3</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#sai-s-cua-mo-hinh"><i class="fa fa-check"></i><b>10.3.1</b> Sai số của mô hình</a></li>
+<li class="chapter" data-level="10.3.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#r-binh-phuong-r2"><i class="fa fa-check"></i><b>10.3.2</b> R bình phương <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="10.3.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#f-statistic"><i class="fa fa-check"></i><b>10.3.3</b> F statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#d-bao"><i class="fa fa-check"></i><b>10.4</b> Dự báo</a></li>
+<li class="chapter" data-level="10.5" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#thut-toan-ti-uu-vi-gradient-decent"><i class="fa fa-check"></i><b>10.5</b> Thuật toán tối ưu với gradient decent</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html"><i class="fa fa-check"></i><b>11</b> Mô hình hồi quy logistic</a><ul>
+<li class="chapter" data-level="11.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cach-xay-dng-mo-hinh-1"><i class="fa fa-check"></i><b>11.1</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="11.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#vi-du-xay-dng-mo-hinh-on-gian"><i class="fa fa-check"></i><b>11.2</b> Ví dụ xây dựng mô hình đơn giản</a></li>
+<li class="chapter" data-level="11.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cac-chi-s-cn-quan-tam-khac"><i class="fa fa-check"></i><b>11.3</b> Các chỉ số cần quan tâm khác</a></li>
+<li class="chapter" data-level="11.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#anh-gia-cht-lung-mo-hinh-1"><i class="fa fa-check"></i><b>11.4</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#confusion-matrix"><i class="fa fa-check"></i><b>11.4.1</b> Confusion Matrix</a></li>
+<li class="chapter" data-level="11.4.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#roc"><i class="fa fa-check"></i><b>11.4.2</b> ROC</a></li>
+<li class="chapter" data-level="11.4.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#gain-va-lift"><i class="fa fa-check"></i><b>11.4.3</b> Gain và Lift</a></li>
+<li class="chapter" data-level="11.4.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#kolmogorovsmirnov-statistics"><i class="fa fa-check"></i><b>11.4.4</b> Kolmogorov–Smirnov statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#thc-hanh"><i class="fa fa-check"></i><b>11.5</b> Thực hành</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#d-liu"><i class="fa fa-check"></i><b>11.5.1</b> Dữ liệu</a></li>
+<li class="chapter" data-level="11.5.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-tp-d-liu-gc"><i class="fa fa-check"></i><b>11.5.2</b> Xây dựng mô hình trên tập dữ liệu gốc</a></li>
+<li class="chapter" data-level="11.5.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-hai-tp-train-va-test"><i class="fa fa-check"></i><b>11.5.3</b> Xây dựng mô hình trên hai tập train và test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>11.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html"><i class="fa fa-check"></i><b>12</b> Cây quyết định</a><ul>
+<li class="chapter" data-level="12.1" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#gii-thiu-3"><i class="fa fa-check"></i><b>12.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="12.2" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#regression-trees"><i class="fa fa-check"></i><b>12.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="12.3" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#classification-trees"><i class="fa fa-check"></i><b>12.3</b> Classification Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html"><i class="fa fa-check"></i><b>13</b> Bagging - Boosting và Random Forest</a><ul>
+<li class="chapter" data-level="13.1" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#bagging"><i class="fa fa-check"></i><b>13.1</b> Bagging</a></li>
+<li class="chapter" data-level="13.2" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#random-forests"><i class="fa fa-check"></i><b>13.2</b> Random Forests</a></li>
+<li class="chapter" data-level="13.3" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#boosting"><i class="fa fa-check"></i><b>13.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>14</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="15" data-path="k-means.html"><a href="k-means.html"><i class="fa fa-check"></i><b>15</b> k-means</a><ul>
+<li class="chapter" data-level="15.1" data-path="k-means.html"><a href="k-means.html#gii-thiu-4"><i class="fa fa-check"></i><b>15.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="15.2" data-path="k-means.html"><a href="k-means.html#thut-toan"><i class="fa fa-check"></i><b>15.2</b> Thuật toán</a></li>
+<li class="chapter" data-level="15.3" data-path="k-means.html"><a href="k-means.html#uu-nhuc-im-cua-k-means"><i class="fa fa-check"></i><b>15.3</b> Ưu nhược điểm của K-means</a></li>
+<li class="chapter" data-level="15.4" data-path="k-means.html"><a href="k-means.html#thc-hanh-tren-r"><i class="fa fa-check"></i><b>15.4</b> Thực hành trên R</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>16</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="16.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>16.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="16.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>16.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="16.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>16.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>16.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="16.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>16.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="16.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>16.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>16.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>17</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="17.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>17.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>17.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="17.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>17.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>17.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>17.2.1</b> Biến đổi 1:1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Chuỗi thời gian</b></span></li>
+<li class="chapter" data-level="18" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>18</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="18.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>18.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="18.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>18.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="18.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>18.3</b> Smoothing</a></li>
+<li class="chapter" data-level="18.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>18.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="18.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>18.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>18.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="18.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>18.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="18.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>18.5.3</b> Tự động xây dựng mô hình</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>19</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="19.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>19.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="19.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>19.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="19.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>19.3</b> Ví dụ với R</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>20</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="20.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>20.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="20.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>20.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="20.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>20.3</b> Chuyển từ dataframe thành xts</a></li>
+</ul></li>
+<li class="part"><span><b>III Case study</b></span></li>
+<li class="chapter" data-level="21" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>21</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="21.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>21.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="21.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>21.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="21.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>21.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="21.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>21.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>22</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="22.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>22.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="22.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>22.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="22.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>22.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="22.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>22.4</b> Tự động render ra kết quả phân tích</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích dữ liệu thực tế với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cay-quyt-inh" class="section level1">
+<h1><span class="header-section-number">Chương 12</span> Cây quyết định</h1>
+<p>Trong chương này, chúng ta sẽ sẽ tìm hiểu về những phương pháp dựa vào cây quyết định (<code>tree-based</code> methods) để giải quyết những bài toán hồi quy (<code>regression</code>) cũng như những bài toán phân loại (<code>classification</code>). Các phương pháp này sẽ nhóm các quan sát vào một số vùng (<code>regions</code>) nhất định, và để dự báo một quan sát mới, chúng ta thường sử dụng giá trị trung bình (đối với bài toán hồi quy) hoặc giá trị mode, hay majority vote (đối với bài toán phân loại) của những quan sát tập dữ liệu training trong vùng mà quan sát đó thuộc về.</p>
+<p>Trong chương này, chúng ta sẽ được giới thiệu lần lượt các phương pháp <code>tree-based</code> điển hình như: <code>decision trees</code>, <code>bagging</code>, <code>random forests</code> và <code>boosting</code>.</p>
+<div id="gii-thiu-3" class="section level2">
+<h2><span class="header-section-number">12.1</span> Giới thiệu</h2>
+<p>Phương pháp <code>decision trees</code> (cây quyết định) gồm tập hợp các nguyên tắc phân nhóm (<code>spliting rules</code>) được sử dụng để nhóm các quan sát vào một số vùng (<code>regions</code>) nhất định mà được thống kê trong một cây.</p>
+<p>Phương pháp <code>decision trees</code> có thể áp dụng đối với cả hai bài toán hồi quy (regression) và phân loại (classification).</p>
+<center>
+<img src="Images/tree-0.jpg" />
+</center>
+<hr />
+</div>
+<div id="regression-trees" class="section level2">
+<h2><span class="header-section-number">12.2</span> Regression Trees</h2>
+<p>Phương pháp cây quyết định hồi quy (regression trees) dùng cho trường hợp khi biến đầu ra chúng ta muốn dự báo là biến liên tục hay biến định lượng</p>
+<p>Chúng ta sẽ sử dụng dữ liệu có sẵn trong <code>R</code> - <code>Hitters</code> trong packge <strong>ISLR</strong> để dự báo thu nhập của cầu thủ bóng chày (<code>salary</code>) dựa vào số năm chơi bóng tại các giải đấu lớn (<code>years</code>) và số điểm ghi được trong mùa giải trước (<code>hits</code>).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="cay-quyt-inh.html#cb557-1"></a><span class="kw">library</span>(ISLR)</span>
+<span id="cb557-2"><a href="cay-quyt-inh.html#cb557-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb557-3"><a href="cay-quyt-inh.html#cb557-3"></a></span>
+<span id="cb557-4"><a href="cay-quyt-inh.html#cb557-4"></a><span class="kw">data</span>(<span class="st">&quot;Hitters&quot;</span>)</span>
+<span id="cb557-5"><a href="cay-quyt-inh.html#cb557-5"></a><span class="kw">names</span>(Hitters) &lt;-<span class="st"> </span><span class="kw">names</span>(Hitters) <span class="op">%&gt;%</span><span class="st"> </span>tolower</span>
+<span id="cb557-6"><a href="cay-quyt-inh.html#cb557-6"></a></span>
+<span id="cb557-7"><a href="cay-quyt-inh.html#cb557-7"></a><span class="co"># Lấy 3 biến: `years`, `hits`, `salary`</span></span>
+<span id="cb557-8"><a href="cay-quyt-inh.html#cb557-8"></a>data &lt;-<span class="st"> </span>Hitters <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb557-9"><a href="cay-quyt-inh.html#cb557-9"></a><span class="st">  </span><span class="kw">select</span>(years,hits,salary)</span></code></pre>
+<p>Đầu tiên chúng ta sẽ loại bỏ những quan sát bị missing ở biến <code>salary</code>, và lấy log của biến <code>salary</code> để biến này tiệm cận với phân phối chuẩn hơn (phân phối hình chuông). Biến <code>salary</code> đơn vị là nghìn USD.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="cay-quyt-inh.html#cb558-1"></a>data_new &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
+<span id="cb558-2"><a href="cay-quyt-inh.html#cb558-2"></a><span class="st">  </span><span class="co"># Loại bỏ giá trị missing ở biến `salary`</span></span>
+<span id="cb558-3"><a href="cay-quyt-inh.html#cb558-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(salary)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb558-4"><a href="cay-quyt-inh.html#cb558-4"></a><span class="st">  </span><span class="co"># log-transform</span></span>
+<span id="cb558-5"><a href="cay-quyt-inh.html#cb558-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">salary =</span> <span class="kw">log</span>(salary))</span>
+<span id="cb558-6"><a href="cay-quyt-inh.html#cb558-6"></a></span>
+<span id="cb558-7"><a href="cay-quyt-inh.html#cb558-7"></a><span class="co"># Biểu đồ phân phối biến `salary` của `data`</span></span>
+<span id="cb558-8"><a href="cay-quyt-inh.html#cb558-8"></a>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb558-9"><a href="cay-quyt-inh.html#cb558-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(salary))<span class="op">+</span></span>
+<span id="cb558-10"><a href="cay-quyt-inh.html#cb558-10"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
+<span id="cb558-11"><a href="cay-quyt-inh.html#cb558-11"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre>
+<p><img src="43-decision-tree_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="cay-quyt-inh.html#cb559-1"></a><span class="co"># Biểu đồ phân phối biến `salary` của `data_new`</span></span>
+<span id="cb559-2"><a href="cay-quyt-inh.html#cb559-2"></a>data_new <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb559-3"><a href="cay-quyt-inh.html#cb559-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(salary))<span class="op">+</span></span>
+<span id="cb559-4"><a href="cay-quyt-inh.html#cb559-4"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
+<span id="cb559-5"><a href="cay-quyt-inh.html#cb559-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre>
+<p><img src="43-decision-tree_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p>Giả sử chúng ta xây dựng một cây hồi quy (regression tree) với dữ liệu nói trên và thu được kết quả như sau:</p>
+<hr />
+<center>
+<img src="Images/tree-1.jpg" />
+</center>
+<hr />
+<p>Với tập dữ liệu này, trung bình log-transform salary là 5.9, tức thu nhâp trung bình của các cầu thủ bóng chày là exp(5.9) = 375 (nghìn USD).</p>
+<p>Cây quyết định trên bao gồm tập hợp các nguyên tắc phân nhóm (<code>spliting rules</code>), bắt đầu từ trên xuống dưới.</p>
+<p>Với nguyên tắc phân nhóm đầu tiên <code>Years &lt; 4.5</code> thì ở nhánh bên trái là những quan sát thỏa mãn điều kiện trên, và trung bình log-transform salary của nhóm này là 5.1. Nghĩa là, nhóm cầu thủ có số năm chơi bóng tại các giải đấu lớn ít hơn 4.5 năm có mức thu nhập trung bình là exp(5.1) = 164 (nghìn USD).</p>
+<p>Còn đối với những cầu thủ mà chơi bóng từ 4.5 năm trở lên tại các giải đấu lớn thì có thu nhập trung bình là exp(6.4) = 601 (nghìn USD). Tuy nhiên nhóm này còn chia thành 2 nhóm nhỏ hơn với nguyên tắc phân nhóm <code>Hits &lt; 118</code>.</p>
+<ul>
+<li><p>Nhóm thỏa mãn điều kiện <code>Hits &lt; 118</code> (số điểm ghi được trong mùa giải trước ít hơn 118) có mức thu nhập trung bình là exp(6) = 403 (nghìn USD)</p></li>
+<li><p>Nhóm ghi được từ 118 điểm trở lên tại mùa giải trước có mức thu nhập trung bình là exp(6.7) = 812 (nghìn USD).</p></li>
+</ul>
+<p>Như vậy, cây quyết định nói trên đã phân loại các cầu thủ và 3 vùng/nhóm (<code>regions of predictor space</code>):</p>
+<ul>
+<li><p>R1: years &lt; 4.5</p></li>
+<li><p>R2: years &gt;= 4.5, hits &lt; 118</p></li>
+<li><p>R3: years &gt;= 4.5, hits &gt;= 118</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="cay-quyt-inh.html#cb560-1"></a>data_new <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb560-2"><a href="cay-quyt-inh.html#cb560-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(years,hits)) <span class="op">+</span></span>
+<span id="cb560-3"><a href="cay-quyt-inh.html#cb560-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">col =</span> <span class="st">&quot;gold&quot;</span>)<span class="op">+</span></span>
+<span id="cb560-4"><a href="cay-quyt-inh.html#cb560-4"></a><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></span>
+<span id="cb560-5"><a href="cay-quyt-inh.html#cb560-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="fl">4.5</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb560-6"><a href="cay-quyt-inh.html#cb560-6"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="fl">4.5</span>, </span>
+<span id="cb560-7"><a href="cay-quyt-inh.html#cb560-7"></a>                   <span class="dt">y =</span> <span class="dv">118</span>, </span>
+<span id="cb560-8"><a href="cay-quyt-inh.html#cb560-8"></a>                   <span class="dt">xend =</span> <span class="ot">Inf</span>, </span>
+<span id="cb560-9"><a href="cay-quyt-inh.html#cb560-9"></a>                   <span class="dt">yend =</span> <span class="dv">118</span></span>
+<span id="cb560-10"><a href="cay-quyt-inh.html#cb560-10"></a>                   ), </span>
+<span id="cb560-11"><a href="cay-quyt-inh.html#cb560-11"></a>               <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb560-12"><a href="cay-quyt-inh.html#cb560-12"></a>               <span class="dt">size =</span> <span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb560-13"><a href="cay-quyt-inh.html#cb560-13"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())<span class="op">+</span></span>
+<span id="cb560-14"><a href="cay-quyt-inh.html#cb560-14"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="fl">4.5</span>)<span class="op">+</span></span>
+<span id="cb560-15"><a href="cay-quyt-inh.html#cb560-15"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="dv">118</span>)<span class="op">+</span></span>
+<span id="cb560-16"><a href="cay-quyt-inh.html#cb560-16"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="dt">size =</span> <span class="dv">10</span>))<span class="op">+</span></span>
+<span id="cb560-17"><a href="cay-quyt-inh.html#cb560-17"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">4.5</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">118</span>, <span class="dt">label =</span> <span class="st">&quot;R1&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">6</span>)<span class="op">+</span></span>
+<span id="cb560-18"><a href="cay-quyt-inh.html#cb560-18"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> (<span class="dv">32</span><span class="fl">-4.5</span>)<span class="op">/</span><span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">118</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">label =</span> <span class="st">&quot;R2&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">6</span>)<span class="op">+</span></span>
+<span id="cb560-19"><a href="cay-quyt-inh.html#cb560-19"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> (<span class="dv">32</span><span class="fl">-4.5</span>)<span class="op">/</span><span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">118</span><span class="op">*</span><span class="fl">1.5</span>, <span class="dt">label =</span> <span class="st">&quot;R3&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">6</span>)</span></code></pre>
+<p><img src="43-decision-tree_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Mức thu nhập dự báo của 3 nhóm này lần lượt là 164,000 USD, 403,000 USD, 812,000 USD.</p>
+<p>Trong ví dụ này R1, R2, R3 ở đây được gọi là <code>terminal nodes</code> hoặc <code>leaves</code> (lá cây). <code>years &lt; 4.5</code> và <code>hits &lt; 118</code> được gọi là <code>internal nodes</code> hoặc <code>decision nodes</code>.</p>
+<p>Chúng ta có thể diễn giải cây quyết định hồi quy nói trên như sau: Biến <code>years</code> là quan trọng nhất ảnh hưởng tới việc dự báo <code>salary</code>. Nhóm cầu thủ có số năm chơi bóng tại các giải đấu lớn nhiều hơn sẽ có mức thu nhập cao hơn. Nhóm cầu thủ có số năm chơi bóng dưới 4.5 năm thì số điểm họ ghi được trong mùa giải trước đấy không ảnh hưởng đến thu nhập của họ, trong khi đó nhóm cầu thủ có số năm chơi bóng từ 4.5 năm trở lên tại các giải đấu lớn thì ngược lại. Số điểm ghi được trong mùa giải trước đó của nhóm cầu thủ này có ảnh hưởng đến thu nhập của họ, nhóm cầu thủ ghi được từ 118 điểm trở lên có mức thu nhập cao hơn nhóm còn lại.</p>
+<p>Bây giờ, chúng ta sẽ cùng tìm hiểu quá trình xây dựng cây quyết định hồi quy (regression tree). Bao gồm 2 bước sau:</p>
+<ul>
+<li><p><strong>Bước 1</strong>: Chia các quan sát (tức tìm tập hợp những giá trị phù hợp cho các biến X1, X2,…, Xp) vào j vùng/nhóm khác nhau (non-overlapping) R1, R2,…, Rj.</p></li>
+<li><p><strong>Bước 2</strong>: Với mỗi quan sát mà thuộc về vùng/nhóm Rj, chúng ta sẽ dự báo chúng cùng một giá trị, bằng với trung bình các giá trị quan sát ở tập dữ liệu training trong vùng/nhóm Rj.</p></li>
+</ul>
+<p>Như ví dụ về dự báo thu nhập của cầu thủ bóng chày nói trên, ở bước 1 chúng ta chia các cầu thủ thành 3 nhóm: R1, R2, R3. Thu nhập trung bình của 3 nhóm trên lần lượt là 164,000 USD, 403,000 USD, 812,000 USD. Vậy nếu một cầu thủ bất kỳ mà thuộc về R1, thì chúng ta sẽ dự báo thu nhập của cầu thủ này là 164,000 USD, nếu thuộc về R2, thì dự báo là 403,000 USD, và nếu thuộc R3 - 812,000 USD.</p>
+<p>Chúc ta sẽ cùng tìm hiểu sâu hơn về bước 1 nói trên. Làm thế nào để xây dựng được các vùng/nhóm R1,.., Rj? Về lý thuyết, các vùng này có thể có hình dạng bất kỳ. Tuy nhiên, chúng ta sẽ chia các quan sát (predictor space) thành boxes (các hộp) để cho đơn giản và dễ giải thích kết quả dự báo của mô hình. Mục đích là đi tìm boxes R1,…, Rj sao cho tối thiểu hóa RSS (<strong>R</strong>esidual <strong>S</strong>um of <strong>S</strong>quares):</p>
+<p><span class="math display">\[\sum_{j=1}^{J}\sum_{i \epsilon R_j}^{J}(y_i - \widehat{y}_{R_j})^2\]</span></p>
+<p>Trong đó yRj là trung bình kết quả của những quan sát trên tập dữ liệu training trong box thứ j.</p>
+<p>Tuy nhiên việc tính toán biểu thức trên sẽ rất phức tạp, do vậy chúng ta sẽ dùng cách tiếp cận <code>top-down</code>, <code>greedy</code> hay còn được gọi là <code>recursive binary splitting</code>. Sở dĩ cách tiếp cận trên là <code>top-down</code> vì nó bắt đầu từ phần đỉnh của cây (nơi mà tất cả các quan sát thuộc một nhóm ban đầu), sau đó sẽ phân nhóm các quan sát, mỗi sự phân nhóm sẽ chia làm 2 nhánh (<code>branches</code>) mới xuống phía dưới. Còn việc nói cách tiếp cận trên là <code>greedy</code> vì tại mỗi bước trong quá trình xây dựng cây, sự phân nhóm tốt nhất (<code>best split</code>) sẽ được sử dụng.</p>
+<p>Để có thể thực hiện cách tiếp cận <code>recursive binary splitting</code> nêu trên, chúng ta đầu tiên sẽ lấy những biến Xj và cutpoint s để chia các quan sát vào các vùng/nhóm {X|Xj &lt; s} và {X|Xj &gt;= s} sao cho tối thiểu hóa RSS.</p>
+<p>{X|Xj &lt; s} ở đây được hiểu là vùng bao gồm các quan sát mà thỏa mãn điều kiện Xj &lt; s.</p>
+<p>Nghĩa là, chúng ta sẽ xem xét tất cả các biến X1,…, Xp và tất cả các cutpoint s cho mỗi biến, rồi sau đó sẽ lựa chọn những biến và cutpoint để sao cho cây quyết định cuối cùng có RSS nhỏ nhất. Nói một cách tổng quát hơn, với mọi giá trị j và s, chúng ta xác định cặp nửa mặt phẳng sau:</p>
+<p><span class="math display">\[R_1(j,s) = \lbrace X|X_j &lt; s \rbrace , R_2(j,s) = \lbrace X|X_j &gt;= s \rbrace\]</span></p>
+<p>Và chúng ta sẽ đi tìm giá trị j và s để tối thiểu hóa biểu thức sau:</p>
+<p><span class="math display">\[\sum_{i: x_i \epsilon R_1(j,s)}^{J}(y_i - \widehat{y}_{R_1})^2 + \sum_{i: x_i \epsilon R_2(j,s)}^{J}(y_i - \widehat{y}_{R_2})^2\]</span></p>
+<p>Trong đó:</p>
+<ul>
+<li><p>yR1 - trung bình kết quả các quan sát trên tập dữ liệu training trong R1(j,s)</p></li>
+<li><p>yR2 - trung bình kết quả các quan sát trên tập dữ liệu training trong R2(j,s)</p></li>
+</ul>
+<p>Việc tìm j và s sẽ khá nhanh, đặc biệt đối với trường hợp khi số lượng biến p ít.</p>
+<p>Tiếp theo đó, chúng ta sẽ lặp lại quá trình nói trên, lựa chọn biến tốt nhất và cutpoint tốt nhất để tiếp tục split dữ liệu sao để tối thiểu hóa RSS trong mỗi vùng/nhóm kết quả. Tuy nhiên, lần này thay vì việc chúng ta split toàn bộ các quan sát, chúng ta chỉ split 1 trong 2 vùng/nhóm đã được xác định trước đó. Như vậy, bây giờ chúng ta có 3 vùng/nhóm. Cứ tiếp tục như vậy, chúng ta lại split 1 trong 3 vùng/nhóm này để tối thiểu hóa RSS. Quá trình cứ tiếp tục diễn ra cho đến khi nó dừng lại theo tiêu chí đặt ra của chúng ta, ví dụ chúng ta đặt điều kiện là sẽ tiếp tục quá trình cho đến khi không có vùng/nhóm nào bao gồm nhiều hơn 10 quan sát.</p>
+<p>Như vậy, các vùng R1, R2,…, Rj được tạo ra, chúng ta dự báo kết quả của các quan sát mới bằng việc sử dụng giá trị trung bình kết quả các quan sát trên tập dữ liệu training ở vùng/nhóm mà quan sát mới đó thuộc về.</p>
+<p><strong>Tree Pruning</strong></p>
+<p>Quá trình mô tả bên trên có thể dự báo tương đối chính xác trên tập dữ liệu training, nhưng có thể thiếu chính xác trên tập dữ liệu testing, vấn đề này được gọi là <strong>overfitting</strong>. Đó là bởi vì cây quyết định được xây dựng quá phức tạp (nhiều splits). Cây quyết định nhỏ hơn với ít splits hơn (ít vùng/nhóm hơn) có thể dẫn đến việc variance thấp hơn và tính giải thích cao hơn. Để khắc phục vấn đề overfitting, chúng ta có thể dùng kỹ thuật “tỉa” cây (<code>pruning</code>).</p>
+<p>Cách tiếp cận tốt nhất là chúng ta sẽ xây dựng một cây lớn To, sau đó sẽ “tỉa” (<code>prune</code>) cây để thành <code>subtree</code> (cây con). Nhưng làm thế nào để xác định được cách “tỉa” cây tốt nhất? Theo trực giác, chúng ta sẽ chọn subtree mà có tỷ lệ sai số thấp nhất trên tập dữ liệu mới (test error rate). Khi subtree được xác định, chúng ta có thể ước lượng sai số trên tập dữ liệu mới của subtree đó bằng việc sử dụng <code>cross-validation</code> hoặc dữ liệu mới (<code>validation set</code>). Tuy nhiên việc ước lượng cross-validation error cho từng subtree có thể có sẽ rất phức tạp và tốn nhiều công sức, vì số lượng subtree có thể sẽ rất nhiều. Thay vì việc đó, chúng ta cân nhắc việc lựa chọn một tập hợp nhỏ các subtree để xem xét.</p>
+<p><code>Cost complexity pruning</code>, còn gọi là <code>weakest link pruning</code> là một cách để chúng ta thực hiện việc nói trên. Thay vì việc xem xét tất cả các subtree có thể, chúng ta có thể xem xét một chuỗi các cây được indexed bởi một tham số không âm α.</p>
+<p>Thuật toán xây dựng cây quyết định hồi quy (regression tree):</p>
+<ul>
+<li><p><strong>Bước 1</strong>: Sử dụng <code>recursive binary splitting</code> để xây dựng một cây lớn từ tập dữ liệu training, và chỉ dừng lại khi mỗi terminal node có ít hơn một số lượng quan sát tối thiểu nhất định.</p></li>
+<li><p><strong>Bước 2</strong>: Áp dụng <code>cost complexity pruning</code> để có được một chuỗi các subtree tốt nhất, as a function of α.</p></li>
+<li><p><strong>Bước 3</strong>: Sử dụng K-fold cross-validation để lựa chọn α. Tức là, chia các quan sát của tập dữ liệu training vào K-fold. Với k = 1,…, K:</p>
+<ul>
+<li>Lập lại bước 1 và 2 nhưng với k-th fold của tập dữ liệu training.</li>
+<li>Tính toán mean squared prediction error on the data in the left-out kth fold, as a function of α.</li>
+</ul></li>
+</ul>
+<p>Tính trung bình các kết quả cho từng giá trị α, và chọn α để tối thiểu hóa sai số trung bình (average error).</p>
+<ul>
+<li><strong>Bước 4</strong>: Lựa chọn subtree từ bước 2 mà tương ứng với việc lựa chọn α.</li>
+</ul>
+<hr />
+<p>Với mỗi giá trị α sẽ tương ứng với subtree T thuộc To mà:</p>
+<p><span class="math display">\[\sum_{m=1}^{|T|}\sum_{i: x_i \epsilon R_m}^{J}(y_i - \widehat{y}_{R_m})^2 + α|T|\]</span></p>
+<p>nhỏ nhất có thể. Ở đây, T - số lượng terminal nodes của cây, Rm - rectangle (the subset of predictor space) tương ứng với terminal node thứ m, yRm - giá trị dự báo (tức là trung bình các giá trị quan sát trong Rm).</p>
+<p>Tham số α sẽ kiểm soát sự đánh đổi giữa độ phức tạp của subtree và chất lượng dự báo trên tập dữ liệu train. Nếu α = 0, thì subtree T = To, vì biểu thức nói trên trở thành training error. Biểu thức trên làm chúng ta liên tưởng đến <code>lasso</code> - một biểu thức tương tự dùng để kiểm soát độ phức tạp của mô hình hồi quy tuyến tính.</p>
+</div>
+<div id="classification-trees" class="section level2">
+<h2><span class="header-section-number">12.3</span> Classification Trees</h2>
+<p>Cây quyết định phân loại (classification tree) tương tự như cây quyết định hồi quy (regression tree), chỉ khác điểm đối với classification tree thì biến đầu ra muốn dự báo là biến rời rạc hay biến định tính (<code>categorical variable</code>) thay vì là biến liên tục như đối với regression tree.</p>
+<p>Đối với regression tree thì kết quả dự báo cho một quan sát mới chính là trung bình kết quả của các giá trị quan sát trong tập dữ liệu training tại vùng (region) mà quan sát đó thuộc về. Nhưng đối với classification tree, kết quả dự báo cho một quan sát mới sẽ là giá trị mà có tần suất xuất hiện nhiều nhất trong số các quan sát của tập dữ liệu training tại vùng mà quan sát đó thuộc về.</p>
+<p>Giả sử, chúng ta đã xây được một cây quyết định dự báo xem khách hàng có trả được hết nợ hoặc không (tức biến đầu ra có 2 class là trả được nợ và không trả được nợ). Và kết quả là cây quyết định đó chia thành khách hàng vào 3 vùng (regions) khác nhau: A,B,C.</p>
+<p>Bây giờ chúng ta đang muốn dự báo xem một khách hàng mới Nguyễn Văn T có trả được nợ hay không dựa vào mô hình đã được xây dựng. Giả sử, với những nguyên tắc phân nhóm (spliting rules) của cây quyết định, chúng ta đã phân nhóm được khách hàng nói trên vào vùng A nhất định. Như vậy, nếu trong các khách hàng thuộc vùng A trước đó, đa số là khách hàng trả được nợ (tức số lượng khách hàng trả được nợ nhiều hơn số lượng khách hàng không trả được nợ), thì chúng ta có thể dự báo rằng khách hàng mới nói trên có trả được nợ.</p>
+<p>Khi diễn giải kết quả của classification tree, chúng ta không chỉ quan tâm đến class được dự báo tại mỗi vùng (region) nhất định mà còn quan tâm đến <code>class propotions</code> giữa các quan sát trong tập dữ liệu training mà thuộc về vùng đó.
+Như trong ví dụ trên, ngoài việc dự báo được khách hàng thuộc vùng A sẽ có khả năng trả được nợ, chúng ta còn muốn biết cụ thể tỷ lệ khách hàng trả được nợ và không trả được nợ tại vùng A là bao nhiêu, và tỷ lệ khách hàng thuộc vùng A trên tổng số khách hàng là bao nhiêu.</p>
+<p>Cũng giống như regression tree, việc xây dựng classification tree cũng sử dụng <code>recursive binary splitting</code>. Tuy nhiên đối với classification tree, RSS không được sử dụng như một tiêu chí để làm phân nhóm nhị phân (<code>binary splits</code>), thay vào đó là <code>classification error rate</code>. Khi chúng ta đã xác định được quan sát mới vào class mà tần suất xuất hiện nhiều nhất trong vùng mà quan sát đó thuộc về, classification error rate sẽ chính là tỷ lệ số quan sát trên tập dữ liệu training trong vùng đó mà không thuộc vào class đa số:</p>
+<p><span class="math display">\[E = 1 - \max_k(\widehat{p}_{mk})\]</span></p>
+<p>Ở đây pmk - tỷ trọng quan sát trên tập dữ liệu training trong vùng thứ m từ class thứ k. Tuy nhiên, classification error đôi khi sẽ không hiệu quả đối với một số trường hợp trong thực tế, vì vậy, có 2 thước đo khác mà chúng ta nên sử dụng:</p>
+<p>Chỉ số <code>Gini</code>:</p>
+<p><span class="math display">\[G = \sum_{k=1}^{K}\widehat{p}_{mk}(1-\widehat{p}_{mk})\]</span></p>
+<p>Đây là một chỉ số về tổng variance qua K classes. Dễ nhận thấy rằng chỉ số Gini sẽ càng nhỏ nếu pmk tiếp cận 0 hoặc 1. Vì lý do đó chỉ số Gini được coi là thước đo độ đồng nhất của node (node <code>purity</code>).</p>
+<p>Một chỉ số khác thay thế cho chỉ số Gini là <code>cross-entropy</code>:</p>
+<p><span class="math display">\[D = -\sum_{k=1}^{K}\widehat{p}_{mk}log(\widehat{p}_{mk})\]</span></p>
+<p>pmk nhận giá trị từ 0 đến 1, nên -pmk*log(pmk) sẽ không âm. Cross-entropy sẽ tiếp cận đến 0 nếu tất cả các giá trị pmk tiệm cận đến 0 hoặc 1. Vì vậy, cũng giống như chỉ số Gini, cross-entropy sẽ mang giá trị nhỏ nếu như node thứ m đồng nhất.</p>
+<p>Khi xây dựng classification tree, cả chỉ số Gini và cross-entropy đều thường dùng để đánh giá chất lượng của split cụ thể nào đó. Hai chỉ số trên more sensitive với node purity hơn là classification error rate. Cả 3 chỉ số trên đều có thể sử dụng để “tỉa” (prune) cây, nhưng classification error rate sẽ được ưu tiên sử dụng khi chúng ta muốn tính độ chính xác của dự báo (<code>prediction accuracy</code>) của cây quyết định cuối cùng sau khi đã được “tỉa”.</p>
+<hr />
+<p>Như vậy, <code>classification tree</code> thiết lập một tập hợp các nguyên tắc phân nhóm nhị phân (<code>binary splits</code>) với các biến đầu vào (<code>predictor variables</code>) để xây dựng một cây quyết định sao cho có thể phân loại (<code>classify</code>) những quan sát mới vào một trong hai nhóm xác định.</p>
+<p>Để thực hành xây dựng classification tree trên <code>R</code>, chúng ta sẽ sử dụng dữ liệu <code>Breast Cancer Wisconsin</code>, bao gồm: Biến đầu ra là biến rời rạc nhị phân (benign/malignant - ung thư lành tính/ác tính) và tập hợp các biến đầu vào (the nine cytology measurements - 9 đơn vị đo tế bào).</p>
+<p>Thuật toán gồm các bước sau:</p>
+<ul>
+<li><p><strong>Bước 1</strong>: Chọn biến đầu vào phân nhánh tốt nhất (best splits) để chia dữ liệu thành 2 nhóm sao cho tính đồng nhất (the purity/homogeneity) của outcome trong 2 nhóm là maximized (tức là càng nhiều trường hợp lành tính vào một nhóm, và các nhiều trường hợp ác tính vào nhóm còn lại).</p>
+<ul>
+<li>Nếu biến đầu vào là biến liên tục (continuous), chọn một điểm cut-off để maximize purity của 2 nhóm được tạo ra.</li>
+<li>Nếu biến đầu vào là biến rời rạc (categorical), combine the categories to obtain two groups with maximum purity.</li>
+</ul></li>
+<li><p><strong>Bước 2</strong>: Chia dữ liệu thành 2 nhóm nói trên và tiếp tục quá trình cho từng nhóm con (subgroup)</p></li>
+<li><p><strong>Bước 3</strong>: Lặp lại bước 1 và bước 2 cho đến khi a subgroup bao gồm số quan sát ít hơn một số lượng nhất định mà chúng ta đặt ra hoặc không thể phân nhóm tiếp để làm tăng tính đồng nhất</p></li>
+</ul>
+<p>The subgroups in the final set được gọi là <code>terminal nodes</code>. Mỗi terminal node được phân loại vào một category of the outcome or the other dựa vào the most frequent value of the outcome for the sample in that node.</p>
+<ul>
+<li><strong>Bước 4</strong>: To classify a case, run it down the tree to a terminal node, and assign it the modal outcome value assigned in step 3.</li>
+</ul>
+<p>Quá trình trên có thể dẫn đến việc cây được xây dựng rất là lớn và sẽ dẫn đến <code>overfitting</code> (chỉ “chính xác” trên tập dữ liệu huấn luyện - <code>training data</code>, nhưng thiếu “chính xác” trên tập dữ liệu kiểm tra - <code>testing data</code>). Kết quả là, những quan sát mới sẽ không được phân loại chính xác. Để khắc phục vấn đề trên chúng ta có thể dùng kỹ thuật “tỉa” cây (<code>pruning</code>) bằng việc lựa chọn cây với 10-fold cross-validated prediction error nhỏ nhất. Cây đã được tỉa sẽ được sử dụng cho việc dự báo các quan sát trong tương lai.</p>
+<p>Trong <code>R</code>, việc xây dựng cây quyết định (decision trees) cũng như “tỉa cành” chúng ta có thể dùng hàm <code>rpart()</code> và <code>prune()</code> trong package <strong>rpart</strong>.
+Dưới đây sẽ là ví dụ về việc xây dựng cây quyết định để phân loại các quan sát vào 2 nhóm bệnh nhân ung thư: lành tính hay ác tính.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="cay-quyt-inh.html#cb561-1"></a><span class="co"># Data</span></span>
+<span id="cb561-2"><a href="cay-quyt-inh.html#cb561-2"></a>loc &lt;-<span class="st"> &quot;http://archive.ics.uci.edu/ml/machine-learning-databases/&quot;</span></span>
+<span id="cb561-3"><a href="cay-quyt-inh.html#cb561-3"></a>ds &lt;-<span class="st"> &quot;breast-cancer-wisconsin/breast-cancer-wisconsin.data&quot;</span></span>
+<span id="cb561-4"><a href="cay-quyt-inh.html#cb561-4"></a>url &lt;-<span class="st"> </span><span class="kw">paste</span>(loc, ds, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb561-5"><a href="cay-quyt-inh.html#cb561-5"></a>breast &lt;-<span class="st"> </span><span class="kw">read.table</span>(url, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>, <span class="dt">na.strings=</span><span class="st">&quot;?&quot;</span>)</span>
+<span id="cb561-6"><a href="cay-quyt-inh.html#cb561-6"></a><span class="kw">names</span>(breast) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;clumpThickness&quot;</span>, <span class="st">&quot;sizeUniformity&quot;</span>,</span>
+<span id="cb561-7"><a href="cay-quyt-inh.html#cb561-7"></a><span class="st">&quot;shapeUniformity&quot;</span>, <span class="st">&quot;maginalAdhesion&quot;</span>,</span>
+<span id="cb561-8"><a href="cay-quyt-inh.html#cb561-8"></a><span class="st">&quot;singleEpithelialCellSize&quot;</span>, <span class="st">&quot;bareNuclei&quot;</span>,</span>
+<span id="cb561-9"><a href="cay-quyt-inh.html#cb561-9"></a><span class="st">&quot;blandChromatin&quot;</span>, <span class="st">&quot;normalNucleoli&quot;</span>, <span class="st">&quot;mitosis&quot;</span>, <span class="st">&quot;class&quot;</span>)</span>
+<span id="cb561-10"><a href="cay-quyt-inh.html#cb561-10"></a>df &lt;-<span class="st"> </span>breast[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb561-11"><a href="cay-quyt-inh.html#cb561-11"></a>df<span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>class, <span class="dt">levels=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),</span>
+<span id="cb561-12"><a href="cay-quyt-inh.html#cb561-12"></a><span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;benign&quot;</span>, <span class="st">&quot;malignant&quot;</span>))</span>
+<span id="cb561-13"><a href="cay-quyt-inh.html#cb561-13"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb561-14"><a href="cay-quyt-inh.html#cb561-14"></a>train &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">nrow</span>(df), <span class="fl">0.7</span><span class="op">*</span><span class="kw">nrow</span>(df))</span>
+<span id="cb561-15"><a href="cay-quyt-inh.html#cb561-15"></a>df.train &lt;-<span class="st"> </span>df[train,]</span>
+<span id="cb561-16"><a href="cay-quyt-inh.html#cb561-16"></a>df.validate &lt;-<span class="st"> </span>df[<span class="op">-</span>train,]</span>
+<span id="cb561-17"><a href="cay-quyt-inh.html#cb561-17"></a></span>
+<span id="cb561-18"><a href="cay-quyt-inh.html#cb561-18"></a><span class="co"># Biến đầu ra của dữ liệu huấn luyện</span></span>
+<span id="cb561-19"><a href="cay-quyt-inh.html#cb561-19"></a><span class="kw">table</span>(df.train<span class="op">$</span>class)</span></code></pre>
+<pre><code>## 
+##    benign malignant 
+##       329       160</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="cay-quyt-inh.html#cb563-1"></a><span class="co"># Biến đầu ra của dữ liệu kiểm tra</span></span>
+<span id="cb563-2"><a href="cay-quyt-inh.html#cb563-2"></a><span class="kw">table</span>(df.validate<span class="op">$</span>class)</span></code></pre>
+<pre><code>## 
+##    benign malignant 
+##       129        81</code></pre>
+<p>Trước tiên, chúng ta sẽ xây dựng một cây quyết định với tập dữ liệu huấn luyện, sử dụng hàm <code>rpart()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="cay-quyt-inh.html#cb565-1"></a><span class="co"># Classical decision tree</span></span>
+<span id="cb565-2"><a href="cay-quyt-inh.html#cb565-2"></a><span class="kw">library</span>(rpart)</span>
+<span id="cb565-3"><a href="cay-quyt-inh.html#cb565-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb565-4"><a href="cay-quyt-inh.html#cb565-4"></a><span class="co"># 1. Grows the tree</span></span>
+<span id="cb565-5"><a href="cay-quyt-inh.html#cb565-5"></a>dtree &lt;-<span class="st"> </span><span class="kw">rpart</span>(class <span class="op">~</span><span class="st"> </span>., </span>
+<span id="cb565-6"><a href="cay-quyt-inh.html#cb565-6"></a>               <span class="dt">data =</span> df.train,</span>
+<span id="cb565-7"><a href="cay-quyt-inh.html#cb565-7"></a>               <span class="dt">method =</span> <span class="st">&quot;class&quot;</span>,  <span class="co"># biến đầu ra - rời rạc</span></span>
+<span id="cb565-8"><a href="cay-quyt-inh.html#cb565-8"></a>               <span class="dt">parms=</span><span class="kw">list</span>(<span class="dt">split=</span><span class="st">&quot;information&quot;</span>)</span>
+<span id="cb565-9"><a href="cay-quyt-inh.html#cb565-9"></a>               )</span></code></pre>
+<p>Để xem và thống kê kết quả của mô hình vừa xây dựng, chúng ta có thể sử dụng hàm <code>print()</code> và <code>summary()</code>. Cây quyết định có thể sẽ rất lớn và cần phải sử dụng kỹ thuật “tỉa cành”.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="cay-quyt-inh.html#cb566-1"></a><span class="kw">print</span>(dtree)</span></code></pre>
+<pre><code>## n= 489 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+##  1) root 489 160 benign (0.67280164 0.32719836)  
+##    2) sizeUniformity&lt; 3.5 347  25 benign (0.92795389 0.07204611)  
+##      4) bareNuclei&lt; 2.5 303   2 benign (0.99339934 0.00660066) *
+##      5) bareNuclei&gt;=2.5 44  21 malignant (0.47727273 0.52272727)  
+##       10) shapeUniformity&lt; 2.5 23   5 benign (0.78260870 0.21739130)  
+##         20) clumpThickness&lt; 3.5 15   0 benign (1.00000000 0.00000000) *
+##         21) clumpThickness&gt;=3.5 8   3 malignant (0.37500000 0.62500000) *
+##       11) shapeUniformity&gt;=2.5 21   3 malignant (0.14285714 0.85714286) *
+##    3) sizeUniformity&gt;=3.5 142   7 malignant (0.04929577 0.95070423) *</code></pre>
+<p>Để lựa chọn kích thước của cây, chúng ta có thể kiểm tra phần <code>cptable</code> trong kết quả model <code>dtree</code> như sau:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="cay-quyt-inh.html#cb568-1"></a><span class="co"># Data about the prediction error for various tree sizes</span></span>
+<span id="cb568-2"><a href="cay-quyt-inh.html#cb568-2"></a>dtree<span class="op">$</span>cptable</span></code></pre>
+<pre><code>##         CP nsplit rel error  xerror       xstd
+## 1 0.800000      0   1.00000 1.00000 0.06484605
+## 2 0.046875      1   0.20000 0.30625 0.04150018
+## 3 0.012500      3   0.10625 0.20625 0.03467089
+## 4 0.010000      4   0.09375 0.18125 0.03264401</code></pre>
+<p>Kết quả cho chúng ta thấy thông tin về sai số dự báo đối với mỗi kích thước khác nhau của cây.</p>
+<ul>
+<li><p><code>CP</code> - tham số đánh giá độ phức tạp của mô hình (<code>complexity parameter</code>) dùng để penalize larger trees</p></li>
+<li><p><code>nsplit</code> - số lần phân nhóm (<code>number of branch splits</code>) mô tả kích thước của cây. Một cây với n splits sẽ có n+1 terminal nodes</p></li>
+<li><p><code>rel error</code> - tỷ lệ sai số (<code>error rate</code>) của cây đối với từng kích thước được xác định trên tập dữ liệu training.</p></li>
+<li><p><code>xerror</code> - cross-validated error dựa trên 10-fold cross validation (cũng dựa trên dữ liệu training)</p></li>
+<li><p><code>xstd</code> - sai số chuẩn (standard error) của cross validation error</p></li>
+</ul>
+<p>Chúng ta có thể sử dụng hàm <code>plotcp()</code> để xem mối quan hệ giữa cross-validated error (<code>xerror</code>) và tham số complexity (<code>CP</code>). Một sự lựa chọn tốt cho kích thước của cây là cây nhỏ nhất mà cross-validated error nằm trong khoảng giá trị 1 standard error của cross-validated error nhỏ nhất</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="cay-quyt-inh.html#cb570-1"></a><span class="co"># Plot the cross-validated error against the complexity parameter</span></span>
+<span id="cb570-2"><a href="cay-quyt-inh.html#cb570-2"></a><span class="kw">plotcp</span>(dtree)</span></code></pre>
+<p><img src="43-decision-tree_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Trong trường hợp này, min xerror là 0.18 và tương ứng với xstd = 0.0326, như vậy cây nhỏ nhất với xerror nằm trong khoảng giá trị (0.18-0.0326, 0.18+0.0326), hay (0.15, 0.21). Xem bảng kết quả <code>cptable</code> có thể thấy cây với 3 splits (xerror = 0.20625) thỏa mãn điều kiện nói trên.</p>
+<p>Còn nếu dựa vào plot mối quan hệ giữa xerror và CP, chúng ta sẽ lựa chọn cây với giá trị CP ngoài cùng bên trái (CP cao nhất) nằm dưới đường line. Như vậy, kết quả là chúng ta nên lựa chọn cây với 3 splits (4 terminal nodes).</p>
+<p>Hàm <code>prune()</code> sử dụng tham số complexity để tỉa cây theo kích thước mong muốn. Cụ thể hơn, cách này sẽ cắt bỏ đi các splits mà ít quan trọng nhất của cây theo giá trị của tham số complexity mà chúng ta mong muốn.</p>
+<p>Trong trường hợp này, chúng ta lựa chọn cây với 3 splits, tương ứng với complexity (CP = 0.0125), do đó để lựa chọn cây với kích thước mong muốn, chúng ta sử dụng câu lệnh sau:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="cay-quyt-inh.html#cb571-1"></a><span class="co"># 2. Prunes the tree</span></span>
+<span id="cb571-2"><a href="cay-quyt-inh.html#cb571-2"></a>dtree.pruned &lt;-<span class="st"> </span><span class="kw">prune</span>(dtree, <span class="dt">cp =</span> <span class="fl">0.0125</span>)</span>
+<span id="cb571-3"><a href="cay-quyt-inh.html#cb571-3"></a></span>
+<span id="cb571-4"><a href="cay-quyt-inh.html#cb571-4"></a><span class="kw">print</span>(dtree.pruned)</span></code></pre>
+<pre><code>## n= 489 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+##  1) root 489 160 benign (0.67280164 0.32719836)  
+##    2) sizeUniformity&lt; 3.5 347  25 benign (0.92795389 0.07204611)  
+##      4) bareNuclei&lt; 2.5 303   2 benign (0.99339934 0.00660066) *
+##      5) bareNuclei&gt;=2.5 44  21 malignant (0.47727273 0.52272727)  
+##       10) shapeUniformity&lt; 2.5 23   5 benign (0.78260870 0.21739130) *
+##       11) shapeUniformity&gt;=2.5 21   3 malignant (0.14285714 0.85714286) *
+##    3) sizeUniformity&gt;=3.5 142   7 malignant (0.04929577 0.95070423) *</code></pre>
+<p>Hàm <code>prp()</code> trong package <strong>rpart.plot</strong> sử dụng để trực quan hóa cây quyết định cuối cùng. Để phân loại một quan sát, bắt đầu từ phần đỉnh của cây, sau đó di chuyển sang nhánh bên trái nếu một điều kiện là đúng hoặc sang phải trường hợp ngược lại. Tiếp tục di chuyển xuống phía dưới cho đến khi gặp terminal node (lá), tức đã được phân loại.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="cay-quyt-inh.html#cb573-1"></a><span class="kw">library</span>(rpart.plot)</span>
+<span id="cb573-2"><a href="cay-quyt-inh.html#cb573-2"></a><span class="kw">prp</span>(dtree.pruned,</span>
+<span id="cb573-3"><a href="cay-quyt-inh.html#cb573-3"></a>    <span class="dt">type =</span> <span class="dv">2</span>, <span class="co"># Draws the split labels below each node</span></span>
+<span id="cb573-4"><a href="cay-quyt-inh.html#cb573-4"></a>    <span class="dt">extra =</span> <span class="dv">104</span>, <span class="co"># Includes the probabilities for each class, along with the percentage of observations in each node</span></span>
+<span id="cb573-5"><a href="cay-quyt-inh.html#cb573-5"></a>    <span class="dt">fallen.leaves =</span> T, <span class="co"># Displays the terminal nodes at the bottom of the graph</span></span>
+<span id="cb573-6"><a href="cay-quyt-inh.html#cb573-6"></a>    <span class="dt">main =</span> <span class="st">&quot;Decision Tree&quot;</span></span>
+<span id="cb573-7"><a href="cay-quyt-inh.html#cb573-7"></a>    )</span></code></pre>
+<p><img src="43-decision-tree_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Cách đọc kết quả từ cây quyết định từ trên xuống dưới như sau:</p>
+<ul>
+<li><p>Tập dữ liệu huấn luyện ban đầu của chúng ta (tức bao gồm tất cả quan sát - 100%) có 67% là <code>benign</code>, 33% là <code>malignant</code></p></li>
+<li><p>Với điều kiện phân nhánh đầu tiên <code>sizeUnif &lt; 3.5</code>:</p>
+<ul>
+<li><p>71% thỏa mãn điều kiện (sẽ thuộc nhóm <code>benign</code>), trong đó :</p>
+<ul>
+<li>93% là <code>benign</code></li>
+<li>7% là <code>malignant</code></li>
+</ul></li>
+<li><p>29% ko thỏa mãn điều kiện (sẽ thuộc nhóm <code>malignan</code>), trong đó:</p>
+<ul>
+<li>5% là <code>benign</code></li>
+<li>95% là <code>malignant</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>…</p>
+<ul>
+<li><p>Kết quả cuối cùng, các quan sát trong tập training được chia thành 4 vùng:</p>
+<ul>
+<li><strong>R1</strong>: <code>sizeUnif &gt;= 3.5</code> -&gt; thuộc về nhóm <code>malignan</code></li>
+<li><strong>R2</strong>: <code>sizeUnif &lt; 3.5</code> &amp; <code>bareNucl &lt; 2.5</code> -&gt; thuộc về nhóm <code>benign</code></li>
+<li><strong>R3</strong>: <code>sizeUnif &lt; 3.5</code> &amp; <code>bareNucl &gt;= 2.5</code> &amp; <code>shapeUni &lt; 2.5</code> -&gt; thuộc về nhóm <code>benign</code></li>
+<li><strong>R4</strong>: <code>sizeUnif &lt; 3.5</code> &amp; <code>bareNucl &gt;= 2.5</code> &amp; <code>shapeUni &gt;= 2.5</code> -&gt; thuộc về nhóm <code>malignan</code></li>
+</ul></li>
+</ul>
+<p>Và sau khi đã build được mô hình cây quyết định hoàn chỉnh, chúng ta sẽ phân loại những quan sát mới - tập dữ liệu validation bằng việc sử dụng hàm <code>predict()</code>, sau đó só sánh kết quả dự báo và thực tế như sau:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="cay-quyt-inh.html#cb574-1"></a><span class="co"># Phân loại những quan sát mới</span></span>
+<span id="cb574-2"><a href="cay-quyt-inh.html#cb574-2"></a>dtree.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(dtree.pruned,</span>
+<span id="cb574-3"><a href="cay-quyt-inh.html#cb574-3"></a>                      df.validate,</span>
+<span id="cb574-4"><a href="cay-quyt-inh.html#cb574-4"></a>                      <span class="dt">type =</span> <span class="st">&quot;class&quot;</span></span>
+<span id="cb574-5"><a href="cay-quyt-inh.html#cb574-5"></a>                      )</span>
+<span id="cb574-6"><a href="cay-quyt-inh.html#cb574-6"></a></span>
+<span id="cb574-7"><a href="cay-quyt-inh.html#cb574-7"></a><span class="co"># So sánh kết quả dự báo và thực tế</span></span>
+<span id="cb574-8"><a href="cay-quyt-inh.html#cb574-8"></a>dtree.perf &lt;-<span class="st"> </span><span class="kw">table</span>(df.validate<span class="op">$</span>class,</span>
+<span id="cb574-9"><a href="cay-quyt-inh.html#cb574-9"></a>                    dtree.pred,</span>
+<span id="cb574-10"><a href="cay-quyt-inh.html#cb574-10"></a>                    <span class="dt">dnn =</span> <span class="kw">c</span>(<span class="st">&quot;Actual&quot;</span>, <span class="st">&quot;Predicted&quot;</span>)</span>
+<span id="cb574-11"><a href="cay-quyt-inh.html#cb574-11"></a>                    )</span>
+<span id="cb574-12"><a href="cay-quyt-inh.html#cb574-12"></a>dtree.perf</span></code></pre>
+<pre><code>##            Predicted
+## Actual      benign malignant
+##   benign       122         7
+##   malignant      2        79</code></pre>
+<p>Kết quả cho chúng ta thấy trong số 210 quan sát của tập dữ liệu kiểm tra (quan sát mới) có 122 quan sát là <code>benign</code> và 79 quan sát là <code>malignant</code> được dự báo đúng. Như vậy, tổng số quan sát được dự báo đúng là 201 (122+79), tức tỷ lệ quan sát dự báo đúng (<code>accuracy</code>) là 96% (201/210).
+Lưu ý rằng phương pháp cây quyết định có thể bị biased đối với những biến đầu vào có nhiều giá trị hoặc nhiều giá trị bị missing.</p>
+<p><strong>Mô hình cây và mô hình tuyến tính</strong></p>
+<p>Mô hình cây quyết định là một cách tiếp cận khác so với mô hình tuyết tính, cụ thể là hồi quy tuyến tính có dạng:</p>
+<p><span class="math display">\[f(X) = \beta_0 + \sum_{j=1}^{P}X_jB_j\]</span></p>
+<p>Như vậy, câu hỏi đặt ra là mô hình nào tốt hơn? Câu trả lời là: Tùy thuộc vào bài toán mà chúng ta muốn giải quyết là gì. Nếu bài toán chúng ta muốn giải quyết bao gồm biến đầu ra và các biến đầu vào có mối quan hệ gần giống với tuyến tính thì chúng ta nên sử dụng hồi quy tuyến tính. Còn nếu giữa các biến đầu vào và biến đầu ra có mối quan hệ phi tuyến tính hoặc phức tạp thì chúng ta nên sử dụng mô hình cây quyết định. Để đánh giá chất lượng dự báo của mô hình cây quyết định và mô hình tuyến tính, chúng ta có thể tính toán sai số trên tập dữ liệu validation hoặc tính toán sai số sử dụng cross-validation.</p>
+<p><strong>Ưu điểm và nhược điểm của mô hình cây quyết định</strong></p>
+<p>Mô hình cây quyết định có những <strong>ưu điểm</strong> vượt trội so với mô hình tuyến tính như sau: Thứ nhất, mô hình cây quyết định có thể mô tả bằng graphic, vì vậy rất dễ dàng diễn giải kết quả mô hình, thậm chí là dễ dàng hơn so với mô hình tuyến tính. Thứ hai, mô hình cây quyết định có thể sử dụng với những biến đầu vào là biến rời rạc mà không cần phải biến đổi về dạng dummy (0-1). Tuy nhiên, <strong>nhược điểm</strong> của mô hình cây quyết định là thiếu ổn định (<code>non-robust</code>). Hay nói cách khác, với một sự thay đổi nhỏ trong tập dữ liệu, có thể dẫn đến sự thay đổi lớn trong kết quả dự báo.</p>
+<p>Tuy nhiên, những phương pháp mà tổng hợp nhiều cây quyết định như: <code>bagging</code>, <code>random forests</code>, <code>boosting</code> có thể khắc phục được nhược điểm nêu trên và cải thiện chất lượng dự báo. Chúng ta sẽ cùng tìm hiểu trong các phần tiếp theo.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mo-hinh-hi-quy-logistic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bagging-boosting-va-random-forest.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"split_by": "rmd"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

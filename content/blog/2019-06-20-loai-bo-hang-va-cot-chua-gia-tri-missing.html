@@ -1,0 +1,97 @@
+---
+title: "Loại bỏ dòng hoặc cột chứa giá trị missing"
+author: "Nguyễn Hải Trường"
+date: "2019-06-20"
+categories:
+  - data-manipulation
+tags:
+  - dplyr
+summary: "Loại bỏ hàng và cột chứa giá trị missing với dplyr"
+banner: "img/banners/banner-45.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu, chúng ta sẽ rất hay gặp phải vấn đề dữ liệu bị thiếu do không có dữ liệu. Những giá trị bị thiếu này trong <code>R</code> sẽ hiển thị là <code>NA</code>.</p>
+<p>Trong bài viết này, <code>Ranalytics</code> sẽ hướng dẫn các bạn cách loại bỏ dòng hoặc cột chứa giá trị <code>NA</code> trong <code>R</code>.</p>
+<hr />
+<p>Ta sử dụng dữ liệu giả lập sau đây:</p>
+<pre class="r"><code>data1 &lt;- data.frame(
+  customer = c(&quot;Hai&quot;, &quot;Phong&quot;, &quot;Hiep&quot;, &quot;Hoa&quot;),
+  age = c(20,26,30,NA),
+  income_mil_VND = c(15,8,NA,20),
+  province = c(NA,NA,NA,NA),
+  gender = c(&quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;)
+)
+
+data1</code></pre>
+<pre><code>##   customer age income_mil_VND province gender
+## 1      Hai  20             15       NA   Male
+## 2    Phong  26              8       NA   Male
+## 3     Hiep  30             NA       NA   Male
+## 4      Hoa  NA             20       NA Female</code></pre>
+<p>Dữ liệu bao gồm thông tin về tuổi, thu nhập bình quân 1 tháng và tỉnh/TP sinh sống của 4 khách hàng sử dụng thẻ tín dụng.</p>
+<div id="xoa-dong-cha-na" class="section level1">
+<h1>Xóa dòng chứa <code>NA</code></h1>
+<div id="drop_na" class="section level2">
+<h2>drop_na</h2>
+<p>Hàm <code>drop_na()</code> trong package <code>tidyr</code> giúp chúng ta loại bỏ dòng có giá trị <code>NA</code> ở 1 hoặc nhiều cột xác định nào đó.</p>
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+data1 %&gt;% 
+  # Loại bỏ dòng có giá trị `NA` ở cột `income_mil_VND`
+  drop_na(income_mil_VND)</code></pre>
+<pre><code>##   customer age income_mil_VND province gender
+## 1      Hai  20             15       NA   Male
+## 2    Phong  26              8       NA   Male
+## 4      Hoa  NA             20       NA Female</code></pre>
+<p>Một cách khác tương tự, chúng ta có thể sử dụng <code>filter(!is.na())</code></p>
+<pre class="r"><code>data1 %&gt;% 
+  # chỉ lấy những quan sát ko bị `NA` ở trường income_mil_VND
+  filter(!is.na(income_mil_VND))</code></pre>
+<pre><code>##   customer age income_mil_VND province gender
+## 1      Hai  20             15       NA   Male
+## 2    Phong  26              8       NA   Male
+## 3      Hoa  NA             20       NA Female</code></pre>
+<p>Vừa rồi, chúng ta đã vừa loại bỏ đi khách hàng tên <code>Hiep</code> vì không có thông tin về thu nhập.</p>
+</div>
+<div id="na.omit" class="section level2">
+<h2>na.omit</h2>
+<p><code>na_omit()</code> giúp chúng ta loại bỏ các dòng mà có giá trị <code>NA</code> ở bất kỳ cột nào trong dữ liệu.</p>
+<p>Giả sử chúng ta có <code>data2</code> là <code>data1</code> bỏ đi cột province.</p>
+<pre class="r"><code>data2 &lt;- data1 %&gt;% 
+  select(-province)
+
+data2</code></pre>
+<pre><code>##   customer age income_mil_VND gender
+## 1      Hai  20             15   Male
+## 2    Phong  26              8   Male
+## 3     Hiep  30             NA   Male
+## 4      Hoa  NA             20 Female</code></pre>
+<p>Sử dụng <code>na.omit()</code> với <code>data2</code> sẽ giúp chúng ta loại bỏ đi những khách hàng mà ko có một trong những thông tin về tuổi, thu nhập, tỉnh/TP sinh sống.</p>
+<pre class="r"><code>data2 %&gt;% 
+  na.omit()</code></pre>
+<pre><code>##   customer age income_mil_VND gender
+## 1      Hai  20             15   Male
+## 2    Phong  26              8   Male</code></pre>
+</div>
+</div>
+<div id="xoa-ct-cha-na" class="section level1">
+<h1>Xóa cột chứa <code>NA</code></h1>
+<p>Để xóa tất cả các cột mà tất cả các giá trị trong cột đều là <code>NA</code> chúng ta có thể dùng câu lệnh sau:</p>
+<pre class="r"><code>data1[colSums(!is.na(data1)) &gt; 0]</code></pre>
+<pre><code>##   customer age income_mil_VND gender
+## 1      Hai  20             15   Male
+## 2    Phong  26              8   Male
+## 3     Hiep  30             NA   Male
+## 4      Hoa  NA             20 Female</code></pre>
+<p>Để xóa tất cả những cột mà có ít nhất một giá trị <code>NA</code> chúng ta có thể dùng câu lệnh sau:</p>
+<pre class="r"><code>data1[colSums(is.na(data1)) == 0]</code></pre>
+<pre><code>##   customer gender
+## 1      Hai   Male
+## 2    Phong   Male
+## 3     Hiep   Male
+## 4      Hoa Female</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách loại bỏ dòng hoặc cột chứa giá trị missing trong <code>R</code>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
