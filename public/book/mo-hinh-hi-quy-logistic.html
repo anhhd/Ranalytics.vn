@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 10 Mô hình hồi quy logistic | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 10 Mô hình hồi quy logistic | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 10 Mô hình hồi quy logistic | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chương 10 Mô hình hồi quy logistic | Phân tích dữ liệu thực tế với R" />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 10 Mô hình hồi quy logistic | Phân tích dữ liệu thực tế với R" />
+  
+  <meta name="twitter:description" content="Chương 10 Mô hình hồi quy logistic | Phân tích dữ liệu thực tế với R" />
+  
+
+<meta name="author" content="Hoàng Đức Anh" />
+
+
+<meta name="date" content="2019-07-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mo-hinh-ols.html">
+<link rel="next" href="cay-quyt-inh.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích dữ liệu thực tế với R</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Kỹ thuật phân tích dữ liệu thực tế</b></span></li>
+<li class="chapter" data-level="1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><i class="fa fa-check"></i><b>1</b> Ngữ pháp của biến đổi dữ liệu với DPLYR</a><ul>
+<li class="chapter" data-level="1.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#gii-thiu-v-pipe-operator"><i class="fa fa-check"></i><b>1.1</b> Giới thiệu về pipe operator</a></li>
+<li class="chapter" data-level="1.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-co-ban-trong-dplyr"><i class="fa fa-check"></i><b>1.2</b> Các hàm cơ bản trong dplyr</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-truy-vn-d-liu"><i class="fa fa-check"></i><b>1.2.1</b> Nhóm câu lệnh truy vấn dữ liệu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-bin-i-d-liu"><i class="fa fa-check"></i><b>1.2.2</b> Nhóm câu lệnh biến đổi dữ liệu</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-ham-tng-hp-d-liu-vi-summarise"><i class="fa fa-check"></i><b>1.2.3</b> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-nang-cao-trong-dplyr"><i class="fa fa-check"></i><b>1.3</b> Các hàm nâng cao trong dplyr</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#iu-kin-phan-nhom-vi-case_when"><i class="fa fa-check"></i><b>1.3.1</b> Điều kiện phân nhóm với <code>case_when</code></a></li>
+<li class="chapter" data-level="1.3.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at"><i class="fa fa-check"></i><b>1.3.2</b> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if"><i class="fa fa-check"></i><b>1.3.3</b> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html"><i class="fa fa-check"></i><b>2</b> Phân rã và xoay chiều dữ liệu</a><ul>
+<li class="chapter" data-level="2.1" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#phan-ra-d-liu-thanh-dang-doc-vi-gather"><i class="fa fa-check"></i><b>2.1</b> Phân rã dữ liệu thành dạng dọc với <code>gather</code></a></li>
+<li class="chapter" data-level="2.2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#xoay-chiu-d-liu-vi-spread"><i class="fa fa-check"></i><b>2.2</b> Xoay chiều dữ liệu với <code>spread</code></a></li>
+<li class="chapter" data-level="2.3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#tach-mt-bin-thanh-nhiu-bin-vi-separate"><i class="fa fa-check"></i><b>2.3</b> Tách một biến thành nhiều biến với <code>separate</code></a></li>
+<li class="chapter" data-level="2.4" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#gp-nhiu-bin-thanh-mt-bin-vi-unite"><i class="fa fa-check"></i><b>2.4</b> Gộp nhiều biến thành một biến với <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html"><i class="fa fa-check"></i><b>3</b> Các chỉ số thống kê mô tả cơ bản</a><ul>
+<li class="chapter" data-level="3.1" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#correlation"><i class="fa fa-check"></i><b>3.1</b> Correlation</a></li>
+<li class="chapter" data-level="3.2" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#anova"><i class="fa fa-check"></i><b>3.2</b> ANOVA</a></li>
+<li class="chapter" data-level="3.3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#kim-inh-quan-h-chi-binh-phuong"><i class="fa fa-check"></i><b>3.3</b> Kiểm định quan hệ Chi-bình phương</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html"><i class="fa fa-check"></i><b>4</b> Lập trình hàm</a><ul>
+<li class="chapter" data-level="4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#quotes-vs.-unquotes"><i class="fa fa-check"></i><b>4.1</b> <strong>Quotes</strong> vs. <strong>Unquotes</strong></a></li>
+<li class="chapter" data-level="4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hp-dung-quo_name"><i class="fa fa-check"></i><b>4.2</b> Trường hợp dùng <code>quo_name</code></a></li>
+<li class="chapter" data-level="4.3" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hop-nhiu-bin"><i class="fa fa-check"></i><b>4.3</b> Trường họp nhiều biến</a></li>
+<li class="chapter" data-level="4.4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ng-dung"><i class="fa fa-check"></i><b>4.4</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ham-tinh-toan-tng-hp-nhiu-bin"><i class="fa fa-check"></i><b>4.4.1</b> Hàm tính toán tổng hợp nhiều biến</a></li>
+<li class="chapter" data-level="4.4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ve--thi-vi-ggplot2"><i class="fa fa-check"></i><b>4.4.2</b> Vẽ đồ thị với ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html"><i class="fa fa-check"></i><b>5</b> Lập trình chức năng hàm với purrr</a><ul>
+<li class="chapter" data-level="5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#nhom-ham-map"><i class="fa fa-check"></i><b>5.1</b> Nhóm hàm map</a></li>
+<li class="chapter" data-level="5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#sa-i-gia-tri-vi-modify"><i class="fa fa-check"></i><b>5.2</b> Sửa đổi giá trị với <code>modify</code></a></li>
+<li class="chapter" data-level="5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#tao-ham-nhanh-vi-as_mapper"><i class="fa fa-check"></i><b>5.3</b> Tạo hàm nhanh với <code>as_mapper</code></a></li>
+<li class="chapter" data-level="5.4" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#xay-dng-chui-cac-ham-lien-tip-vi-compose"><i class="fa fa-check"></i><b>5.4</b> Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></a></li>
+<li class="chapter" data-level="5.5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#ng-dung-1"><i class="fa fa-check"></i><b>5.5</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#bin-i-d-liu-vi-modify-va-map_df"><i class="fa fa-check"></i><b>5.5.1</b> Biến đổi dữ liệu với <code>modify</code> và <code>map_df</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-nhom-khac-nhau-cung-luc"><i class="fa fa-check"></i><b>5.5.2</b> Phân tích nhiều nhóm khác nhau cùng lúc</a></li>
+<li class="chapter" data-level="5.5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-bin-trong-dataframe-cung-luc"><i class="fa fa-check"></i><b>5.5.3</b> Phân tích nhiều biến trong dataframe cùng lúc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html"><i class="fa fa-check"></i><b>6</b> Biến đổi dữ liệu text</a><ul>
+<li class="chapter" data-level="6.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#gii-thiu"><i class="fa fa-check"></i><b>6.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="6.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#regular-expression"><i class="fa fa-check"></i><b>6.2</b> Regular expression</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#metadata"><i class="fa fa-check"></i><b>6.2.1</b> Metadata</a></li>
+<li class="chapter" data-level="6.2.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#sequences"><i class="fa fa-check"></i><b>6.2.2</b> Sequences</a></li>
+<li class="chapter" data-level="6.2.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#character-class"><i class="fa fa-check"></i><b>6.2.3</b> Character class</a></li>
+<li class="chapter" data-level="6.2.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#posix-class"><i class="fa fa-check"></i><b>6.2.4</b> POSIX class</a></li>
+<li class="chapter" data-level="6.2.5" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#quantifiers"><i class="fa fa-check"></i><b>6.2.5</b> Quantifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#cac-vi-du-tng-hp"><i class="fa fa-check"></i><b>6.3</b> Các ví dụ tổng hợp</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-1"><i class="fa fa-check"></i><b>6.3.1</b> Ví dụ 1</a></li>
+<li class="chapter" data-level="6.3.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-2"><i class="fa fa-check"></i><b>6.3.2</b> Ví dụ 2</a></li>
+<li class="chapter" data-level="6.3.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-3"><i class="fa fa-check"></i><b>6.3.3</b> Ví dụ 3</a></li>
+<li class="chapter" data-level="6.3.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-4"><i class="fa fa-check"></i><b>6.3.4</b> Ví dụ 4</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#tai-liu-tham-khao"><i class="fa fa-check"></i><b>6.4</b> Tài liệu tham khảo</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><a href="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><i class="fa fa-check"></i><b>7</b> Quản lý kết quả phân tích từ nhiều mô hình</a></li>
+<li class="chapter" data-level="8" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html"><i class="fa fa-check"></i><b>8</b> Các nguyên lý dự báo</a><ul>
+<li class="chapter" data-level="8.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#gii-thiu-1"><i class="fa fa-check"></i><b>8.1</b> Giới thiệu</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nhanh-trong-hoc-may-machine-learning"><i class="fa fa-check"></i><b>8.1.1</b> Các nhánh trong học máy (machine learning)</a></li>
+<li class="chapter" data-level="8.1.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cach-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>8.1.2</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="8.1.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#s-dung-mo-hinh"><i class="fa fa-check"></i><b>8.1.3</b> Sử dụng mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nguyen-ly-trong-d-bao"><i class="fa fa-check"></i><b>8.2</b> Các nguyên lý trong dự báo</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#reducible-vs.-irreducible-error"><i class="fa fa-check"></i><b>8.2.1</b> Reducible vs. irreducible error</a></li>
+<li class="chapter" data-level="8.2.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#kha-nang-giai-thich-va-kha-nang-d-bao"><i class="fa fa-check"></i><b>8.2.2</b> Khả năng giải thích và khả năng dự báo</a></li>
+<li class="chapter" data-level="8.2.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#mo-hinh-co-tham-s-cho-truc-hoc-khong-co-tham-s-cho-truc-parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>8.2.3</b> Mô hình có tham số cho trước hoặc không có tham số cho trước (Parametric vs. Nonparametric)</a></li>
+<li class="chapter" data-level="8.2.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#nguyen-ly-ch-u"><i class="fa fa-check"></i><b>8.2.4</b> Nguyên lý chữ U</a></li>
+<li class="chapter" data-level="8.2.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#bias-variance-trade-off"><i class="fa fa-check"></i><b>8.2.5</b> Bias Variance Trade-Off</a></li>
+<li class="chapter" data-level="8.2.6" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#overfitting-regularization"><i class="fa fa-check"></i><b>8.2.6</b> Overfitting &amp; regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#quy-trinh-xay-dng-mo-hinh-d-bao"><i class="fa fa-check"></i><b>8.3</b> Quy trình xây dựng mô hình dự báo</a></li>
+<li class="chapter" data-level="8.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#ensemble-methods"><i class="fa fa-check"></i><b>8.4</b> Ensemble methods</a></li>
+<li class="chapter" data-level="8.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#luu-y"><i class="fa fa-check"></i><b>8.5</b> Lưu ý</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html"><i class="fa fa-check"></i><b>9</b> Mô hình OLS</a><ul>
+<li class="chapter" data-level="9.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#gii-thiu-2"><i class="fa fa-check"></i><b>9.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="9.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#xay-dng-mo-hinh-co-ban"><i class="fa fa-check"></i><b>9.2</b> Xây dựng mô hình cơ bản</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#mo-hinh-hi-quy-on-bin"><i class="fa fa-check"></i><b>9.2.1</b> Mô hình hồi quy đơn biến</a></li>
+<li class="chapter" data-level="9.2.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#din-giai-mo-hinh"><i class="fa fa-check"></i><b>9.2.2</b> Diễn giải mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#anh-gia-cht-lung-mo-hinh"><i class="fa fa-check"></i><b>9.3</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#sai-s-cua-mo-hinh"><i class="fa fa-check"></i><b>9.3.1</b> Sai số của mô hình</a></li>
+<li class="chapter" data-level="9.3.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#r-binh-phuong-r2"><i class="fa fa-check"></i><b>9.3.2</b> R bình phương <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="9.3.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#f-statistic"><i class="fa fa-check"></i><b>9.3.3</b> F statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#d-bao"><i class="fa fa-check"></i><b>9.4</b> Dự báo</a></li>
+<li class="chapter" data-level="9.5" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#thut-toan-ti-uu-vi-gradient-decent"><i class="fa fa-check"></i><b>9.5</b> Thuật toán tối ưu với gradient decent</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html"><i class="fa fa-check"></i><b>10</b> Mô hình hồi quy logistic</a><ul>
+<li class="chapter" data-level="10.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cach-xay-dng-mo-hinh-1"><i class="fa fa-check"></i><b>10.1</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="10.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#vi-du-xay-dng-mo-hinh-on-gian"><i class="fa fa-check"></i><b>10.2</b> Ví dụ xây dựng mô hình đơn giản</a></li>
+<li class="chapter" data-level="10.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cac-chi-s-cn-quan-tam-khac"><i class="fa fa-check"></i><b>10.3</b> Các chỉ số cần quan tâm khác</a></li>
+<li class="chapter" data-level="10.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#anh-gia-cht-lung-mo-hinh-1"><i class="fa fa-check"></i><b>10.4</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#confusion-matrix"><i class="fa fa-check"></i><b>10.4.1</b> Confusion Matrix</a></li>
+<li class="chapter" data-level="10.4.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#roc"><i class="fa fa-check"></i><b>10.4.2</b> ROC</a></li>
+<li class="chapter" data-level="10.4.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#gain-va-lift"><i class="fa fa-check"></i><b>10.4.3</b> Gain và Lift</a></li>
+<li class="chapter" data-level="10.4.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#kolmogorovsmirnov-statistics"><i class="fa fa-check"></i><b>10.4.4</b> Kolmogorov–Smirnov statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#thc-hanh"><i class="fa fa-check"></i><b>10.5</b> Thực hành</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#d-liu"><i class="fa fa-check"></i><b>10.5.1</b> Dữ liệu</a></li>
+<li class="chapter" data-level="10.5.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-tp-d-liu-gc"><i class="fa fa-check"></i><b>10.5.2</b> Xây dựng mô hình trên tập dữ liệu gốc</a></li>
+<li class="chapter" data-level="10.5.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-hai-tp-train-va-test"><i class="fa fa-check"></i><b>10.5.3</b> Xây dựng mô hình trên hai tập train và test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>10.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html"><i class="fa fa-check"></i><b>11</b> Cây quyết định</a><ul>
+<li class="chapter" data-level="11.1" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#gii-thiu-3"><i class="fa fa-check"></i><b>11.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="11.2" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#regression-trees"><i class="fa fa-check"></i><b>11.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="11.3" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#classification-trees"><i class="fa fa-check"></i><b>11.3</b> Classification Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html"><i class="fa fa-check"></i><b>12</b> Bagging - Boosting và Random Forest</a><ul>
+<li class="chapter" data-level="12.1" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#bagging"><i class="fa fa-check"></i><b>12.1</b> Bagging</a></li>
+<li class="chapter" data-level="12.2" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#random-forests"><i class="fa fa-check"></i><b>12.2</b> Random Forests</a></li>
+<li class="chapter" data-level="12.3" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#boosting"><i class="fa fa-check"></i><b>12.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>13</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="14" data-path="k-means.html"><a href="k-means.html"><i class="fa fa-check"></i><b>14</b> k-means</a><ul>
+<li class="chapter" data-level="14.1" data-path="k-means.html"><a href="k-means.html#gii-thiu-4"><i class="fa fa-check"></i><b>14.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="14.2" data-path="k-means.html"><a href="k-means.html#thut-toan"><i class="fa fa-check"></i><b>14.2</b> Thuật toán</a></li>
+<li class="chapter" data-level="14.3" data-path="k-means.html"><a href="k-means.html#uu-nhuc-im-cua-k-means"><i class="fa fa-check"></i><b>14.3</b> Ưu nhược điểm của K-means</a></li>
+<li class="chapter" data-level="14.4" data-path="k-means.html"><a href="k-means.html#thc-hanh-tren-r"><i class="fa fa-check"></i><b>14.4</b> Thực hành trên R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>15</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="15.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>15.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="15.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>15.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="15.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>15.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>15.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="15.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>15.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="15.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>15.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>15.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>16</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="16.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>16.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>16.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="16.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>16.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>16.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>16.2.1</b> Biến đổi 1:1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Chuỗi thời gian</b></span></li>
+<li class="chapter" data-level="17" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>17</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="17.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>17.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="17.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>17.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="17.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>17.3</b> Smoothing</a></li>
+<li class="chapter" data-level="17.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>17.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="17.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>17.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>17.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="17.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>17.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="17.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>17.5.3</b> Tự động xây dựng mô hình</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>18</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="18.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>18.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="18.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>18.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="18.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>18.3</b> Ví dụ với R</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>19</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="19.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>19.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="19.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>19.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="19.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>19.3</b> Chuyển từ dataframe thành xts</a></li>
+</ul></li>
+<li class="part"><span><b>III Case study</b></span></li>
+<li class="chapter" data-level="20" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>20</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="20.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>20.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="20.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>20.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="20.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>20.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="20.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>20.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>21</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="21.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>21.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="21.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>21.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="21.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>21.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="21.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>21.4</b> Tự động render ra kết quả phân tích</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích dữ liệu thực tế với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mo-hinh-hi-quy-logistic" class="section level1">
+<h1><span class="header-section-number">Chương 10</span> Mô hình hồi quy logistic</h1>
+<p>Khi phân tích dữ liệu, bên cạnh biến liên tục, ta thường xuyên phải làm việc với các biến rời rạc, các biến có đặc tinh nhóm (category) như “mua hàng vs. không mua hàng”, “giàu vs. nghèo”, “nợ xấu vs. không nợ xấu”. Quá trình phân tích và dự báo các quan sát thuộc về nhóm nào được gọi là quá trình phân loại (classification).</p>
+<p>Đối với bài toán phân loại, ta có thể chia thành hai nhóm lớn là phân loại hai biến và phân loại nhiều biến. Trong đó, bài toán phân loại hai biến là bài toán phổ biến nhất, được ứng dụng trong nhiều lĩnh vực trong đời sống như đánh giá điểm tín dụng của khách hàng, dự báo khách hàng phản ứng với chiến dịch marketing…</p>
+<p>Trong chương này, chúng ta sẽ làm quen vơi kỹ thuật nổi tiếng và được ứng dụng sớm nhất trong việc phân loại hai biến (<em>binary classification</em>) là <em>logistic regression</em>.</p>
+<p>Nếu như mô hình hồi quy tuyến tính thường (linear regression) cho phép chúng ta tìm được mối quan hệ giữa biến phụ thuộc liên tục (continous dependent variable) và một/nhiều biến độc lập (independent variable) - liên tục hoặc không liên tục thì mô hình hồi quy Logistic tìm mối quan hệ giữa biến phụ thuộc là biến nhị phân - <em>binary variable</em>. Biến cần dự báo dạng này chỉ nhận 2 giá trị: có/không, sống/chết, yêu/không yêu… và các biến độc lập có thể là liên tục hoặc không liên tục.</p>
+<p>Ví dụ, ta tìm hiểu mối quan hệ giữa việc KH có nợ xấu hay không dựa vào dư nợ của KH - thông qua việc tìm hiểu khả năng khách hàng có nợ xấu dựa vào thông tin dư nợ của KH. Trong đó:</p>
+<ul>
+<li>Biến phụ thuộc:</li>
+</ul>
+<p><span class="math display">\[Y = \begin{cases}1, &amp; KH\:có\:nợ\:xấu\\
+  0,  &amp; KH\:không\:có\:nợ\:xấu\end{cases}\]</span></p>
+<ul>
+<li>Biến độc lập: X - dư nợ của KH (hay số tiền khách hàng nợ ngân hàng)</li>
+</ul>
+<p>Trong mô hình này, ta không thể sử dụng mô hình hồi quy thông thường bởi lẽ biến phụ thuộc chỉ có hai giá trị 0 và 1. Hơn nữa, cái ta cần dự báo là “xác suất” xảy ra sự kiện (xác suất vỡ nợ) cho mỗi quan sát. Để giải quyết vấn đề nay, ta có thể sử dụng mô hình logistic có dạng như sau:</p>
+<p><span class="math display">\[p= Pr(Y=1)=\frac{e^{B_{0} + B_{1}X}}{1+e^{B_{0} + B_{1}X}}\]</span>
+Trong đó, <span class="math inline">\(p\)</span> là xác suất khách hàng có nợ xấu, <span class="math inline">\((1-p)\)</span> là xác suất khách hàng không có nợ xấu.</p>
+<p><span class="math display">\[Pr(Y=0)=1-p=\frac{1}{1+e^{B_{0} + B_{1}X}}\]</span></p>
+<p><strong>Lưu ý</strong>: Trong các bài toán phân loại, nhóm ta cần dự báo còn được gọi là <code>class positive</code> hay <code>event of interest</code>. Khi ứng dụng với các bài toán cụ thể khác nhau, class sẽ được xây dựng khác nhau. Ví dụ: trong dự báo khách hàng phản hồi, thì sự kiện khách hàng phản hồi email là 1, không phản hồi email là 0. Khi dự báo khách hàng có nợ xấu, khách hàng có nợ xấu được đánh dấu là 1, không có nợ xấu được đánh dấu là 0.</p>
+<p>Trong mô hình logistic, ta còn có một chỉ số khác được gọi là <span class="math inline">\(Odds\: ratio\)</span>, tạm dịch là <em>khả năng xảy ra sự kiện so với khả năng không xảy ra sự kiện</em>. Với bài toán dự báo nợ xấu, chỉ số này cho chúng ta biết xác suất khách hàng có nợ xấu cao hơn bao nhiêu lần bao nhiêu lần so với xác suất khách hàng không có nợ xấu.</p>
+<p><span class="math display">\[Odds=\frac{p}{1-p}=e^{B_{0} + B_{1}X}\]</span></p>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>Xác suất khách hàng có nợ xấu: p = 0.8</li>
+<li>Xác suất khách hàng không có nợ xấu: 1-p = 1-0.8=0.2</li>
+<li>Odd ration: <span class="math inline">\(p/(1-p) = 4\)</span> - khả năng khách hàng có nợ xấu cao gấp 4 lần khả năng khách hàng không có nợ xấu.</li>
+</ul>
+<p><strong>Logit</strong>: Là hàm log của odd ratio, được tính như sau.</p>
+<p><span class="math display">\[logit=ln(Odds)=ln(\frac{p}{1-p}) = B_{0} + B_{1}X\]</span></p>
+<p>Phương trình trên gọi là <strong>phương trình hồi quy Logistic</strong>. Hàm này có thể chứa các giá trị bất kỳ trong khoảng từ <span class="math inline">\((-\infty, +\infty)\)</span>. Lúc này, hàm trên đã trở về hàm hồi quy thông thường. Như vậy, mô hình chúng ta cần xây dựng có dạng:</p>
+<p><span class="math display">\[logit(p) = \alpha + \beta X\]</span></p>
+<p>hay:</p>
+<p><span class="math display">\[odds(p) = \frac{p}{1-p} = e^{\alpha + \beta X}\]</span></p>
+<p><strong>Giải thích ý nghĩa</strong>: Khi x tăng thêm 1 đơn vị, thì <strong>Odds ratio</strong> (tỷ số khả dĩ) sẽ tăng thêm <span class="math inline">\(e^{\beta}\)</span>. Nghĩa là, khi x tăng thêm 1 đơn vị, <em>khả năng</em> (chance) xảy ra biến cố X sẽ tăng lên <span class="math inline">\(e^{\beta}\)</span> lần.</p>
+<ul>
+<li>Khi <span class="math inline">\(x = x_0\)</span>, khả năng xảy ra biến cố là:
+<span class="math display">\[odds(p|x=x_0) = e^{\alpha + \beta x_0}\]</span></li>
+<li>Khi <span class="math inline">\(x = x_0 + 1\)</span>, khả năng xảy ra biến cố là:
+<span class="math display">\[odds(p|x=x_0+1) = e^{\alpha + \beta (x_0+1)}\]</span></li>
+<li>Tỷ số giữa 2 khả năng là:
+<span class="math display">\[\frac{e^{\alpha + \beta (x_0+1)}}{e^{\alpha + \beta (x_0)}} = e^{\beta}\]</span></li>
+</ul>
+<p><strong>Lưu ý</strong>: Cách giải thích ý nghĩa của hệ số <span class="math inline">\(\beta\)</span> trong Logistic rất dễ nhầm lẫn. Cơ bản có 2 cách như sau:</p>
+<ul>
+<li>Cách 1: Giải thích dựa trên “xác suất” xảy ra biến cố A. Cách tính này dựa trên việc đưa ra tính toán xác suất xảy ra A với X cho trước.</li>
+<li>Cách 2: Dựa trên “khả năng” xảy ra biến cố A (Odd ratio)</li>
+</ul>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## -- Attaching packages ------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.2.0       v purrr   0.2.5  
+## v tibble  2.1.1       v dplyr   0.8.0.1
+## v tidyr   0.8.2       v stringr 1.4.0  
+## v readr   1.3.1       v forcats 0.3.0</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## -- Conflicts ---------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="42-logistic-regression_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<div id="cach-xay-dng-mo-hinh-1" class="section level2">
+<h2><span class="header-section-number">10.1</span> Cách xây dựng mô hình</h2>
+<p>Để ước lượng các tham số <span class="math inline">\(\beta_j\)</span>, ta dùng phương pháp hợp lý tối đa (<strong>maximum likelihood</strong>), nghĩa là tìm <span class="math inline">\(\beta_j\)</span> để tối đa hóa hàm likelihood.</p>
+<p><span class="math display">\[L = p_1*p_2*...*p_n= \prod_{i=1}^np_i\]</span></p>
+<p>Trong đó, <span class="math inline">\(p_i\)</span> là xác suất xảy sự kiện của quan sát thứ <span class="math inline">\(i\)</span>.</p>
+<p>Trong bài toán hồi quy logistic, ta quan tâm đến việc dự báo chính xác sự kiện xảy ra (<span class="math inline">\(P_{y = 1}\)</span>). Do đó, hàm likelihood trong bài toán nhị phân được tính như sau.</p>
+<p><span class="math display">\[L = \prod[-y_i*log(h_\theta(x_i)) - (1-y_i)log(1-h_\theta(x_i))]\]</span>
+Trong đó:</p>
+<ul>
+<li><span class="math inline">\(y_i\)</span>: Là giá trị thực tế của biến cần dự báo (1 hoặc 0) tại quan sát i</li>
+<li><span class="math inline">\(h_{\theta}(x_i)\)</span>: Giá trị dự báo của quan sát i. Giá trị này nằm trong khoảng [0, 1]</li>
+</ul>
+<p>Xem ví dụ dưới đây:</p>
+<table style="width:35%;">
+<colgroup>
+<col width="13%" />
+<col width="12%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Thực tế</th>
+<th>Dự báo</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0.7</td>
+<td>0.7</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0.6</td>
+<td>0.4</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0.8</td>
+<td>0.8</td>
+</tr>
+</tbody>
+</table>
+<p>Với mô hình trên, ta có:</p>
+<p><span class="math display">\[L = 0.7 * 0.4 * 0.8 = 0.224\]</span></p>
+<p><span class="math display">\[log(L) = log(0.224) = -1.496\]</span></p>
+<p>Như vậy, về mặt hình ảnh, hàm Likelihood sẽ tìm cách fit dữ liệu sao cho sát với dữ liệu thực tế nhiều nhất. Hàm này sẽ đạt giá trị tối đa bằng 1 (L = 1), ứng với <span class="math inline">\(log(L_{max}) = 0\)</span></p>
+<p>Để hiểu hơn về cách tối ưu hóa Logistic trong trường hợp đơn giản, xem ví dụ trong file excel đính kèm</p>
+</div>
+<div id="vi-du-xay-dng-mo-hinh-on-gian" class="section level2">
+<h2><span class="header-section-number">10.2</span> Ví dụ xây dựng mô hình đơn giản</h2>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="mo-hinh-hi-quy-logistic.html#cb496-1"></a><span class="kw">library</span>(ISLR)</span>
+<span id="cb496-2"><a href="mo-hinh-hi-quy-logistic.html#cb496-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb496-3"><a href="mo-hinh-hi-quy-logistic.html#cb496-3"></a>data &lt;-<span class="st"> </span>Default <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb496-4"><a href="mo-hinh-hi-quy-logistic.html#cb496-4"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>student) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb496-5"><a href="mo-hinh-hi-quy-logistic.html#cb496-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">default =</span> <span class="kw">case_when</span>(</span>
+<span id="cb496-6"><a href="mo-hinh-hi-quy-logistic.html#cb496-6"></a>    default <span class="op">==</span><span class="st"> &quot;Yes&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb496-7"><a href="mo-hinh-hi-quy-logistic.html#cb496-7"></a>    <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span></span>
+<span id="cb496-8"><a href="mo-hinh-hi-quy-logistic.html#cb496-8"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="mo-hinh-hi-quy-logistic.html#cb497-1"></a><span class="kw">library</span>(broom)</span></code></pre></div>
+<pre><code>## Warning: package &#39;broom&#39; was built under R version 3.4.4</code></pre>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="mo-hinh-hi-quy-logistic.html#cb499-1"></a>model &lt;-<span class="st"> </span><span class="kw">glm</span>(default <span class="op">~</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span>balance, <span class="dt">data =</span> data, </span>
+<span id="cb499-2"><a href="mo-hinh-hi-quy-logistic.html#cb499-2"></a>    <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) </span>
+<span id="cb499-3"><a href="mo-hinh-hi-quy-logistic.html#cb499-3"></a>model <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = default ~ income + balance, family = &quot;binomial&quot;, 
+##     data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.4725  -0.1444  -0.0574  -0.0211   3.7245  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.154e+01  4.348e-01 -26.545  &lt; 2e-16 ***
+## income       2.081e-05  4.985e-06   4.174 2.99e-05 ***
+## balance      5.647e-03  2.274e-04  24.836  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2920.6  on 9999  degrees of freedom
+## Residual deviance: 1579.0  on 9997  degrees of freedom
+## AIC: 1585
+## 
+## Number of Fisher Scoring iterations: 8</code></pre>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="mo-hinh-hi-quy-logistic.html#cb501-1"></a><span class="kw">library</span>(broom)</span>
+<span id="cb501-2"><a href="mo-hinh-hi-quy-logistic.html#cb501-2"></a>model <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb501-3"><a href="mo-hinh-hi-quy-logistic.html#cb501-3"></a><span class="st">  </span>tidy <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb501-4"><a href="mo-hinh-hi-quy-logistic.html#cb501-4"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb501-5"><a href="mo-hinh-hi-quy-logistic.html#cb501-5"></a><span class="st">  </span><span class="kw">select</span>(term, estimate) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb501-6"><a href="mo-hinh-hi-quy-logistic.html#cb501-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">odd_increase (thousands USD)</span><span class="st">`</span> =<span class="st"> </span><span class="kw">exp</span>(<span class="dv">1000</span><span class="op">*</span>estimate))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   term     estimate `odd_increase (thousands USD)`
+##   &lt;chr&gt;       &lt;dbl&gt;                          &lt;dbl&gt;
+## 1 income  0.0000208                           1.02
+## 2 balance 0.00565                           283.</code></pre>
+<p><strong>Ý nghĩa</strong>:</p>
+<ul>
+<li>Nếu <code>balance</code> tăng 1000 USD, khả năng khách hàng có nợ xấu tăng 283 lần</li>
+<li>Nếu <code>income</code> tăng 1000 USD, khả năng khách hàng có nợ xấu tăng 1.02 lần</li>
+</ul>
+<p>Khi ước lượng được các tham số <span class="math inline">\(\beta_j\)</span>, với mỗi KH cụ thể ta có thể ước lượng được XS KH có nợ xấu bằng bao nhiêu dựa vào dư nợ của KH đó. Từ đó, ta có thể phân loại được KH Good/Bad (ko có nợ xấu/có nợ xấu) bằng việc so sánh XS có nợ xấu của KH với giá trị ngưỡng (“cutoff point”).</p>
+<p>Ví dụ, XS có nợ xấu của KH A là 0.2, điểm cutoff ta lựa chọn để phân loại là 0.5 -&gt; KH A - “Good”.</p>
+<p><strong>Dự báo trên tập mới</strong>.</p>
+<p>Để dự báo trên tập dữ liệu mới, ta có thể dùng hàm <code>predict</code> với option <code>type = "response"</code> để trả ra kết quả dưới dạng xác suất xảy ra event (trong ví dụ này là xác suất xảy ra nợ xâu)</p>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="mo-hinh-hi-quy-logistic.html#cb503-1"></a><span class="kw">predict</span>(model, data <span class="op">%&gt;%</span><span class="st"> </span>head, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<pre><code>##            1            2            3            4            5 
+## 0.0015047280 0.0012619299 0.0080262106 0.0004059957 0.0018267237 
+##            6 
+## 0.0020424398</code></pre>
+</div>
+<div id="cac-chi-s-cn-quan-tam-khac" class="section level2">
+<h2><span class="header-section-number">10.3</span> Các chỉ số cần quan tâm khác</h2>
+<p><strong>Null deviance vs. Residual Deviance</strong></p>
+<ul>
+<li>LL: Log Likelihood
+<span class="math display">\[null\;deviance = 2(LL(saturated\;model) - LL(null\;model))\]</span>
+<span class="math display">\[residual\;deviance = 2(LL(saturated\;model) - LL(proposed\;model))\]</span></li>
+<li>Trong đó:
+<ul>
+<li>Saturated Model: Mỗi quan sát có 1 tham số riêng cần phải ước lượng (n tham số)</li>
+<li>Null Model: Tất cả quan sát chỉ có 1 tham số</li>
+<li>Proposed Model: Mô hình có p tham số ứng với p biến và 1 tham số ứng với intercept (p+1 tham số)</li>
+</ul></li>
+<li>Nếu Null deviance thấp, nghĩa là mô hình có thể giải thích bằng mô hình đơn giản</li>
+</ul>
+</div>
+<div id="anh-gia-cht-lung-mo-hinh-1" class="section level2">
+<h2><span class="header-section-number">10.4</span> Đánh giá chất lượng mô hình</h2>
+<p>Khi xây dựng mô hình dự báo, kết quả dự báo sẽ được trả ra dưới dạng 1 dãy các điểm xác suất xảy ra sự kiện. Khi đó, ta sẽ phải lựa chọn điểm mà tại đó, nếu xác suất dự báo cao hơn điểm này, các quan sát sẽ được đánh dấu là nợ xấu. Xem ví dụ sau.</p>
+<table style="width:44%;">
+<colgroup>
+<col width="19%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Customer ID</th>
+<th>Xác suất nợ xấu</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0.7</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0.5</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0.4</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0.3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Nếu cutoff là 0.6: Khách hàng 1 được dự báo sẽ có nợ xấu</li>
+<li>Nếu cutoff là 0.45: Khách hàng 1, 2 được dự báo sẽ có nợ xấu</li>
+</ul>
+<p>Như vậy, với mỗi điểm cutoff khác nhau, ta sẽ có số lượng khách hàng bị nợ xấu khác nhau</p>
+<p><strong>Pseudo <span class="math inline">\(R^2\)</span></strong></p>
+<p>Không giống như mô hình OLS, trong mô hình OLS không có <span class="math inline">\(R^2\)</span> để giải thích độ biến động của dữ liệu khi sử dụng mô hình. Tuy nhiên, mô hình logistic có chỉ số pseudo <span class="math inline">\(R^2\)</span> được <a href="http://stats.stackexchange.com/questions/82105/mcfaddens-pseudo-r2-interpretation">McFadden’s</a> đưa ra. Chỉ số này có thể được dùng tương tự như <span class="math inline">\(R^2\)</span> trong OLS.</p>
+<p><span class="math display">\[R^2 = 1−\frac{ln(LM_1)}{ln(LM_0)}\]</span></p>
+<p>Trong đó:</p>
+<ul>
+<li><span class="math inline">\(ln(LM_1)\)</span> là log likelihood của mô hình</li>
+<li><span class="math inline">\(ln(LM_0)\)</span> là log likelihood của mull model, nghĩa là mô hình chỉ có hệ số tự do intercept.</li>
+</ul>
+<p>Trong mô hình logistic, nếu <span class="math inline">\(R^2\)</span> có giá trị trên 0.4 đã được coi là mô hình tương đối tốt.</p>
+<div id="confusion-matrix" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> Confusion Matrix</h3>
+<ul>
+<li><strong>Confusion Matrix</strong>: Bảng mô tả kết quả dự báo vs. thực tế ứng với 1 điểm cut-off xác định trước.</li>
+</ul>
+<p><img src="Images/log6.png" /></p>
+<ul>
+<li>Tính toán các chỉ số:
+<ul>
+<li><p>Accuracy (acc): Tỷ lệ dự báo chính xác trên cả hai class. Acc <span class="math display">\[Accuracy = \frac{TP+TN}{TP+TN+FN+FP}\]</span>.</p></li>
+<li><p>True Negative Rate (tnr): Tỷ lệ dự đoán Negative chính xác trong toàn bộ quan sát thực tế là <em>Negative</em>
+<span class="math display">\[tnr = Specificity = \frac{TN}{TN + FP}\]</span></p></li>
+<li><p>False Positive Rate (fpr - fall out): Tỷ lệ dự đoán Positive sai, hay tỷ lệ các quan sát thực tế là Negative nhưng lại được dự báo thành Positive
+<span class="math display">\[fpr = 1- Specificity = \frac{FP}{TN + FP}\]</span></p></li>
+<li><p>True Positive Rate (tpr - Sensitivity - hay còn gọi là <strong>recall</strong>): Tỷ lệ dự báo Positive chính xác trên toàn bộ số lượng quan sát thực tế là Positive
+<span class="math display">\[tpr = Sensitivity = \frac{TP}{TP + FN}\]</span></p></li>
+<li><p>False Negative Rate (fnr - Sensitivity): Tỷ lệ dự báo negative sai - tỷ lệ positive nhưng dự báo nhầm thành Negative
+<span class="math display">\[fnr = 1- Sensitivity = \frac{FN}{FN + TP}\]</span></p></li>
+<li><p>Support: Tỷ lệ dự báo Positive trong toàn mẫu
+<span class="math display">\[sup = \frac{TP + FP}{N} = \frac{predicted pos}{total}\]</span></p></li>
+<li><p>Precision: Trong tổng số quan sát dự báo là Positive, bao nhiêu quan sát thực sự là Positive
+<span class="math display">\[Precision = \frac{TP}{TP+FP}\]</span></p></li>
+<li><p>Rate of positive predictions (RPP): tỷ lệ tổng số quan sát được dự báo là Y=1 (có nợ xấu) trên tổng số quan sát.</p></li>
+</ul></li>
+</ul>
+<p>Trong các chỉ số trên, các chỉ số True Positive Rate, Precision và Accuracy là quan trọng nhất. Để hiểu hơn về các chỉ số trên, giả sử ta có bảng <em>confusion matrix</em> như sau:</p>
+<table style="width:46%;">
+<colgroup>
+<col width="26%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Predicted/Actual</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0.4</td>
+<td>0.1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0.2</td>
+<td>0.3</td>
+</tr>
+</tbody>
+</table>
+<p>Các chỉ số trong bảng trên được tính như sau:</p>
+<ul>
+<li><span class="math inline">\(accurracy = 0.4 + 0.3 = 0.7\)</span>: Tỷ lệ dự báo chính xác trên cả hai class là 70%. Nói cách khác, trong 100 quan sát, mô hình dự báo chính xác 70%</li>
+<li><span class="math inline">\(True \; Positive \; Rate = TPR = \frac{0.4}{0.4 + 0.2} = 0.67\)</span> Trong 100 khách hàng thực sự bị nợ xấu, mô hình dự báo chính xác được 67 khách hàng.</li>
+<li><span class="math inline">\(Precision = \frac{0.4}{0.4 + 0.1} = 0.8\)</span> Trong 100 khách hàng được dự báo là nợ xấu, có 80 khách hàng thực sự bị nợ xấu</li>
+<li><span class="math inline">\(True \;Negative \;Rate = Specificity = \frac{0.3}{0.3+0.1}=0.75\)</span> Trong 100 khách hàng tốt, mô hình dự đoán chính xác 75 khách hàng</li>
+</ul>
+<p>Với phương pháp sử dụng <em>Confusion Matrix</em>, kết quả dự báo của mô hình trở nên đơn giản, dễ hiểu, dễ giải thích. Tuy nhiên, để có được confusion matrix, ta phải xác định trước giá trị của điểm cut-off. Điều này không hề dễ dàng bởi lẽ mỗi điểm cut-off sẽ cho ta 1 giá trị của confusion matrix hoàn toàn khác nhau. Để khắc phục điểm yếu này, một chỉ số khác thường được sử dụng là đường ROC với chỉ số AUC.</p>
+</div>
+<div id="roc" class="section level3">
+<h3><span class="header-section-number">10.4.2</span> ROC</h3>
+<ul>
+<li><p><strong>ROC Curve</strong>: Receiver Operating Characteristic. ROC cho ta đánh giá hiệu quả của mô hình thông qua sự đánh đổi giữa TPR và FPR.</p></li>
+<li><p><strong>Ý nghĩa</strong>: Mô tả tỷ lệ đánh đổi giữa 2 tỷ lệ: i, Tỷ lệ dự báo chính xác sự kiện A và ii, Tỷ lệ dự báo rằng sự kiện đó không diễn ra</p>
+<ul>
+<li>Dự báo mang tính ngẫu nhiên (50 - 50), ROC là đường 45 độ</li>
+<li>Dự báo hoàn toàn chính xác thì ROC là đường có dạng tam giác</li>
+<li>Dự báo kém hơn kỳ vọng thì ROC ở dưới đường 45 độ</li>
+<li>AUC (Area Under Curve): Cho phép so sánh độ chính xác của mô hình. AUC càng cao (ROC ở vị trí càng cao) thì mô hình càng chính xác</li>
+</ul></li>
+</ul>
+<div id="ly-thuyt" class="section level4">
+<h4><span class="header-section-number">10.4.2.1</span> Lý thuyết</h4>
+<p>Để xây dựng đường ROC trong, ta có các ký hiệu sau.</p>
+<ul>
+<li>N: số lượng quan sát</li>
+<li>NEG: số lượng NEGATIVE, neg: tỷ lệ negative (<span class="math inline">\(neg = \frac{NEG}{N}\)</span>)</li>
+<li>POS: số lượng POSITIVE, pos: tỷ lệ positive (<span class="math inline">\(pos = \frac{POS}{N}\)</span>)</li>
+</ul>
+<p>Quan hệ giữa acc và fpr, tpr:</p>
+<p><span class="math display">\[acc =  \frac{TP}{N} \frac{TN}{N}= \frac{TP}{POS}\frac{POS}{N} + \frac{NEG-FP}{N} 
+= \frac{TP}{POS}\frac{POS}{N} + \frac{NEG}{N} - \frac{FP}{NEG}\frac{NEG}{N}\]</span>
+<span class="math display">\[acc = tpr * pos + neg - neg * fpr\]</span></p>
+<p>hay:
+<span class="math display">\[tpr = \frac{acc-neg}{pos} + \frac{neg}{pos}fpr\]</span>
+công thức trên giúp ta vẽ được đồ thị đường acc theo tpr và fpr</p>
+<ul>
+<li><p>Đồ thị acc với 1 số trường hợp:</p>
+<p><img src="Images/log1.png" /></p>
+<p><img src="Images/log2.png" /></p></li>
+</ul>
+<p><strong>Lưu ý</strong>:</p>
+<ul>
+<li><p>Mỗi điểm trên ROC thể hiện kết quả của mô hình ứng vơi <strong>MỘT</strong> điểm cut-off. Do đó khi vẽ đường ROC, máy tính sẽ thay đổi các điểm cutoff từ 0-1, sau đó tính tpr &amp; fpr với từng điểm cutoff. Tập hợp tất cả các điểm này tạo thành ROC</p></li>
+<li><p>Để tìm điểm cutoff tốt nhất, nghia là với mô hình đã đưa ra, chọn cutoff <span class="math inline">\(\alpha\)</span> sao cho <span class="math inline">\(acc\)</span> đạt max.</p></li>
+<li><p>Thuật toán:</p>
+<ul>
+<li>Vẽ đường acc theo tpr và fpr</li>
+<li>Tịnh tiến đường acc cho đến khi acc tiếp tuyến với ROC</li>
+<li>Tiếp điểm chính là điểm <span class="math inline">\(\alpha\)</span> cần tìm</li>
+</ul>
+<p><img src="Images/log3.png" /></p>
+<p><img src="Images/log4.png" /></p></li>
+</ul>
+</div>
+<div id="cach-ve-roc-thc-t" class="section level4">
+<h4><span class="header-section-number">10.4.2.2</span> Cách vẽ ROC thực tế</h4>
+<p>Trên thực tế, ROC được vẽ với thuật toán như sau:</p>
+<ul>
+<li>Gọi F là hàm tính xác suất của Y trong GLM</li>
+</ul>
+<p><span class="math display">\[ F(X) ~ \frac{P(X)}{1-P(X)} = e^{\beta X}\]</span></p>
+<ul>
+<li>Tính F(X) với tập dữ liệu phân tích, sắp xếp F(X) theo giá trị từ cao xuống thấp. Tập hợp này tạo thành tập hợp A của biến score = x</li>
+<li>Bắt đầu từ điểm (0,0)</li>
+<li>Với mỗi giá trị của <span class="math inline">\(x \in A\)</span>, thực hiện như sau:
+<ul>
+<li>Nếu x positive, di chuyển lên trên 1/pos</li>
+<li>Nếu x negative, di chuyển sang phải 1/neg</li>
+</ul>
+<img src="Images/log5.gif" /></li>
+</ul>
+<p>Đường ROC nằm càng hướng về phía đỉnh góc bên trái thì độ chính xác của dự báo càng cao, điều đó thể hiện true positive rate cao và false positive rate thấp; còn nếu càng tiến tới đường chéo 45 độ so với trục hoành thì độ chính xác của dự báo càng kém. Đường chéo 45 độ so với trục hoành thể hiện sự phân loại là không có ý nghĩa.</p>
+<p><strong>AUC</strong> (Area under ROC curve) - diện tích phía dưới đường cong ROC, là thước đo độ chính xác của sự phân loại. AUC càng lớn thì độ chính xác càng cao.</p>
+<ul>
+<li><p>AUC từ 0.5-0.6: Mô hình chỉ tương đương với việc chọn ngẫu nhiên</p></li>
+<li><p>0.6-0.7: Chất lượng mô hình kém</p></li>
+<li><p>0.7-0.8: Tương đối tốt</p></li>
+<li><p>0.8-0.9: Tốt</p></li>
+<li><p>trên 0.9: Rất tốt</p></li>
+</ul>
+<p>Nói cách khác, chỉ số AUC cho phép ta biết được chất lượng phân loại của mô hình. AUC càng cao, cho ta thấy các quan sát xảy ra <em>positive class</em> (nợ xấu), càng có điểm score cao (tương đối) và ngược lại.</p>
+</div>
+</div>
+<div id="gain-va-lift" class="section level3">
+<h3><span class="header-section-number">10.4.3</span> Gain và Lift</h3>
+<p>Gain và Lift là hai biểu đồ vô cùng quan trọng với các nhà phân tích dữ liệu thực tiễn nhưng lại ít được các nhà lý thuyết sử dụng. Hai đường này đặc biệt quan trọng khi xây dựng các chiến lược marketing.</p>
+<p><strong>Đường gain</strong> là tổ hợp giữa TPR (True Positive Rate) và RPP (Rate of Positive Prediction). Vị trí các điểm trên đường gain cho ta biết nên chọn điểm cut-off như thế nào.</p>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="mo-hinh-hi-quy-logistic.html#cb505-1"></a><span class="kw">library</span>(scales)</span></code></pre></div>
+<pre><code>## Warning: package &#39;scales&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="mo-hinh-hi-quy-logistic.html#cb510-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">tpr =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.4</span>, <span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">0.85</span>, <span class="fl">0.88</span>, <span class="fl">0.93</span>, <span class="fl">0.94</span>, <span class="fl">0.97</span>, <span class="fl">0.99</span>, <span class="dv">1</span>),</span>
+<span id="cb510-2"><a href="mo-hinh-hi-quy-logistic.html#cb510-2"></a>                 <span class="dt">rpp =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">seq</span>(<span class="fl">0.1</span>,<span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb510-3"><a href="mo-hinh-hi-quy-logistic.html#cb510-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lift =</span> tpr<span class="op">/</span>rpp) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb510-4"><a href="mo-hinh-hi-quy-logistic.html#cb510-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lift =</span> <span class="kw">replace_na</span>(lift, <span class="dv">0</span>))</span>
+<span id="cb510-5"><a href="mo-hinh-hi-quy-logistic.html#cb510-5"></a></span>
+<span id="cb510-6"><a href="mo-hinh-hi-quy-logistic.html#cb510-6"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb510-7"><a href="mo-hinh-hi-quy-logistic.html#cb510-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(rpp, tpr)) <span class="op">+</span></span>
+<span id="cb510-8"><a href="mo-hinh-hi-quy-logistic.html#cb510-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb510-9"><a href="mo-hinh-hi-quy-logistic.html#cb510-9"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb510-10"><a href="mo-hinh-hi-quy-logistic.html#cb510-10"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> tpr), <span class="dt">vjust =</span> <span class="fl">-0.5</span>) <span class="op">+</span></span>
+<span id="cb510-11"><a href="mo-hinh-hi-quy-logistic.html#cb510-11"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb510-12"><a href="mo-hinh-hi-quy-logistic.html#cb510-12"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)) <span class="op">+</span></span>
+<span id="cb510-13"><a href="mo-hinh-hi-quy-logistic.html#cb510-13"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(rpp, rpp), <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span></span>
+<span id="cb510-14"><a href="mo-hinh-hi-quy-logistic.html#cb510-14"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">0.5</span>, <span class="dt">y =</span> <span class="fl">0.45</span>, <span class="dt">label =</span> <span class="st">&quot;Base line (No model)&quot;</span>, <span class="dt">hjust =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb510-15"><a href="mo-hinh-hi-quy-logistic.html#cb510-15"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb510-16"><a href="mo-hinh-hi-quy-logistic.html#cb510-16"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rate of Positive Prediction&quot;</span>,</span>
+<span id="cb510-17"><a href="mo-hinh-hi-quy-logistic.html#cb510-17"></a>       <span class="dt">y =</span> <span class="st">&quot;True Positive Rate&quot;</span>,</span>
+<span id="cb510-18"><a href="mo-hinh-hi-quy-logistic.html#cb510-18"></a>       <span class="dt">title =</span> <span class="st">&quot;Gain chart&quot;</span>) </span></code></pre></div>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><strong>Giải thích</strong>:</p>
+<ul>
+<li>Với top 20% khách hàng có điểm score cao nhất sẽ phủ được 70% khách hàng có nợ xấu trong thực tế.</li>
+<li>Với top 30% khách hàng có điểm score cao nhất sẽ phủ được 80% khách hàng có nợ xấu trong thực tế.</li>
+</ul>
+<p>Thông thường, đường gain được chia thành các decile (10%) để marketing/risk manager quyết định điểm cut-off trong mô hình. Nếu số lượng khách hàng ít, 1000 khách hàng, đôi khi ta có thể quyết định gửi email marketing cho cả 1000 khách hàng này.</p>
+<p>Trong khi đó, đường <strong>lift</strong> thể hiện khía cạnh khác trong việc xây dựng mô hình. Đường lift cho ta biết, ứng với từng decile, chất lượng mô hình cao hơn bao nhiêu lần so với việc không sử dụng mô hình (ngẫu nhiên). Đường lift luôn giảm về 1 khi ta dự báo 100% tất cả quan sát thuộc về nhóm <em>positive</em>.</p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="mo-hinh-hi-quy-logistic.html#cb511-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb511-2"><a href="mo-hinh-hi-quy-logistic.html#cb511-2"></a><span class="st">  </span><span class="kw">filter</span>(lift <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb511-3"><a href="mo-hinh-hi-quy-logistic.html#cb511-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(rpp, lift)) <span class="op">+</span></span>
+<span id="cb511-4"><a href="mo-hinh-hi-quy-logistic.html#cb511-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb511-5"><a href="mo-hinh-hi-quy-logistic.html#cb511-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb511-6"><a href="mo-hinh-hi-quy-logistic.html#cb511-6"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb511-7"><a href="mo-hinh-hi-quy-logistic.html#cb511-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb511-8"><a href="mo-hinh-hi-quy-logistic.html#cb511-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb511-9"><a href="mo-hinh-hi-quy-logistic.html#cb511-9"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">round</span>(lift, <span class="dv">1</span>)), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">hjust =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb511-10"><a href="mo-hinh-hi-quy-logistic.html#cb511-10"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb511-11"><a href="mo-hinh-hi-quy-logistic.html#cb511-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)) <span class="op">+</span></span>
+<span id="cb511-12"><a href="mo-hinh-hi-quy-logistic.html#cb511-12"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">0.1</span>, <span class="dt">y =</span> <span class="fl">1.1</span>, <span class="dt">label =</span> <span class="st">&quot;Base line (No model)&quot;</span>, <span class="dt">hjust =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb511-13"><a href="mo-hinh-hi-quy-logistic.html#cb511-13"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb511-14"><a href="mo-hinh-hi-quy-logistic.html#cb511-14"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb511-15"><a href="mo-hinh-hi-quy-logistic.html#cb511-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rate of Positive Prediction&quot;</span>,</span>
+<span id="cb511-16"><a href="mo-hinh-hi-quy-logistic.html#cb511-16"></a>       <span class="dt">y =</span> <span class="st">&quot;Lift ratio&quot;</span>,</span>
+<span id="cb511-17"><a href="mo-hinh-hi-quy-logistic.html#cb511-17"></a>       <span class="dt">title =</span> <span class="st">&quot;Lift chart&quot;</span>) </span></code></pre></div>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><strong>Ý nghĩa</strong>: Trong đồ thị trên, với top 10% khách hàng có điểm score mua hàng cao nhất, tỷ lệ khách hàng mua hàng cao hơn 4 lần so với việc không sử dụng mô hình (hay ngẫu nhiên)</p>
+</div>
+<div id="kolmogorovsmirnov-statistics" class="section level3">
+<h3><span class="header-section-number">10.4.4</span> Kolmogorov–Smirnov statistics</h3>
+<p>Chỉ số thống kê Kolmogorov-Smirnov là chỉ số khác để đo lường chất lượng mô hình. Chỉ số này cho ta biết được liệu phân phối của của nhóm <em>positive</em> có thực sự khác nhóm <em>negative</em> hay không.</p>
+<p>Chỉ số KS được đo lường bằng khoảng cách lớn nhất giữa hai đường phân phối lũy kế xác suất trên hai class. Khi xây dựng mô hình, KS có thể được tính theo công thức sau.</p>
+<p><span class="math display">\[KS = max(abs(tpr - fpr))\]</span></p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="mo-hinh-hi-quy-logistic.html#cb512-1"></a>pos_class &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.75</span>, <span class="fl">0.7</span>, <span class="fl">0.55</span>, <span class="fl">0.4</span>)</span>
+<span id="cb512-2"><a href="mo-hinh-hi-quy-logistic.html#cb512-2"></a>pos_class</span></code></pre></div>
+<pre><code>## [1] 0.80 0.75 0.70 0.55 0.40</code></pre>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="mo-hinh-hi-quy-logistic.html#cb514-1"></a>neg_class &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.15</span>)</span>
+<span id="cb514-2"><a href="mo-hinh-hi-quy-logistic.html#cb514-2"></a>neg_class</span></code></pre></div>
+<pre><code>## [1] 0.70 0.40 0.30 0.20 0.15</code></pre>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="mo-hinh-hi-quy-logistic.html#cb516-1"></a><span class="kw">ks.test</span>(pos_class, neg_class, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in ks.test(pos_class, neg_class, alternative = &quot;greater&quot;): cannot
+## compute exact p-value with ties</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  pos_class and neg_class
+## D^+ = 0, p-value = 1
+## alternative hypothesis: the CDF of x lies above that of y</code></pre>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="mo-hinh-hi-quy-logistic.html#cb519-1"></a><span class="kw">data.frame</span>(pos_class, neg_class) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb519-2"><a href="mo-hinh-hi-quy-logistic.html#cb519-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb519-3"><a href="mo-hinh-hi-quy-logistic.html#cb519-3"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(pos_class), <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
+<span id="cb519-4"><a href="mo-hinh-hi-quy-logistic.html#cb519-4"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(neg_class), <span class="dt">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>) <span class="op">+</span></span>
+<span id="cb519-5"><a href="mo-hinh-hi-quy-logistic.html#cb519-5"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">0.5</span>, <span class="dt">y =</span> <span class="fl">0.5</span>, <span class="dt">label =</span> <span class="st">&quot;KS = 0.6&quot;</span>) <span class="op">+</span></span>
+<span id="cb519-6"><a href="mo-hinh-hi-quy-logistic.html#cb519-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code>## Warning: package &#39;StatMeasures&#39; was built under R version 3.4.4</code></pre>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="mo-hinh-hi-quy-logistic.html#cb521-1"></a>result<span class="op">$</span>ksTable</span></code></pre></div>
+<pre><code>##   dec total responders nonresponders cumResponders cumNonresponders
+## 1   1     1          1             0             1                0
+## 2   2     1          1             0             2                0
+## 3   4     2          1             1             3                1
+## 4   5     1          1             0             4                1
+## 5   7     2          1             1             5                2
+## 6   8     1          0             1             5                3
+## 7   9     1          0             1             5                4
+## 8  10     1          0             1             5                5
+##   perCumResponders perCumNonresponders split
+## 1               20                   0    20
+## 2               40                   0    40
+## 3               60                  20    40
+## 4               80                  20    60
+## 5              100                  40    60
+## 6              100                  60    40
+## 7              100                  80    20
+## 8              100                 100     0</code></pre>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="mo-hinh-hi-quy-logistic.html#cb523-1"></a>result<span class="op">$</span>ks <span class="op">%&gt;%</span><span class="st"> </span>print</span></code></pre></div>
+<pre><code>## [1] 60</code></pre>
+<hr />
+<p>Trong bốn nhóm chỉ số đánh giá chất lượng mô hình đã trình bày ở trên, nhóm chỉ số AUC, Gain và Lift là quan trọng nhất khi dự báo trong thực tế, đặc biệt là khi score khách hàng trong chiến dịch marketing, bán chéo, giảm thiểu khách hàng churn. Khi xây dựng các mô hình dự báo nợ xấu, phê duyệt tín dụng, ta cần sử dụng cả 4 nhóm chỉ số trên để đánh giá hiệu quả mô hình. Đặc biệt, nếu xây dựng mô hình score-card, ta còn phải sử dụng 1 số kỹ thuật khác để có thể xây dựng hệ thống score-card hiệu quả. Chi tiết phần score card sẽ được trình bày trong chương tiếp theo.</p>
+</div>
+</div>
+<div id="thc-hanh" class="section level2">
+<h2><span class="header-section-number">10.5</span> Thực hành</h2>
+<div id="d-liu" class="section level3">
+<h3><span class="header-section-number">10.5.1</span> Dữ liệu</h3>
+<p>Dùng gói dữ liệu Default có sẵn trong R, bao gồm thông tin của 10,000 khách hàng sử dụng thẻ tín dụng.</p>
+<p>Giải thích các biến:</p>
+<ul>
+<li>Default: Yes/No (khách hàng có nợ xấu/không có nợ xấu)</li>
+<li>Student: Yes/No (khách hàng là sinh viên/không phải là sinh viên)</li>
+<li>Balance: Dư nợ TB còn lại của KH sau khi trả tiền hàng tháng.</li>
+<li>Income: Thu nhập của khách hàng</li>
+</ul>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="mo-hinh-hi-quy-logistic.html#cb525-1"></a>data &lt;-<span class="st"> </span>Default</span>
+<span id="cb525-2"><a href="mo-hinh-hi-quy-logistic.html#cb525-2"></a>data <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
+<pre><code>##   default student   balance    income
+## 1      No      No  729.5265 44361.625
+## 2      No     Yes  817.1804 12106.135
+## 3      No      No 1073.5492 31767.139
+## 4      No      No  529.2506 35704.494
+## 5      No      No  785.6559 38463.496
+## 6      No     Yes  919.5885  7491.559</code></pre>
+</div>
+<div id="xay-dng-mo-hinh-tren-tp-d-liu-gc" class="section level3">
+<h3><span class="header-section-number">10.5.2</span> Xây dựng mô hình trên tập dữ liệu gốc</h3>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="mo-hinh-hi-quy-logistic.html#cb527-1"></a>glm.fit1 &lt;-<span class="st"> </span><span class="kw">glm</span>(default <span class="op">~</span><span class="st"> </span>., </span>
+<span id="cb527-2"><a href="mo-hinh-hi-quy-logistic.html#cb527-2"></a>                <span class="dt">data =</span> data, </span>
+<span id="cb527-3"><a href="mo-hinh-hi-quy-logistic.html#cb527-3"></a>                <span class="dt">family =</span> binomial)</span>
+<span id="cb527-4"><a href="mo-hinh-hi-quy-logistic.html#cb527-4"></a>glm.fit1 <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = default ~ ., family = binomial, data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.4691  -0.1418  -0.0557  -0.0203   3.7383  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.087e+01  4.923e-01 -22.080  &lt; 2e-16 ***
+## studentYes  -6.468e-01  2.363e-01  -2.738  0.00619 ** 
+## balance      5.737e-03  2.319e-04  24.738  &lt; 2e-16 ***
+## income       3.033e-06  8.203e-06   0.370  0.71152    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2920.6  on 9999  degrees of freedom
+## Residual deviance: 1571.5  on 9996  degrees of freedom
+## AIC: 1579.5
+## 
+## Number of Fisher Scoring iterations: 8</code></pre>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="mo-hinh-hi-quy-logistic.html#cb529-1"></a>glm.fit2 &lt;-<span class="st"> </span><span class="kw">step</span>(glm.fit1)</span></code></pre></div>
+<pre><code>## Start:  AIC=1579.54
+## default ~ student + balance + income
+## 
+##           Df Deviance    AIC
+## - income   1   1571.7 1577.7
+## &lt;none&gt;         1571.5 1579.5
+## - student  1   1579.0 1585.0
+## - balance  1   2907.5 2913.5
+## 
+## Step:  AIC=1577.68
+## default ~ student + balance
+## 
+##           Df Deviance    AIC
+## &lt;none&gt;         1571.7 1577.7
+## - student  1   1596.5 1600.5
+## - balance  1   2908.7 2912.7</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="mo-hinh-hi-quy-logistic.html#cb531-1"></a>glm.fit2 <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = default ~ student + balance, family = binomial, 
+##     data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.4578  -0.1422  -0.0559  -0.0203   3.7435  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.075e+01  3.692e-01 -29.116  &lt; 2e-16 ***
+## studentYes  -7.149e-01  1.475e-01  -4.846 1.26e-06 ***
+## balance      5.738e-03  2.318e-04  24.750  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2920.6  on 9999  degrees of freedom
+## Residual deviance: 1571.7  on 9997  degrees of freedom
+## AIC: 1577.7
+## 
+## Number of Fisher Scoring iterations: 8</code></pre>
+<p>Giải thích:</p>
+<ul>
+<li>Beta(balance) &gt; 0: Balance và XS có nợ xấu của KH có quan hệ cùng chiều (cái này tăng thì cái kia tăng).</li>
+</ul>
+<p>Beta(balance) = 0.0057: Balance tăng 1 đơn vị -&gt; Ln(Odds) tăng 0.0057 đơn vị.</p>
+<ul>
+<li>Beta(studentYes) &lt; 0: KH là sinh viên có XS có nợ xấu thấp hơn so với KH ko là sinh viên.</li>
+</ul>
+<p>Giả sử KH B có balance = 1000$:</p>
+<p><span class="math display">\[Pr(default=Yes|student=Yes)=\frac{e^{-10.75-0.7149*1+0.0057*1000}}{1+e^{-10.75-0.7149*1+0.0057*1000}}= 0.003\]</span>
+<span class="math display">\[Pr(default=Yes|student=No)=\frac{e^{-10.75-0.7149*0+0.0057*1000}}{1+e^{-10.75-0.7149*0+0.0057*1000}}= 0.006\]</span></p>
+</div>
+<div id="xay-dng-mo-hinh-tren-hai-tp-train-va-test" class="section level3">
+<h3><span class="header-section-number">10.5.3</span> Xây dựng mô hình trên hai tập train và test</h3>
+<div id="chia-tp-traintest" class="section level4">
+<h4><span class="header-section-number">10.5.3.1</span> Chia tập train/test</h4>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="mo-hinh-hi-quy-logistic.html#cb533-1"></a><span class="co">#chia tập train/test</span></span>
+<span id="cb533-2"><a href="mo-hinh-hi-quy-logistic.html#cb533-2"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb533-3"><a href="mo-hinh-hi-quy-logistic.html#cb533-3"></a>train &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">nrow</span>(data), <span class="fl">0.7</span> <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(data))  </span>
+<span id="cb533-4"><a href="mo-hinh-hi-quy-logistic.html#cb533-4"></a>df.train &lt;-<span class="st"> </span>data[train,]            <span class="co"># tập train</span></span>
+<span id="cb533-5"><a href="mo-hinh-hi-quy-logistic.html#cb533-5"></a>df.test &lt;-<span class="st"> </span>data[<span class="op">-</span>train,]        <span class="co"># tập test</span></span>
+<span id="cb533-6"><a href="mo-hinh-hi-quy-logistic.html#cb533-6"></a></span>
+<span id="cb533-7"><a href="mo-hinh-hi-quy-logistic.html#cb533-7"></a>df.train <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>##  default    student       balance           income     
+##  No :6766   No :4952   Min.   :   0.0   Min.   : 2541  
+##  Yes: 234   Yes:2048   1st Qu.: 474.6   1st Qu.:21436  
+##                        Median : 819.1   Median :34646  
+##                        Mean   : 831.7   Mean   :33609  
+##                        3rd Qu.:1157.8   3rd Qu.:43826  
+##                        Max.   :2654.3   Max.   :73554</code></pre>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="mo-hinh-hi-quy-logistic.html#cb535-1"></a>df.test <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>##  default    student       balance           income     
+##  No :2901   No :2104   Min.   :   0.0   Min.   :  772  
+##  Yes:  99   Yes: 896   1st Qu.: 495.1   1st Qu.:20962  
+##                        Median : 831.3   Median :34396  
+##                        Mean   : 844.0   Mean   :33303  
+##                        3rd Qu.:1177.5   3rd Qu.:43751  
+##                        Max.   :2502.7   Max.   :70022</code></pre>
+</div>
+<div id="xay-dng-mo-hinh" class="section level4">
+<h4><span class="header-section-number">10.5.3.2</span> Xây dựng mô hình</h4>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="mo-hinh-hi-quy-logistic.html#cb537-1"></a>fit.logit &lt;-<span class="st"> </span><span class="kw">glm</span>(default<span class="op">~</span>., <span class="dt">data =</span> df.train, <span class="dt">family =</span> binomial)</span>
+<span id="cb537-2"><a href="mo-hinh-hi-quy-logistic.html#cb537-2"></a></span>
+<span id="cb537-3"><a href="mo-hinh-hi-quy-logistic.html#cb537-3"></a><span class="co">#giảm biến ko có ý nghĩa thống kê</span></span>
+<span id="cb537-4"><a href="mo-hinh-hi-quy-logistic.html#cb537-4"></a>logit.fit.reduced &lt;-<span class="st"> </span><span class="kw">step</span>(fit.logit)</span></code></pre></div>
+<pre><code>## Start:  AIC=1078.68
+## default ~ student + balance + income
+## 
+##           Df Deviance    AIC
+## - income   1   1070.7 1076.7
+## &lt;none&gt;         1070.7 1078.7
+## - student  1   1076.2 1082.2
+## - balance  1   2041.2 2047.2
+## 
+## Step:  AIC=1076.74
+## default ~ student + balance
+## 
+##           Df Deviance    AIC
+## &lt;none&gt;         1070.7 1076.7
+## - student  1   1088.7 1092.7
+## - balance  1   2042.7 2046.7</code></pre>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="mo-hinh-hi-quy-logistic.html#cb539-1"></a>logit.fit.reduced <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = default ~ student + balance, family = binomial, 
+##     data = df.train)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.5097  -0.1357  -0.0522  -0.0184   3.7777  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.098e+01  4.539e-01 -24.185  &lt; 2e-16 ***
+## studentYes  -7.372e-01  1.787e-01  -4.125 3.71e-05 ***
+## balance      5.890e-03  2.843e-04  20.716  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2050.5  on 6999  degrees of freedom
+## Residual deviance: 1070.7  on 6997  degrees of freedom
+## AIC: 1076.7
+## 
+## Number of Fisher Scoring iterations: 8</code></pre>
+</div>
+<div id="d-bao-xac-sut-co-n-xu-tren-tp-test" class="section level4">
+<h4><span class="header-section-number">10.5.3.3</span> Dự báo xác suất có nợ xấu trên tập test</h4>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="mo-hinh-hi-quy-logistic.html#cb541-1"></a>prob.test &lt;-<span class="st"> </span><span class="kw">predict</span>(logit.fit.reduced, df.test, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb541-2"><a href="mo-hinh-hi-quy-logistic.html#cb541-2"></a></span>
+<span id="cb541-3"><a href="mo-hinh-hi-quy-logistic.html#cb541-3"></a><span class="co">#phân loại (chọn cutoff = 0.5)</span></span>
+<span id="cb541-4"><a href="mo-hinh-hi-quy-logistic.html#cb541-4"></a>class.pred.test &lt;-<span class="st"> </span><span class="kw">factor</span>(prob.test <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, </span>
+<span id="cb541-5"><a href="mo-hinh-hi-quy-logistic.html#cb541-5"></a>                          <span class="dt">levels =</span> <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>), </span>
+<span id="cb541-6"><a href="mo-hinh-hi-quy-logistic.html#cb541-6"></a>                          <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))</span>
+<span id="cb541-7"><a href="mo-hinh-hi-quy-logistic.html#cb541-7"></a></span>
+<span id="cb541-8"><a href="mo-hinh-hi-quy-logistic.html#cb541-8"></a><span class="co">#kết quả trên tập test</span></span>
+<span id="cb541-9"><a href="mo-hinh-hi-quy-logistic.html#cb541-9"></a>prob.test.df &lt;-<span class="st"> </span>prob.test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>()</span>
+<span id="cb541-10"><a href="mo-hinh-hi-quy-logistic.html#cb541-10"></a><span class="kw">names</span>(prob.test.df)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;prob.default&quot;</span></span>
+<span id="cb541-11"><a href="mo-hinh-hi-quy-logistic.html#cb541-11"></a></span>
+<span id="cb541-12"><a href="mo-hinh-hi-quy-logistic.html#cb541-12"></a><span class="co">#Lụa chọn điểm cutoff là 0.5</span></span>
+<span id="cb541-13"><a href="mo-hinh-hi-quy-logistic.html#cb541-13"></a>prob.test.df &lt;-<span class="st"> </span>prob.test.df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb541-14"><a href="mo-hinh-hi-quy-logistic.html#cb541-14"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">class =</span> <span class="kw">as.factor</span>(<span class="kw">ifelse</span>(prob.default <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>, <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)))</span>
+<span id="cb541-15"><a href="mo-hinh-hi-quy-logistic.html#cb541-15"></a>prob.test.df<span class="op">$</span>student &lt;-<span class="st"> </span>df.test<span class="op">$</span>student</span>
+<span id="cb541-16"><a href="mo-hinh-hi-quy-logistic.html#cb541-16"></a>prob.test.df<span class="op">$</span>balance &lt;-<span class="st"> </span>df.test<span class="op">$</span>balance</span>
+<span id="cb541-17"><a href="mo-hinh-hi-quy-logistic.html#cb541-17"></a>prob.test.df<span class="op">$</span>income &lt;-<span class="st"> </span>df.test<span class="op">$</span>income</span>
+<span id="cb541-18"><a href="mo-hinh-hi-quy-logistic.html#cb541-18"></a></span>
+<span id="cb541-19"><a href="mo-hinh-hi-quy-logistic.html#cb541-19"></a>prob.test.df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb541-20"><a href="mo-hinh-hi-quy-logistic.html#cb541-20"></a><span class="st">  </span><span class="kw">select</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb541-21"><a href="mo-hinh-hi-quy-logistic.html#cb541-21"></a><span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    student    balance   income prob.default class
+## 1      Yes  703.06307 17692.66 5.136338e-04    No
+## 2      Yes 1026.15356 25393.77 3.434202e-03    No
+## 3       No    7.06953 48711.64 1.781314e-05    No
+## 4       No    0.00000 49250.46 1.708667e-05    No
+## 5       No  421.89690 37323.76 2.050024e-04    No
+## 6      Yes 1068.45464 13638.70 4.401567e-03    No
+## 7       No  708.81398 38295.23 1.109890e-03    No
+## 8      Yes  521.84148 10316.34 1.767045e-04    No
+## 9       No 1803.17026 36192.63 4.117378e-01    No
+## 10      No  800.24334 19051.32 1.900229e-03    No</code></pre>
+</div>
+<div id="anh-gia-cht-lung-d-bao-tren-tp-test" class="section level4">
+<h4><span class="header-section-number">10.5.3.4</span> Đánh giá chất lượng dự báo trên tập test</h4>
+<div id="confusion-matrix-1" class="section level5">
+<h5><span class="header-section-number">10.5.3.4.1</span> Confusion matrix</h5>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="mo-hinh-hi-quy-logistic.html#cb543-1"></a><span class="co">#conf.matrix</span></span>
+<span id="cb543-2"><a href="mo-hinh-hi-quy-logistic.html#cb543-2"></a>logit.perf &lt;-<span class="st"> </span><span class="kw">table</span>(df.test<span class="op">$</span>default, class.pred.test)</span>
+<span id="cb543-3"><a href="mo-hinh-hi-quy-logistic.html#cb543-3"></a>logit.perf</span></code></pre></div>
+<pre><code>##      class.pred.test
+##         No  Yes
+##   No  2889   12
+##   Yes   71   28</code></pre>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="mo-hinh-hi-quy-logistic.html#cb545-1"></a><span class="co">###performance</span></span>
+<span id="cb545-2"><a href="mo-hinh-hi-quy-logistic.html#cb545-2"></a><span class="co">#function to perform model</span></span>
+<span id="cb545-3"><a href="mo-hinh-hi-quy-logistic.html#cb545-3"></a>model.performance &lt;-<span class="st"> </span><span class="cf">function</span>(confusion_matrix) {</span>
+<span id="cb545-4"><a href="mo-hinh-hi-quy-logistic.html#cb545-4"></a>  a &lt;-<span class="st"> </span>confusion_matrix[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb545-5"><a href="mo-hinh-hi-quy-logistic.html#cb545-5"></a>  b &lt;-<span class="st"> </span>confusion_matrix[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb545-6"><a href="mo-hinh-hi-quy-logistic.html#cb545-6"></a>  c &lt;-<span class="st"> </span>confusion_matrix[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb545-7"><a href="mo-hinh-hi-quy-logistic.html#cb545-7"></a>  d &lt;-<span class="st"> </span>confusion_matrix[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb545-8"><a href="mo-hinh-hi-quy-logistic.html#cb545-8"></a>  </span>
+<span id="cb545-9"><a href="mo-hinh-hi-quy-logistic.html#cb545-9"></a>  recall &lt;-<span class="st"> </span>c<span class="op">/</span>(c<span class="op">+</span>d)</span>
+<span id="cb545-10"><a href="mo-hinh-hi-quy-logistic.html#cb545-10"></a>  precision &lt;-<span class="st"> </span>c<span class="op">/</span>(b<span class="op">+</span>c)</span>
+<span id="cb545-11"><a href="mo-hinh-hi-quy-logistic.html#cb545-11"></a>  accuracy &lt;-<span class="st"> </span>(a<span class="op">+</span>c)<span class="op">/</span>(a<span class="op">+</span>b<span class="op">+</span>c<span class="op">+</span>d)</span>
+<span id="cb545-12"><a href="mo-hinh-hi-quy-logistic.html#cb545-12"></a>  </span>
+<span id="cb545-13"><a href="mo-hinh-hi-quy-logistic.html#cb545-13"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;recall :&#39;</span>,<span class="kw">round</span>(recall,<span class="dv">2</span>)))</span>
+<span id="cb545-14"><a href="mo-hinh-hi-quy-logistic.html#cb545-14"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;precision :&#39;</span>,<span class="kw">round</span>(precision,<span class="dv">2</span>)))</span>
+<span id="cb545-15"><a href="mo-hinh-hi-quy-logistic.html#cb545-15"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;accuracy :&#39;</span>,<span class="kw">round</span>(accuracy,<span class="dv">2</span>)))</span>
+<span id="cb545-16"><a href="mo-hinh-hi-quy-logistic.html#cb545-16"></a>}</span>
+<span id="cb545-17"><a href="mo-hinh-hi-quy-logistic.html#cb545-17"></a></span>
+<span id="cb545-18"><a href="mo-hinh-hi-quy-logistic.html#cb545-18"></a><span class="kw">model.performance</span>(logit.perf)</span></code></pre></div>
+<pre><code>## [1] &quot;recall : 0.28&quot;
+## [1] &quot;precision : 0.7&quot;
+## [1] &quot;accuracy : 0.97&quot;</code></pre>
+</div>
+<div id="roc-auc" class="section level5">
+<h5><span class="header-section-number">10.5.3.4.2</span> ROC &amp; AUC</h5>
+<p>Tất cả các chỉ số về chất lượng mô hình đều có thể sử dụng với package <code>ROCR</code> thông qua hai bước</p>
+<ul>
+<li>Bước 1: Tạo object dự báo <code>pred &lt;- prediction(prob_value, actual_value)</code>. Object này sẽ chứa 1 loạt các chỉ số của confusion matrix với từng điểm cut-off</li>
+<li>Bước 2: Tính toán các chỉ số với hàm <code>performance</code> với giá trị trục x và y mong muốn</li>
+</ul>
+<p><strong>Lưu ý</strong>: Object <code>pred</code> được lưu dưới dạng S4 class. Để chiết xuất dữ liệu cần dùng toán tử <code>@</code> thay cho <code>$</code> như <code>S3</code></p>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="mo-hinh-hi-quy-logistic.html#cb547-1"></a><span class="co"># Bước 1: Tạo object pred</span></span>
+<span id="cb547-2"><a href="mo-hinh-hi-quy-logistic.html#cb547-2"></a>pred &lt;-<span class="st"> </span><span class="kw">prediction</span>(prob.test, df.test<span class="op">$</span>default)</span>
+<span id="cb547-3"><a href="mo-hinh-hi-quy-logistic.html#cb547-3"></a>pred <span class="op">%&gt;%</span><span class="st"> </span>str</span></code></pre></div>
+<pre><code>## Formal class &#39;prediction&#39; [package &quot;ROCR&quot;] with 11 slots
+##   ..@ predictions:List of 1
+##   .. ..$ : Named num [1:3000] 1.25e-03 9.43e-03 3.86e-04 1.71e-05 1.71e-05 ...
+##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:3000] &quot;1&quot; &quot;3&quot; &quot;4&quot; &quot;10&quot; ...
+##   ..@ labels     :List of 1
+##   .. ..$ : Ord.factor w/ 2 levels &quot;No&quot;&lt;&quot;Yes&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##   ..@ cutoffs    :List of 1
+##   .. ..$ : Named num [1:2863] Inf 0.954 0.942 0.913 0.895 ...
+##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2863] &quot;&quot; &quot;1161&quot; &quot;7438&quot; &quot;3977&quot; ...
+##   ..@ fp         :List of 1
+##   .. ..$ : num [1:2863] 0 0 0 1 1 1 1 1 1 2 ...
+##   ..@ tp         :List of 1
+##   .. ..$ : num [1:2863] 0 1 2 2 3 4 5 6 7 7 ...
+##   ..@ tn         :List of 1
+##   .. ..$ : num [1:2863] 2901 2901 2901 2900 2900 ...
+##   ..@ fn         :List of 1
+##   .. ..$ : num [1:2863] 99 98 97 97 96 95 94 93 92 92 ...
+##   ..@ n.pos      :List of 1
+##   .. ..$ : int 99
+##   ..@ n.neg      :List of 1
+##   .. ..$ : int 2901
+##   ..@ n.pos.pred :List of 1
+##   .. ..$ : num [1:2863] 0 1 2 3 4 5 6 7 8 9 ...
+##   ..@ n.neg.pred :List of 1
+##   .. ..$ : num [1:2863] 3000 2999 2998 2997 2996 ...</code></pre>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="mo-hinh-hi-quy-logistic.html#cb549-1"></a><span class="co"># Bước 2: Tạo object tính toán prediction cho AUC</span></span>
+<span id="cb549-2"><a href="mo-hinh-hi-quy-logistic.html#cb549-2"></a>roc &lt;-<span class="st"> </span><span class="kw">performance</span>(pred, <span class="dt">x.measure =</span> <span class="st">&quot;fpr&quot;</span>, <span class="dt">measure =</span> <span class="st">&quot;tpr&quot;</span>)</span>
+<span id="cb549-3"><a href="mo-hinh-hi-quy-logistic.html#cb549-3"></a></span>
+<span id="cb549-4"><a href="mo-hinh-hi-quy-logistic.html#cb549-4"></a><span class="co"># Xây dựng hàm để convert giá trị sang data.frame</span></span>
+<span id="cb549-5"><a href="mo-hinh-hi-quy-logistic.html#cb549-5"></a>get_df &lt;-<span class="st"> </span><span class="cf">function</span>(pred){</span>
+<span id="cb549-6"><a href="mo-hinh-hi-quy-logistic.html#cb549-6"></a>  pred_new &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> pred<span class="op">@</span>x.values <span class="op">%&gt;%</span><span class="st"> </span>unlist,</span>
+<span id="cb549-7"><a href="mo-hinh-hi-quy-logistic.html#cb549-7"></a>                         <span class="dt">y =</span> pred<span class="op">@</span>y.values <span class="op">%&gt;%</span><span class="st"> </span>unlist)</span>
+<span id="cb549-8"><a href="mo-hinh-hi-quy-logistic.html#cb549-8"></a>  <span class="kw">return</span>(pred_new)</span>
+<span id="cb549-9"><a href="mo-hinh-hi-quy-logistic.html#cb549-9"></a>}</span>
+<span id="cb549-10"><a href="mo-hinh-hi-quy-logistic.html#cb549-10"></a></span>
+<span id="cb549-11"><a href="mo-hinh-hi-quy-logistic.html#cb549-11"></a><span class="kw">get_df</span>(roc) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb549-12"><a href="mo-hinh-hi-quy-logistic.html#cb549-12"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
+<span id="cb549-13"><a href="mo-hinh-hi-quy-logistic.html#cb549-13"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb549-14"><a href="mo-hinh-hi-quy-logistic.html#cb549-14"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb549-15"><a href="mo-hinh-hi-quy-logistic.html#cb549-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;FPR&quot;</span>,</span>
+<span id="cb549-16"><a href="mo-hinh-hi-quy-logistic.html#cb549-16"></a>       <span class="dt">y =</span> <span class="st">&quot;TPR&quot;</span>,</span>
+<span id="cb549-17"><a href="mo-hinh-hi-quy-logistic.html#cb549-17"></a>       <span class="dt">title =</span> <span class="st">&quot;ROC curve&quot;</span>)</span></code></pre></div>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="mo-hinh-hi-quy-logistic.html#cb550-1"></a><span class="co"># Tính chỉ số AUC</span></span>
+<span id="cb550-2"><a href="mo-hinh-hi-quy-logistic.html#cb550-2"></a>auc_test &lt;-<span class="st"> </span><span class="kw">performance</span>(pred, <span class="st">&quot;auc&quot;</span>, <span class="st">&quot;cutoff&quot;</span>)</span>
+<span id="cb550-3"><a href="mo-hinh-hi-quy-logistic.html#cb550-3"></a>auc_test<span class="op">@</span>y.values <span class="op">%&gt;%</span><span class="st"> </span>unlist</span></code></pre></div>
+<pre><code>## [1] 0.9402992</code></pre>
+</div>
+<div id="gain-va-lift-1" class="section level5">
+<h5><span class="header-section-number">10.5.3.4.3</span> Gain và Lift</h5>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="mo-hinh-hi-quy-logistic.html#cb552-1"></a><span class="co"># GAIN charts on testing set</span></span>
+<span id="cb552-2"><a href="mo-hinh-hi-quy-logistic.html#cb552-2"></a>gain_df &lt;-<span class="st"> </span><span class="kw">performance</span>(pred, <span class="st">&quot;tpr&quot;</span>, <span class="st">&quot;rpp&quot;</span>)</span>
+<span id="cb552-3"><a href="mo-hinh-hi-quy-logistic.html#cb552-3"></a></span>
+<span id="cb552-4"><a href="mo-hinh-hi-quy-logistic.html#cb552-4"></a><span class="kw">get_df</span>(gain_df) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb552-5"><a href="mo-hinh-hi-quy-logistic.html#cb552-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
+<span id="cb552-6"><a href="mo-hinh-hi-quy-logistic.html#cb552-6"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb552-7"><a href="mo-hinh-hi-quy-logistic.html#cb552-7"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb552-8"><a href="mo-hinh-hi-quy-logistic.html#cb552-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Gain chart&quot;</span>,</span>
+<span id="cb552-9"><a href="mo-hinh-hi-quy-logistic.html#cb552-9"></a>       <span class="dt">x =</span> <span class="st">&quot;RPP&quot;</span>,</span>
+<span id="cb552-10"><a href="mo-hinh-hi-quy-logistic.html#cb552-10"></a>       <span class="dt">y =</span> <span class="st">&quot;TPR&quot;</span>)</span></code></pre></div>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="mo-hinh-hi-quy-logistic.html#cb553-1"></a><span class="co"># LIFT charts on testing set</span></span>
+<span id="cb553-2"><a href="mo-hinh-hi-quy-logistic.html#cb553-2"></a>lift_df &lt;-<span class="st"> </span><span class="kw">performance</span>(pred, <span class="st">&quot;lift&quot;</span>, <span class="st">&quot;rpp&quot;</span>)</span>
+<span id="cb553-3"><a href="mo-hinh-hi-quy-logistic.html#cb553-3"></a><span class="kw">get_df</span>(lift_df) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb553-4"><a href="mo-hinh-hi-quy-logistic.html#cb553-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
+<span id="cb553-5"><a href="mo-hinh-hi-quy-logistic.html#cb553-5"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb553-6"><a href="mo-hinh-hi-quy-logistic.html#cb553-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb553-7"><a href="mo-hinh-hi-quy-logistic.html#cb553-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Lift chart&quot;</span>,</span>
+<span id="cb553-8"><a href="mo-hinh-hi-quy-logistic.html#cb553-8"></a>       <span class="dt">x =</span> <span class="st">&quot;RPP&quot;</span>,</span>
+<span id="cb553-9"><a href="mo-hinh-hi-quy-logistic.html#cb553-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Lift&quot;</span>)</span></code></pre></div>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="ks-statistics" class="section level5">
+<h5><span class="header-section-number">10.5.3.4.4</span> KS statistics</h5>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="mo-hinh-hi-quy-logistic.html#cb554-1"></a>lift_df &lt;-<span class="st"> </span><span class="kw">performance</span>(pred, <span class="st">&quot;tpr&quot;</span>, <span class="st">&quot;fpr&quot;</span>)</span>
+<span id="cb554-2"><a href="mo-hinh-hi-quy-logistic.html#cb554-2"></a>lift_df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb554-3"><a href="mo-hinh-hi-quy-logistic.html#cb554-3"></a><span class="st">  </span>get_df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb554-4"><a href="mo-hinh-hi-quy-logistic.html#cb554-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ks =</span> <span class="kw">abs</span>(x <span class="op">-</span><span class="st"> </span>y)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb554-5"><a href="mo-hinh-hi-quy-logistic.html#cb554-5"></a><span class="st">  </span><span class="kw">pull</span>(ks) <span class="op">%&gt;%</span><span class="st"> </span>max</span></code></pre></div>
+<pre><code>## [1] 0.7445917</code></pre>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="mo-hinh-hi-quy-logistic.html#cb556-1"></a><span class="kw">data.frame</span>(<span class="dt">y =</span> (df.test<span class="op">$</span>default <span class="op">%&gt;%</span><span class="st"> </span>as.numeric) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, </span>
+<span id="cb556-2"><a href="mo-hinh-hi-quy-logistic.html#cb556-2"></a>           <span class="dt">prob =</span> prob.test) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb556-3"><a href="mo-hinh-hi-quy-logistic.html#cb556-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(prob, <span class="dt">col =</span> <span class="kw">as.factor</span>(y))) <span class="op">+</span></span>
+<span id="cb556-4"><a href="mo-hinh-hi-quy-logistic.html#cb556-4"></a><span class="st">  </span><span class="kw">stat_ecdf</span>() <span class="op">+</span></span>
+<span id="cb556-5"><a href="mo-hinh-hi-quy-logistic.html#cb556-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb556-6"><a href="mo-hinh-hi-quy-logistic.html#cb556-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb556-7"><a href="mo-hinh-hi-quy-logistic.html#cb556-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">tittle =</span> <span class="st">&quot;CDF &amp; KS statistics&quot;</span>)</span></code></pre></div>
+<p><img src="42-logistic-regression_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+</div>
+<div id="xay-dng-mo-hinh-logistics-theo-machine-learning" class="section level2">
+<h2><span class="header-section-number">10.6</span> Xây dựng mô hình Logistics theo Machine Learning</h2>
+<p><strong>Cost function</strong>: Đối với mô hình logistic, nếu sử dụng cost function tương tự như như hồi quy tuyến tính, chúng ta sẽ gặp vấn đề về bài toán tối ưu. Hàm tối ưu sẽ không thể tìm được điểm nhỏ nhất do tồn tại vô số các điểm “local optimization”. Do đó, ta phải xây dựng một hàm tối ưu mới cho bài toán phân loại của logistic như sau.</p>
+<p><span class="math display">\[Cost(h_\theta(x), y)\cases{
+-log(h_\theta(x) \text{ với } y = 1 \\
+-log(1-h_\theta(x)) \text{ với } y = 0)
+}\]</span></p>
+<p>Với hàm tối ưu trên, có 1 số điểm lưu ý như sau.</p>
+<ul>
+<li>Nếu y = 1 và <span class="math inline">\(h_\theta = 1\)</span> nghĩa là mô hình dự báo chính xác với trường hợp xảy ra sự kiện, cost = 0</li>
+<li>Tuy nhiên, nếu y = 1 và <span class="math inline">\(h_\theta \rightarrow 0\)</span>, nghĩa là mô hình dự báo không xảy ra sự kiện (y = 0) trong khi thực tế xảy ra, <span class="math inline">\(cost \rightarrow \infty\)</span>.</li>
+</ul>
+<p>Trong thực tế, hàm tối ưu được đơn giản hóa như sau.</p>
+<p><span class="math display">\[Cost(h_\theta, y) = -y log(h_\theta(x)) - (1-y)log(1-h_\theta(y))\]</span></p>
+<p>Với từng giá trị y = 0 hoặc y = 1, hàm tối ưu quay trở lại như bình thường.</p>
+<p>Đối với hàm tối ưu như trên, thuật toán <em>gradient descent</em> quay trở lại tương tự như hàm hồi quy tuyến tính.</p>
+<p><strong>Tối ưu hóa</strong>:</p>
+<p>Bên cạnh thuật toán gradient descent, còn có các thuật toán khác giúp tối ưu hóa hàm tối ưu (cost function) với tốc độ nhanh hơn và không cần phải lựa chọn tham số <span class="math inline">\(\alpha\)</span> (learning rate) thủ công. Một số thuật toán có thể kể đến như:</p>
+<ul>
+<li>Conjungate gradient</li>
+<li>BFGS</li>
+<li>L-BFGS</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mo-hinh-ols.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cay-quyt-inh.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"split_by": "rmd"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

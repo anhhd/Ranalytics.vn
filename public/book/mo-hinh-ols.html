@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 9 Mô hình OLS | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 9 Mô hình OLS | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 9 Mô hình OLS | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chương 9 Mô hình OLS | Phân tích dữ liệu thực tế với R" />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 9 Mô hình OLS | Phân tích dữ liệu thực tế với R" />
+  
+  <meta name="twitter:description" content="Chương 9 Mô hình OLS | Phân tích dữ liệu thực tế với R" />
+  
+
+<meta name="author" content="Hoàng Đức Anh" />
+
+
+<meta name="date" content="2019-07-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cac-nguyen-ly-d-bao.html">
+<link rel="next" href="mo-hinh-hi-quy-logistic.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích dữ liệu thực tế với R</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Kỹ thuật phân tích dữ liệu thực tế</b></span></li>
+<li class="chapter" data-level="1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><i class="fa fa-check"></i><b>1</b> Ngữ pháp của biến đổi dữ liệu với DPLYR</a><ul>
+<li class="chapter" data-level="1.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#gii-thiu-v-pipe-operator"><i class="fa fa-check"></i><b>1.1</b> Giới thiệu về pipe operator</a></li>
+<li class="chapter" data-level="1.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-co-ban-trong-dplyr"><i class="fa fa-check"></i><b>1.2</b> Các hàm cơ bản trong dplyr</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-truy-vn-d-liu"><i class="fa fa-check"></i><b>1.2.1</b> Nhóm câu lệnh truy vấn dữ liệu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-bin-i-d-liu"><i class="fa fa-check"></i><b>1.2.2</b> Nhóm câu lệnh biến đổi dữ liệu</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-ham-tng-hp-d-liu-vi-summarise"><i class="fa fa-check"></i><b>1.2.3</b> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-nang-cao-trong-dplyr"><i class="fa fa-check"></i><b>1.3</b> Các hàm nâng cao trong dplyr</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#iu-kin-phan-nhom-vi-case_when"><i class="fa fa-check"></i><b>1.3.1</b> Điều kiện phân nhóm với <code>case_when</code></a></li>
+<li class="chapter" data-level="1.3.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at"><i class="fa fa-check"></i><b>1.3.2</b> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if"><i class="fa fa-check"></i><b>1.3.3</b> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html"><i class="fa fa-check"></i><b>2</b> Phân rã và xoay chiều dữ liệu</a><ul>
+<li class="chapter" data-level="2.1" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#phan-ra-d-liu-thanh-dang-doc-vi-gather"><i class="fa fa-check"></i><b>2.1</b> Phân rã dữ liệu thành dạng dọc với <code>gather</code></a></li>
+<li class="chapter" data-level="2.2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#xoay-chiu-d-liu-vi-spread"><i class="fa fa-check"></i><b>2.2</b> Xoay chiều dữ liệu với <code>spread</code></a></li>
+<li class="chapter" data-level="2.3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#tach-mt-bin-thanh-nhiu-bin-vi-separate"><i class="fa fa-check"></i><b>2.3</b> Tách một biến thành nhiều biến với <code>separate</code></a></li>
+<li class="chapter" data-level="2.4" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#gp-nhiu-bin-thanh-mt-bin-vi-unite"><i class="fa fa-check"></i><b>2.4</b> Gộp nhiều biến thành một biến với <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html"><i class="fa fa-check"></i><b>3</b> Các chỉ số thống kê mô tả cơ bản</a><ul>
+<li class="chapter" data-level="3.1" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#correlation"><i class="fa fa-check"></i><b>3.1</b> Correlation</a></li>
+<li class="chapter" data-level="3.2" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#anova"><i class="fa fa-check"></i><b>3.2</b> ANOVA</a></li>
+<li class="chapter" data-level="3.3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#kim-inh-quan-h-chi-binh-phuong"><i class="fa fa-check"></i><b>3.3</b> Kiểm định quan hệ Chi-bình phương</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html"><i class="fa fa-check"></i><b>4</b> Lập trình hàm</a><ul>
+<li class="chapter" data-level="4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#quotes-vs.-unquotes"><i class="fa fa-check"></i><b>4.1</b> <strong>Quotes</strong> vs. <strong>Unquotes</strong></a></li>
+<li class="chapter" data-level="4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hp-dung-quo_name"><i class="fa fa-check"></i><b>4.2</b> Trường hợp dùng <code>quo_name</code></a></li>
+<li class="chapter" data-level="4.3" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hop-nhiu-bin"><i class="fa fa-check"></i><b>4.3</b> Trường họp nhiều biến</a></li>
+<li class="chapter" data-level="4.4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ng-dung"><i class="fa fa-check"></i><b>4.4</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ham-tinh-toan-tng-hp-nhiu-bin"><i class="fa fa-check"></i><b>4.4.1</b> Hàm tính toán tổng hợp nhiều biến</a></li>
+<li class="chapter" data-level="4.4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ve--thi-vi-ggplot2"><i class="fa fa-check"></i><b>4.4.2</b> Vẽ đồ thị với ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html"><i class="fa fa-check"></i><b>5</b> Lập trình chức năng hàm với purrr</a><ul>
+<li class="chapter" data-level="5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#nhom-ham-map"><i class="fa fa-check"></i><b>5.1</b> Nhóm hàm map</a></li>
+<li class="chapter" data-level="5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#sa-i-gia-tri-vi-modify"><i class="fa fa-check"></i><b>5.2</b> Sửa đổi giá trị với <code>modify</code></a></li>
+<li class="chapter" data-level="5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#tao-ham-nhanh-vi-as_mapper"><i class="fa fa-check"></i><b>5.3</b> Tạo hàm nhanh với <code>as_mapper</code></a></li>
+<li class="chapter" data-level="5.4" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#xay-dng-chui-cac-ham-lien-tip-vi-compose"><i class="fa fa-check"></i><b>5.4</b> Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></a></li>
+<li class="chapter" data-level="5.5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#ng-dung-1"><i class="fa fa-check"></i><b>5.5</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#bin-i-d-liu-vi-modify-va-map_df"><i class="fa fa-check"></i><b>5.5.1</b> Biến đổi dữ liệu với <code>modify</code> và <code>map_df</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-nhom-khac-nhau-cung-luc"><i class="fa fa-check"></i><b>5.5.2</b> Phân tích nhiều nhóm khác nhau cùng lúc</a></li>
+<li class="chapter" data-level="5.5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-bin-trong-dataframe-cung-luc"><i class="fa fa-check"></i><b>5.5.3</b> Phân tích nhiều biến trong dataframe cùng lúc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html"><i class="fa fa-check"></i><b>6</b> Biến đổi dữ liệu text</a><ul>
+<li class="chapter" data-level="6.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#gii-thiu"><i class="fa fa-check"></i><b>6.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="6.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#regular-expression"><i class="fa fa-check"></i><b>6.2</b> Regular expression</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#metadata"><i class="fa fa-check"></i><b>6.2.1</b> Metadata</a></li>
+<li class="chapter" data-level="6.2.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#sequences"><i class="fa fa-check"></i><b>6.2.2</b> Sequences</a></li>
+<li class="chapter" data-level="6.2.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#character-class"><i class="fa fa-check"></i><b>6.2.3</b> Character class</a></li>
+<li class="chapter" data-level="6.2.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#posix-class"><i class="fa fa-check"></i><b>6.2.4</b> POSIX class</a></li>
+<li class="chapter" data-level="6.2.5" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#quantifiers"><i class="fa fa-check"></i><b>6.2.5</b> Quantifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#cac-vi-du-tng-hp"><i class="fa fa-check"></i><b>6.3</b> Các ví dụ tổng hợp</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-1"><i class="fa fa-check"></i><b>6.3.1</b> Ví dụ 1</a></li>
+<li class="chapter" data-level="6.3.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-2"><i class="fa fa-check"></i><b>6.3.2</b> Ví dụ 2</a></li>
+<li class="chapter" data-level="6.3.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-3"><i class="fa fa-check"></i><b>6.3.3</b> Ví dụ 3</a></li>
+<li class="chapter" data-level="6.3.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-4"><i class="fa fa-check"></i><b>6.3.4</b> Ví dụ 4</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#tai-liu-tham-khao"><i class="fa fa-check"></i><b>6.4</b> Tài liệu tham khảo</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><a href="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><i class="fa fa-check"></i><b>7</b> Quản lý kết quả phân tích từ nhiều mô hình</a></li>
+<li class="chapter" data-level="8" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html"><i class="fa fa-check"></i><b>8</b> Các nguyên lý dự báo</a><ul>
+<li class="chapter" data-level="8.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#gii-thiu-1"><i class="fa fa-check"></i><b>8.1</b> Giới thiệu</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nhanh-trong-hoc-may-machine-learning"><i class="fa fa-check"></i><b>8.1.1</b> Các nhánh trong học máy (machine learning)</a></li>
+<li class="chapter" data-level="8.1.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cach-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>8.1.2</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="8.1.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#s-dung-mo-hinh"><i class="fa fa-check"></i><b>8.1.3</b> Sử dụng mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nguyen-ly-trong-d-bao"><i class="fa fa-check"></i><b>8.2</b> Các nguyên lý trong dự báo</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#reducible-vs.-irreducible-error"><i class="fa fa-check"></i><b>8.2.1</b> Reducible vs. irreducible error</a></li>
+<li class="chapter" data-level="8.2.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#kha-nang-giai-thich-va-kha-nang-d-bao"><i class="fa fa-check"></i><b>8.2.2</b> Khả năng giải thích và khả năng dự báo</a></li>
+<li class="chapter" data-level="8.2.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#mo-hinh-co-tham-s-cho-truc-hoc-khong-co-tham-s-cho-truc-parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>8.2.3</b> Mô hình có tham số cho trước hoặc không có tham số cho trước (Parametric vs. Nonparametric)</a></li>
+<li class="chapter" data-level="8.2.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#nguyen-ly-ch-u"><i class="fa fa-check"></i><b>8.2.4</b> Nguyên lý chữ U</a></li>
+<li class="chapter" data-level="8.2.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#bias-variance-trade-off"><i class="fa fa-check"></i><b>8.2.5</b> Bias Variance Trade-Off</a></li>
+<li class="chapter" data-level="8.2.6" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#overfitting-regularization"><i class="fa fa-check"></i><b>8.2.6</b> Overfitting &amp; regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#quy-trinh-xay-dng-mo-hinh-d-bao"><i class="fa fa-check"></i><b>8.3</b> Quy trình xây dựng mô hình dự báo</a></li>
+<li class="chapter" data-level="8.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#ensemble-methods"><i class="fa fa-check"></i><b>8.4</b> Ensemble methods</a></li>
+<li class="chapter" data-level="8.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#luu-y"><i class="fa fa-check"></i><b>8.5</b> Lưu ý</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html"><i class="fa fa-check"></i><b>9</b> Mô hình OLS</a><ul>
+<li class="chapter" data-level="9.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#gii-thiu-2"><i class="fa fa-check"></i><b>9.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="9.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#xay-dng-mo-hinh-co-ban"><i class="fa fa-check"></i><b>9.2</b> Xây dựng mô hình cơ bản</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#mo-hinh-hi-quy-on-bin"><i class="fa fa-check"></i><b>9.2.1</b> Mô hình hồi quy đơn biến</a></li>
+<li class="chapter" data-level="9.2.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#din-giai-mo-hinh"><i class="fa fa-check"></i><b>9.2.2</b> Diễn giải mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#anh-gia-cht-lung-mo-hinh"><i class="fa fa-check"></i><b>9.3</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#sai-s-cua-mo-hinh"><i class="fa fa-check"></i><b>9.3.1</b> Sai số của mô hình</a></li>
+<li class="chapter" data-level="9.3.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#r-binh-phuong-r2"><i class="fa fa-check"></i><b>9.3.2</b> R bình phương <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="9.3.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#f-statistic"><i class="fa fa-check"></i><b>9.3.3</b> F statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#d-bao"><i class="fa fa-check"></i><b>9.4</b> Dự báo</a></li>
+<li class="chapter" data-level="9.5" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#thut-toan-ti-uu-vi-gradient-decent"><i class="fa fa-check"></i><b>9.5</b> Thuật toán tối ưu với gradient decent</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html"><i class="fa fa-check"></i><b>10</b> Mô hình hồi quy logistic</a><ul>
+<li class="chapter" data-level="10.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cach-xay-dng-mo-hinh-1"><i class="fa fa-check"></i><b>10.1</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="10.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#vi-du-xay-dng-mo-hinh-on-gian"><i class="fa fa-check"></i><b>10.2</b> Ví dụ xây dựng mô hình đơn giản</a></li>
+<li class="chapter" data-level="10.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cac-chi-s-cn-quan-tam-khac"><i class="fa fa-check"></i><b>10.3</b> Các chỉ số cần quan tâm khác</a></li>
+<li class="chapter" data-level="10.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#anh-gia-cht-lung-mo-hinh-1"><i class="fa fa-check"></i><b>10.4</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#confusion-matrix"><i class="fa fa-check"></i><b>10.4.1</b> Confusion Matrix</a></li>
+<li class="chapter" data-level="10.4.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#roc"><i class="fa fa-check"></i><b>10.4.2</b> ROC</a></li>
+<li class="chapter" data-level="10.4.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#gain-va-lift"><i class="fa fa-check"></i><b>10.4.3</b> Gain và Lift</a></li>
+<li class="chapter" data-level="10.4.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#kolmogorovsmirnov-statistics"><i class="fa fa-check"></i><b>10.4.4</b> Kolmogorov–Smirnov statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#thc-hanh"><i class="fa fa-check"></i><b>10.5</b> Thực hành</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#d-liu"><i class="fa fa-check"></i><b>10.5.1</b> Dữ liệu</a></li>
+<li class="chapter" data-level="10.5.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-tp-d-liu-gc"><i class="fa fa-check"></i><b>10.5.2</b> Xây dựng mô hình trên tập dữ liệu gốc</a></li>
+<li class="chapter" data-level="10.5.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-hai-tp-train-va-test"><i class="fa fa-check"></i><b>10.5.3</b> Xây dựng mô hình trên hai tập train và test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>10.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html"><i class="fa fa-check"></i><b>11</b> Cây quyết định</a><ul>
+<li class="chapter" data-level="11.1" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#gii-thiu-3"><i class="fa fa-check"></i><b>11.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="11.2" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#regression-trees"><i class="fa fa-check"></i><b>11.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="11.3" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#classification-trees"><i class="fa fa-check"></i><b>11.3</b> Classification Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html"><i class="fa fa-check"></i><b>12</b> Bagging - Boosting và Random Forest</a><ul>
+<li class="chapter" data-level="12.1" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#bagging"><i class="fa fa-check"></i><b>12.1</b> Bagging</a></li>
+<li class="chapter" data-level="12.2" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#random-forests"><i class="fa fa-check"></i><b>12.2</b> Random Forests</a></li>
+<li class="chapter" data-level="12.3" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#boosting"><i class="fa fa-check"></i><b>12.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>13</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="14" data-path="k-means.html"><a href="k-means.html"><i class="fa fa-check"></i><b>14</b> k-means</a><ul>
+<li class="chapter" data-level="14.1" data-path="k-means.html"><a href="k-means.html#gii-thiu-4"><i class="fa fa-check"></i><b>14.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="14.2" data-path="k-means.html"><a href="k-means.html#thut-toan"><i class="fa fa-check"></i><b>14.2</b> Thuật toán</a></li>
+<li class="chapter" data-level="14.3" data-path="k-means.html"><a href="k-means.html#uu-nhuc-im-cua-k-means"><i class="fa fa-check"></i><b>14.3</b> Ưu nhược điểm của K-means</a></li>
+<li class="chapter" data-level="14.4" data-path="k-means.html"><a href="k-means.html#thc-hanh-tren-r"><i class="fa fa-check"></i><b>14.4</b> Thực hành trên R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>15</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="15.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>15.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="15.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>15.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="15.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>15.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>15.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="15.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>15.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="15.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>15.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>15.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>16</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="16.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>16.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>16.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="16.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>16.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>16.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>16.2.1</b> Biến đổi 1:1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Chuỗi thời gian</b></span></li>
+<li class="chapter" data-level="17" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>17</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="17.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>17.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="17.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>17.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="17.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>17.3</b> Smoothing</a></li>
+<li class="chapter" data-level="17.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>17.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="17.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>17.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>17.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="17.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>17.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="17.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>17.5.3</b> Tự động xây dựng mô hình</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>18</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="18.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>18.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="18.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>18.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="18.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>18.3</b> Ví dụ với R</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>19</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="19.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>19.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="19.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>19.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="19.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>19.3</b> Chuyển từ dataframe thành xts</a></li>
+</ul></li>
+<li class="part"><span><b>III Case study</b></span></li>
+<li class="chapter" data-level="20" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>20</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="20.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>20.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="20.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>20.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="20.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>20.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="20.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>20.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>21</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="21.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>21.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="21.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>21.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="21.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>21.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="21.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>21.4</b> Tự động render ra kết quả phân tích</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích dữ liệu thực tế với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mo-hinh-ols" class="section level1">
+<h1><span class="header-section-number">Chương 9</span> Mô hình OLS</h1>
+<div id="gii-thiu-2" class="section level2">
+<h2><span class="header-section-number">9.1</span> Giới thiệu</h2>
+<p>Với mô hình hồi quy tuyến tính, ví dụ, tìm mối quan hệ giữa giá nhà và diện tích, ý tưởng để xây dựng mô hình là tìm một tổ hợp giữa <span class="math inline">\(\theta_0\)</span> và <span class="math inline">\(\theta_1\)</span> sao cho khoảng cách giữa mô hình tìm được và các quan sát là nhỏ nhất.</p>
+<p><img src="41-mo-hinh-ols_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Để tìm ra được tổ hợp tham số <span class="math inline">\(\theta\)</span>, mục tiêu của thuật toán là tối ưu hóa tổng khoảng cách giữa các điểm dự báo và các điểm thực tế. Nói cách khác, ta cần tối ưu hàm sau.</p>
+<p><span class="math display">\[\underset{\theta_0, \theta_1}{\text{minimize}}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})^2\]</span></p>
+<p>Trong đó:</p>
+<ul>
+<li><span class="math inline">\((i)\)</span> là thứ tự các quan sát trong tập train</li>
+<li><span class="math inline">\(m\)</span> là số lượng quan sát</li>
+<li><span class="math inline">\(h_\theta\)</span> là mô hình ước lượng mối quan hệ giữa x và y</li>
+<li><span class="math inline">\(y^{(i)}\)</span> là quan sát thực tế của biến cần dự báo</li>
+<li><span class="math inline">\(x^{(i)}\)</span> là các quan sát thực tế của biến inputs</li>
+</ul>
+<p>Trong thực tế, để dễ dàng hơn trong việc tính toán, ta sẽ tìm giá trị nhỏ nhất của trung bình của bình phương độ lêch. Ta sẽ thay đổi thành hàm sau.</p>
+<p><span class="math display">\[J(\theta_0. \theta_1) = \underset{\theta_0, \theta_1}{\text{minimize}}\frac{1}{2m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})^2\]</span></p>
+<p><span class="math inline">\(J(\theta_0. \theta_1)\)</span> được gọi là <code>cost function</code>. Về mặt bản chất, <code>cost function</code> cho phép chúng ta biết được <em>chất lượng</em> của mô hình so với thực tế. Thông thường, giá trị của hàm này cang thấp, chất lượng mô hình càng tốt.</p>
+<p><img src="41-mo-hinh-ols_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="xay-dng-mo-hinh-co-ban" class="section level2">
+<h2><span class="header-section-number">9.2</span> Xây dựng mô hình cơ bản</h2>
+<p>Để xây dựng mô hình, ta sử dụng tập dữ liệu phân tích về doanh số bán hàng với quảng cáo.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="mo-hinh-ols.html#cb456-1"></a><span class="co"># Packages</span></span>
+<span id="cb456-2"><a href="mo-hinh-ols.html#cb456-2"></a><span class="kw">library</span>(tidyverse)  </span>
+<span id="cb456-3"><a href="mo-hinh-ols.html#cb456-3"></a><span class="kw">library</span>(modelr)     </span>
+<span id="cb456-4"><a href="mo-hinh-ols.html#cb456-4"></a><span class="kw">library</span>(broom)    </span>
+<span id="cb456-5"><a href="mo-hinh-ols.html#cb456-5"></a><span class="kw">library</span>(ISLR)</span>
+<span id="cb456-6"><a href="mo-hinh-ols.html#cb456-6"></a></span>
+<span id="cb456-7"><a href="mo-hinh-ols.html#cb456-7"></a><span class="co"># Load data (remove row numbers included as X1 variable)</span></span>
+<span id="cb456-8"><a href="mo-hinh-ols.html#cb456-8"></a><span class="co">#advertising &lt;- read_csv(&quot;http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv&quot;) %&gt;%</span></span>
+<span id="cb456-9"><a href="mo-hinh-ols.html#cb456-9"></a><span class="co">#  select(-X1) %&gt;% </span></span>
+<span id="cb456-10"><a href="mo-hinh-ols.html#cb456-10"></a><span class="co">#  rename_all(tolower)</span></span>
+<span id="cb456-11"><a href="mo-hinh-ols.html#cb456-11"></a></span>
+<span id="cb456-12"><a href="mo-hinh-ols.html#cb456-12"></a>advertising &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/Advertising.csv&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb456-13"><a href="mo-hinh-ols.html#cb456-13"></a><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>X1) <span class="op">%&gt;%</span></span>
+<span id="cb456-14"><a href="mo-hinh-ols.html#cb456-14"></a><span class="st"> </span><span class="kw">rename_all</span>(tolower)</span>
+<span id="cb456-15"><a href="mo-hinh-ols.html#cb456-15"></a></span>
+<span id="cb456-16"><a href="mo-hinh-ols.html#cb456-16"></a>advertising <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##      tv radio newspaper sales
+##   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 230.   37.8      69.2  22.1
+## 2  44.5  39.3      45.1  10.4
+## 3  17.2  45.9      69.3   9.3
+## 4 152.   41.3      58.5  18.5
+## 5 181.   10.8      58.4  12.9
+## 6   8.7  48.9      75     7.2</code></pre>
+<p>Trong tập dữ liệu trên, <code>sales</code> là doanh số bán hàng (ngàn sản phẩm), các biến khác là chi tiêu marketing theo kênh (ngàn USD). Để xây dựng mô hình, ta cũng chia dữ liệu thành hai phần: <code>train</code> và <code>test</code>.</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="mo-hinh-ols.html#cb458-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb458-2"><a href="mo-hinh-ols.html#cb458-2"></a>train &lt;-<span class="st"> </span><span class="kw">sample_frac</span>(advertising,<span class="dt">size =</span> <span class="fl">0.6</span>)</span>
+<span id="cb458-3"><a href="mo-hinh-ols.html#cb458-3"></a>test &lt;-<span class="st"> </span>advertising <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">anti_join</span>(train)</span></code></pre></div>
+<p>Ta cũng có thể tạo train và test theo cách khác như sau</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="mo-hinh-ols.html#cb459-1"></a><span class="co"># Cách khác</span></span>
+<span id="cb459-2"><a href="mo-hinh-ols.html#cb459-2"></a>train &lt;-<span class="st"> </span>sample &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>), </span>
+<span id="cb459-3"><a href="mo-hinh-ols.html#cb459-3"></a>                          <span class="kw">nrow</span>(advertising), </span>
+<span id="cb459-4"><a href="mo-hinh-ols.html#cb459-4"></a>                          <span class="dt">replace =</span> T, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.6</span>,<span class="fl">0.4</span>))</span>
+<span id="cb459-5"><a href="mo-hinh-ols.html#cb459-5"></a>train &lt;-<span class="st"> </span>advertising[sample, ]</span>
+<span id="cb459-6"><a href="mo-hinh-ols.html#cb459-6"></a>test &lt;-<span class="st"> </span>advertising[<span class="op">!</span>sample, ]</span></code></pre></div>
+<div id="mo-hinh-hi-quy-on-bin" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Mô hình hồi quy đơn biến</h3>
+<p>Mô hình hồi quy đơn biến là mô hình chỉ có 1 biến X. Trong ví dụ này, ta sẽ xây dựng mô hình mối quan hệ giữa doanh số bán hàng và ngân sách được dành cho quảng cáo.</p>
+<p><span class="math display">\[ Y = \beta_0 + \beta_1X + \epsilon \tag{1}\]</span></p>
+<p>Trong đó:</p>
+<ul>
+<li><span class="math inline">\(Y\)</span> là biến <em>sales</em></li>
+<li><span class="math inline">\(X\)</span> là biến <em>TV advertising budget</em></li>
+<li><span class="math inline">\(\beta_0\)</span> là hệ số tự do (intercept)</li>
+<li><span class="math inline">\(\beta_1\)</span> là hệ số tương quan hay hệ số góc (độ dốc của đường hồi quy tuyến tính)</li>
+<li><span class="math inline">\(\epsilon\)</span> là sai số của mô hình - sai số này thường được giả định là có giá trị trung bình bằng 0 và tuân theo phân phối chuẩn.</li>
+</ul>
+<p>Để xây dựng mô hình, ta thực hiện như sau.</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="mo-hinh-ols.html#cb460-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(sales <span class="op">~</span><span class="st"> </span>tv, <span class="dt">data =</span> train)</span>
+<span id="cb460-2"><a href="mo-hinh-ols.html#cb460-2"></a>model1 <span class="op">%&gt;%</span><span class="st"> </span>summary</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = sales ~ tv, data = train)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8.0398 -2.0282 -0.1357  2.2867  7.4639 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 7.066290   0.626365   11.28   &lt;2e-16 ***
+## tv          0.046164   0.003588   12.87   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.331 on 118 degrees of freedom
+## Multiple R-squared:  0.5838, Adjusted R-squared:  0.5803 
+## F-statistic: 165.5 on 1 and 118 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="mo-hinh-ols.html#cb462-1"></a>train <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb462-2"><a href="mo-hinh-ols.html#cb462-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sale_fit =</span> <span class="kw">predict</span>(model1, train)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb462-3"><a href="mo-hinh-ols.html#cb462-3"></a><span class="st">  </span><span class="kw">sample_frac</span>(<span class="fl">0.4</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb462-4"><a href="mo-hinh-ols.html#cb462-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(tv, sales)) <span class="op">+</span></span>
+<span id="cb462-5"><a href="mo-hinh-ols.html#cb462-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb462-6"><a href="mo-hinh-ols.html#cb462-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> tv, <span class="dt">y =</span> sale_fit), <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb462-7"><a href="mo-hinh-ols.html#cb462-7"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> tv, <span class="dt">xend =</span> tv, <span class="dt">y =</span> sales, <span class="dt">yend =</span> sale_fit)) <span class="op">+</span></span>
+<span id="cb462-8"><a href="mo-hinh-ols.html#cb462-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb462-9"><a href="mo-hinh-ols.html#cb462-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sales vs. TV marketing budget&quot;</span>) <span class="op">+</span></span>
+<span id="cb462-10"><a href="mo-hinh-ols.html#cb462-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_blank</span>(), </span>
+<span id="cb462-11"><a href="mo-hinh-ols.html#cb462-11"></a>        <span class="dt">axis.line =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
+<p><img src="41-mo-hinh-ols_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="din-giai-mo-hinh" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Diễn giải mô hình</h3>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="mo-hinh-ols.html#cb463-1"></a>result &lt;-<span class="st"> </span>model1 <span class="op">%&gt;%</span><span class="st"> </span>tidy</span>
+<span id="cb463-2"><a href="mo-hinh-ols.html#cb463-2"></a>result</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)   7.07     0.626        11.3 1.80e-20
+## 2 tv            0.0462   0.00359      12.9 3.28e-24</code></pre>
+<p>Hàm <code>tidy</code> trong <code>broom</code> cho phép làm sạch kết quả mô hình hồi quy và chuyển dữ liệu thành dạng bảng <code>dataframe</code>. Mối quan hệ giữa <code>sale</code> và <code>marketing</code> được thể hiện như sau.</p>
+<p><code>sales</code> = 7.0662898 + 0.0461636 * <code>tivi marketing budget</code></p>
+<p>Như vậy, nếu marketing tăng 1 đơn vị (1000 USD), doanh số sẽ tăng 46.1636238 sản phẩm</p>
+<p><strong>Đánh giá mức độ ý nghĩa của hệ số góc</strong></p>
+<p><span class="math display">\[SE(\beta_0)^2 = \sigma^2\bigg[\frac{1}{n}+\frac{\bar{x}^2}{\sum^n_{i=1}(x_i - \bar{x})^2} \bigg], \quad SE(\beta_1)^2 = \frac{\sigma^2}{\sum^n_{i=1}(x_i - \bar{x})^2}   \tag{3} \]</span></p>
+<p>trong đó <span class="math display">\[\sigma^2 = Var(\epsilon)\]</span>.</p>
+<p>Việc tính toán <span class="math inline">\(SE\)</span> cho phép ta tính được mức độ tinh cậy 95% của hệ số <span class="math inline">\(\beta\)</span> như sau.</p>
+<p><span class="math display">\[ \beta \pm 2 \cdot SE(\beta)  \tag{4}\]</span></p>
+<p>Trong R, để tìm ra mức độ tin cậy 95% của hệ số <span class="math inline">\(\beta\)</span>, ta có thể làm như sau.</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="mo-hinh-ols.html#cb465-1"></a><span class="kw">confint</span>(model1)</span></code></pre></div>
+<pre><code>##                  2.5 %     97.5 %
+## (Intercept) 5.82591632 8.30666330
+## tv          0.03905843 0.05326882</code></pre>
+<p>Như vậy, ta thấy độ tin cậy 95% của hệ số <span class="math inline">\(\beta_1\)</span> khác 0. Ta có thể kiểm tra dựa trên <code>p-value</code> của mô hình đều nhỏ hơn <code>0.05</code></p>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="mo-hinh-ols.html#cb467-1"></a>model1 <span class="op">%&gt;%</span><span class="st"> </span>tidy</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)   7.07     0.626        11.3 1.80e-20
+## 2 tv            0.0462   0.00359      12.9 3.28e-24</code></pre>
+</div>
+</div>
+<div id="anh-gia-cht-lung-mo-hinh" class="section level2">
+<h2><span class="header-section-number">9.3</span> Đánh giá chất lượng mô hình</h2>
+<p>Để đánh giá chất lượng mô hình, ta sẽ quan tâm đến 3 chỉ số sau:</p>
+<ol style="list-style-type: decimal">
+<li>Sai số của mô hình</li>
+<li><em>R</em> bình phương (<span class="math inline">\(R^2\)</span>)</li>
+<li>F-statistic</li>
+</ol>
+<div id="sai-s-cua-mo-hinh" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Sai số của mô hình</h3>
+<p><span class="math display">\[ RSE = \sqrt{\frac{1}{n-2}\sum^n_{i=1}(y_i - \hat{y}_i)^2} \tag{6}\]</span></p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="mo-hinh-ols.html#cb469-1"></a><span class="kw">sigma</span>(model1)</span></code></pre></div>
+<pre><code>## [1] 3.331281</code></pre>
+<p>Với sai số như trên, ta có thể nói rằng, doanh số thực tế trên thị trường sẽ có sai số so với dự báo 1 khoảng 3.3. Sai số tương đối của mô hình so với thực tế sẽ là</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="mo-hinh-ols.html#cb471-1"></a><span class="kw">sigma</span>(model1)<span class="op">/</span><span class="kw">mean</span>(train<span class="op">$</span>sales)</span></code></pre></div>
+<pre><code>## [1] 0.2360657</code></pre>
+<p>Như vậy, sai số của mô hình so với thực tế sẽ là 23.6%.</p>
+</div>
+<div id="r-binh-phuong-r2" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> R bình phương <span class="math inline">\(R^2\)</span></h3>
+<p>Chỉ số RSE cho ta biết được sai số của mô hình khi dự báo. Bên cạnh đó, 1 chỉ số thường xuyên được sử dụng là chỉ số <span class="math inline">\(R^2\)</span>. Chỉ số này đo lường tỷ lệ biến động của biến Y được dự báo qua việc sử dụng mô hình (proportion of variance explained). Nếu không sử dụng mô hình, ta có thể dự báo giá trị của Y bằng giá trị trung bình.</p>
+<ul>
+<li>Tổng bình phương các sai số giữa giá trị thực tế và giá trị trung bình được gọi là độ biến động của dữ liệu (TSS - Total Sum of Square)</li>
+<li>Tổng bình phương các sai số giữa giá trị dự báo và giá trị thực tế được gọi là sai số của mô hình (RSS - Residual Sum of Square)</li>
+<li>Tổng bình phương các sai số giữa giá trị dự báo và giá trị trung bình thực tế được gọi là tổng biến động được giải thích qua mô hình (ESS - Explained Sum of Square)</li>
+</ul>
+<p><span class="math display">\[ R^2 = 1 - \frac{RSS}{TSS}= 1 - \frac{\sum^n_{i=1}(y_i-\hat{y}_i)^2}{\sum^n_{i=1}(y_i-\bar{y}_i)^2} \tag{7}\]</span></p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="mo-hinh-ols.html#cb473-1"></a><span class="kw">rsquare</span>(model1, <span class="dt">data =</span> train)</span></code></pre></div>
+<pre><code>## [1] 0.58383</code></pre>
+<p>Với kết quả trên, mô hình giải thích được 58.3829997% độ biến động của dữ liệu thực tế.</p>
+<p><img src="Images/ols-r2.png" /></p>
+</div>
+<div id="f-statistic" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> F statistic</h3>
+<p>Chỉ số thống kê F được tính như sau.</p>
+<p><span class="math display">\[F = \frac{(TSS-RSS)/p}{RSS/(n-p-1)} \tag{8} \]</span></p>
+<p>Chỉ số này được sử dụng để kiểm định các hệ số trong mô hình có thực sự khác 0.</p>
+<p><span class="math inline">\(H_0\)</span>: Tất cả các hệ số <span class="math inline">\(\beta\)</span> trong mô hình đều bằng không
+<span class="math inline">\(H_1\)</span>: Có ít nhất một hệ số <span class="math inline">\(\beta\)</span> trong mô hình khác không</p>
+<p>Trong mô hình trên, giá trị <code>p-value</code> của F-statistic rất thấp, như vậy, có ít nhất một hệ số trong mô hình khác không.</p>
+</div>
+</div>
+<div id="d-bao" class="section level2">
+<h2><span class="header-section-number">9.4</span> Dự báo</h2>
+<p>Để dự báo kết quả mô hình, ta có thể dùng hàm <code>predict</code> trong R như sau.</p>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="mo-hinh-ols.html#cb475-1"></a><span class="co"># Model result</span></span>
+<span id="cb475-2"><a href="mo-hinh-ols.html#cb475-2"></a>result &lt;-<span class="st"> </span>test <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb475-3"><a href="mo-hinh-ols.html#cb475-3"></a><span class="st">  </span><span class="kw">select</span>(tv, sales) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb475-4"><a href="mo-hinh-ols.html#cb475-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predict =</span> <span class="kw">predict</span>(model1, test)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb475-5"><a href="mo-hinh-ols.html#cb475-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">error =</span> predict <span class="op">-</span><span class="st"> </span>sales)</span>
+<span id="cb475-6"><a href="mo-hinh-ols.html#cb475-6"></a></span>
+<span id="cb475-7"><a href="mo-hinh-ols.html#cb475-7"></a><span class="kw">sqrt</span>(<span class="kw">sum</span>(result<span class="op">$</span>error<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">nrow</span>(result))</span></code></pre></div>
+<pre><code>## [1] 3.165155</code></pre>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="mo-hinh-ols.html#cb477-1"></a><span class="co"># Cách hai</span></span>
+<span id="cb477-2"><a href="mo-hinh-ols.html#cb477-2"></a>modelr<span class="op">::</span><span class="kw">rmse</span>(model1, test)</span></code></pre></div>
+<pre><code>## [1] 3.165155</code></pre>
+<p><strong>Vẽ kết quả mô hình với dự báo</strong></p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="mo-hinh-ols.html#cb479-1"></a>result <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb479-2"><a href="mo-hinh-ols.html#cb479-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>error) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb479-3"><a href="mo-hinh-ols.html#cb479-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">predicted_sales =</span> predict,</span>
+<span id="cb479-4"><a href="mo-hinh-ols.html#cb479-4"></a>         <span class="dt">real_sales =</span> sales) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb479-5"><a href="mo-hinh-ols.html#cb479-5"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;type&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;value&quot;</span>, <span class="op">-</span>tv) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb479-6"><a href="mo-hinh-ols.html#cb479-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(tv, value)) <span class="op">+</span></span>
+<span id="cb479-7"><a href="mo-hinh-ols.html#cb479-7"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col =</span> type), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb479-8"><a href="mo-hinh-ols.html#cb479-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">col =</span> type), <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb479-9"><a href="mo-hinh-ols.html#cb479-9"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb479-10"><a href="mo-hinh-ols.html#cb479-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="op">+</span></span>
+<span id="cb479-11"><a href="mo-hinh-ols.html#cb479-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sales vs. TV marketing budget&quot;</span>,</span>
+<span id="cb479-12"><a href="mo-hinh-ols.html#cb479-12"></a>       <span class="dt">y =</span> <span class="st">&quot;Sales&quot;</span>,</span>
+<span id="cb479-13"><a href="mo-hinh-ols.html#cb479-13"></a>       <span class="dt">x =</span> <span class="st">&quot;TV budget&quot;</span>) <span class="op">+</span></span>
+<span id="cb479-14"><a href="mo-hinh-ols.html#cb479-14"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;darkblue&quot;</span>)) <span class="op">+</span></span>
+<span id="cb479-15"><a href="mo-hinh-ols.html#cb479-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_blank</span>(), </span>
+<span id="cb479-16"><a href="mo-hinh-ols.html#cb479-16"></a>        <span class="dt">axis.line =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
+<p><img src="41-mo-hinh-ols_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="thut-toan-ti-uu-vi-gradient-decent" class="section level2">
+<h2><span class="header-section-number">9.5</span> Thuật toán tối ưu với gradient decent</h2>
+<p>Ở phần trước, ta đã học cách áp dụng mô hình hồi quy đơn giản trong việc dự báo các biến liên tục. Ở phần này, ta sẽ tìm hiểu thêm về cách sử dụng học máy trong việc xây dựng mô hình hồi quy tuyến tính.</p>
+<p>Việc ưu hóa hàm chi phí với các tham số khác nhau là vấn đề cốt lõi của bất kỳ thuật toán machine learning nào. Tuy nhiên làm thế nào để tối ưu được, ta cần phải áp dụng các thuật toán tối ưu. Trong đó, quan trọng và phổ biến nhất là thuật toan <code>gradient descent</code>.</p>
+<p>Để tối ưu hóa <em>cost function</em>, ta có thể thay đổi các tổ hợp giá trị của <span class="math inline">\(\theta\)</span> cho đến khi tìm được tổ hợp mà tại đó, <em>cost function</em> đạt giá trị nhỏ nhất. Tuy nhiên, với trường hợp mô hình nhiều biến, ta sử dụng thuật toán <em>gradient decient</em> để tìm tập <span class="math inline">\(\theta\)</span> mà tại đó, cost function đạt giá trị nhỏ nhất.</p>
+<p>Quá trình sẽ diễn ra cho đến khi kết quả của cost function hội tụ tại 1 điểm với thuật toán sau.</p>
+<p><span class="math display">\[\theta_j := \theta_j - \alpha\frac{d}{d\theta_j}J(\theta_0, \theta_1)\]</span></p>
+<p>Trong đó:</p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> được gọi là <code>learning rate</code>, cho phép kiểm soát tốc độ update tham số trong mô hình.</li>
+<li><code>:=</code> là dấu gán</li>
+<li><span class="math inline">\(\frac{d}{d\theta_j}J(\theta_0, \theta_1)\)</span> là đạo hàm riêng phần theo <span class="math inline">\(\theta\)</span> của hàm <span class="math inline">\(cost function\)</span></li>
+</ul>
+<p>Áp dụng công thức tính đạo hàm hàm hợp, ta được</p>
+<p><span class="math display">\[\cases{\theta_0 := \theta_0 - \alpha\frac{1}{m}\sum_{i = 1}^m(h_{\theta}(x^{(i) - y^{(i)}}))\\
+        \theta_1 := \theta_1 - \alpha\frac{1}{m}\sum_{i = 1}^m(h_{\theta}(x^{(i) - y^{(i)}}))\times x^{(i)}}\]</span></p>
+<p>Thuật toán trên còn được gọi là <em>batch gradient</em> bởi lẽ thuật toán trên tính toán đến toàn bộ quan sát trên tập dữ liệu huấn luyện (train data). Bên cạnh <code>batch gradient</code>, còn có <code>stochastic gradient descent</code> và <code>mini batch gradient descent</code>.</p>
+<p>Công thức tổng quát để update tham số trong mô hình machine learning như sau.</p>
+<p><span class="math display">\[\Theta^1 = \Theta^0 - \alpha \nabla J(\Theta)\]</span>
+Trong đó:</p>
+<ul>
+<li><span class="math inline">\(\Theta^1\)</span>: Giá trị tham số mới</li>
+<li><span class="math inline">\(\Theta^0\)</span>: Giá trị tham số hiện tại</li>
+<li><span class="math inline">\(\alpha\)</span>: Learning rate, tốc độc update tham số</li>
+<li><span class="math inline">\(\nabla J(\Theta)\)</span>: Đạo hàm riêng phần của từng tham số theo giá trị của biến đầu vào.</li>
+<li><span class="math inline">\(-\)</span>: Hướng update tham số. Nếu giá trị đạo hàm riêng phần là dương, ta cần giảm giá trị của tham số, nếu giá trị đạo hàm riêng phần là âm, ta cần tăng giá trị của tham số.</li>
+</ul>
+<hr />
+<p><strong>Giải thích gradient descent bằng ngôn ngữ đơn giản</strong>:</p>
+<p>Thuật toán <code>gradient descent</code> trông thì phức tạp, nhưng thực tế, cách triển khai và tối ưu thuật toán khá giống với phương pháp <code>agile</code> trong phát triển phần mềm. Thuật toán có thể được mô tả đơn giản lại như sau.</p>
+<ul>
+<li>Xây dựng mô hình một cách nhanh chóng (build). Tại bước này, ta chọn ngẫu nhiên giá trị của tham số để có thể xây dựng mô hình một cách đơn giản nhất.</li>
+<li>Đo lường độ lệch của mô hình so với thực tế (measure). Tại bước này, ta tính toán sai số giữa mô hình vừa xây dựng và dữ liệu thực tế để đo lường sai số của mô hình.</li>
+<li>Thay đổi/update mô hình dựa trên feedback (learn/action). Bước này sẽ phức tạp hơn một chút do ta phải trả lời hai câu hỏi:
+<ul>
+<li>Tham số cần được thay đổi theo hướng nào? Tăng giá trị lên hay giảm giá trị xuống?</li>
+<li>Tốc độ thay đổi là bao nhiêu.</li>
+</ul></li>
+</ul>
+<p>Với câu hỏi thứ nhất, ta cần tính được giá trị đạo hàm riêng phần của từng tham số tại giá trị của X. Nếu giá trị này dương, ta cần giảm giá trị của tham số và ngược lại</p>
+<p>Với câu hỏi thứ hai, ta phải đặt trước một giá trị quy định tốc độ thay đổi của tham số. Giá trị này được gọi là <code>learning rate</code>.</p>
+<p><strong>Mô hình hồi quy</strong>.</p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="mo-hinh-ols.html#cb480-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb480-2"><a href="mo-hinh-ols.html#cb480-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb480-3"><a href="mo-hinh-ols.html#cb480-3"></a></span>
+<span id="cb480-4"><a href="mo-hinh-ols.html#cb480-4"></a>n     &lt;-<span class="st"> </span><span class="dv">200</span> <span class="co"># số lượng quan sát</span></span>
+<span id="cb480-5"><a href="mo-hinh-ols.html#cb480-5"></a>bias  &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb480-6"><a href="mo-hinh-ols.html#cb480-6"></a>slope &lt;-<span class="st"> </span><span class="fl">3.5</span></span>
+<span id="cb480-7"><a href="mo-hinh-ols.html#cb480-7"></a>dot   &lt;-<span class="st"> `</span><span class="dt">%*%</span><span class="st">`</span> <span class="co"># Hàm tính phép nhân ma trận</span></span>
+<span id="cb480-8"><a href="mo-hinh-ols.html#cb480-8"></a></span>
+<span id="cb480-9"><a href="mo-hinh-ols.html#cb480-9"></a>x   &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb480-10"><a href="mo-hinh-ols.html#cb480-10"></a>x_b &lt;-<span class="st"> </span><span class="kw">cbind</span>(x, <span class="kw">rep</span>(<span class="dv">1</span>, n)) <span class="co"># Thêm hệ số beta_0 cho ma trận x</span></span>
+<span id="cb480-11"><a href="mo-hinh-ols.html#cb480-11"></a>y   &lt;-<span class="st"> </span>bias <span class="op">+</span><span class="st"> </span>slope <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n)</span>
+<span id="cb480-12"><a href="mo-hinh-ols.html#cb480-12"></a>df  &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">x =</span> x,  <span class="dt">y =</span> y)</span>
+<span id="cb480-13"><a href="mo-hinh-ols.html#cb480-13"></a></span>
+<span id="cb480-14"><a href="mo-hinh-ols.html#cb480-14"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb480-15"><a href="mo-hinh-ols.html#cb480-15"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x,y)) <span class="op">+</span></span>
+<span id="cb480-16"><a href="mo-hinh-ols.html#cb480-16"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb480-17"><a href="mo-hinh-ols.html#cb480-17"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="41-mo-hinh-ols_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="mo-hinh-ols.html#cb481-1"></a>learning_rate &lt;-<span class="st"> </span><span class="fl">0.05</span></span>
+<span id="cb481-2"><a href="mo-hinh-ols.html#cb481-2"></a>n_iterations  &lt;-<span class="st"> </span><span class="dv">100</span></span>
+<span id="cb481-3"><a href="mo-hinh-ols.html#cb481-3"></a>theta         &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">20</span>)) <span class="co"># Giá trị tham số đầu tiên</span></span>
+<span id="cb481-4"><a href="mo-hinh-ols.html#cb481-4"></a></span>
+<span id="cb481-5"><a href="mo-hinh-ols.html#cb481-5"></a>b0    &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="dt">length =</span> n_iterations)</span>
+<span id="cb481-6"><a href="mo-hinh-ols.html#cb481-6"></a>b1    &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="dt">length =</span> n_iterations)</span>
+<span id="cb481-7"><a href="mo-hinh-ols.html#cb481-7"></a>sse_i &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="dt">length =</span> n_iterations)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="mo-hinh-ols.html#cb482-1"></a><span class="cf">for</span> (iteration <span class="cf">in</span> <span class="kw">seq_len</span>(n_iterations)) { </span>
+<span id="cb482-2"><a href="mo-hinh-ols.html#cb482-2"></a>  <span class="co"># Mô hình dự báo với theta</span></span>
+<span id="cb482-3"><a href="mo-hinh-ols.html#cb482-3"></a>  yhat               &lt;-<span class="st"> </span><span class="kw">dot</span>(x_b, theta)         </span>
+<span id="cb482-4"><a href="mo-hinh-ols.html#cb482-4"></a>  <span class="co"># Tính sai só của mô hình</span></span>
+<span id="cb482-5"><a href="mo-hinh-ols.html#cb482-5"></a>  residuals_b        &lt;-<span class="st"> </span>yhat <span class="op">-</span><span class="st"> </span>y                </span>
+<span id="cb482-6"><a href="mo-hinh-ols.html#cb482-6"></a>  <span class="co"># Tính gradient (đạo hàm riêng phần cho giá trị theta)</span></span>
+<span id="cb482-7"><a href="mo-hinh-ols.html#cb482-7"></a>  gradients          &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">/</span>n <span class="op">*</span><span class="st"> </span><span class="kw">dot</span>(<span class="kw">t</span>(x_b), residuals_b)  <span class="co"># Lưu ý</span></span>
+<span id="cb482-8"><a href="mo-hinh-ols.html#cb482-8"></a>  theta              &lt;-<span class="st"> </span>theta <span class="op">-</span><span class="st"> </span>learning_rate <span class="op">*</span><span class="st"> </span>gradients <span class="co"># update theta </span></span>
+<span id="cb482-9"><a href="mo-hinh-ols.html#cb482-9"></a>  </span>
+<span id="cb482-10"><a href="mo-hinh-ols.html#cb482-10"></a>  sse_i[[iteration]] &lt;-<span class="st"> </span><span class="kw">sum</span>((y <span class="op">-</span><span class="st"> </span><span class="kw">dot</span>(x_b, theta))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb482-11"><a href="mo-hinh-ols.html#cb482-11"></a>  b0[[iteration]]    &lt;-<span class="st"> </span>theta[<span class="dv">2</span>]</span>
+<span id="cb482-12"><a href="mo-hinh-ols.html#cb482-12"></a>  b1[[iteration]]    &lt;-<span class="st"> </span>theta[<span class="dv">1</span>]</span>
+<span id="cb482-13"><a href="mo-hinh-ols.html#cb482-13"></a>}</span>
+<span id="cb482-14"><a href="mo-hinh-ols.html#cb482-14"></a></span>
+<span id="cb482-15"><a href="mo-hinh-ols.html#cb482-15"></a>model_i &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">model_iter =</span> <span class="dv">1</span><span class="op">:</span>n_iterations, </span>
+<span id="cb482-16"><a href="mo-hinh-ols.html#cb482-16"></a>                      <span class="dt">sse =</span> sse_i, </span>
+<span id="cb482-17"><a href="mo-hinh-ols.html#cb482-17"></a>                      <span class="dt">b0 =</span> b0, </span>
+<span id="cb482-18"><a href="mo-hinh-ols.html#cb482-18"></a>                      <span class="dt">b1 =</span> b1)</span></code></pre></div>
+<p><strong>Lưu ý</strong>: Với mô hình hồi quy, hàm chi phí (cost function) là MSE.</p>
+<p><span class="math display">\[J(\beta_0, \beta_1) = \frac{1}{n}(\beta_0 + \beta_1*X - Y)^2\]</span></p>
+<p><span class="math display">\[\frac{dJ}{d\beta_0}=\frac{2}{n}(\beta_0 + \beta_1*X - Y) = 2 * error\]</span>
+<span class="math display">\[\frac{dJ}{d\beta_1}=\frac{2}{n}(\beta_0 + \beta_1*X - Y)*X= 2 * error * X\]</span>
+Do đó, ta có thể khái quát hóa gradient cho hai tham số như sau.</p>
+<p><span class="math display">\[\nabla J = 2*error*X&#39;\]</span></p>
+<p>Trong đó, X’ là [1, X]</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="mo-hinh-ols.html#cb483-1"></a>p1 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb483-2"><a href="mo-hinh-ols.html#cb483-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-3"><a href="mo-hinh-ols.html#cb483-3"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> b0, </span>
+<span id="cb483-4"><a href="mo-hinh-ols.html#cb483-4"></a>                  <span class="dt">slope =</span> b1, </span>
+<span id="cb483-5"><a href="mo-hinh-ols.html#cb483-5"></a>                  <span class="dt">colour =</span> <span class="op">-</span>sse),</span>
+<span id="cb483-6"><a href="mo-hinh-ols.html#cb483-6"></a>              <span class="dt">data =</span> model_i, </span>
+<span id="cb483-7"><a href="mo-hinh-ols.html#cb483-7"></a>              <span class="dt">alpha =</span> <span class="fl">.50</span> </span>
+<span id="cb483-8"><a href="mo-hinh-ols.html#cb483-8"></a>              ) <span class="op">+</span></span>
+<span id="cb483-9"><a href="mo-hinh-ols.html#cb483-9"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-10"><a href="mo-hinh-ols.html#cb483-10"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> b0, </span>
+<span id="cb483-11"><a href="mo-hinh-ols.html#cb483-11"></a>                  <span class="dt">slope =</span> b1), </span>
+<span id="cb483-12"><a href="mo-hinh-ols.html#cb483-12"></a>              <span class="dt">data =</span> model_i[<span class="dv">100</span>, ], </span>
+<span id="cb483-13"><a href="mo-hinh-ols.html#cb483-13"></a>              <span class="dt">alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb483-14"><a href="mo-hinh-ols.html#cb483-14"></a>              <span class="dt">size =</span> <span class="dv">2</span>, </span>
+<span id="cb483-15"><a href="mo-hinh-ols.html#cb483-15"></a>              <span class="dt">colour =</span> <span class="st">&quot;dodger blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb483-16"><a href="mo-hinh-ols.html#cb483-16"></a><span class="st">  </span><span class="kw">geom_abline</span>(<span class="kw">aes</span>(<span class="dt">intercept =</span> b0, </span>
+<span id="cb483-17"><a href="mo-hinh-ols.html#cb483-17"></a>                  <span class="dt">slope =</span> b1),</span>
+<span id="cb483-18"><a href="mo-hinh-ols.html#cb483-18"></a>              <span class="dt">data =</span> model_i[<span class="dv">1</span>, ],</span>
+<span id="cb483-19"><a href="mo-hinh-ols.html#cb483-19"></a>              <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb483-20"><a href="mo-hinh-ols.html#cb483-20"></a>              <span class="dt">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb483-21"><a href="mo-hinh-ols.html#cb483-21"></a>              <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb483-22"><a href="mo-hinh-ols.html#cb483-22"></a><span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></span>
+<span id="cb483-23"><a href="mo-hinh-ols.html#cb483-23"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">colour =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb483-24"><a href="mo-hinh-ols.html#cb483-24"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span>
+<span id="cb483-25"><a href="mo-hinh-ols.html#cb483-25"></a></span>
+<span id="cb483-26"><a href="mo-hinh-ols.html#cb483-26"></a>p1</span></code></pre></div>
+<p><img src="41-mo-hinh-ols_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="mo-hinh-ols.html#cb484-1"></a>p2 &lt;-<span class="st"> </span>model_i[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>,] <span class="op">%&gt;%</span></span>
+<span id="cb484-2"><a href="mo-hinh-ols.html#cb484-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(model_iter, sse, <span class="dt">colour =</span> <span class="op">-</span>sse)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb484-3"><a href="mo-hinh-ols.html#cb484-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></span>
+<span id="cb484-4"><a href="mo-hinh-ols.html#cb484-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb484-5"><a href="mo-hinh-ols.html#cb484-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Model iteration&quot;</span>, </span>
+<span id="cb484-6"><a href="mo-hinh-ols.html#cb484-6"></a>       <span class="dt">y =</span> <span class="st">&quot;Sum of Sqaured errors&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb484-7"><a href="mo-hinh-ols.html#cb484-7"></a><span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;dodger blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb484-8"><a href="mo-hinh-ols.html#cb484-8"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">colour =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb484-9"><a href="mo-hinh-ols.html#cb484-9"></a>p2</span></code></pre></div>
+<p><img src="41-mo-hinh-ols_files/figure-html/unnamed-chunk-19-2.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cac-nguyen-ly-d-bao.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mo-hinh-hi-quy-logistic.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"split_by": "rmd"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

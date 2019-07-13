@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chương 12 Bagging - Boosting và Random Forest | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 12 Bagging - Boosting và Random Forest | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chương 12 Bagging - Boosting và Random Forest | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chương 12 Bagging - Boosting và Random Forest | Phân tích dữ liệu thực tế với R" />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chương 12 Bagging - Boosting và Random Forest | Phân tích dữ liệu thực tế với R" />
+  
+  <meta name="twitter:description" content="Chương 12 Bagging - Boosting và Random Forest | Phân tích dữ liệu thực tế với R" />
+  
+
+<meta name="author" content="Hoàng Đức Anh" />
+
+
+<meta name="date" content="2019-07-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cay-quyt-inh.html">
+<link rel="next" href="unsupervised-learning.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Phân tích dữ liệu thực tế với R</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Kỹ thuật phân tích dữ liệu thực tế</b></span></li>
+<li class="chapter" data-level="1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><i class="fa fa-check"></i><b>1</b> Ngữ pháp của biến đổi dữ liệu với DPLYR</a><ul>
+<li class="chapter" data-level="1.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#gii-thiu-v-pipe-operator"><i class="fa fa-check"></i><b>1.1</b> Giới thiệu về pipe operator</a></li>
+<li class="chapter" data-level="1.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-co-ban-trong-dplyr"><i class="fa fa-check"></i><b>1.2</b> Các hàm cơ bản trong dplyr</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-truy-vn-d-liu"><i class="fa fa-check"></i><b>1.2.1</b> Nhóm câu lệnh truy vấn dữ liệu</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-cau-lnh-bin-i-d-liu"><i class="fa fa-check"></i><b>1.2.2</b> Nhóm câu lệnh biến đổi dữ liệu</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#nhom-ham-tng-hp-d-liu-vi-summarise"><i class="fa fa-check"></i><b>1.2.3</b> Nhóm hàm tổng hợp dữ liệu với <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#cac-ham-nang-cao-trong-dplyr"><i class="fa fa-check"></i><b>1.3</b> Các hàm nâng cao trong dplyr</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#iu-kin-phan-nhom-vi-case_when"><i class="fa fa-check"></i><b>1.3.1</b> Điều kiện phân nhóm với <code>case_when</code></a></li>
+<li class="chapter" data-level="1.3.2" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tao-them-bin-mi-theo-iu-kin-vi-mutate_if-mutate_at"><i class="fa fa-check"></i><b>1.3.2</b> Tạo thêm biến mới theo điều kiện với <code>mutate_if</code> &amp; <code>mutate_at</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="ng-phap-cua-bin-i-d-liu-vi-dplyr.html"><a href="ng-phap-cua-bin-i-d-liu-vi-dplyr.html#tng-hp-d-liu-theo-iu-kin-vi-summarise_at-va-summarise_if"><i class="fa fa-check"></i><b>1.3.3</b> Tổng hợp dữ liệu theo điều kiện với <code>summarise_at</code> và <code>summarise_if</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html"><i class="fa fa-check"></i><b>2</b> Phân rã và xoay chiều dữ liệu</a><ul>
+<li class="chapter" data-level="2.1" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#phan-ra-d-liu-thanh-dang-doc-vi-gather"><i class="fa fa-check"></i><b>2.1</b> Phân rã dữ liệu thành dạng dọc với <code>gather</code></a></li>
+<li class="chapter" data-level="2.2" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#xoay-chiu-d-liu-vi-spread"><i class="fa fa-check"></i><b>2.2</b> Xoay chiều dữ liệu với <code>spread</code></a></li>
+<li class="chapter" data-level="2.3" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#tach-mt-bin-thanh-nhiu-bin-vi-separate"><i class="fa fa-check"></i><b>2.3</b> Tách một biến thành nhiều biến với <code>separate</code></a></li>
+<li class="chapter" data-level="2.4" data-path="phan-ra-va-xoay-chiu-d-liu.html"><a href="phan-ra-va-xoay-chiu-d-liu.html#gp-nhiu-bin-thanh-mt-bin-vi-unite"><i class="fa fa-check"></i><b>2.4</b> Gộp nhiều biến thành một biến với <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html"><i class="fa fa-check"></i><b>3</b> Các chỉ số thống kê mô tả cơ bản</a><ul>
+<li class="chapter" data-level="3.1" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#correlation"><i class="fa fa-check"></i><b>3.1</b> Correlation</a></li>
+<li class="chapter" data-level="3.2" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#anova"><i class="fa fa-check"></i><b>3.2</b> ANOVA</a></li>
+<li class="chapter" data-level="3.3" data-path="cac-chi-s-thng-ke-mo-ta-co-ban.html"><a href="cac-chi-s-thng-ke-mo-ta-co-ban.html#kim-inh-quan-h-chi-binh-phuong"><i class="fa fa-check"></i><b>3.3</b> Kiểm định quan hệ Chi-bình phương</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html"><i class="fa fa-check"></i><b>4</b> Lập trình hàm</a><ul>
+<li class="chapter" data-level="4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#quotes-vs.-unquotes"><i class="fa fa-check"></i><b>4.1</b> <strong>Quotes</strong> vs. <strong>Unquotes</strong></a></li>
+<li class="chapter" data-level="4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hp-dung-quo_name"><i class="fa fa-check"></i><b>4.2</b> Trường hợp dùng <code>quo_name</code></a></li>
+<li class="chapter" data-level="4.3" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#trung-hop-nhiu-bin"><i class="fa fa-check"></i><b>4.3</b> Trường họp nhiều biến</a></li>
+<li class="chapter" data-level="4.4" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ng-dung"><i class="fa fa-check"></i><b>4.4</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ham-tinh-toan-tng-hp-nhiu-bin"><i class="fa fa-check"></i><b>4.4.1</b> Hàm tính toán tổng hợp nhiều biến</a></li>
+<li class="chapter" data-level="4.4.2" data-path="lp-trinh-ham.html"><a href="lp-trinh-ham.html#ve--thi-vi-ggplot2"><i class="fa fa-check"></i><b>4.4.2</b> Vẽ đồ thị với ggplot2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html"><i class="fa fa-check"></i><b>5</b> Lập trình chức năng hàm với purrr</a><ul>
+<li class="chapter" data-level="5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#nhom-ham-map"><i class="fa fa-check"></i><b>5.1</b> Nhóm hàm map</a></li>
+<li class="chapter" data-level="5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#sa-i-gia-tri-vi-modify"><i class="fa fa-check"></i><b>5.2</b> Sửa đổi giá trị với <code>modify</code></a></li>
+<li class="chapter" data-level="5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#tao-ham-nhanh-vi-as_mapper"><i class="fa fa-check"></i><b>5.3</b> Tạo hàm nhanh với <code>as_mapper</code></a></li>
+<li class="chapter" data-level="5.4" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#xay-dng-chui-cac-ham-lien-tip-vi-compose"><i class="fa fa-check"></i><b>5.4</b> Xây dựng chuỗi các hàm liên tiếp với <code>compose</code></a></li>
+<li class="chapter" data-level="5.5" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#ng-dung-1"><i class="fa fa-check"></i><b>5.5</b> Ứng dụng</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#bin-i-d-liu-vi-modify-va-map_df"><i class="fa fa-check"></i><b>5.5.1</b> Biến đổi dữ liệu với <code>modify</code> và <code>map_df</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-nhom-khac-nhau-cung-luc"><i class="fa fa-check"></i><b>5.5.2</b> Phân tích nhiều nhóm khác nhau cùng lúc</a></li>
+<li class="chapter" data-level="5.5.3" data-path="lp-trinh-chc-nang-ham-vi-purrr.html"><a href="lp-trinh-chc-nang-ham-vi-purrr.html#phan-tich-nhiu-bin-trong-dataframe-cung-luc"><i class="fa fa-check"></i><b>5.5.3</b> Phân tích nhiều biến trong dataframe cùng lúc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html"><i class="fa fa-check"></i><b>6</b> Biến đổi dữ liệu text</a><ul>
+<li class="chapter" data-level="6.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#gii-thiu"><i class="fa fa-check"></i><b>6.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="6.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#regular-expression"><i class="fa fa-check"></i><b>6.2</b> Regular expression</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#metadata"><i class="fa fa-check"></i><b>6.2.1</b> Metadata</a></li>
+<li class="chapter" data-level="6.2.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#sequences"><i class="fa fa-check"></i><b>6.2.2</b> Sequences</a></li>
+<li class="chapter" data-level="6.2.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#character-class"><i class="fa fa-check"></i><b>6.2.3</b> Character class</a></li>
+<li class="chapter" data-level="6.2.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#posix-class"><i class="fa fa-check"></i><b>6.2.4</b> POSIX class</a></li>
+<li class="chapter" data-level="6.2.5" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#quantifiers"><i class="fa fa-check"></i><b>6.2.5</b> Quantifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#cac-vi-du-tng-hp"><i class="fa fa-check"></i><b>6.3</b> Các ví dụ tổng hợp</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-1"><i class="fa fa-check"></i><b>6.3.1</b> Ví dụ 1</a></li>
+<li class="chapter" data-level="6.3.2" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-2"><i class="fa fa-check"></i><b>6.3.2</b> Ví dụ 2</a></li>
+<li class="chapter" data-level="6.3.3" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-3"><i class="fa fa-check"></i><b>6.3.3</b> Ví dụ 3</a></li>
+<li class="chapter" data-level="6.3.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#vi-du-4"><i class="fa fa-check"></i><b>6.3.4</b> Ví dụ 4</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="bin-i-d-liu-text.html"><a href="bin-i-d-liu-text.html#tai-liu-tham-khao"><i class="fa fa-check"></i><b>6.4</b> Tài liệu tham khảo</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><a href="quan-ly-kt-qua-phan-tich-t-nhiu-mo-hinh.html"><i class="fa fa-check"></i><b>7</b> Quản lý kết quả phân tích từ nhiều mô hình</a></li>
+<li class="chapter" data-level="8" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html"><i class="fa fa-check"></i><b>8</b> Các nguyên lý dự báo</a><ul>
+<li class="chapter" data-level="8.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#gii-thiu-1"><i class="fa fa-check"></i><b>8.1</b> Giới thiệu</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nhanh-trong-hoc-may-machine-learning"><i class="fa fa-check"></i><b>8.1.1</b> Các nhánh trong học máy (machine learning)</a></li>
+<li class="chapter" data-level="8.1.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cach-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>8.1.2</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="8.1.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#s-dung-mo-hinh"><i class="fa fa-check"></i><b>8.1.3</b> Sử dụng mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#cac-nguyen-ly-trong-d-bao"><i class="fa fa-check"></i><b>8.2</b> Các nguyên lý trong dự báo</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#reducible-vs.-irreducible-error"><i class="fa fa-check"></i><b>8.2.1</b> Reducible vs. irreducible error</a></li>
+<li class="chapter" data-level="8.2.2" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#kha-nang-giai-thich-va-kha-nang-d-bao"><i class="fa fa-check"></i><b>8.2.2</b> Khả năng giải thích và khả năng dự báo</a></li>
+<li class="chapter" data-level="8.2.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#mo-hinh-co-tham-s-cho-truc-hoc-khong-co-tham-s-cho-truc-parametric-vs.-nonparametric"><i class="fa fa-check"></i><b>8.2.3</b> Mô hình có tham số cho trước hoặc không có tham số cho trước (Parametric vs. Nonparametric)</a></li>
+<li class="chapter" data-level="8.2.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#nguyen-ly-ch-u"><i class="fa fa-check"></i><b>8.2.4</b> Nguyên lý chữ U</a></li>
+<li class="chapter" data-level="8.2.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#bias-variance-trade-off"><i class="fa fa-check"></i><b>8.2.5</b> Bias Variance Trade-Off</a></li>
+<li class="chapter" data-level="8.2.6" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#overfitting-regularization"><i class="fa fa-check"></i><b>8.2.6</b> Overfitting &amp; regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#quy-trinh-xay-dng-mo-hinh-d-bao"><i class="fa fa-check"></i><b>8.3</b> Quy trình xây dựng mô hình dự báo</a></li>
+<li class="chapter" data-level="8.4" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#ensemble-methods"><i class="fa fa-check"></i><b>8.4</b> Ensemble methods</a></li>
+<li class="chapter" data-level="8.5" data-path="cac-nguyen-ly-d-bao.html"><a href="cac-nguyen-ly-d-bao.html#luu-y"><i class="fa fa-check"></i><b>8.5</b> Lưu ý</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html"><i class="fa fa-check"></i><b>9</b> Mô hình OLS</a><ul>
+<li class="chapter" data-level="9.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#gii-thiu-2"><i class="fa fa-check"></i><b>9.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="9.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#xay-dng-mo-hinh-co-ban"><i class="fa fa-check"></i><b>9.2</b> Xây dựng mô hình cơ bản</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#mo-hinh-hi-quy-on-bin"><i class="fa fa-check"></i><b>9.2.1</b> Mô hình hồi quy đơn biến</a></li>
+<li class="chapter" data-level="9.2.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#din-giai-mo-hinh"><i class="fa fa-check"></i><b>9.2.2</b> Diễn giải mô hình</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#anh-gia-cht-lung-mo-hinh"><i class="fa fa-check"></i><b>9.3</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#sai-s-cua-mo-hinh"><i class="fa fa-check"></i><b>9.3.1</b> Sai số của mô hình</a></li>
+<li class="chapter" data-level="9.3.2" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#r-binh-phuong-r2"><i class="fa fa-check"></i><b>9.3.2</b> R bình phương <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="9.3.3" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#f-statistic"><i class="fa fa-check"></i><b>9.3.3</b> F statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#d-bao"><i class="fa fa-check"></i><b>9.4</b> Dự báo</a></li>
+<li class="chapter" data-level="9.5" data-path="mo-hinh-ols.html"><a href="mo-hinh-ols.html#thut-toan-ti-uu-vi-gradient-decent"><i class="fa fa-check"></i><b>9.5</b> Thuật toán tối ưu với gradient decent</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html"><i class="fa fa-check"></i><b>10</b> Mô hình hồi quy logistic</a><ul>
+<li class="chapter" data-level="10.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cach-xay-dng-mo-hinh-1"><i class="fa fa-check"></i><b>10.1</b> Cách xây dựng mô hình</a></li>
+<li class="chapter" data-level="10.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#vi-du-xay-dng-mo-hinh-on-gian"><i class="fa fa-check"></i><b>10.2</b> Ví dụ xây dựng mô hình đơn giản</a></li>
+<li class="chapter" data-level="10.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#cac-chi-s-cn-quan-tam-khac"><i class="fa fa-check"></i><b>10.3</b> Các chỉ số cần quan tâm khác</a></li>
+<li class="chapter" data-level="10.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#anh-gia-cht-lung-mo-hinh-1"><i class="fa fa-check"></i><b>10.4</b> Đánh giá chất lượng mô hình</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#confusion-matrix"><i class="fa fa-check"></i><b>10.4.1</b> Confusion Matrix</a></li>
+<li class="chapter" data-level="10.4.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#roc"><i class="fa fa-check"></i><b>10.4.2</b> ROC</a></li>
+<li class="chapter" data-level="10.4.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#gain-va-lift"><i class="fa fa-check"></i><b>10.4.3</b> Gain và Lift</a></li>
+<li class="chapter" data-level="10.4.4" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#kolmogorovsmirnov-statistics"><i class="fa fa-check"></i><b>10.4.4</b> Kolmogorov–Smirnov statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#thc-hanh"><i class="fa fa-check"></i><b>10.5</b> Thực hành</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#d-liu"><i class="fa fa-check"></i><b>10.5.1</b> Dữ liệu</a></li>
+<li class="chapter" data-level="10.5.2" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-tp-d-liu-gc"><i class="fa fa-check"></i><b>10.5.2</b> Xây dựng mô hình trên tập dữ liệu gốc</a></li>
+<li class="chapter" data-level="10.5.3" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-tren-hai-tp-train-va-test"><i class="fa fa-check"></i><b>10.5.3</b> Xây dựng mô hình trên hai tập train và test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>10.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html"><i class="fa fa-check"></i><b>11</b> Cây quyết định</a><ul>
+<li class="chapter" data-level="11.1" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#gii-thiu-3"><i class="fa fa-check"></i><b>11.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="11.2" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#regression-trees"><i class="fa fa-check"></i><b>11.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="11.3" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#classification-trees"><i class="fa fa-check"></i><b>11.3</b> Classification Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html"><i class="fa fa-check"></i><b>12</b> Bagging - Boosting và Random Forest</a><ul>
+<li class="chapter" data-level="12.1" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#bagging"><i class="fa fa-check"></i><b>12.1</b> Bagging</a></li>
+<li class="chapter" data-level="12.2" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#random-forests"><i class="fa fa-check"></i><b>12.2</b> Random Forests</a></li>
+<li class="chapter" data-level="12.3" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#boosting"><i class="fa fa-check"></i><b>12.3</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>13</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="14" data-path="k-means.html"><a href="k-means.html"><i class="fa fa-check"></i><b>14</b> k-means</a><ul>
+<li class="chapter" data-level="14.1" data-path="k-means.html"><a href="k-means.html#gii-thiu-4"><i class="fa fa-check"></i><b>14.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="14.2" data-path="k-means.html"><a href="k-means.html#thut-toan"><i class="fa fa-check"></i><b>14.2</b> Thuật toán</a></li>
+<li class="chapter" data-level="14.3" data-path="k-means.html"><a href="k-means.html#uu-nhuc-im-cua-k-means"><i class="fa fa-check"></i><b>14.3</b> Ưu nhược điểm của K-means</a></li>
+<li class="chapter" data-level="14.4" data-path="k-means.html"><a href="k-means.html#thc-hanh-tren-r"><i class="fa fa-check"></i><b>14.4</b> Thực hành trên R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>15</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="15.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>15.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="15.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>15.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="15.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>15.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>15.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="15.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>15.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="15.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>15.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>15.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>16</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="16.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>16.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>16.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="16.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>16.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>16.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>16.2.1</b> Biến đổi 1:1</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Chuỗi thời gian</b></span></li>
+<li class="chapter" data-level="17" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>17</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="17.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>17.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="17.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>17.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="17.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>17.3</b> Smoothing</a></li>
+<li class="chapter" data-level="17.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>17.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="17.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>17.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="17.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>17.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="17.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>17.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="17.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>17.5.3</b> Tự động xây dựng mô hình</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>18</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="18.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>18.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="18.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>18.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="18.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>18.3</b> Ví dụ với R</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>19</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="19.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>19.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="19.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>19.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="19.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>19.3</b> Chuyển từ dataframe thành xts</a></li>
+</ul></li>
+<li class="part"><span><b>III Case study</b></span></li>
+<li class="chapter" data-level="20" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>20</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="20.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>20.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="20.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>20.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="20.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>20.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="20.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>20.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>21</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="21.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>21.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="21.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>21.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="21.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>21.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="21.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>21.4</b> Tự động render ra kết quả phân tích</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Phân tích dữ liệu thực tế với R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bagging---boosting-va-random-forest" class="section level1">
+<h1><span class="header-section-number">Chương 12</span> Bagging - Boosting và Random Forest</h1>
+<div id="bagging" class="section level2">
+<h2><span class="header-section-number">12.1</span> Bagging</h2>
+<center>
+<img src="Images/tree-2.png" />
+</center>
+<p>Mô hình cây quyết định như đã đề cập, sẽ gặp phải vấn đề <code>high variance</code>. Nghĩa là nếu chúng ta chia ngẫu nhiên tập dữ liệu training làm 2 tập dữ liệu con, và sau đó xây dựng mô hình trên 2 tập dữ liệu con đó, kết quả nhận được sẽ có thể khá khác nhau. <code>Boostrap aggregation</code> hay <code>bagging</code> sẽ có thể làm giảm variance, đây là một phương pháp rất hiệu quả và phổ biến khi chúng ta sử dụng các phương pháp liên quan đến cây quyết định.</p>
+<p>Giả sử, có tập hợp n quan sát độc lập Z1,…, Zn, mỗi quan sát với variance σ^2, variance của giá trị trung bình các quan sát Z là σ^2/n. Nói cách khác, trung bình tập hợp các quan sát sẽ làm giảm variance. Vì thế cách tự nhiên nhất để làm giảm variance và tăng độ chính xác của dự báo là lấy thật nhiều các dữ liệu training khác nhau, rồi xây dựng các mô hình dự báo sử dụng các tập dữ liệu training đó, sau đó lấy trung bình các kết quả dự báo. Nói cách khác, chúng ta sẽ tính toán fˆ1(x), fˆ2(x), . . . , fˆB(x) sử dụng B tập dữ liệu training khác nhau, sau đó lấy trung bình để nhận được một mô hình đơn với variance thấp như sau:</p>
+<p><span class="math display">\[\widehat{f}_{avg}(x) = \frac{1}{B}\sum_{b=1}^{B}\widehat{f}^{b}(x)\]</span></p>
+<p>Tuy nhiên, điều đó là không thực tế vì chúng ta không thể có nhiều dữ liệu training khác nhau, dữ liệu là hữu hạn. Vì vậy, chúng ta sẽ sử dụng <code>boostrap</code>, tức phương pháp lấy mẫu ngẫu nhiên có hoàn lại từ tập dữ liệu training duy nhất của chúng ta. Theo đó, chúng ta sẽ tạo ra B boostrapped dữ liệu training khác nhau để có được các giá trị dự báo khác nhau, và sau đó sẽ lấy trung bình tất cả các kết quả dự báo, thu được kết quả cuối cùng:</p>
+<p><span class="math display">\[\widehat{f}_{bag}(x) = \frac{1}{B}\sum_{b=1}^{B}\widehat{f^{*}}^{b}(x)\]</span></p>
+<p>Đây gọi là <code>bagging</code>. Bagging có thể cải thiện chất lượng dự báo cho rất nhiều các mô hình hồi quy, đặc biệt hiệu quả đối với mô hình cây quyết định. Để áp dụng bagging với regression trees, chúng ta đơn giản chỉ cần xây dựng B regression trees sử dụng B boostrapped dữ liệu training, sau đó lấy trung bình các kết quả dự báo. Những cây quyết định này được xây dựng rất sâu (nhiều tầng) và không được “tỉa”. Vì thế mỗi cây quyết định trên sẽ có variance cao, nhưng bias thấp. Lấy trung bình kết quả B cây quyết định này sẽ làm giảm variance. Bagging có thể cải thiện chất lượng dự báo một cách đáng kể khi kết hợp hàng trăm hoặc thậm chí hàng nghìn cây quyết định lại với nhau.</p>
+<p>Cho đến thời điểm hiện tại, chúng ta đã mô tả phương pháp bagging đối với regression trees, tức dự báo biến đầu ra là biến liên tục. Vậy phương pháp bagging có thể sử dụng với bài toán mà biến đầu ra là biến rời rạc không? Trong trường hợp này, giả sử khi chúng ta muốn phân loại một quan sát mới, chúng ta có thể dự báo được quan sát mới trên thuộc class nào trong B cây quyết định khác nhau, rồi sau đó, lấy <code>majority vote</code> - tức là, quan sát mới trên sẽ rơi vào class mà tần suất xuất hiện của nó nhiều nhất trong B kết quả dự báo khác nhau.</p>
+<p>Trong phương pháp bagging, tham số về số lượng cây quyết định B nói trên mà càng lớn thì cũng không thể dẫn đến overfitting. Trong thực tế, chúng ta sẽ chọn số lượng cây quyết định đủ lớn để sao cho sai số đủ nhỏ.</p>
+<p><strong>Out-of-Bag Error Estimation</strong></p>
+<p>Có một cách khá đơn giản để ước lượng sai số dự báo (test error) của mô hình bagging mà không cần dùng cross-validation hoặc tập dữ liệu validation. Nhắc lại key của phương pháp bagging là việc các cây quyết định sẽ được xây dựng nhiều lần sử dụng những tập dữ liệu bootstrapped khác nhau. Mỗi một cây quyết định được xây đều sử dụng khoảng 2/3 số quan sát, còn 1/3 quan sát còn lại không được sử dụng trong quá trình xây dựng mô hình sẽ được gọi là những quan sát <code>out-of-bag</code> (OOB).
+Chúng ta có thể dự báo kết quả cho quan sát thứ i sử dụng từng cây quyết định mà các quan sát là OOB. Điều này sẽ mang lại khoảng B/3 giá trị dự báo cho quan sát thứ i này. Để dự báo giá trị cuối cùng của quan sát đó, chúng ta sẽ lấy trung bình các kết quả dự báo (đối với bài toán hồi quy - regression) hoặc lấy theo số đông - majority vote (đối với bài toán phân loại - classification). Đó chính là kết quả dự báo OOB (OOB prediction) cho quan sát i. OOB prediction có thể sử dụng cho từng n quan sát, và có thể tính toán được OOB MSE (đối với bài toán hồi quy) hoặc classification error (đối với bài toán phân loại). Cách sử dụng OOB để ước lượng sai số dự báo (test error) sẽ thuận tiện hơn so với cách cross-validation khi sử dụng bagging đối với tập dữ liệu lớn.</p>
+<p><strong>Variable Importance Measures</strong></p>
+<p>Như vừa tìm hiểu, <code>bagging</code> sẽ cải thiện được độ chính xác của dự báo so với mô hình cây quyết định đơn lẻ. Tuy nhiên, bagging lại rất khó để giải thích kết quả mô hình do việc tổng hợp rất nhiều cây quyết định khác nhau.</p>
+<p>Mặc dù đối với bagging rất khó để giải thích kết quả mô hình, nhưng chúng ta vẫn có thể xem được thống kê tổng quát về mức độ quan trọng của các biến đầu vào trong mô hình bằng việc sử dụng RSS (đối với bagging regression trees) hoặc chỉ số Gini (đối với bagging classification trees).</p>
+</div>
+<div id="random-forests" class="section level2">
+<h2><span class="header-section-number">12.2</span> Random Forests</h2>
+<p>Cũng giống như <code>bagging</code>, <code>random forests</code> cũng xây dựng một tập hợp các cây quyết định sử dụng các tập dữ liệu con được chia theo phương pháp boostrap (lấy mẫu ngẫu nhiên có hoàn lại) từ tập dữ liệu training ban đầu. Tuy nhiên, với phương pháp <code>random forests</code> thì những tập dữ liệu con đó sẽ không bao gồm tất cả các biến đầu vào (p - tổng số lượng biến đầu vào) trong tập dữ liệu training ban đầu như <code>bagging</code> mà chỉ bao gồm m biến nhất định (thông thường m ~ sqrt(p)).</p>
+<p>Đối với <code>bagging</code> các cây quyết định có thể tương quan chặt chẽ với nhau (<code>highly correlated</code>) do các cây đều lấy cùng một số lượng là tất cả các biến đầu vào trong tập dữ liệu training ban đầu. Điều đó sẽ dẫn đến việc variance sẽ cao. Trong khi đó, <code>random forests</code> có thể khắc phục được vấn đề trên khi mỗi cây quyết định được xây dựng chỉ lấy ngẫu nhiên m biến đầu vào ngẫu nhiên. Quá trình đó được gọi là <code>decorrelating</code>. Quá trình này sẽ giúp kết quả dự báo đáng tin cậy hơn.</p>
+<p>Như vậy, điểm khác biệt quan trọng nhất giữa <code>bagging</code> và <code>random forests</code> là việc chọn số lượng biến đầu vào:</p>
+<ul>
+<li><p><code>bagging</code> lấy tất cả các biến đầu vào (p)</p></li>
+<li><p><code>random forests</code> lấy m biến nhất định (m ~ sqrt(p))</p></li>
+</ul>
+<p>Vì thế, nếu xây dựng mô hình <code>random forests</code> với số lượng biến đầu vào m = p (tức lấy tất cả các biến đầu vào) thì mô hình trở thành <code>bagging</code>. Do đó, có thể nói bagging là một trường hợp đặc biệt của random forests.</p>
+<p>Thuật toán của <code>Random Forest</code> sẽ bao gồm việc lấy mẫu và chọn biến để xây dựng một số lượng lớn các cây quyết định khác nhau. Kết quả dự báo cuối cùng của một quan sát sẽ lấy trung bình các kết quả dự báo của các cây quyết định (đối với bài toán hồi quy - regression) hoặc lấy majority vote từ các kết quả dự báo từ các cây quyết định để xác định quan sát đó thuộc class nào (đối với bài toán phân loại - classification).</p>
+<p>Giả định rằng N là số lượng quan sát của tập dữ liệu training và p là số lượng biến đầu vào. Thuật toán sẽ diễn ra theo các bước như sau:</p>
+<ul>
+<li><p><strong>Bước 1</strong>: Xây dựng số lượng lớn các cây quyết định bằng việc lấy mẫu ngẫu nhiên có hoàn lại N quan sát từ tập dữ liệu training</p></li>
+<li><p><strong>Bước 2</strong>: Với mỗi cây quyết định lựa chọn m &lt; p biến nhất định. Những biến này được cân nhắc lựa chọn để phân nhánh, với mỗi cây quyết định thì đều có số lượng biến là m.</p></li>
+<li><p><strong>Bước 3</strong>: Xây dựng các cây (không thực hiện tỉa cây)</p></li>
+<li><p><strong>Bước 4</strong>: Dự báo các quan sát mới bằng việc lấy trung bình các kết quả dự báo của các cây quyết định khác nhau đã được xây dựng (đối với bài toán hồi quy), hoặc lấy theo kết quả số đông của các cây quyết định khác nhau đã được xây dựng (đối với bài toán phân loại).</p></li>
+</ul>
+<p>Out-of-bag (OOB) error estimate được tính toán bằng việc phân loại quan sát mới mà không có trong tập dữ liệu training khi xây dựng cây quyết định. Việc này sẽ hữu ích khi mà chúng ta không có dữ liệu validation.</p>
+<p>Trong <code>R</code> để xây dựng mô hình random forests chúng ta có thể sử dụng hàm <code>randomForest()</code> trong package <strong>randomForest</strong>. Số lượng cây mặc định là 500, số lượng biến tại mỗi cây mặc định là sqrt(tổng số biến), và kích thước nhỏ nhất của cây mặc định là 1.</p>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="bagging-boosting-va-random-forest.html#cb576-1"></a><span class="co"># Data</span></span>
+<span id="cb576-2"><a href="bagging-boosting-va-random-forest.html#cb576-2"></a>loc &lt;-<span class="st"> &quot;http://archive.ics.uci.edu/ml/machine-learning-databases/&quot;</span></span>
+<span id="cb576-3"><a href="bagging-boosting-va-random-forest.html#cb576-3"></a>ds &lt;-<span class="st"> &quot;breast-cancer-wisconsin/breast-cancer-wisconsin.data&quot;</span></span>
+<span id="cb576-4"><a href="bagging-boosting-va-random-forest.html#cb576-4"></a>url &lt;-<span class="st"> </span><span class="kw">paste</span>(loc, ds, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb576-5"><a href="bagging-boosting-va-random-forest.html#cb576-5"></a>breast &lt;-<span class="st"> </span><span class="kw">read.table</span>(url, <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>, <span class="dt">na.strings=</span><span class="st">&quot;?&quot;</span>)</span>
+<span id="cb576-6"><a href="bagging-boosting-va-random-forest.html#cb576-6"></a><span class="kw">names</span>(breast) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;clumpThickness&quot;</span>, <span class="st">&quot;sizeUniformity&quot;</span>,</span>
+<span id="cb576-7"><a href="bagging-boosting-va-random-forest.html#cb576-7"></a><span class="st">&quot;shapeUniformity&quot;</span>, <span class="st">&quot;maginalAdhesion&quot;</span>,</span>
+<span id="cb576-8"><a href="bagging-boosting-va-random-forest.html#cb576-8"></a><span class="st">&quot;singleEpithelialCellSize&quot;</span>, <span class="st">&quot;bareNuclei&quot;</span>,</span>
+<span id="cb576-9"><a href="bagging-boosting-va-random-forest.html#cb576-9"></a><span class="st">&quot;blandChromatin&quot;</span>, <span class="st">&quot;normalNucleoli&quot;</span>, <span class="st">&quot;mitosis&quot;</span>, <span class="st">&quot;class&quot;</span>)</span>
+<span id="cb576-10"><a href="bagging-boosting-va-random-forest.html#cb576-10"></a>df &lt;-<span class="st"> </span>breast[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb576-11"><a href="bagging-boosting-va-random-forest.html#cb576-11"></a>df<span class="op">$</span>class &lt;-<span class="st"> </span><span class="kw">factor</span>(df<span class="op">$</span>class, <span class="dt">levels=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),</span>
+<span id="cb576-12"><a href="bagging-boosting-va-random-forest.html#cb576-12"></a><span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;benign&quot;</span>, <span class="st">&quot;malignant&quot;</span>))</span>
+<span id="cb576-13"><a href="bagging-boosting-va-random-forest.html#cb576-13"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb576-14"><a href="bagging-boosting-va-random-forest.html#cb576-14"></a>train &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">nrow</span>(df), <span class="fl">0.7</span><span class="op">*</span><span class="kw">nrow</span>(df))</span>
+<span id="cb576-15"><a href="bagging-boosting-va-random-forest.html#cb576-15"></a>df.train &lt;-<span class="st"> </span>df[train,]</span>
+<span id="cb576-16"><a href="bagging-boosting-va-random-forest.html#cb576-16"></a>df.validate &lt;-<span class="st"> </span>df[<span class="op">-</span>train,]</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="bagging-boosting-va-random-forest.html#cb577-1"></a><span class="kw">library</span>(ISLR)</span>
+<span id="cb577-2"><a href="bagging-boosting-va-random-forest.html#cb577-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## -- Attaching packages ------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.2.0       v purrr   0.2.5  
+## v tibble  2.1.1       v dplyr   0.8.0.1
+## v tidyr   0.8.2       v stringr 1.4.0  
+## v readr   1.3.1       v forcats 0.3.0</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## -- Conflicts ---------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="bagging-boosting-va-random-forest.html#cb589-1"></a><span class="kw">library</span>(randomForest) <span class="co"># Package sử dụng cho Random Forests</span></span></code></pre></div>
+<pre><code>## randomForest 4.6-12</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;randomForest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     margin</code></pre>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="bagging-boosting-va-random-forest.html#cb595-1"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb595-2"><a href="bagging-boosting-va-random-forest.html#cb595-2"></a></span>
+<span id="cb595-3"><a href="bagging-boosting-va-random-forest.html#cb595-3"></a><span class="co"># Xây dựng mô hình trên tập training</span></span>
+<span id="cb595-4"><a href="bagging-boosting-va-random-forest.html#cb595-4"></a>fit_rf &lt;-<span class="st"> </span><span class="kw">randomForest</span>(class <span class="op">~</span><span class="st"> </span>.,</span>
+<span id="cb595-5"><a href="bagging-boosting-va-random-forest.html#cb595-5"></a>                       <span class="dt">data =</span> df.train,</span>
+<span id="cb595-6"><a href="bagging-boosting-va-random-forest.html#cb595-6"></a>                       <span class="dt">na.action =</span> na.roughfix, <span class="co"># Xử lý giá trị missing</span></span>
+<span id="cb595-7"><a href="bagging-boosting-va-random-forest.html#cb595-7"></a>                       <span class="dt">importance =</span> T</span>
+<span id="cb595-8"><a href="bagging-boosting-va-random-forest.html#cb595-8"></a>                       )</span>
+<span id="cb595-9"><a href="bagging-boosting-va-random-forest.html#cb595-9"></a></span>
+<span id="cb595-10"><a href="bagging-boosting-va-random-forest.html#cb595-10"></a>fit_rf</span></code></pre></div>
+<pre><code>## 
+## Call:
+##  randomForest(formula = class ~ ., data = df.train, importance = T,      na.action = na.roughfix) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 3
+## 
+##         OOB estimate of  error rate: 3.68%
+## Confusion matrix:
+##           benign malignant class.error
+## benign       319        10  0.03039514
+## malignant      8       152  0.05000000</code></pre>
+<p>Để xem mức độ quan trọng của các biến trong mô hình chúng ta có thể sử dụng hàm <code>importance()</code>.</p>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="bagging-boosting-va-random-forest.html#cb597-1"></a><span class="co"># Xem mức độ quan trọng của các biến trong mô hình</span></span>
+<span id="cb597-2"><a href="bagging-boosting-va-random-forest.html#cb597-2"></a><span class="kw">importance</span>(fit_rf, </span>
+<span id="cb597-3"><a href="bagging-boosting-va-random-forest.html#cb597-3"></a>           <span class="dt">type =</span> <span class="dv">2</span></span>
+<span id="cb597-4"><a href="bagging-boosting-va-random-forest.html#cb597-4"></a>           )</span></code></pre></div>
+<pre><code>##                          MeanDecreaseGini
+## clumpThickness                  12.504484
+## sizeUniformity                  54.770143
+## shapeUniformity                 48.662325
+## maginalAdhesion                  5.969580
+## singleEpithelialCellSize        14.297239
+## bareNuclei                      34.017599
+## blandChromatin                  16.243253
+## normalNucleoli                  26.337646
+## mitosis                          1.814502</code></pre>
+<p><code>MeanDecreaseGini</code> - tổng độ giảm tính không đồng nhất (heterogeneity), hay nói cách khác là tăng tính đồng nhất từ việc chọn biến đó để phân nhánh, tính trung bình trên tất cả các cây.</p>
+<p><code>MeanDecreaseGini</code> của biến nào càng cao, thì biến đó càng quan trọng trong mô hình.</p>
+<p>Kết quả trên cho chúng ta thấy rằng biến <code>sizeUniformity</code> là quan trọng nhất, trong khi đó <code>mitosis</code> là biến ít quan trọng nhất.</p>
+<p>Sau khi xây dựng được mô hình, để phân loại những quan sát mới từ tập dữ liệu kiểm tra (validation sample), chúng ta sử dụng hàm <code>predict()</code></p>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="bagging-boosting-va-random-forest.html#cb599-1"></a><span class="co"># Dự báo những quan sát mới</span></span>
+<span id="cb599-2"><a href="bagging-boosting-va-random-forest.html#cb599-2"></a>rf_pred &lt;-<span class="st"> </span><span class="kw">predict</span>(fit_rf, </span>
+<span id="cb599-3"><a href="bagging-boosting-va-random-forest.html#cb599-3"></a>                   df.validate</span>
+<span id="cb599-4"><a href="bagging-boosting-va-random-forest.html#cb599-4"></a>                   )</span>
+<span id="cb599-5"><a href="bagging-boosting-va-random-forest.html#cb599-5"></a></span>
+<span id="cb599-6"><a href="bagging-boosting-va-random-forest.html#cb599-6"></a><span class="co"># Đánh giá chất lượng mô hình trên tập validation</span></span>
+<span id="cb599-7"><a href="bagging-boosting-va-random-forest.html#cb599-7"></a>rf_perf &lt;-<span class="st"> </span><span class="kw">table</span>(df.validate<span class="op">$</span>class,</span>
+<span id="cb599-8"><a href="bagging-boosting-va-random-forest.html#cb599-8"></a>                 rf_pred,</span>
+<span id="cb599-9"><a href="bagging-boosting-va-random-forest.html#cb599-9"></a>                 <span class="dt">dnn =</span> <span class="kw">c</span>(<span class="st">&quot;Actual&quot;</span>, <span class="st">&quot;Predicted&quot;</span>)</span>
+<span id="cb599-10"><a href="bagging-boosting-va-random-forest.html#cb599-10"></a>                 )</span>
+<span id="cb599-11"><a href="bagging-boosting-va-random-forest.html#cb599-11"></a></span>
+<span id="cb599-12"><a href="bagging-boosting-va-random-forest.html#cb599-12"></a>rf_perf</span></code></pre></div>
+<pre><code>##            Predicted
+## Actual      benign malignant
+##   benign       117         3
+##   malignant      1        79</code></pre>
+<p>Kết quả dự báo cho ta thấy rằng đối với những quan sát bị missing, mô hình sẽ không phân loại. Tỷ lệ quan sát được dự báo đúng là: (117+79)/200 = 98% (tập dữ liệu kiểm tra có 210 quan sát, nhưng có 10 quan sát bị missing nên mô hình chỉ phân loại 200 quan sát).</p>
+<p><strong>Ưu điểm</strong> của <code>Random Forests</code> là chất lượng dự báo tốt, độ chính xác cao hơn so với những phương pháp như <code>Logistic</code> hay <code>Decision Trees</code>. Hơn nữa, phương pháp này có thể xử lý tốt với những trường hợp dữ liệu lớn (nhiều quan sát, nhiều biến) hoặc dữ liệu bị missing. Ngoài ra, việc tính toán được OOB error và xem xét được mức độ quan trọng của các biến đến kết quả dự báo (variable importance) cũng là một ưu điểm. Tuy nhiên, <strong>nhược điểm</strong> của <code>Random Forests</code> là rất khó giải thích, vì trong quá trình xây dựng mô hình theo phương pháp này, chúng ta sẽ xây dựng rất nhiều các cây quyết định đơn lẻ khác nhau. Điều đó thể hiện sự đánh đổi giữa chất lượng dự báo và tính giải thích của mô hình.</p>
+</div>
+<div id="boosting" class="section level2">
+<h2><span class="header-section-number">12.3</span> Boosting</h2>
+<p>Bây giờ chúng ta sẽ cùng thảo luận về <code>boosting</code>, một phương pháp khác để cải thiện chất lượng dự báo từ việc sử dụng cây quyết định. Giống như các phương pháp trước, boosting có thể áp dụng được đối với cả 2 bài toán: Hồi quy (regression) và phân loại (classification).</p>
+<p>Nhắc lại một chút, boosting và random forests sử dụng phương pháp boostrap (lấy mẫu ngẫu nhiên có hoàn lại) để tạo các tập dữ liệu con từ dữ liệu training ban đầu, sau đó xây dựng các cây quyết định đối với từng tập dữ liệu con đó (các cây quyết định được xây dựng độc lập với nhau). Cuối cùng, sẽ tổng hợp lại các cây quyết định để ra được kết quả dự báo cuối cùng bằng cách lấy trung bình các kết quả dự báo của các cây quyết định (đối với bài toán hồi quy), hoặc lấy theo số đông các kết quả dự báo của các cây quyết định (đối với bài toán phân loại).</p>
+<p>Boosting cũng hoạt động theo cách tương tự, nhưng khác ở chỗ là việc xây dựng các cây quyết định từ những tập dữ liệu con khác nhau không phải là độc lập hoàn toàn với nhau như bagging hay random forests. Thay vào đó, boosting xây dựng các cây quyết định một cách có trình tự (<code>sequentially</code>): Mỗi cây kế tiếp được xây dựng bằng cách sử dụng kết quả từ những cây trước đó. Boosting tập trung nhiều hơn vào những quan sát bị dự báo sai từ những cây trước để góp phần cải thiện kết quả dự báo cuối cùng. Boosting không dùng boostrap để chia tập dữ liệu training ban đầu, mà thay vào đó là việc dùng các phiên bản đã được modified từ tập dữ liệu train ban đầu để xây dựng các cây quyết định.</p>
+<p>Chúng ta sẽ cùng xem xét bài toán hồi quy. Giống như bagging và randomforests, boosting kết hợp nhiều cây quyết định lại với nhau: f1,…, fB.</p>
+<p>Thuật toán boosting đối với bài toán hồi quy:</p>
+<ul>
+<li><p><strong>Bước 1</strong>: Đặt fˆ(x) = 0 và ri = yi với mọi i trên tập dữ liệu training</p></li>
+<li><p><strong>Bước 2</strong>: Với b = 1,2.., B, lặp lại:</p>
+<ul>
+<li>Xây dựng một cây fˆb với d splits (d+1 terminal nodes) với dữ liệu training (X,r).</li>
+<li>Update fˆ bằng việc adding in a shrunken version of the new tree, và update residuals:</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[\widehat{f}(x) = \widehat{f}(x) + λ\widehat{f}^{b}(x)\]</span></p>
+<p><span class="math display">\[r_i = r_i - λ\widehat{f}^{b}(x_i)\]</span></p>
+<ul>
+<li><strong>Bước 3</strong>: Kết quả của boosted model:</li>
+</ul>
+<p><span class="math display">\[\widehat{f}(x) = \sum_{b=1}^{P}λ\widehat{f}^{b}(x)\]</span></p>
+<p>Thay vì việc xây dựng các cây quyết định đơn lẻ với kích thước lớn có thể dẫn đến vấn đề overfitting, phương pháp boosting sẽ “học” chậm (<code>learn slowly</code>). Khi xây dựng xong cây quyết định đầu tiên, chúng ta sẽ xây dựng cây quyết định tiếp theo sử dụng biến đầu ra là phần dư (residuals) của cây trước đó.
+Sau đó, sẽ xây dựng các cây quyết định tiếp theo để update residuals. Mỗi cây có thể có kích thước nhỏ, với chỉ một vài terminal nodes được quyết định bởi tham số d trong thuật toán. Bằng việc xây dựng những cây nhỏ với residuals, chúng ta có thể dần dần cải thiện fˆ. Tham số <code>shrinkage</code> hay <code>learning rate</code>(tốc độ học của mô hình) λ sẽ làm mô hình “học” chậm và kỹ hơn nữa giúp cải thiện chất lượng mô hình.
+Lưu ý rằng khác với bagging, đối với boosting thì việc xây dựng các cây quyết định tiếp theo sẽ phụ thuộc vào kết quả của các cây trước đó.</p>
+<p>Như vậy, chúng ta đã vừa cùng tìm hiểu về boosting regression trees. Bây giờ chúng sẽ cùng tìm hiểu về 2 thuật toán trong boosting là <code>Adaboost</code> và <code>Gradient Boosting</code>.</p>
+<p><strong>AdaBoost</strong></p>
+<p><code>AdaBoost</code> kết hợp các “weak learners” để tạo thành “strong learner” (“weak learners” được hiểu là các cây phân loại chỉ tốt hơn một chút so với việc đoán ngẫu nhiên). Sau mỗi bước lặp, những quan sát bị phân loại sai sẽ được đánh trọng số cao hơn, những quan sát được phân loại đúng sẽ đánh trọng số thấp hơn. Mỗi cây tiếp theo được xây dựng với mục tiêu phân loại đúng những quan sát đã bị phân loại sai ở cây trước đó.</p>
+<p>Chúng ta sẽ mô tả thuật toán <code>Adaboost</code> thông qua việc sử dụng ví dụ sau đây: Phân loại các quan sát vào 2 nhóm <code>+</code> hoặc <code>-</code>. Chúng ta sẽ thực hiện các bước sau:</p>
+<hr />
+<p><img src="Images/tree-3.jpg" /></p>
+<hr />
+<p><em>Diễn giải</em>:</p>
+<ul>
+<li><p>Box 1: Đánh trọng số bằng nhau đối với tất cả quan sát và xây dựng một decision stump - D1 (cây chỉ gồm 1 split hay 1 tầng) để phân loại các quan sát thành 2 nhóm <code>+</code> và <code>-</code>. Kết quả cho thấy có 3 quan sát bị phân loại sai (là <code>+</code> nhưng lại bị cho vào nhóm <code>-</code>), 3 quan sát này sẽ được đánh trọng số cao hơn và tiếp tục xây dựng decision stump khác - D2.</p></li>
+<li><p>Box 2: D2 được xây dựng với mục đích phân loại đúng 3 quan sát bị phân loại sai ở D1. Kết quả cho thấy, lại có 3 quan sát bị phân loại sai (là <code>-</code> nhưng bị cho vào nhóm <code>+</code>). Lại tiếp tục đánh trọng số cao hơn đối với những quan sát này và tiếp tục xây dựng decision stump - D3.</p></li>
+<li><p>Box 3: D3 được xây dựng với mục đích phân loại đúng 3 quan sát bị phân loại sai ở D2. Kết quả cho thấy vẫn có những quan sát bị phân loại sai.</p></li>
+<li><p>Box 4: Kết hợp D1, D2, D3 để tạo thành D4 - phân loại tốt hơn so với D1, D2, D3 (nhóm <code>+</code> và <code>-</code> đã được phân loại hoàn toàn).</p></li>
+</ul>
+<p><strong>Gradient Boosting</strong></p>
+<p>Gradient Boosting = Gradient Descent + Boosting</p>
+<p>Cả <code>AdaBoost</code> và <code>Gradient Boosting</code> đều kết hợp các “weak learners” để tạo thành một “strong learner” và đều tập trung vào những quan sát bị dự báo sai. AdaBoost thì đánh trong số cao hơn vào những quan sát bị dự báo sai tại mỗi cây trước, và cố gắng dự báo đúng những quan sát đó tại cây tiếp theo. Trong khi đó, với Gradient Boosting, mỗi một cây mới sẽ được xây dựng với mục tiêu tối thiểu hóa dần tổng loss của cây trước đó bằng việc sử dụng phương pháp <code>gradient descent</code>.</p>
+<p>Trong Gradient Boosting, việc tính tổng loss dựa vào việc lựa chọn loại “loss function” nào, ví dụ như: square loss, absolute loss, huber loss. Mỗi loại đều có những ưu/nhược điểm riêng.</p>
+<ul>
+<li>Square loss:</li>
+</ul>
+<p><span class="math display">\[L(y,F) = (y-F)^2/2\]</span></p>
+<ul>
+<li>Absolute loss:</li>
+</ul>
+<p><span class="math display">\[L(y,F) = |y-F|\]</span></p>
+<ul>
+<li>Huber loss:</li>
+</ul>
+<p><span class="math display">\[\begin{cases}(y-F)^2/2 &amp; |x-F| \leqslant \delta\\\delta(|y-F| - \delta/2) &amp; |x-F| &gt; \delta\end{cases}\]</span></p>
+<p><em>Ví dụ</em>:</p>
+<p><img src="Images/tree-5.jpg" /></p>
+<hr />
+<p>Boosting có 3 tham số cơ bản để tối ưu hóa mô hình (<code>tuning parameters</code>):</p>
+<ul>
+<li><p>Số lượng cây quyết định (B): Với boosting khi số lượng cây quá nhiều có thể dẫn đến overfitting, nên chúng ta sẽ sử dụng cross-validation để lựa chọn số lượng cây</p></li>
+<li><p>Tốc độ học λ (<code>learning rate</code> hoặc <code>shrinkage</code>): Giá trị nhỏ, dương. λ có thể nhận các giá trị như: 0.1, 0.01, hay 0.001 tùy từng trường hợp. λ càng nhỏ thì mô hình sẽ “học” càng chậm, càng lâu.</p></li>
+<li><p>Số lần splits, hay phân nhánh (d) của mỗi cây: Tham số này dùng để kiểm soát độ phức tạp của mô hình. Tham số này còn có thể gọi là số tầng cây (<code>interactive depth</code>). Nếu d = 1 (tức cây chỉ có 1 tầng hay 1 split) thì cây quyết định đó được gọi là <code>stump</code>.</p></li>
+</ul>
+<p>Để thực hành xây dựng mô hình boosting trên <code>R</code>, chúng ta sẽ sử dụng dữ liệu có sẵn trong <code>R</code> - <code>GermanCredit</code>.</p>
+<p>Đây là dữ liệu ghi nhận về lịch sử vay của khách hàng, với các 61 biến đầu vào cùng với biến đầu ra <code>Class</code> ghi nhận thực tế là các khoản vay đó có phải là khoản nợ xấu hay không.</p>
+<p>Để xây dựng mô hình boosting trên <code>R</code>, chúng ta sẽ sử dụng hàm <code>gbm()</code> trong package <strong>gbm</strong>.</p>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="bagging-boosting-va-random-forest.html#cb601-1"></a><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</span>
+<span id="cb601-2"><a href="bagging-boosting-va-random-forest.html#cb601-2"></a><span class="kw">library</span>(caret)</span></code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;caret&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     lift</code></pre>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="bagging-boosting-va-random-forest.html#cb605-1"></a><span class="kw">data</span>(<span class="st">&quot;GermanCredit&quot;</span>)</span>
+<span id="cb605-2"><a href="bagging-boosting-va-random-forest.html#cb605-2"></a>data &lt;-<span class="st"> </span>GermanCredit</span>
+<span id="cb605-3"><a href="bagging-boosting-va-random-forest.html#cb605-3"></a><span class="kw">rm</span>(GermanCredit)</span>
+<span id="cb605-4"><a href="bagging-boosting-va-random-forest.html#cb605-4"></a></span>
+<span id="cb605-5"><a href="bagging-boosting-va-random-forest.html#cb605-5"></a><span class="co"># Hàm tính toán các chỉ số đo lường chất lượng dự báo của mô hình</span></span>
+<span id="cb605-6"><a href="bagging-boosting-va-random-forest.html#cb605-6"></a>model.performance &lt;-<span class="st"> </span><span class="cf">function</span>(confusion_matrix) {</span>
+<span id="cb605-7"><a href="bagging-boosting-va-random-forest.html#cb605-7"></a>  a &lt;-<span class="st"> </span>confusion_matrix[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb605-8"><a href="bagging-boosting-va-random-forest.html#cb605-8"></a>  b &lt;-<span class="st"> </span>confusion_matrix[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb605-9"><a href="bagging-boosting-va-random-forest.html#cb605-9"></a>  c &lt;-<span class="st"> </span>confusion_matrix[<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb605-10"><a href="bagging-boosting-va-random-forest.html#cb605-10"></a>  d &lt;-<span class="st"> </span>confusion_matrix[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb605-11"><a href="bagging-boosting-va-random-forest.html#cb605-11"></a>  </span>
+<span id="cb605-12"><a href="bagging-boosting-va-random-forest.html#cb605-12"></a>  tpr &lt;-<span class="st"> </span>c<span class="op">/</span>(b<span class="op">+</span>c)</span>
+<span id="cb605-13"><a href="bagging-boosting-va-random-forest.html#cb605-13"></a>  precision &lt;-<span class="st"> </span>c<span class="op">/</span>(c<span class="op">+</span>d)</span>
+<span id="cb605-14"><a href="bagging-boosting-va-random-forest.html#cb605-14"></a>  accuracy &lt;-<span class="st"> </span>(a<span class="op">+</span>c)<span class="op">/</span>(a<span class="op">+</span>b<span class="op">+</span>c<span class="op">+</span>d)</span>
+<span id="cb605-15"><a href="bagging-boosting-va-random-forest.html#cb605-15"></a>  </span>
+<span id="cb605-16"><a href="bagging-boosting-va-random-forest.html#cb605-16"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;recall :&#39;</span>,<span class="kw">round</span>(tpr,<span class="dv">2</span>)))</span>
+<span id="cb605-17"><a href="bagging-boosting-va-random-forest.html#cb605-17"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;precision :&#39;</span>, <span class="kw">round</span>(precision,<span class="dv">2</span>)))</span>
+<span id="cb605-18"><a href="bagging-boosting-va-random-forest.html#cb605-18"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;accuracy :&#39;</span>,<span class="kw">round</span>(accuracy,<span class="dv">2</span>)))</span>
+<span id="cb605-19"><a href="bagging-boosting-va-random-forest.html#cb605-19"></a>}</span>
+<span id="cb605-20"><a href="bagging-boosting-va-random-forest.html#cb605-20"></a></span>
+<span id="cb605-21"><a href="bagging-boosting-va-random-forest.html#cb605-21"></a><span class="co"># Chia data: training/testing tỷ lệ 8/2</span></span>
+<span id="cb605-22"><a href="bagging-boosting-va-random-forest.html#cb605-22"></a><span class="kw">set.seed</span>(<span class="dv">123</span>) </span>
+<span id="cb605-23"><a href="bagging-boosting-va-random-forest.html#cb605-23"></a>indxTrain &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y =</span> data<span class="op">$</span>Class,<span class="dt">p =</span> <span class="dv">8</span><span class="op">/</span><span class="dv">10</span>,<span class="dt">list =</span> <span class="ot">FALSE</span>) </span>
+<span id="cb605-24"><a href="bagging-boosting-va-random-forest.html#cb605-24"></a>training &lt;-<span class="st"> </span>data[indxTrain,] </span>
+<span id="cb605-25"><a href="bagging-boosting-va-random-forest.html#cb605-25"></a>testing &lt;-<span class="st"> </span>data[<span class="op">-</span>indxTrain,] </span>
+<span id="cb605-26"><a href="bagging-boosting-va-random-forest.html#cb605-26"></a></span>
+<span id="cb605-27"><a href="bagging-boosting-va-random-forest.html#cb605-27"></a>df.train &lt;-<span class="st"> </span>training</span>
+<span id="cb605-28"><a href="bagging-boosting-va-random-forest.html#cb605-28"></a>df.train<span class="op">$</span>Status[df.train<span class="op">$</span>Class <span class="op">==</span><span class="st"> &quot;Good&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb605-29"><a href="bagging-boosting-va-random-forest.html#cb605-29"></a>df.train<span class="op">$</span>Status[df.train<span class="op">$</span>Class <span class="op">==</span><span class="st"> &quot;Bad&quot;</span>] &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb605-30"><a href="bagging-boosting-va-random-forest.html#cb605-30"></a></span>
+<span id="cb605-31"><a href="bagging-boosting-va-random-forest.html#cb605-31"></a>df.test &lt;-<span class="st"> </span>testing</span>
+<span id="cb605-32"><a href="bagging-boosting-va-random-forest.html#cb605-32"></a>df.test<span class="op">$</span>Status[df.test<span class="op">$</span>Class <span class="op">==</span><span class="st"> &quot;Good&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb605-33"><a href="bagging-boosting-va-random-forest.html#cb605-33"></a>df.test<span class="op">$</span>Status[df.test<span class="op">$</span>Class <span class="op">==</span><span class="st"> &quot;Bad&quot;</span>] &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb605-34"><a href="bagging-boosting-va-random-forest.html#cb605-34"></a></span>
+<span id="cb605-35"><a href="bagging-boosting-va-random-forest.html#cb605-35"></a><span class="kw">rm</span>(training,testing)</span>
+<span id="cb605-36"><a href="bagging-boosting-va-random-forest.html#cb605-36"></a></span>
+<span id="cb605-37"><a href="bagging-boosting-va-random-forest.html#cb605-37"></a><span class="co"># Gradient Boosting</span></span>
+<span id="cb605-38"><a href="bagging-boosting-va-random-forest.html#cb605-38"></a><span class="kw">set.seed</span>(<span class="dv">9999</span>)</span>
+<span id="cb605-39"><a href="bagging-boosting-va-random-forest.html#cb605-39"></a></span>
+<span id="cb605-40"><a href="bagging-boosting-va-random-forest.html#cb605-40"></a><span class="co"># Xây dựng mô hình trên tập train</span></span>
+<span id="cb605-41"><a href="bagging-boosting-va-random-forest.html#cb605-41"></a><span class="kw">library</span>(gbm)</span></code></pre></div>
+<pre><code>## Loading required package: survival</code></pre>
+<pre><code>## 
+## Attaching package: &#39;survival&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:caret&#39;:
+## 
+##     cluster</code></pre>
+<pre><code>## Loading required package: splines</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre><code>## Loaded gbm 2.1.1</code></pre>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="bagging-boosting-va-random-forest.html#cb612-1"></a>gbm.train &lt;-<span class="st"> </span><span class="kw">gbm</span>(Status <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>Class,</span>
+<span id="cb612-2"><a href="bagging-boosting-va-random-forest.html#cb612-2"></a>                 <span class="dt">data =</span> df.train,</span>
+<span id="cb612-3"><a href="bagging-boosting-va-random-forest.html#cb612-3"></a>                 <span class="dt">distribution =</span> <span class="st">&quot;bernoulli&quot;</span>, </span>
+<span id="cb612-4"><a href="bagging-boosting-va-random-forest.html#cb612-4"></a>                 <span class="dt">n.trees =</span> <span class="dv">1000</span>,</span>
+<span id="cb612-5"><a href="bagging-boosting-va-random-forest.html#cb612-5"></a>                 <span class="dt">shrinkage =</span> <span class="fl">0.01</span>,</span>
+<span id="cb612-6"><a href="bagging-boosting-va-random-forest.html#cb612-6"></a>                 <span class="dt">interaction.depth =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Warning in gbm.fit(x, y, offset = offset, distribution = distribution, w =
+## w, : variable 26: Purpose.Vacation has no variation.</code></pre>
+<pre><code>## Warning in gbm.fit(x, y, offset = offset, distribution = distribution, w =
+## w, : variable 44: Personal.Female.Single has no variation.</code></pre>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="bagging-boosting-va-random-forest.html#cb615-1"></a><span class="co"># Dự báo quan sát trên tập test</span></span>
+<span id="cb615-2"><a href="bagging-boosting-va-random-forest.html#cb615-2"></a>gbm.result &lt;-<span class="st"> </span><span class="kw">predict</span>(gbm.train,</span>
+<span id="cb615-3"><a href="bagging-boosting-va-random-forest.html#cb615-3"></a>                      <span class="dt">newdata =</span> df.test,</span>
+<span id="cb615-4"><a href="bagging-boosting-va-random-forest.html#cb615-4"></a>                      <span class="dt">n.trees =</span> <span class="dv">1000</span>,</span>
+<span id="cb615-5"><a href="bagging-boosting-va-random-forest.html#cb615-5"></a>                      <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb615-6"><a href="bagging-boosting-va-random-forest.html#cb615-6"></a></span>
+<span id="cb615-7"><a href="bagging-boosting-va-random-forest.html#cb615-7"></a></span>
+<span id="cb615-8"><a href="bagging-boosting-va-random-forest.html#cb615-8"></a><span class="co"># Confusion matrix</span></span>
+<span id="cb615-9"><a href="bagging-boosting-va-random-forest.html#cb615-9"></a>gbm.conf  &lt;-<span class="st">  </span><span class="kw">rep</span> (<span class="st">&quot;Bad&quot;</span>, <span class="dv">200</span>) </span>
+<span id="cb615-10"><a href="bagging-boosting-va-random-forest.html#cb615-10"></a>gbm.conf[gbm.result <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.5</span>] =<span class="st"> &quot;Good&quot;</span> </span>
+<span id="cb615-11"><a href="bagging-boosting-va-random-forest.html#cb615-11"></a>gbm.confusion &lt;-<span class="st"> </span><span class="kw">table</span>(gbm.conf, df.test<span class="op">$</span>Class)</span>
+<span id="cb615-12"><a href="bagging-boosting-va-random-forest.html#cb615-12"></a>gbm.confusion </span></code></pre></div>
+<pre><code>##         
+## gbm.conf Bad Good
+##     Bad   35   16
+##     Good  25  124</code></pre>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="bagging-boosting-va-random-forest.html#cb617-1"></a><span class="kw">model.performance</span>(gbm.confusion)</span></code></pre></div>
+<pre><code>## [1] &quot;recall : 0.89&quot;
+## [1] &quot;precision : 0.83&quot;
+## [1] &quot;accuracy : 0.8&quot;</code></pre>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="bagging-boosting-va-random-forest.html#cb619-1"></a><span class="dv">35</span><span class="op">+</span><span class="dv">124</span><span class="op">+</span><span class="dv">25</span><span class="op">+</span><span class="dv">16</span></span></code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<ul>
+<li><p>Kết quả <code>confusion matrix</code> trên tập dữ liệu testing cho chúng ta thấy:</p>
+<ul>
+<li><p>Tỷ lệ dự báo đúng trên tổng quan sát là 80% (tức 35 khách hàng có nợ xấu và 124 khách hàng không có nợ xấu được dự báo đúng trên tổng số 200 khách hàng trên tập dữ liệu testing)</p></li>
+<li><p>Trong số 140 khách hàng thực tế không có nợ xấu thì chúng ta dự báo chính xác 124 khách hàng (tỷ lệ 124/140 = 89%)</p></li>
+<li><p>Trong số 149 khách hàng mà chúng ta dự báo là không có nợ xấu, có 124 khách hàng được dự báo chính xác (tỷ lệ 124/149 = 83%)</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="bagging-boosting-va-random-forest.html#cb621-1"></a><span class="co"># ROC</span></span>
+<span id="cb621-2"><a href="bagging-boosting-va-random-forest.html#cb621-2"></a><span class="kw">library</span>(ROCR) <span class="co"># Dùng để vẽ đường ROC và tính toán AUC</span></span></code></pre></div>
+<pre><code>## Loading required package: gplots</code></pre>
+<pre><code>## 
+## Attaching package: &#39;gplots&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     lowess</code></pre>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="bagging-boosting-va-random-forest.html#cb625-1"></a>gbm.ROC &lt;-<span class="st"> </span><span class="kw">prediction</span>(gbm.result, df.test<span class="op">$</span>Class)</span>
+<span id="cb625-2"><a href="bagging-boosting-va-random-forest.html#cb625-2"></a>gbm.ROCperf_test &lt;-<span class="st"> </span><span class="kw">performance</span>(gbm.ROC, <span class="st">&quot;tpr&quot;</span>, <span class="st">&quot;fpr&quot;</span>)</span>
+<span id="cb625-3"><a href="bagging-boosting-va-random-forest.html#cb625-3"></a></span>
+<span id="cb625-4"><a href="bagging-boosting-va-random-forest.html#cb625-4"></a><span class="co"># Vẽ ROC</span></span>
+<span id="cb625-5"><a href="bagging-boosting-va-random-forest.html#cb625-5"></a><span class="kw">plot</span>(gbm.ROCperf_test)</span></code></pre></div>
+<p><img src="44-bagging-boosting_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="bagging-boosting-va-random-forest.html#cb626-1"></a><span class="co"># Tính toán AUC</span></span>
+<span id="cb626-2"><a href="bagging-boosting-va-random-forest.html#cb626-2"></a>gbm.auc_test &lt;-<span class="st"> </span><span class="kw">performance</span>(gbm.ROC, <span class="st">&quot;auc&quot;</span>, <span class="st">&quot;cutoff&quot;</span>)</span>
+<span id="cb626-3"><a href="bagging-boosting-va-random-forest.html#cb626-3"></a>gbm.auc_test<span class="op">@</span>y.values</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 0.8171429</code></pre>
+<ul>
+<li>Kết quả <code>AUC ~ 82%</code> trên tập testing cho thấy chất lượng dự báo của mô hình là tương đối tốt.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cay-quyt-inh.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="unsupervised-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"split_by": "rmd"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
