@@ -95,7 +95,17 @@ tseries.plot <- function(x){
 purrr::map(list(ar1, ar2, ma1, ma2, arma), tseries.plot)
 ```
 
-<img src="61-arima_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="61-arima_files/figure-html/unnamed-chunk-1-2.png" width="672" /><img src="61-arima_files/figure-html/unnamed-chunk-1-3.png" width="672" /><img src="61-arima_files/figure-html/unnamed-chunk-1-4.png" width="672" /><img src="61-arima_files/figure-html/unnamed-chunk-1-5.png" width="672" />
+![](61-arima_files/figure-html/unnamed-chunk-1-1.png)
+
+![](61-arima_files/figure-html/unnamed-chunk-1-2.png)
+
+![](61-arima_files/figure-html/unnamed-chunk-1-3.png)
+
+![](61-arima_files/figure-html/unnamed-chunk-1-4.png)
+
+![](61-arima_files/figure-html/unnamed-chunk-1-5.png)
+
+
 
 ```
 ## [[1]]
@@ -103,45 +113,45 @@ purrr::map(list(ar1, ar2, ma1, ma2, arma), tseries.plot)
 ## Partial autocorrelations of series 'x', by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-##  0.839 -0.070 -0.072 -0.014 -0.164 -0.050 -0.011 -0.069  0.111  0.030 
+##  0.840  0.051 -0.199 -0.014  0.078  0.057 -0.234 -0.004  0.011  0.014 
 ##     11     12     13     14     15     16     17     18     19     20 
-##  0.139 -0.011  0.007  0.019  0.059 -0.119 -0.050 -0.010  0.016 -0.002 
+##  0.032  0.084 -0.200 -0.138 -0.087 -0.004  0.097 -0.049  0.075  0.011 
 ## 
 ## [[2]]
 ## 
 ## Partial autocorrelations of series 'x', by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-##  0.619 -0.523  0.036 -0.020 -0.051 -0.229  0.018  0.094 -0.146 -0.011 
+##  0.643 -0.498 -0.022  0.039 -0.060 -0.171  0.053  0.019 -0.072 -0.192 
 ##     11     12     13     14     15     16     17     18     19     20 
-## -0.014  0.052  0.263 -0.046  0.114  0.026 -0.021 -0.116 -0.043 -0.041 
+##  0.062 -0.021  0.086 -0.145 -0.057 -0.017  0.013 -0.039  0.040 -0.163 
 ## 
 ## [[3]]
 ## 
 ## Partial autocorrelations of series 'x', by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-## -0.119  0.053  0.006  0.140 -0.064 -0.008 -0.067  0.201 -0.026 -0.077 
+## -0.351 -0.237 -0.191 -0.118  0.078  0.210  0.004 -0.029 -0.110  0.013 
 ##     11     12     13     14     15     16     17     18     19     20 
-##  0.113 -0.075 -0.071  0.013 -0.044  0.004  0.030  0.090 -0.008  0.005 
+## -0.040 -0.160 -0.032 -0.071 -0.086  0.066 -0.031 -0.112 -0.026  0.105 
 ## 
 ## [[4]]
 ## 
 ## Partial autocorrelations of series 'x', by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-##  0.113  0.215 -0.255 -0.107  0.121 -0.073  0.003 -0.049  0.041 -0.043 
+## -0.356  0.098  0.252 -0.143 -0.060  0.020  0.056  0.046 -0.006  0.088 
 ##     11     12     13     14     15     16     17     18     19     20 
-## -0.108 -0.295 -0.021 -0.182  0.019 -0.009  0.019 -0.014 -0.045 -0.098 
+##  0.028 -0.083 -0.075  0.062 -0.093  0.029 -0.037  0.039 -0.030 -0.089 
 ## 
 ## [[5]]
 ## 
 ## Partial autocorrelations of series 'x', by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-##  0.593 -0.316 -0.161  0.050 -0.014  0.044 -0.140  0.066 -0.009  0.010 
+##  0.602 -0.264 -0.008 -0.187  0.176  0.097 -0.198 -0.141  0.046 -0.086 
 ##     11     12     13     14     15     16     17     18     19     20 
-##  0.020  0.086  0.030 -0.026 -0.037  0.004 -0.022  0.052  0.199  0.063
+##  0.005 -0.158 -0.021  0.034  0.010  0.016 -0.158  0.125  0.104 -0.034
 ```
 
 ## Ví dụ với R
@@ -153,7 +163,9 @@ library(tseries)
 plot(Nile)
 ```
 
-<img src="61-arima_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+![](61-arima_files/figure-html/unnamed-chunk-2-1.png)
+
+
 
 ```r
 #Tìm giá trị tối ưu của d để loại trend
@@ -169,7 +181,9 @@ dNile <- diff(Nile, 1)
 plot(dNile)
 ```
 
-<img src="61-arima_files/figure-html/unnamed-chunk-2-2.png" width="672" />
+![](61-arima_files/figure-html/unnamed-chunk-2-2.png)
+
+
 
 ```r
 adf.test(dNile)
@@ -195,7 +209,9 @@ Acf(dNile)
 Pacf(dNile)
 ```
 
-<img src="61-arima_files/figure-html/unnamed-chunk-2-3.png" width="672" />
+![](61-arima_files/figure-html/unnamed-chunk-2-3.png)
+
+
 
 ```r
 #ACF và PACF đưa ra gợi ý mô hình ARIMA(0,1,1): ACF giảm về 0 sau lag 1, PACF giảm dần về 0
@@ -244,7 +260,9 @@ qqnorm(fit$residuals)
 qqline(fit$residuals)
 ```
 
-<img src="61-arima_files/figure-html/unnamed-chunk-2-4.png" width="672" />
+![](61-arima_files/figure-html/unnamed-chunk-2-4.png)
+
+
 
 ```r
 Box.test(fit$residuals, type = "Ljung-Box")
@@ -277,7 +295,13 @@ forecast(fit, 3)
 autoplot(forecast(fit,3)) + theme_classic()
 ```
 
-<img src="61-arima_files/figure-html/unnamed-chunk-2-5.png" width="672" />
+```
+## Warning: package 'bindrcpp' was built under R version 3.4.4
+```
+
+![](61-arima_files/figure-html/unnamed-chunk-2-5.png)
+
+
 
 ```r
 #Tự động chọn mô hình

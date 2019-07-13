@@ -68,18 +68,16 @@ $$odds(p) = \frac{p}{1-p} = e^{\alpha + \beta X}$$
 
 
 ```
-## Warning: package 'tidyverse' was built under R version 3.4.4
+## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr
 ```
 
 ```
-## -- Attaching packages ------- tidyverse 1.2.1 --
-```
-
-```
-## v ggplot2 3.2.0       v purrr   0.2.5  
-## v tibble  2.1.1       v dplyr   0.8.0.1
-## v tidyr   0.8.2       v stringr 1.4.0  
-## v readr   1.3.1       v forcats 0.3.0
+## Warning: package 'ggplot2' was built under R version 3.4.4
 ```
 
 ```
@@ -103,20 +101,28 @@ $$odds(p) = \frac{p}{1-p} = e^{\alpha + \beta X}$$
 ```
 
 ```
-## Warning: package 'stringr' was built under R version 3.4.4
+## Conflicts with tidy packages ----------------------------------------------
 ```
 
 ```
-## Warning: package 'forcats' was built under R version 3.4.4
+## filter(): dplyr, stats
+## lag():    dplyr, stats
 ```
 
 ```
-## -- Conflicts ---------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
+## Warning: The `printer` argument is deprecated as of rlang 0.3.0.
+## This warning is displayed once per session.
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="42-logistic-regression_files/figure-html/unnamed-chunk-1-2.png" width="672" />
+```
+## Warning: package 'bindrcpp' was built under R version 3.4.4
+```
+
+![](42-logistic-regression_files/figure-html/unnamed-chunk-1-1.png)
+
+![](42-logistic-regression_files/figure-html/unnamed-chunk-1-2.png)
+
+
 
 ## Cách xây dựng mô hình
 
@@ -488,7 +494,9 @@ df %>%
        title = "Gain chart") 
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](42-logistic-regression_files/figure-html/unnamed-chunk-6-1.png)
+
+
 
 **Giải thích**:
 
@@ -520,7 +528,9 @@ df %>%
        title = "Lift chart") 
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](42-logistic-regression_files/figure-html/unnamed-chunk-7-1.png)
+
+
 
 **Ý nghĩa**: Trong đồ thị trên, với top 10% khách hàng có điểm score mua hàng cao nhất, tỷ lệ khách hàng mua hàng cao hơn 4 lần so với việc không sử dụng mô hình (hay ngẫu nhiên)
 
@@ -580,7 +590,9 @@ data.frame(pos_class, neg_class) %>%
   theme_minimal()
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](42-logistic-regression_files/figure-html/unnamed-chunk-9-1.png)
+
+
 
 
 
@@ -588,7 +600,9 @@ data.frame(pos_class, neg_class) %>%
 ## Warning: package 'StatMeasures' was built under R version 3.4.4
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+![](42-logistic-regression_files/figure-html/unnamed-chunk-11-1.png)
+
+
 
 
 ```r
@@ -895,17 +909,17 @@ prob.test.df %>%
 ```
 
 ```
-##    student    balance   income prob.default class
-## 1      Yes  703.06307 17692.66 5.136338e-04    No
-## 2      Yes 1026.15356 25393.77 3.434202e-03    No
-## 3       No    7.06953 48711.64 1.781314e-05    No
-## 4       No    0.00000 49250.46 1.708667e-05    No
-## 5       No  421.89690 37323.76 2.050024e-04    No
-## 6      Yes 1068.45464 13638.70 4.401567e-03    No
-## 7       No  708.81398 38295.23 1.109890e-03    No
-## 8      Yes  521.84148 10316.34 1.767045e-04    No
-## 9       No 1803.17026 36192.63 4.117378e-01    No
-## 10      No  800.24334 19051.32 1.900229e-03    No
+##      student    balance   income prob.default class
+## 2097     Yes  703.06307 17692.66 5.136338e-04    No
+## 1364     Yes 1026.15356 25393.77 3.434202e-03    No
+## 1941      No    7.06953 48711.64 1.781314e-05    No
+## 1840      No    0.00000 49250.46 1.708667e-05    No
+## 799       No  421.89690 37323.76 2.050024e-04    No
+## 2778     Yes 1068.45464 13638.70 4.401567e-03    No
+## 849       No  708.81398 38295.23 1.109890e-03    No
+## 2511     Yes  521.84148 10316.34 1.767045e-04    No
+## 1864      No 1803.17026 36192.63 4.117378e-01    No
+## 2133      No  800.24334 19051.32 1.900229e-03    No
 ```
 
 
@@ -1019,7 +1033,9 @@ get_df(roc) %>%
        title = "ROC curve")
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+![](42-logistic-regression_files/figure-html/unnamed-chunk-21-1.png)
+
+
 
 ```r
 # Tính chỉ số AUC
@@ -1048,7 +1064,9 @@ get_df(gain_df) %>%
        y = "TPR")
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+![](42-logistic-regression_files/figure-html/unnamed-chunk-22-1.png)
+
+
 
 
 ```r
@@ -1063,7 +1081,9 @@ get_df(lift_df) %>%
        y = "Lift")
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+![](42-logistic-regression_files/figure-html/unnamed-chunk-23-1.png)
+
+
 
 ##### KS statistics
 
@@ -1090,7 +1110,9 @@ data.frame(y = (df.test$default %>% as.numeric) - 1,
   labs(tittle = "CDF & KS statistics")
 ```
 
-<img src="42-logistic-regression_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+![](42-logistic-regression_files/figure-html/unnamed-chunk-24-1.png)
+
+
 
 ## Xây dựng mô hình Logistics theo Machine Learning
 

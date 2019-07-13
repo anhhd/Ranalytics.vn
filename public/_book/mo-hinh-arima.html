@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chương 16 Mô hình ARIMA | Phân tích dữ liệu thực tế với R</title>
-  <meta name="description" content="Chương 16 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
-  <meta name="generator" content="bookdown 0.11.3 and GitBook 2.6.7" />
+  <title>Chương 19 Mô hình ARIMA | Phân tích dữ liệu thực tế với R</title>
+  <meta name="description" content="Chương 19 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
+  <meta name="generator" content="bookdown 0.11.2 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chương 16 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:title" content="Chương 19 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chương 16 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
+  <meta property="og:description" content="Chương 19 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
   <meta name="github-repo" content="yihui/bookdown-crc" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chương 16 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
+  <meta name="twitter:title" content="Chương 19 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
   
-  <meta name="twitter:description" content="Chương 16 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
+  <meta name="twitter:description" content="Chương 19 Mô hình ARIMA | Phân tích dữ liệu thực tế với R" />
   
 
 <meta name="author" content="Hoàng Đức Anh" />
@@ -55,6 +55,7 @@ code.sourceCode > span { color: inherit; text-decoration: inherit; }
 code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -254,60 +255,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="mo-hinh-hi-quy-logistic.html"><a href="mo-hinh-hi-quy-logistic.html#xay-dng-mo-hinh-logistics-theo-machine-learning"><i class="fa fa-check"></i><b>11.6</b> Xây dựng mô hình Logistics theo Machine Learning</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>12</b> Unsupervised learning</a></li>
-<li class="chapter" data-level="13" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>13</b> Phân tích giỏ hàng</a><ul>
-<li class="chapter" data-level="13.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>13.1</b> Các khái niệm cơ bản</a></li>
-<li class="chapter" data-level="13.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>13.2</b> Cách thực hiện mô hình</a></li>
-<li class="chapter" data-level="13.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>13.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>13.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
-<li class="chapter" data-level="13.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>13.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
-<li class="chapter" data-level="13.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>13.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+<li class="chapter" data-level="12" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html"><i class="fa fa-check"></i><b>12</b> Cây quyết định</a><ul>
+<li class="chapter" data-level="12.1" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#gii-thiu-3"><i class="fa fa-check"></i><b>12.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="12.2" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#regression-trees"><i class="fa fa-check"></i><b>12.2</b> Regression Trees</a></li>
+<li class="chapter" data-level="12.3" data-path="cay-quyt-inh.html"><a href="cay-quyt-inh.html#classification-trees"><i class="fa fa-check"></i><b>12.3</b> Classification Trees</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>13.4</b> Ưu nhược điểm</a></li>
+<li class="chapter" data-level="13" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html"><i class="fa fa-check"></i><b>13</b> Bagging - Boosting và Random Forest</a><ul>
+<li class="chapter" data-level="13.1" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#bagging"><i class="fa fa-check"></i><b>13.1</b> Bagging</a></li>
+<li class="chapter" data-level="13.2" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#random-forests"><i class="fa fa-check"></i><b>13.2</b> Random Forests</a></li>
+<li class="chapter" data-level="13.3" data-path="bagging-boosting-va-random-forest.html"><a href="bagging-boosting-va-random-forest.html#boosting"><i class="fa fa-check"></i><b>13.3</b> Boosting</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>14</b> Feature Engineering</a><ul>
-<li class="chapter" data-level="14.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>14.1</b> Feature engineering cho các biến nhóm</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>14.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
-<li class="chapter" data-level="14.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>14.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+<li class="chapter" data-level="14" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>14</b> Unsupervised learning</a></li>
+<li class="chapter" data-level="15" data-path="k-means.html"><a href="k-means.html"><i class="fa fa-check"></i><b>15</b> k-means</a><ul>
+<li class="chapter" data-level="15.1" data-path="k-means.html"><a href="k-means.html#gii-thiu-4"><i class="fa fa-check"></i><b>15.1</b> Giới thiệu</a></li>
+<li class="chapter" data-level="15.2" data-path="k-means.html"><a href="k-means.html#thut-toan"><i class="fa fa-check"></i><b>15.2</b> Thuật toán</a></li>
+<li class="chapter" data-level="15.3" data-path="k-means.html"><a href="k-means.html#uu-nhuc-im-cua-k-means"><i class="fa fa-check"></i><b>15.3</b> Ưu nhược điểm của K-means</a></li>
+<li class="chapter" data-level="15.4" data-path="k-means.html"><a href="k-means.html#thc-hanh-tren-r"><i class="fa fa-check"></i><b>15.4</b> Thực hành trên R</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>14.2</b> Các biến liên tục</a><ul>
-<li class="chapter" data-level="14.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>14.2.1</b> Biến đổi 1:1</a></li>
+<li class="chapter" data-level="16" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html"><i class="fa fa-check"></i><b>16</b> Phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="16.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-khai-nim-co-ban"><i class="fa fa-check"></i><b>16.1</b> Các khái niệm cơ bản</a></li>
+<li class="chapter" data-level="16.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cach-thc-hin-mo-hinh"><i class="fa fa-check"></i><b>16.2</b> Cách thực hiện mô hình</a></li>
+<li class="chapter" data-level="16.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#ba-cau-hoi-khi-phan-tich-gio-hang"><i class="fa fa-check"></i><b>16.3</b> Ba câu hỏi khi phân tích giỏ hàng</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#cac-san-phm-nao-hay-uc-mua-cung-nhau"><i class="fa fa-check"></i><b>16.3.1</b> Các sản phẩm nào hay được mua cùng nhau</a></li>
+<li class="chapter" data-level="16.3.2" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-a-thi-se-mua-san-phm-nao-tip-theo"><i class="fa fa-check"></i><b>16.3.2</b> Khách hàng mua sản phẩm A thì sẽ mua sản phẩm nào tiếp theo?</a></li>
+<li class="chapter" data-level="16.3.3" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#khach-hang-mua-san-phm-gi-thi-se-mua-tip-san-phm-a"><i class="fa fa-check"></i><b>16.3.3</b> Khách hàng mua sản phẩm gì thì sẽ mua tiếp sản phẩm A?</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="phan-tich-gio-hang.html"><a href="phan-tich-gio-hang.html#uu-nhuc-im"><i class="fa fa-check"></i><b>16.4</b> Ưu nhược điểm</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="feature-engineering.html"><a href="feature-engineering.html"><i class="fa fa-check"></i><b>17</b> Feature Engineering</a><ul>
+<li class="chapter" data-level="17.1" data-path="feature-engineering.html"><a href="feature-engineering.html#feature-engineering-cho-cac-bin-nhom"><i class="fa fa-check"></i><b>17.1</b> Feature engineering cho các biến nhóm</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="feature-engineering.html"><a href="feature-engineering.html#tao-d-liu-gia-dummy-data-cho-bin-khong-phan-bit-th-t"><i class="fa fa-check"></i><b>17.1.1</b> Tạo dữ liệu giả (dummy data) cho biến không phân biệt thứ tự</a></li>
+<li class="chapter" data-level="17.1.2" data-path="feature-engineering.html"><a href="feature-engineering.html#d-liu-co-rt-nhiu-nhom"><i class="fa fa-check"></i><b>17.1.2</b> Dữ liệu có rất nhiều nhóm</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="feature-engineering.html"><a href="feature-engineering.html#cac-bin-lien-tuc"><i class="fa fa-check"></i><b>17.2</b> Các biến liên tục</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="feature-engineering.html"><a href="feature-engineering.html#bin-i-11"><i class="fa fa-check"></i><b>17.2.1</b> Biến đổi 1:1</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Chuỗi thời gian</b></span></li>
-<li class="chapter" data-level="15" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>15</b> Giới thiệu về chuỗi thời gian</a><ul>
-<li class="chapter" data-level="15.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>15.1</b> Thành phần của chuỗi thời gian</a></li>
-<li class="chapter" data-level="15.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>15.2</b> Dữ liệu chuỗi thời gian</a></li>
-<li class="chapter" data-level="15.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>15.3</b> Smoothing</a></li>
-<li class="chapter" data-level="15.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>15.4</b> Seasonal decomposition</a></li>
-<li class="chapter" data-level="15.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>15.5</b> Exponential Forecasting Model</a><ul>
-<li class="chapter" data-level="15.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>15.5.1</b> Single Exponential Model</a></li>
-<li class="chapter" data-level="15.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>15.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
-<li class="chapter" data-level="15.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>15.5.3</b> Tự động xây dựng mô hình</a></li>
+<li class="chapter" data-level="18" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html"><i class="fa fa-check"></i><b>18</b> Giới thiệu về chuỗi thời gian</a><ul>
+<li class="chapter" data-level="18.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#thanh-phn-cua-chui-thi-gian"><i class="fa fa-check"></i><b>18.1</b> Thành phần của chuỗi thời gian</a></li>
+<li class="chapter" data-level="18.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#d-liu-chui-thi-gian"><i class="fa fa-check"></i><b>18.2</b> Dữ liệu chuỗi thời gian</a></li>
+<li class="chapter" data-level="18.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#smoothing"><i class="fa fa-check"></i><b>18.3</b> Smoothing</a></li>
+<li class="chapter" data-level="18.4" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#seasonal-decomposition"><i class="fa fa-check"></i><b>18.4</b> Seasonal decomposition</a></li>
+<li class="chapter" data-level="18.5" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#exponential-forecasting-model"><i class="fa fa-check"></i><b>18.5</b> Exponential Forecasting Model</a><ul>
+<li class="chapter" data-level="18.5.1" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#single-exponential-model"><i class="fa fa-check"></i><b>18.5.1</b> Single Exponential Model</a></li>
+<li class="chapter" data-level="18.5.2" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#hold-holt-winters-exponential-smoothing"><i class="fa fa-check"></i><b>18.5.2</b> Hold &amp; Holt-Winters exponential smoothing</a></li>
+<li class="chapter" data-level="18.5.3" data-path="gii-thiu-v-chui-thi-gian.html"><a href="gii-thiu-v-chui-thi-gian.html#t-ng-xay-dng-mo-hinh"><i class="fa fa-check"></i><b>18.5.3</b> Tự động xây dựng mô hình</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>16</b> Mô hình ARIMA</a><ul>
-<li class="chapter" data-level="16.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>16.1</b> Chuỗi thời gian dừng</a></li>
-<li class="chapter" data-level="16.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>16.2</b> Mô hình ARIMA</a></li>
-<li class="chapter" data-level="16.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>16.3</b> Ví dụ với R</a></li>
+<li class="chapter" data-level="19" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html"><i class="fa fa-check"></i><b>19</b> Mô hình ARIMA</a><ul>
+<li class="chapter" data-level="19.1" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#chui-thi-gian-dng"><i class="fa fa-check"></i><b>19.1</b> Chuỗi thời gian dừng</a></li>
+<li class="chapter" data-level="19.2" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#mo-hinh-arima-1"><i class="fa fa-check"></i><b>19.2</b> Mô hình ARIMA</a></li>
+<li class="chapter" data-level="19.3" data-path="mo-hinh-arima.html"><a href="mo-hinh-arima.html#vi-du-vi-r"><i class="fa fa-check"></i><b>19.3</b> Ví dụ với R</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>17</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
-<li class="chapter" data-level="17.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>17.1</b> Lấy dữ liệu với package tidyquant</a></li>
-<li class="chapter" data-level="17.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>17.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
-<li class="chapter" data-level="17.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>17.3</b> Chuyển từ dataframe thành xts</a></li>
+<li class="chapter" data-level="20" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><i class="fa fa-check"></i><b>20</b> Phân tích chuỗi thời gian với tidyquant và timetk</a><ul>
+<li class="chapter" data-level="20.1" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#ly-d-liu-vi-package-tidyquant"><i class="fa fa-check"></i><b>20.1</b> Lấy dữ liệu với package tidyquant</a></li>
+<li class="chapter" data-level="20.2" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#trc-quan-hoa-vi-geom_ma"><i class="fa fa-check"></i><b>20.2</b> Trực quan hóa với <code>geom_ma</code></a></li>
+<li class="chapter" data-level="20.3" data-path="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html"><a href="phan-tich-chui-thi-gian-vi-tidyquant-va-timetk.html#chuyn-t-dataframe-thanh-xts"><i class="fa fa-check"></i><b>20.3</b> Chuyển từ dataframe thành xts</a></li>
 </ul></li>
 <li class="part"><span><b>III Case study</b></span></li>
-<li class="chapter" data-level="18" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>18</b> Trực quan hóa dữ liệu</a><ul>
-<li class="chapter" data-level="18.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>18.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
-<li class="chapter" data-level="18.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>18.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
-<li class="chapter" data-level="18.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>18.3</b> Xây dựng biểu đồ lollipop chart</a></li>
-<li class="chapter" data-level="18.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>18.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
+<li class="chapter" data-level="21" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html"><i class="fa fa-check"></i><b>21</b> Trực quan hóa dữ liệu</a><ul>
+<li class="chapter" data-level="21.1" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-phu-ban-hang-theo-tng-nhom"><i class="fa fa-check"></i><b>21.1</b> Xây dựng phễu bán hàng theo từng nhóm</a></li>
+<li class="chapter" data-level="21.2" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#ve-biu--warterfall-cho-aciveinactive-users"><i class="fa fa-check"></i><b>21.2</b> Vẽ biểu đồ warterfall cho acive/inactive users</a></li>
+<li class="chapter" data-level="21.3" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#xay-dng-biu--lollipop-chart"><i class="fa fa-check"></i><b>21.3</b> Xây dựng biểu đồ lollipop chart</a></li>
+<li class="chapter" data-level="21.4" data-path="trc-quan-hoa-d-liu.html"><a href="trc-quan-hoa-d-liu.html#trc-quan-hoa-cac-phn-trung-lp-nhau"><i class="fa fa-check"></i><b>21.4</b> Trực quan hóa các phần trùng lặp nhau</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>19</b> Các mẹo trong R</a><ul>
-<li class="chapter" data-level="19.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>19.1</b> Hiển thị số bình thường</a></li>
-<li class="chapter" data-level="19.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>19.2</b> Export dữ liệu ra excel</a></li>
-<li class="chapter" data-level="19.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>19.3</b> Làm việc khi proxy bị chặn</a></li>
-<li class="chapter" data-level="19.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>19.4</b> Tự động render ra kết quả phân tích</a></li>
+<li class="chapter" data-level="22" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html"><i class="fa fa-check"></i><b>22</b> Các mẹo trong R</a><ul>
+<li class="chapter" data-level="22.1" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#hin-thi-s-binh-thung"><i class="fa fa-check"></i><b>22.1</b> Hiển thị số bình thường</a></li>
+<li class="chapter" data-level="22.2" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#export-d-liu-ra-excel"><i class="fa fa-check"></i><b>22.2</b> Export dữ liệu ra excel</a></li>
+<li class="chapter" data-level="22.3" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#lam-vic-khi-proxy-bi-chn"><i class="fa fa-check"></i><b>22.3</b> Làm việc khi proxy bị chặn</a></li>
+<li class="chapter" data-level="22.4" data-path="cac-meo-trong-r.html"><a href="cac-meo-trong-r.html#t-ng-render-ra-kt-qua-phan-tich"><i class="fa fa-check"></i><b>22.4</b> Tự động render ra kết quả phân tích</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Anh Hoang Duc</a></li>
@@ -330,9 +347,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="mo-hinh-arima" class="section level1">
-<h1><span class="header-section-number">Chương 16</span> Mô hình ARIMA</h1>
+<h1><span class="header-section-number">Chương 19</span> Mô hình ARIMA</h1>
 <div id="chui-thi-gian-dng" class="section level2">
-<h2><span class="header-section-number">16.1</span> Chuỗi thời gian dừng</h2>
+<h2><span class="header-section-number">19.1</span> Chuỗi thời gian dừng</h2>
 <p>Chuỗi thời gian dừng là yêu cầu bắt buộc để xây dựng mô hình ARIMA.</p>
 <p>Định nghĩa chuối thời gian dừng:</p>
 <ul>
@@ -349,7 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="Images/61-ts3.png" /></p>
 </div>
 <div id="mo-hinh-arima-1" class="section level2">
-<h2><span class="header-section-number">16.2</span> Mô hình ARIMA</h2>
+<h2><span class="header-section-number">19.2</span> Mô hình ARIMA</h2>
 <p>ARIMA là viết tắt của <code>Auto-Regressive Integrated Moving Average</code></p>
 <p><span class="math display">\[ARIMA(p,d,q) = AR(p) + I(d) + MA(q)\]</span></p>
 <p>Trong đó:</p>
@@ -415,82 +432,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Xem xét ACF &amp; PACF trong các chuỗi sau</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="mo-hinh-arima.html#cb624-1"></a><span class="kw">library</span>(forecast)</span>
-<span id="cb624-2"><a href="mo-hinh-arima.html#cb624-2"></a><span class="kw">library</span>(tseries)</span>
-<span id="cb624-3"><a href="mo-hinh-arima.html#cb624-3"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb624-4"><a href="mo-hinh-arima.html#cb624-4"></a><span class="kw">library</span>(ggfortify)</span>
-<span id="cb624-5"><a href="mo-hinh-arima.html#cb624-5"></a>ar1 &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="kw">list</span>(<span class="dt">ar=</span><span class="kw">c</span>(<span class="fl">0.89</span>)), <span class="dt">n =</span> <span class="dv">100</span>)</span>
-<span id="cb624-6"><a href="mo-hinh-arima.html#cb624-6"></a>ar2 &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="kw">list</span>(<span class="dt">ar=</span><span class="kw">c</span>(<span class="fl">0.89</span>, <span class="fl">-0.4858</span>)), <span class="dt">n =</span> <span class="dv">100</span>)</span>
-<span id="cb624-7"><a href="mo-hinh-arima.html#cb624-7"></a>ma1 &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="kw">list</span>(<span class="dt">ma =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.2279</span>)))</span>
-<span id="cb624-8"><a href="mo-hinh-arima.html#cb624-8"></a>ma2 &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="kw">list</span>(<span class="dt">ma =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.2279</span>, <span class="fl">0.2488</span>)))</span>
-<span id="cb624-9"><a href="mo-hinh-arima.html#cb624-9"></a>arma &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="kw">list</span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.8897</span>, <span class="fl">-0.4858</span>), </span>
-<span id="cb624-10"><a href="mo-hinh-arima.html#cb624-10"></a>                                <span class="dt">ma =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.2279</span>, <span class="fl">0.2488</span>)))</span>
-<span id="cb624-11"><a href="mo-hinh-arima.html#cb624-11"></a><span class="co">#Tạo function</span></span>
-<span id="cb624-12"><a href="mo-hinh-arima.html#cb624-12"></a>tseries.plot &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb624-13"><a href="mo-hinh-arima.html#cb624-13"></a>  <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>));</span>
-<span id="cb624-14"><a href="mo-hinh-arima.html#cb624-14"></a>  <span class="kw">Acf</span>(x, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">main =</span> <span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;ACF plot&quot;</span>)));</span>
-<span id="cb624-15"><a href="mo-hinh-arima.html#cb624-15"></a>  <span class="kw">Pacf</span>(x, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">main =</span> <span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;PACF plot&quot;</span>)));</span>
-<span id="cb624-16"><a href="mo-hinh-arima.html#cb624-16"></a>}</span>
-<span id="cb624-17"><a href="mo-hinh-arima.html#cb624-17"></a>purrr<span class="op">::</span><span class="kw">map</span>(<span class="kw">list</span>(ar1, ar2, ma1, ma2, arma), tseries.plot)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="mo-hinh-arima.html#cb709-1"></a><span class="kw">library</span>(forecast)</span>
+<span id="cb709-2"><a href="mo-hinh-arima.html#cb709-2"></a><span class="kw">library</span>(tseries)</span>
+<span id="cb709-3"><a href="mo-hinh-arima.html#cb709-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb709-4"><a href="mo-hinh-arima.html#cb709-4"></a><span class="kw">library</span>(ggfortify)</span>
+<span id="cb709-5"><a href="mo-hinh-arima.html#cb709-5"></a>ar1 &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="kw">list</span>(<span class="dt">ar=</span><span class="kw">c</span>(<span class="fl">0.89</span>)), <span class="dt">n =</span> <span class="dv">100</span>)</span>
+<span id="cb709-6"><a href="mo-hinh-arima.html#cb709-6"></a>ar2 &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="kw">list</span>(<span class="dt">ar=</span><span class="kw">c</span>(<span class="fl">0.89</span>, <span class="fl">-0.4858</span>)), <span class="dt">n =</span> <span class="dv">100</span>)</span>
+<span id="cb709-7"><a href="mo-hinh-arima.html#cb709-7"></a>ma1 &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="kw">list</span>(<span class="dt">ma =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.2279</span>)))</span>
+<span id="cb709-8"><a href="mo-hinh-arima.html#cb709-8"></a>ma2 &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="kw">list</span>(<span class="dt">ma =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.2279</span>, <span class="fl">0.2488</span>)))</span>
+<span id="cb709-9"><a href="mo-hinh-arima.html#cb709-9"></a>arma &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="kw">list</span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.8897</span>, <span class="fl">-0.4858</span>), </span>
+<span id="cb709-10"><a href="mo-hinh-arima.html#cb709-10"></a>                                <span class="dt">ma =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.2279</span>, <span class="fl">0.2488</span>)))</span>
+<span id="cb709-11"><a href="mo-hinh-arima.html#cb709-11"></a><span class="co">#Tạo function</span></span>
+<span id="cb709-12"><a href="mo-hinh-arima.html#cb709-12"></a>tseries.plot &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb709-13"><a href="mo-hinh-arima.html#cb709-13"></a>  <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>));</span>
+<span id="cb709-14"><a href="mo-hinh-arima.html#cb709-14"></a>  <span class="kw">Acf</span>(x, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">main =</span> <span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;ACF plot&quot;</span>)));</span>
+<span id="cb709-15"><a href="mo-hinh-arima.html#cb709-15"></a>  <span class="kw">Pacf</span>(x, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">main =</span> <span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;PACF plot&quot;</span>)));</span>
+<span id="cb709-16"><a href="mo-hinh-arima.html#cb709-16"></a>}</span>
+<span id="cb709-17"><a href="mo-hinh-arima.html#cb709-17"></a>purrr<span class="op">::</span><span class="kw">map</span>(<span class="kw">list</span>(ar1, ar2, ma1, ma2, arma), tseries.plot)</span></code></pre>
 <p><img src="61-arima_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="61-arima_files/figure-html/unnamed-chunk-1-2.png" width="672" /><img src="61-arima_files/figure-html/unnamed-chunk-1-3.png" width="672" /><img src="61-arima_files/figure-html/unnamed-chunk-1-4.png" width="672" /><img src="61-arima_files/figure-html/unnamed-chunk-1-5.png" width="672" /></p>
 <pre><code>## [[1]]
 ## 
 ## Partial autocorrelations of series &#39;x&#39;, by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-##  0.839 -0.070 -0.072 -0.014 -0.164 -0.050 -0.011 -0.069  0.111  0.030 
+##  0.840  0.051 -0.199 -0.014  0.078  0.057 -0.234 -0.004  0.011  0.014 
 ##     11     12     13     14     15     16     17     18     19     20 
-##  0.139 -0.011  0.007  0.019  0.059 -0.119 -0.050 -0.010  0.016 -0.002 
+##  0.032  0.084 -0.200 -0.138 -0.087 -0.004  0.097 -0.049  0.075  0.011 
 ## 
 ## [[2]]
 ## 
 ## Partial autocorrelations of series &#39;x&#39;, by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-##  0.619 -0.523  0.036 -0.020 -0.051 -0.229  0.018  0.094 -0.146 -0.011 
+##  0.643 -0.498 -0.022  0.039 -0.060 -0.171  0.053  0.019 -0.072 -0.192 
 ##     11     12     13     14     15     16     17     18     19     20 
-## -0.014  0.052  0.263 -0.046  0.114  0.026 -0.021 -0.116 -0.043 -0.041 
+##  0.062 -0.021  0.086 -0.145 -0.057 -0.017  0.013 -0.039  0.040 -0.163 
 ## 
 ## [[3]]
 ## 
 ## Partial autocorrelations of series &#39;x&#39;, by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-## -0.119  0.053  0.006  0.140 -0.064 -0.008 -0.067  0.201 -0.026 -0.077 
+## -0.351 -0.237 -0.191 -0.118  0.078  0.210  0.004 -0.029 -0.110  0.013 
 ##     11     12     13     14     15     16     17     18     19     20 
-##  0.113 -0.075 -0.071  0.013 -0.044  0.004  0.030  0.090 -0.008  0.005 
+## -0.040 -0.160 -0.032 -0.071 -0.086  0.066 -0.031 -0.112 -0.026  0.105 
 ## 
 ## [[4]]
 ## 
 ## Partial autocorrelations of series &#39;x&#39;, by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-##  0.113  0.215 -0.255 -0.107  0.121 -0.073  0.003 -0.049  0.041 -0.043 
+## -0.356  0.098  0.252 -0.143 -0.060  0.020  0.056  0.046 -0.006  0.088 
 ##     11     12     13     14     15     16     17     18     19     20 
-## -0.108 -0.295 -0.021 -0.182  0.019 -0.009  0.019 -0.014 -0.045 -0.098 
+##  0.028 -0.083 -0.075  0.062 -0.093  0.029 -0.037  0.039 -0.030 -0.089 
 ## 
 ## [[5]]
 ## 
 ## Partial autocorrelations of series &#39;x&#39;, by lag
 ## 
 ##      1      2      3      4      5      6      7      8      9     10 
-##  0.593 -0.316 -0.161  0.050 -0.014  0.044 -0.140  0.066 -0.009  0.010 
+##  0.602 -0.264 -0.008 -0.187  0.176  0.097 -0.198 -0.141  0.046 -0.086 
 ##     11     12     13     14     15     16     17     18     19     20 
-##  0.020  0.086  0.030 -0.026 -0.037  0.004 -0.022  0.052  0.199  0.063</code></pre>
+##  0.005 -0.158 -0.021  0.034  0.010  0.016 -0.158  0.125  0.104 -0.034</code></pre>
 </div>
 <div id="vi-du-vi-r" class="section level2">
-<h2><span class="header-section-number">16.3</span> Ví dụ với R</h2>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="mo-hinh-arima.html#cb626-1"></a><span class="kw">library</span>(forecast)</span>
-<span id="cb626-2"><a href="mo-hinh-arima.html#cb626-2"></a><span class="kw">library</span>(tseries)</span>
-<span id="cb626-3"><a href="mo-hinh-arima.html#cb626-3"></a><span class="kw">plot</span>(Nile)</span></code></pre></div>
+<h2><span class="header-section-number">19.3</span> Ví dụ với R</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="mo-hinh-arima.html#cb711-1"></a><span class="kw">library</span>(forecast)</span>
+<span id="cb711-2"><a href="mo-hinh-arima.html#cb711-2"></a><span class="kw">library</span>(tseries)</span>
+<span id="cb711-3"><a href="mo-hinh-arima.html#cb711-3"></a><span class="kw">plot</span>(Nile)</span></code></pre>
 <p><img src="61-arima_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="mo-hinh-arima.html#cb627-1"></a><span class="co">#Tìm giá trị tối ưu của d để loại trend</span></span>
-<span id="cb627-2"><a href="mo-hinh-arima.html#cb627-2"></a><span class="kw">ndiffs</span>(Nile)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="mo-hinh-arima.html#cb712-1"></a><span class="co">#Tìm giá trị tối ưu của d để loại trend</span></span>
+<span id="cb712-2"><a href="mo-hinh-arima.html#cb712-2"></a><span class="kw">ndiffs</span>(Nile)</span></code></pre>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="mo-hinh-arima.html#cb629-1"></a>dNile &lt;-<span class="st"> </span><span class="kw">diff</span>(Nile, <span class="dv">1</span>)</span>
-<span id="cb629-2"><a href="mo-hinh-arima.html#cb629-2"></a><span class="kw">plot</span>(dNile)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="mo-hinh-arima.html#cb714-1"></a>dNile &lt;-<span class="st"> </span><span class="kw">diff</span>(Nile, <span class="dv">1</span>)</span>
+<span id="cb714-2"><a href="mo-hinh-arima.html#cb714-2"></a><span class="kw">plot</span>(dNile)</span></code></pre>
 <p><img src="61-arima_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="mo-hinh-arima.html#cb630-1"></a><span class="kw">adf.test</span>(dNile)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="mo-hinh-arima.html#cb715-1"></a><span class="kw">adf.test</span>(dNile)</span></code></pre>
 <pre><code>## Warning in adf.test(dNile): p-value smaller than printed p-value</code></pre>
 <pre><code>## 
 ##  Augmented Dickey-Fuller Test
@@ -498,14 +515,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## data:  dNile
 ## Dickey-Fuller = -6.5924, Lag order = 4, p-value = 0.01
 ## alternative hypothesis: stationary</code></pre>
-<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="mo-hinh-arima.html#cb633-1"></a><span class="co">#Xem mô hình</span></span>
-<span id="cb633-2"><a href="mo-hinh-arima.html#cb633-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb633-3"><a href="mo-hinh-arima.html#cb633-3"></a><span class="kw">Acf</span>(dNile)</span>
-<span id="cb633-4"><a href="mo-hinh-arima.html#cb633-4"></a><span class="kw">Pacf</span>(dNile)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="mo-hinh-arima.html#cb718-1"></a><span class="co">#Xem mô hình</span></span>
+<span id="cb718-2"><a href="mo-hinh-arima.html#cb718-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb718-3"><a href="mo-hinh-arima.html#cb718-3"></a><span class="kw">Acf</span>(dNile)</span>
+<span id="cb718-4"><a href="mo-hinh-arima.html#cb718-4"></a><span class="kw">Pacf</span>(dNile)</span></code></pre>
 <p><img src="61-arima_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="mo-hinh-arima.html#cb634-1"></a><span class="co">#ACF và PACF đưa ra gợi ý mô hình ARIMA(0,1,1): ACF giảm về 0 sau lag 1, PACF giảm dần về 0</span></span>
-<span id="cb634-2"><a href="mo-hinh-arima.html#cb634-2"></a>fit &lt;-<span class="st"> </span><span class="kw">arima</span>(Nile, <span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb634-3"><a href="mo-hinh-arima.html#cb634-3"></a>fit</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="mo-hinh-arima.html#cb719-1"></a><span class="co">#ACF và PACF đưa ra gợi ý mô hình ARIMA(0,1,1): ACF giảm về 0 sau lag 1, PACF giảm dần về 0</span></span>
+<span id="cb719-2"><a href="mo-hinh-arima.html#cb719-2"></a>fit &lt;-<span class="st"> </span><span class="kw">arima</span>(Nile, <span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb719-3"><a href="mo-hinh-arima.html#cb719-3"></a>fit</span></code></pre>
 <pre><code>## 
 ## Call:
 ## arima(x = Nile, order = c(0, 1, 1))
@@ -516,39 +533,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## s.e.   0.1143
 ## 
 ## sigma^2 estimated as 20600:  log likelihood = -632.55,  aic = 1269.09</code></pre>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="mo-hinh-arima.html#cb636-1"></a><span class="kw">accuracy</span>(fit)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="mo-hinh-arima.html#cb721-1"></a><span class="kw">accuracy</span>(fit)</span></code></pre>
 <pre><code>##                    ME     RMSE      MAE       MPE     MAPE     MASE
 ## Training set -11.9358 142.8071 112.1752 -3.574702 12.93594 0.841824
 ##                   ACF1
 ## Training set 0.1153593</code></pre>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="mo-hinh-arima.html#cb638-1"></a><span class="co">#Đánh giá mô hình</span></span>
-<span id="cb638-2"><a href="mo-hinh-arima.html#cb638-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb638-3"><a href="mo-hinh-arima.html#cb638-3"></a><span class="kw">names</span>(fit)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="mo-hinh-arima.html#cb723-1"></a><span class="co">#Đánh giá mô hình</span></span>
+<span id="cb723-2"><a href="mo-hinh-arima.html#cb723-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb723-3"><a href="mo-hinh-arima.html#cb723-3"></a><span class="kw">names</span>(fit)</span></code></pre>
 <pre><code>##  [1] &quot;coef&quot;      &quot;sigma2&quot;    &quot;var.coef&quot;  &quot;mask&quot;      &quot;loglik&quot;   
 ##  [6] &quot;aic&quot;       &quot;arma&quot;      &quot;residuals&quot; &quot;call&quot;      &quot;series&quot;   
 ## [11] &quot;code&quot;      &quot;n.cond&quot;    &quot;nobs&quot;      &quot;model&quot;</code></pre>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="mo-hinh-arima.html#cb640-1"></a><span class="kw">qqnorm</span>(fit<span class="op">$</span>residuals)</span>
-<span id="cb640-2"><a href="mo-hinh-arima.html#cb640-2"></a><span class="kw">qqline</span>(fit<span class="op">$</span>residuals)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="mo-hinh-arima.html#cb725-1"></a><span class="kw">qqnorm</span>(fit<span class="op">$</span>residuals)</span>
+<span id="cb725-2"><a href="mo-hinh-arima.html#cb725-2"></a><span class="kw">qqline</span>(fit<span class="op">$</span>residuals)</span></code></pre>
 <p><img src="61-arima_files/figure-html/unnamed-chunk-2-4.png" width="672" /></p>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="mo-hinh-arima.html#cb641-1"></a><span class="kw">Box.test</span>(fit<span class="op">$</span>residuals, <span class="dt">type =</span> <span class="st">&quot;Ljung-Box&quot;</span>)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="mo-hinh-arima.html#cb726-1"></a><span class="kw">Box.test</span>(fit<span class="op">$</span>residuals, <span class="dt">type =</span> <span class="st">&quot;Ljung-Box&quot;</span>)</span></code></pre>
 <pre><code>## 
 ##  Box-Ljung test
 ## 
 ## data:  fit$residuals
 ## X-squared = 1.3711, df = 1, p-value = 0.2416</code></pre>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="mo-hinh-arima.html#cb643-1"></a><span class="co">#H0: Autocorrelation của residual bằng 0</span></span>
-<span id="cb643-2"><a href="mo-hinh-arima.html#cb643-2"></a><span class="co">#H1: Autocorrelation của residual khác 0</span></span>
-<span id="cb643-3"><a href="mo-hinh-arima.html#cb643-3"></a></span>
-<span id="cb643-4"><a href="mo-hinh-arima.html#cb643-4"></a><span class="co">#Dự báo</span></span>
-<span id="cb643-5"><a href="mo-hinh-arima.html#cb643-5"></a><span class="kw">forecast</span>(fit, <span class="dv">3</span>)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="mo-hinh-arima.html#cb728-1"></a><span class="co">#H0: Autocorrelation của residual bằng 0</span></span>
+<span id="cb728-2"><a href="mo-hinh-arima.html#cb728-2"></a><span class="co">#H1: Autocorrelation của residual khác 0</span></span>
+<span id="cb728-3"><a href="mo-hinh-arima.html#cb728-3"></a></span>
+<span id="cb728-4"><a href="mo-hinh-arima.html#cb728-4"></a><span class="co">#Dự báo</span></span>
+<span id="cb728-5"><a href="mo-hinh-arima.html#cb728-5"></a><span class="kw">forecast</span>(fit, <span class="dv">3</span>)</span></code></pre>
 <pre><code>##      Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
 ## 1971       798.3673 614.4307 982.3040 517.0605 1079.674
 ## 1972       798.3673 607.9845 988.7502 507.2019 1089.533
 ## 1973       798.3673 601.7495 994.9851 497.6663 1099.068</code></pre>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="mo-hinh-arima.html#cb645-1"></a><span class="kw">autoplot</span>(<span class="kw">forecast</span>(fit,<span class="dv">3</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="mo-hinh-arima.html#cb730-1"></a><span class="kw">autoplot</span>(<span class="kw">forecast</span>(fit,<span class="dv">3</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</span></code></pre>
+<pre><code>## Warning: package &#39;bindrcpp&#39; was built under R version 3.4.4</code></pre>
 <p><img src="61-arima_files/figure-html/unnamed-chunk-2-5.png" width="672" /></p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="mo-hinh-arima.html#cb646-1"></a><span class="co">#Tự động chọn mô hình</span></span>
-<span id="cb646-2"><a href="mo-hinh-arima.html#cb646-2"></a><span class="kw">auto.arima</span>(Nile)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="mo-hinh-arima.html#cb732-1"></a><span class="co">#Tự động chọn mô hình</span></span>
+<span id="cb732-2"><a href="mo-hinh-arima.html#cb732-2"></a><span class="kw">auto.arima</span>(Nile)</span></code></pre>
 <pre><code>## Series: Nile 
 ## ARIMA(1,1,1)                    
 ## 

@@ -104,7 +104,9 @@ p1 <- df %>%
 p1
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-3-1.png)
+
+
 
 - Tạo thêm phần `label` tổng theo từng segment
 
@@ -129,7 +131,9 @@ df %>%
 p2
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-4-1.png)
+
+
 
 - Tạo thêm thứ tự các bước trong phễu bán hàng để dễ theo dõi hơn
 
@@ -153,7 +157,9 @@ df2 %>%
 p3
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-5-1.png)
+
+
 
 - Cuối cùng, ta có thể tạo ghép các biểu đồ rời rạc để tạo thành phễu bán hàng hoàn chỉnh. Việc kết hợp các biểu đồ trên `ggplot2` có thể hoàn thành một cách đơn giản với `ggplot2`
 
@@ -167,7 +173,9 @@ p3 +
   plot_layout(nrow = 1, widths = c(1, 8, 1))
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-6-1.png)
+
+
 
 Như vậy, chúng ta đã hoàn thành phễu bán hàng rất chuyên nghiệp với `ggplot2`. Phễu bán hàng này đặc biệt hiệu quả khi cùng lúc phải so sánh nhiều phân khúc khách hàng khác nhau trên toàn bộ chuỗi bán hàng.
 
@@ -263,7 +271,9 @@ p1 <- df %>%
 p1
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-8-1.png)
+
+
 
 Như vậy, ta đã tạo xong biểu đồ water-fall đơn giản. Ở bước tiếp theo, chúng ta cần điều chỉnh lại các thành phần cho biểu đồ.
 
@@ -293,7 +303,9 @@ p2 <- p1  +
 p2
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-9-1.png)
+
+
 
 Bước tiếp theo, ta cần xây dựng biểu đồ bar đơn giản để có thể đưa vào góc phần tư bên trái của biểu đồ vừa tạo.
 
@@ -323,7 +335,9 @@ p3 <- df %>%
 p3
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-10-1.png)
+
+
 
 Cuối cùng, ta có thể nhóm hai biểu đồ trên với `grid` & `gridExtra`.
 
@@ -343,7 +357,9 @@ print(p2, vp = position_1)
 print(p3, vp = position_2)
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-11-1.png)
+
+
 
 ## Xây dựng biểu đồ lollipop chart
 
@@ -406,7 +422,9 @@ data %>%
   coord_flip()
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-14-1.png)
+
+
 
 Tuy nhiên, với biểu đồ trên, ta thấy xuất hiện hai lỗi cơ bản sau:
 
@@ -460,7 +478,9 @@ p1 <- data %>%
 p1
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-15-1.png)
+
+
 
 **Bonus**: Để nhấn mạnh hơn sự thay đổi của GDP per capita, ta có thể vẽ thêm các đường nối các điểm trong biểu đồ như sau.
 
@@ -471,7 +491,9 @@ p2 <- p1 + geom_line(aes(as.numeric(country), y1977),
 p2
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-16-1.png)
+
+
 
 ## Trực quan hóa các phần trùng lặp nhau
 
@@ -522,7 +544,9 @@ upset(movies, nsets = 3, nintersects = 30, mb.ratio = c(0.55, 0.45),
       point.size = 3)
 ```
 
-<img src="71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](71-casestudy-truc-quan-hoa_files/figure-html/unnamed-chunk-17-1.png)
+
+
 
 
 ```r
