@@ -1,0 +1,146 @@
+---
+title: "Xử lý dữ liệu missing nâng cao"
+author: "Nguyễn Hải Trường"
+date: "2019-06-30"
+categories:
+  - data-manipulation
+tags:
+  - dplyr
+summary: "Xử lý dữ liệu missing nâng cao"
+banner: "img/banners/banner-46.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu thực tế, chúng ta sẽ thường gặp phải vấn đề <strong>missing values</strong>. Trong những bài viết trước, <code>RAnalytics</code> đã chia sẻ một số tips xử lý missing values, các bạn có thể tham khảo tại:</p>
+<p><a href="http://ranalytics.vn/blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/" class="uri">http://ranalytics.vn/blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/</a></p>
+<p><a href="http://ranalytics.vn/blog/2019/06/20/2019-06-20-loai-bo-hang-va-cot-chua-gia-tri-missing/" class="uri">http://ranalytics.vn/blog/2019/06/20/2019-06-20-loai-bo-hang-va-cot-chua-gia-tri-missing/</a></p>
+<p>Tuy nhiên, câu hỏi đặt ra lúc này là giả sử dữ liệu của chúng ta có rất nhiều biến có missing values, vậy thì làm thế nào để thay thế missing values ở hàng loạt các biến cùng một lúc?</p>
+<p>Trong bài viết này, <code>Rnalytics</code> sẽ chia sẻ với các bạn cách giải quyết vấn đề nói trên.</p>
+<p>Lấy mẫu 10 quan sát đầu tiên của dữ liệu <code>iris</code> có sẵn trong <code>R</code> để thực hành.</p>
+<pre class="r"><code>library(dplyr)
+set.seed(1) 
+data &lt;- iris %&gt;% sample_n(10)
+data</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1           5.1         3.4          1.5         0.2     setosa
+## 2           5.7         2.8          4.5         1.3 versicolor
+## 3           5.4         3.0          4.5         1.5 versicolor
+## 4           6.3         2.8          5.1         1.5  virginica
+## 5           4.7         3.2          1.6         0.2     setosa
+## 6           7.4         2.8          6.1         1.9  virginica
+## 7           6.3         3.4          5.6         2.4  virginica
+## 8           5.6         2.7          4.2         1.3 versicolor
+## 9           5.5         2.5          4.0         1.3 versicolor
+## 10          4.4         2.9          1.4         0.2     setosa</code></pre>
+<p>Thêm một biến mới <code>class</code> vào tập dữ liệu.</p>
+<pre class="r"><code>data &lt;- data %&gt;% 
+  mutate(class = case_when(
+    Species == &quot;setosa&quot; ~ &quot;1&quot;,
+    Species == &quot;versicolor&quot; ~ &quot;2&quot;,
+    TRUE ~ &quot;3&quot;
+  ) %&gt;% as.factor)
+
+data</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species class
+## 1           5.1         3.4          1.5         0.2     setosa     1
+## 2           5.7         2.8          4.5         1.3 versicolor     2
+## 3           5.4         3.0          4.5         1.5 versicolor     2
+## 4           6.3         2.8          5.1         1.5  virginica     3
+## 5           4.7         3.2          1.6         0.2     setosa     1
+## 6           7.4         2.8          6.1         1.9  virginica     3
+## 7           6.3         3.4          5.6         2.4  virginica     3
+## 8           5.6         2.7          4.2         1.3 versicolor     2
+## 9           5.5         2.5          4.0         1.3 versicolor     2
+## 10          4.4         2.9          1.4         0.2     setosa     1</code></pre>
+<p>Giả sử, chúng ta sửa dòng thứ 1 và dòng thứ 3 của tập dữ liệu thành các giá trị <code>NA</code>, để sau đó chúng ta xử lý.</p>
+<pre class="r"><code>data[c(1,3),] &lt;- NA
+data</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species class
+## 1            NA          NA           NA          NA       &lt;NA&gt;  &lt;NA&gt;
+## 2           5.7         2.8          4.5         1.3 versicolor     2
+## 3            NA          NA           NA          NA       &lt;NA&gt;  &lt;NA&gt;
+## 4           6.3         2.8          5.1         1.5  virginica     3
+## 5           4.7         3.2          1.6         0.2     setosa     1
+## 6           7.4         2.8          6.1         1.9  virginica     3
+## 7           6.3         3.4          5.6         2.4  virginica     3
+## 8           5.6         2.7          4.2         1.3 versicolor     2
+## 9           5.5         2.5          4.0         1.3 versicolor     2
+## 10          4.4         2.9          1.4         0.2     setosa     1</code></pre>
+<pre class="r"><code># Định dạng các biến trong tập dữ liệu
+data %&gt;% str</code></pre>
+<pre><code>## &#39;data.frame&#39;:    10 obs. of  6 variables:
+##  $ Sepal.Length: num  NA 5.7 NA 6.3 4.7 7.4 6.3 5.6 5.5 4.4
+##  $ Sepal.Width : num  NA 2.8 NA 2.8 3.2 2.8 3.4 2.7 2.5 2.9
+##  $ Petal.Length: num  NA 4.5 NA 5.1 1.6 6.1 5.6 4.2 4 1.4
+##  $ Petal.Width : num  NA 1.3 NA 1.5 0.2 1.9 2.4 1.3 1.3 0.2
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: NA 2 NA 3 1 3 3 2 2 1
+##  $ class       : Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: NA 2 NA 3 1 3 3 2 2 1</code></pre>
+<p>Như vậy, dữ liệu mới của chúng ta bây giờ tại tất cả các biến đều có missing values.
+Bốn biến đầu tiên là biến liên tục (numeric), hai biến cuối cùng là biến rời rạc (factor).</p>
+<p>Giả sử, đối với những <code>biến liên tục</code> (numeric) trong dữ liệu, chúng ta sẽ thay thế missing values bằng giá trị <code>0</code> bằng câu lệnh sau:</p>
+<pre class="r"><code>data2 &lt;- data %&gt;% 
+  mutate_if(is.numeric,  # Áp dụng với các biến là numeric
+            # Những giá trị NA thay bằng 0
+            funs(case_when(
+              is.na(.) ~ 0,
+              TRUE ~ .
+            ))
+            ) 
+
+data2</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species class
+## 1           0.0         0.0          0.0         0.0       &lt;NA&gt;  &lt;NA&gt;
+## 2           5.7         2.8          4.5         1.3 versicolor     2
+## 3           0.0         0.0          0.0         0.0       &lt;NA&gt;  &lt;NA&gt;
+## 4           6.3         2.8          5.1         1.5  virginica     3
+## 5           4.7         3.2          1.6         0.2     setosa     1
+## 6           7.4         2.8          6.1         1.9  virginica     3
+## 7           6.3         3.4          5.6         2.4  virginica     3
+## 8           5.6         2.7          4.2         1.3 versicolor     2
+## 9           5.5         2.5          4.0         1.3 versicolor     2
+## 10          4.4         2.9          1.4         0.2     setosa     1</code></pre>
+<p>Hoặc nếu muốn thay thế missing values bằng giá trị <code>median</code>, có thể dùng câu lệnh sau:</p>
+<pre class="r"><code>data %&gt;% 
+  mutate_if(is.numeric,  # Áp dụng với các biến là numeric
+            # Những giá trị NA thay bằng median
+            funs(case_when(
+              is.na(.) ~ median(., na.rm = T),
+              TRUE ~ .
+            ))
+  ) </code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species class
+## 1          5.65         2.8         4.35         1.3       &lt;NA&gt;  &lt;NA&gt;
+## 2          5.70         2.8         4.50         1.3 versicolor     2
+## 3          5.65         2.8         4.35         1.3       &lt;NA&gt;  &lt;NA&gt;
+## 4          6.30         2.8         5.10         1.5  virginica     3
+## 5          4.70         3.2         1.60         0.2     setosa     1
+## 6          7.40         2.8         6.10         1.9  virginica     3
+## 7          6.30         3.4         5.60         2.4  virginica     3
+## 8          5.60         2.7         4.20         1.3 versicolor     2
+## 9          5.50         2.5         4.00         1.3 versicolor     2
+## 10         4.40         2.9         1.40         0.2     setosa     1</code></pre>
+<p>Tương tự, đối với những <code>biến rời rạc</code> (factor) trong dữ liệu, chúng ta sẽ thay thế missing values bằng giá trị <code>Missing</code>, sử dụng câu lệnh sau:</p>
+<pre class="r"><code>data2 %&gt;% 
+  # Những biến factor cần convert về dạng character trước
+  mutate_if(is.factor, as.character) %&gt;% 
+  mutate_if(is.character,
+            funs(case_when(
+              is.na(.) ~ &quot;Missing&quot;,
+              TRUE ~ .
+            ))         
+         )</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species   class
+## 1           0.0         0.0          0.0         0.0    Missing Missing
+## 2           5.7         2.8          4.5         1.3 versicolor       2
+## 3           0.0         0.0          0.0         0.0    Missing Missing
+## 4           6.3         2.8          5.1         1.5  virginica       3
+## 5           4.7         3.2          1.6         0.2     setosa       1
+## 6           7.4         2.8          6.1         1.9  virginica       3
+## 7           6.3         3.4          5.6         2.4  virginica       3
+## 8           5.6         2.7          4.2         1.3 versicolor       2
+## 9           5.5         2.5          4.0         1.3 versicolor       2
+## 10          4.4         2.9          1.4         0.2     setosa       1</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách thay thế missing values bằng 1 giá trị nhất định ở hàng loạt các biến cùng một lúc bằng việc kết hợp câu lệnh <code>mutate_if()</code> và <code>case_when()</code>.
+Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>

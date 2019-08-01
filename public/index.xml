@@ -6,10 +6,22 @@
     <description>Recent content on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Xử lý dữ liệu missing nâng cao</title>
+      <link>/blog/2019/06/30/2019-06-30-xu-ly-missing-nang-cao/</link>
+      <pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/06/30/2019-06-30-xu-ly-missing-nang-cao/</guid>
+      <description>Trong quá trình phân tích dữ liệu thực tế, chúng ta sẽ thường gặp phải vấn đề missing values. Trong những bài viết trước, RAnalytics đã chia sẻ một số tips xử lý missing values, các bạn có thể tham khảo tại:
+http://ranalytics.vn/blog/2019/01/15/2019-01-15-xu-ly-du-lieu-missing/
+http://ranalytics.vn/blog/2019/06/20/2019-06-20-loai-bo-hang-va-cot-chua-gia-tri-missing/
+Tuy nhiên, câu hỏi đặt ra lúc này là giả sử dữ liệu của chúng ta có rất nhiều biến có missing values, vậy thì làm thế nào để thay thế missing values ở hàng loạt các biến cùng một lúc?</description>
+    </item>
     
     <item>
       <title>Loại bỏ dòng hoặc cột chứa giá trị missing</title>
