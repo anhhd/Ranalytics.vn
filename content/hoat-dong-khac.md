@@ -48,7 +48,7 @@ keywords = ["FAQ","How do I","questions","what if"]
 
 &nbsp;
 
-![](/img/gallery/dsb-01.jpg)
+&nbsp;
 
 ---
 
