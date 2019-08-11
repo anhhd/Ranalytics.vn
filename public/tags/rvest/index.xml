@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rvest on Ranalytics.vn - Từ phân tích đến quyết định</title>
+    <link>/tags/rvest/</link>
+    <description>Recent content in Rvest on Ranalytics.vn - Từ phân tích đến quyết định</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/rvest/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Thu thập dữ liệu từ website với rvest</title>
+      <link>/blog/2019/07/15/2019-07-15-thu-thap-du-lieu-tu-website-voi-rvest/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/07/15/2019-07-15-thu-thap-du-lieu-tu-website-voi-rvest/</guid>
+      <description>Trong quá trình làm việc, có rất nhiều nguồn dữ liệu từ website mà ta có thể thu thập và sử dụng. Trong bài viết này, RAnalyticssẽ giới thiệu với các bạn cách thu thập dữ liệu từ website đơn giản với rvest
+rvestrvest là package cho phép đọc dữ liệu html từ web trong hệ sinh thái của tidyverse. Sử dụng rvest cho phép thu thập dữ liệu một cách nhanh chóng từ web.</description>
+    </item>
+    
+  </channel>
+</rss>

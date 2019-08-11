@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+  <meta charset="utf-8">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thu thập dữ liệu từ website với rvest</title>
+  <meta name="author" content="" />
+
+  
+  <meta name="keywords" content="devows, hugo, go">	
+  
+
+  
+  <meta name="description" content="Site template made by devcows using hugo">	
+  
+
+  <meta name="generator" content="Hugo 0.53" />
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+  <link href="../../../../../css/animate.css" rel="stylesheet">
+
+  
+  
+    <link href="../../../../../css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+  
+
+
+  
+  <link href="../../../../../css/custom.css" rel="stylesheet">
+
+  
+  
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+  <link rel="shortcut icon" href="../../../../../img/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="../../../../../img/apple-touch-icon.png" />
+  
+
+  <link href="../../../../../css/owl.carousel.css" rel="stylesheet">
+  <link href="../../../../../css/owl.theme.css" rel="stylesheet">
+
+  <link rel="alternate" href="../../../../../index.xml" type="application/rss+xml" title="Ranalytics.vn - Từ phân tích đến quyết định">
+
+  
+  <meta property="og:title" content="Thu thập dữ liệu từ website với rvest" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="/blog/2019/07/15/2019-07-15-thu-thap-du-lieu-tu-website-voi-rvest//" />
+  <meta property="og:image" content="img/logo.png" />
+
+  <link rel="stylesheet" href="../../../../../css/railscasts.css" rel="stylesheet" id="theme-stylesheet">
+  <script src="../../../../../js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+
+  <body>
+
+    <div id="all">
+
+        <header>
+
+          <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="../../../../../">
+                    <img src="../../../../../img/logo.png" alt="Thu thập dữ liệu từ website với rvest logo" class="hidden-xs hidden-sm">
+                    <img src="../../../../../img/logo-small.png" alt="Thu thập dữ liệu từ website với rvest logo" class="visible-xs visible-sm">
+                    <span class="sr-only">Thu thập dữ liệu từ website với rvest - Về trang chủ</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../">Trang chủ</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../khoa-hoc-phan-tich-du-lieu/">Khóa học</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tài liệu <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="../../../../../cheatsheet/">R cheatsheets</a></li>
+                      
+                        <li><a href="../../../../../charts/">Các loại biểu đồ</a></li>
+                      
+                        <li><a href="../../../../../lecture/coding-style.html">Phong cách viết code</a></li>
+                      
+                        <li><a href="https://www.datacamp.com/community/open-courses/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C6%A1-b%E1%BA%A3n-v%E1%BB%81-r">Giới thiệu cơ bản về R (Datacamp)</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../faq/">FAQ</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../blog/">Blog</a>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="../../../../../hoc-vien-tot-nghiep/">Học viên các khóa</a></li>
+                      
+                        <li><a href="../../../../../hoat-dong-khac/">Hoạt động khác</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shiny Apps <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      
+                        <li><a href="https://anhhoangduc.shinyapps.io/basket_analysis/">Market basket analysis</a></li>
+                      
+                        <li><a href="https://anhhoangduc.shinyapps.io/rfm_segmentation/">RFM segmentation</a></li>
+                      
+                        <li><a href="https://anhhoangduc.shinyapps.io/static-sql/">Static to Dynamic SQL</a></li>
+                      
+                    </ul>
+                    
+                  </li>
+                  
+                  <li class="dropdown">
+                    
+                    <a href="../../../../../contact/">Liên hệ</a>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+
+                </span>
+                    </div>
+                </form>
+
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+        </header>
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Thu thập dữ liệu từ website với rvest</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        <p class="text-muted text-uppercase mb-small text-right">Tác giả:  <a href="#">Hoàng Đức Anh</a> | 2019-07-15</p>
+
+                        <div id="post-content">
+                          
+
+
+<p>Trong quá trình làm việc, có rất nhiều nguồn dữ liệu từ website mà ta có thể thu thập và sử dụng. Trong bài viết này, <code>RAnalytics</code>
+sẽ giới thiệu với các bạn cách thu thập dữ liệu từ website đơn giản với <code>rvest</code></p>
+<div id="rvest" class="section level2">
+<h2>rvest</h2>
+<p><code>rvest</code> là package cho phép đọc dữ liệu html từ web trong hệ sinh thái của <code>tidyverse</code>. Sử dụng <code>rvest</code> cho phép thu thập dữ liệu một cách nhanh chóng từ web.</p>
+<pre class="r"><code>library(dplyr)
+library(rvest)</code></pre>
+<p>Mỗi thành phần của 1 file html được cấu thành từ các <code>tag</code> và các đối tượng nhất định được quy định bởi <code>css</code> của website đó. Khi thu thập dữ liệu từ web, ta cần biết được chính xác đối tượng ta muốn thu thập dữ liệu đang được gắn với tag nào của html. Có hai cách để biết được object thuộc tag nào:</p>
+<ul>
+<li>Sử dụng <code>Chrome &gt;&gt; F12</code></li>
+<li>Sử dụng selectorgadget addin của chrome để xác định node</li>
+</ul>
+<pre class="r"><code>vignette(&quot;selectorgadget&quot;)</code></pre>
+<pre class="r"><code>url &lt;- &#39;http://www.imdb.com/search/title?count=100&amp;release_date=2016,2016&amp;title_type=feature&#39;
+
+webpage &lt;- read_html(url)
+webpage %&gt;% 
+  html_nodes(&quot;.text-primary&quot;) %&gt;% 
+  html_text %&gt;% 
+  as.numeric %&gt;% 
+  head</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<pre class="r"><code>webpage %&gt;% 
+  html_nodes(&#39;.lister-item-header a&#39;) %&gt;%  
+  html_text %&gt;%
+  head</code></pre>
+<pre><code>## [1] &quot;Biet Doi Cam Tu&quot;                         
+## [2] &quot;Vung Nuoc Tu Thân&quot;                       
+## [3] &quot;Dâu Truong Âm Nhac&quot;                      
+## [4] &quot;Captain America: Nôi chiên siêu anh hùng&quot;
+## [5] &quot;Captain Fantastic&quot;                       
+## [6] &quot;Deadpool&quot;</code></pre>
+<pre class="r"><code>webpage %&gt;% 
+  html_nodes(&#39;.ratings-bar+ .text-muted&#39;) %&gt;%  
+  html_text %&gt;%
+  head</code></pre>
+<pre><code>## [1] &quot;\n    A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse.&quot;                                                             
+## [2] &quot;\n    A mere 200 yards from shore, surfer Nancy is attacked by a great white shark, with her short journey to safety becoming the ultimate contest of wills.&quot;                                                                                          
+## [3] &quot;\n    In a city of humanoid animals, a hustling theater impresario&#39;s attempt to save his theater with a singing competition becomes grander than he anticipates even as its finalists find that their lives will never be the same.&quot;                   
+## [4] &quot;\n    Political involvement in the Avengers&#39; affairs causes a rift between Captain America and Iron Man.&quot;                                                                                                                                              
+## [5] &quot;\n    In the forests of the Pacific Northwest, a father devoted to raising his six kids with a rigorous physical and intellectual education is forced to leave his paradise and enter the world, challenging his idea of what it means to be a parent.&quot;
+## [6] &quot;\n    A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks.&quot;</code></pre>
+<pre class="r"><code>webpage %&gt;% 
+  html_nodes(&#39;table&#39;) %&gt;%  
+  html_text %&gt;%
+  head</code></pre>
+<pre><code>## [1] &quot;\n                Amazon Affiliates\n            \n        \n        \n            \n                Prime VideoUnlimited Streamingof Movies &amp; TV\n            \n        \n    \n\n    \n        \n            \n                Amazon UKBuy Movies onDVD &amp; Blu-ray\n            \n        \n    \n\n    \n        \n            \n                Amazon GermanyBuy Movies onDVD &amp; Blu-ray\n            \n        \n    \n\n    \n        \n            \n                Amazon ItalyBuy Movies onDVD &amp; Blu-ray\n            \n        \n    \n\n    \n        \n            \n                Amazon FranceBuy Movies onDVD &amp; Blu-ray\n            \n        \n    \n\n    \n        \n            \n                Amazon IndiaBuy Movie andTV Show DVDs\n            \n        \n    \n\n    \n        \n            \n                DPReviewDigitalPhotography\n            \n        \n    \n\n    \n        \n            \n                AudibleDownloadAudio Books\n            \n        \n    \n        &quot;</code></pre>
+<hr />
+</div>
+<div id="s-dung-html_table--oc-d-liu-bang" class="section level2">
+<h2>Sử dụng <code>html_table</code> để đọc dữ liệu bảng</h2>
+<pre class="r"><code>library(rvest)
+lego_movie &lt;- read_html(&quot;http://www.imdb.com/title/tt1490017/&quot;)
+
+lego_movie %&gt;%
+  html_nodes(&quot;table&quot;) %&gt;%
+  html_table() %&gt;% 
+  as.data.frame %&gt;%
+  head</code></pre>
+<pre><code>##                                  X1                                X2
+## 1 Cast overview, first billed only: Cast overview, first billed only:
+## 2                                                         Will Arnett
+## 3                                                     Elizabeth Banks
+## 4                                                         Craig Berry
+## 5                                                         Alison Brie
+## 6                                                       David Burrows
+##                                  X3
+## 1 Cast overview, first billed only:
+## 2                               ...
+## 3                               ...
+## 4                               ...
+## 5                               ...
+## 6                               ...
+##                                                                   X4
+## 1                                  Cast overview, first billed only:
+## 2            Batman /  \n            Bruce Wayne \n  \n  \n  (voice)
+## 3                Wyldstyle /  \n            Lucy \n  \n  \n  (voice)
+## 4       Blake /  \n            Additional Voices \n  \n  \n  (voice)
+## 5                                       Unikitty \n  \n  \n  (voice)
+## 6 Octan Robot /  \n            Additional Voices \n  \n  \n  (voice)
+##                                           X1.1
+## 1                            Amazon Affiliates
+## 2 Prime VideoUnlimited Streamingof Movies &amp; TV
+## 3                            Amazon Affiliates
+## 4 Prime VideoUnlimited Streamingof Movies &amp; TV
+## 5                            Amazon Affiliates
+## 6 Prime VideoUnlimited Streamingof Movies &amp; TV
+##                                  X2.1
+## 1                   Amazon Affiliates
+## 2 Amazon UKBuy Movies onDVD &amp; Blu-ray
+## 3                   Amazon Affiliates
+## 4 Amazon UKBuy Movies onDVD &amp; Blu-ray
+## 5                   Amazon Affiliates
+## 6 Amazon UKBuy Movies onDVD &amp; Blu-ray
+##                                       X3.1
+## 1                        Amazon Affiliates
+## 2 Amazon GermanyBuy Movies onDVD &amp; Blu-ray
+## 3                        Amazon Affiliates
+## 4 Amazon GermanyBuy Movies onDVD &amp; Blu-ray
+## 5                        Amazon Affiliates
+## 6 Amazon GermanyBuy Movies onDVD &amp; Blu-ray
+##                                     X4.1
+## 1                      Amazon Affiliates
+## 2 Amazon ItalyBuy Movies onDVD &amp; Blu-ray
+## 3                      Amazon Affiliates
+## 4 Amazon ItalyBuy Movies onDVD &amp; Blu-ray
+## 5                      Amazon Affiliates
+## 6 Amazon ItalyBuy Movies onDVD &amp; Blu-ray
+##                                        X5
+## 1                       Amazon Affiliates
+## 2 Amazon FranceBuy Movies onDVD &amp; Blu-ray
+## 3                       Amazon Affiliates
+## 4 Amazon FranceBuy Movies onDVD &amp; Blu-ray
+## 5                       Amazon Affiliates
+## 6 Amazon FranceBuy Movies onDVD &amp; Blu-ray
+##                                      X6                         X7
+## 1                     Amazon Affiliates          Amazon Affiliates
+## 2 Amazon IndiaBuy Movie andTV Show DVDs DPReviewDigitalPhotography
+## 3                     Amazon Affiliates          Amazon Affiliates
+## 4 Amazon IndiaBuy Movie andTV Show DVDs DPReviewDigitalPhotography
+## 5                     Amazon Affiliates          Amazon Affiliates
+## 6 Amazon IndiaBuy Movie andTV Show DVDs DPReviewDigitalPhotography
+##                           X8
+## 1          Amazon Affiliates
+## 2 AudibleDownloadAudio Books
+## 3          Amazon Affiliates
+## 4 AudibleDownloadAudio Books
+## 5          Amazon Affiliates
+## 6 AudibleDownloadAudio Books</code></pre>
+</div>
+<div id="ng-dung---scrape-techcombank-atm" class="section level2">
+<h2>Ứng dụng - Scrape Techcombank ATM</h2>
+<p>Trong phần này, ta sẽ sử dụng <code>rvest</code> để thu thập dữ liệu về vị trí các chi nhánh của ngân hàng Techcombank.</p>
+<pre class="r"><code>branch_full &lt;- character()
+address_full &lt;- character()
+
+# Tạo vòng lặp để thu thập thông tin branch của 2 trang của Techcombank
+
+for (i in 1:2) {
+  url &lt;- paste0(
+      &#39;https://www.techcombank.com.vn/mang-luoi-dia-diem-atm/danh-sach-chi-nhanh-phong-giao-dich-va-atm?page=&#39;,
+      i
+    )
+  
+  webpage &lt;- read_html(url, encoding = &quot;UTF-8&quot;)
+  branch &lt;- webpage %&gt;%
+    html_nodes(&quot;.title-entries a&quot;) %&gt;%
+    html_text %&gt;%
+    as.character 
+  address &lt;- webpage %&gt;% 
+    html_nodes(&quot;.address&quot;) %&gt;% 
+    html_text %&gt;% 
+    as.character
+  branch_full &lt;- c(branch_full, branch)
+  address_full &lt;- c(address_full, address)
+}
+
+atm_tech &lt;- data.frame(branch = branch_full, address = address_full)</code></pre>
+<pre class="r"><code>atm_tech %&gt;% head</code></pre>
+<pre><code>##                                                 branch
+## 1                    ATM - B - 00330 Li&lt;U+1EC5&gt;u Giai 
+## 2                                  ATM C&lt;U+1EA7&gt;u Buou
+## 3                  ATM Công ty TNHH Nguy&lt;U+1EC5&gt;n Khoa
+## 4 ATM Ðoàn ti&lt;U+1EBF&gt;p viên Hàng không Vi&lt;U+1EC7&gt;t Nam
+## 5                                        ATM Nhà ga T2
+## 6                                ATM Tây H&lt;U+1ED3&gt; Tây
+##                                                                                                                                                                     address
+## 1                                                                                 Tòa nhà Lotte, s&lt;U+1ED1&gt; 54 Li&lt;U+1EC5&gt;u Giai, qu&lt;U+1EAD&gt;n Ba Ðình, Ba Ðình, Hà N&lt;U+1ED9&gt;i
+## 2                                                                                                                               Thanh Li&lt;U+1EC7&gt;t, Thanh Trì, Hà N&lt;U+1ED9&gt;i
+## 3                                                                       Khu Công nghi&lt;U+1EC7&gt;p Ð&lt;U+1ED3&gt;ng Van, huy&lt;U+1EC7&gt;n Duy Tiên, t&lt;U+1EC9&gt;nh Hà Nam, Duy Tiên, Hà Nam
+## 4                                                                                       200 Nguy&lt;U+1EC5&gt;n Son, qu&lt;U+1EAD&gt;n Long Biên, Hà N&lt;U+1ED9&gt;i, Ba Ðình, Hà N&lt;U+1ED9&gt;i
+## 5                       Khu v&lt;U+1EF1&gt;c cách li Qu&lt;U+1ED1&gt;c t&lt;U+1EBF&gt; d&lt;U+1EBF&gt;n, Nhà ga Hành khách T2, Sân bay Qu&lt;U+1ED1&gt;c T&lt;U+1EBF&gt; N&lt;U+1ED9&gt;i Bài, Sóc Son, Hà N&lt;U+1ED9&gt;i
+## 6 LK.C09, D&lt;U+1EF1&gt; án Embassy Garden, phu&lt;U+1EDD&gt;ng C&lt;U+1ED5&gt; Nhu&lt;U+1EBF&gt; và Xuân T&lt;U+1EA3&gt;o, qu&lt;U+1EAD&gt;n B&lt;U+1EAF&gt;c T&lt;U+1EEB&gt; Liêm, Hà N&lt;U+1ED9&gt;i, Ba Ðình, Hà N&lt;U+1ED9&gt;i</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách sử dụng <code>R</code> để thu thập dữ liệu từ website với <code>rvest</code>.
+Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
+
+                        </div>
+                        
+                        
+                        <div id="comments">
+                            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ranalytics-vn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Tìm kiếm</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" results="0" class="form-control" placeholder="Tìm kiếm">
+                <input type="hidden" name="q" value="site:/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Nhóm bài viết</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            <li><a href="../../../../../categories/cloud-computing">cloud-computing (1)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/data-import">data-import (4)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/data-manipulation">data-manipulation (18)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/data-science">data-science (2)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/data-vizualization">data-vizualization (13)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/general">general (2)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/tips">tips (5)</a>
+            </li>
+            
+            <li><a href="../../../../../categories/writing-report">writing-report (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+    <div class="panel-heading">
+      <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="../../../../../tags/cloud-computing"><i class="fa fa-tags"></i> cloud-computing</a>
+            </li>
+            
+            <li><a href="../../../../../tags/data-import"><i class="fa fa-tags"></i> data-import</a>
+            </li>
+            
+            <li><a href="../../../../../tags/data-science"><i class="fa fa-tags"></i> data-science</a>
+            </li>
+            
+            <li><a href="../../../../../tags/date"><i class="fa fa-tags"></i> date</a>
+            </li>
+            
+            <li><a href="../../../../../tags/dplyr"><i class="fa fa-tags"></i> dplyr</a>
+            </li>
+            
+            <li><a href="../../../../../tags/factor"><i class="fa fa-tags"></i> factor</a>
+            </li>
+            
+            <li><a href="../../../../../tags/forcats"><i class="fa fa-tags"></i> forcats</a>
+            </li>
+            
+            <li><a href="../../../../../tags/ggplot2"><i class="fa fa-tags"></i> ggplot2</a>
+            </li>
+            
+            <li><a href="../../../../../tags/import-data"><i class="fa fa-tags"></i> import-data</a>
+            </li>
+            
+            <li><a href="../../../../../tags/project"><i class="fa fa-tags"></i> project</a>
+            </li>
+            
+            <li><a href="../../../../../tags/purrr"><i class="fa fa-tags"></i> purrr</a>
+            </li>
+            
+            <li><a href="../../../../../tags/r"><i class="fa fa-tags"></i> r</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rmarkdown"><i class="fa fa-tags"></i> rmarkdown</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rstudio"><i class="fa fa-tags"></i> rstudio</a>
+            </li>
+            
+            <li><a href="../../../../../tags/rvest"><i class="fa fa-tags"></i> rvest</a>
+            </li>
+            
+            <li><a href="../../../../../tags/scales"><i class="fa fa-tags"></i> scales</a>
+            </li>
+            
+            <li><a href="../../../../../tags/sqlserver"><i class="fa fa-tags"></i> sqlserver</a>
+            </li>
+            
+            <li><a href="../../../../../tags/stringr"><i class="fa fa-tags"></i> stringr</a>
+            </li>
+            
+            <li><a href="../../../../../tags/tidyr"><i class="fa fa-tags"></i> tidyr</a>
+            </li>
+            
+            <li><a href="../../../../../tags/tips"><i class="fa fa-tags"></i> tips</a>
+            </li>
+            
+            <li><a href="../../../../../tags/vizualization"><i class="fa fa-tags"></i> vizualization</a>
+            </li>
+            
+            <li><a href="../../../../../tags/wordcloud"><i class="fa fa-tags"></i> wordcloud</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>Về chúng tôi</h4>
+
+            Với RAnalytics.vn, bạn sẽ vững bước hơn trên sự nghiệp phân tích dữ liệu.
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+             
+            <h4>Các bài viết gần đây</h4>
+
+            <div class="blog-entries">
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/07/15/2019-07-15-thu-thap-du-lieu-tu-website-voi-rvest/">
+                          
+                            <img src="../../../../../img/banners/banner-47.png" class="img-responsive" alt="">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/07/15/2019-07-15-thu-thap-du-lieu-tu-website-voi-rvest/">Thu thập dữ liệu từ website với rvest</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/06/30/2019-06-30-xu-ly-missing-nang-cao/">
+                          
+                            <img src="../../../../../img/banners/banner-46.png" class="img-responsive" alt="">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/06/30/2019-06-30-xu-ly-missing-nang-cao/">Xử lý dữ liệu missing nâng cao</a></h5>
+                    </div>
+                </div>
+                
+                <div class="item same-height-row clearfix">
+                    <div class="image same-height-always">
+                        <a href="../../../../../blog/2019/06/20/2019-06-20-loai-bo-hang-va-cot-chua-gia-tri-missing/">
+                          
+                            <img src="../../../../../img/banners/banner-45.png" class="img-responsive" alt="">
+                          
+                        </a>
+                    </div>
+                    <div class="name same-height-always">
+                        <h5><a href="../../../../../blog/2019/06/20/2019-06-20-loai-bo-hang-va-cot-chua-gia-tri-missing/">Loại bỏ dòng hoặc cột chứa giá trị missing</a></h5>
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class="hidden-md hidden-lg">
+             
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>Liên hệ</h4>
+
+             Số 9, Trung Liệt, Đống Đa, Hà Nội
+        <br>
+      </p>
+      
+
+
+            <a href="../../../../../contact" class="btn btn-small btn-template-main">Liên hệ ngay</a>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2017, Ranalytics.vn - all rights reserved</p>
+            
+            <p class="pull-right">
+              Template by <a href="http://bootstrapious.com/free-templates">Bootstrapious</a>.
+              
+
+              Ported to Hugo by <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-117458816-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCFhtWLJcE30xOAjcbSFi-0fnoVmQZPb1Y&v=3.exp"></script>
+
+<script src="../../../../../js/hpneo.gmaps.js"></script>
+<script src="../../../../../js/gmaps.init.js"></script>
+<script src="../../../../../js/front.js"></script>
+
+
+<script src="../../../../../js/owl.carousel.min.js"></script>
+
+
+  </body>
+</html>

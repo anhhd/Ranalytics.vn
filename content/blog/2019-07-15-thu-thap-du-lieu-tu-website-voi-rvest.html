@@ -1,0 +1,191 @@
+---
+title: "Thu thập dữ liệu từ website với rvest"
+author: "Hoàng Đức Anh"
+date: "2019-07-15"
+categories:
+  - data-manipulation
+tags:
+  - rvest
+summary: "Thu thập dữ liệu từ website với rvest"
+banner: "img/banners/banner-47.png"
+---
+
+
+
+<p>Trong quá trình làm việc, có rất nhiều nguồn dữ liệu từ website mà ta có thể thu thập và sử dụng. Trong bài viết này, <code>RAnalytics</code>
+sẽ giới thiệu với các bạn cách thu thập dữ liệu từ website đơn giản với <code>rvest</code></p>
+<div id="rvest" class="section level2">
+<h2>rvest</h2>
+<p><code>rvest</code> là package cho phép đọc dữ liệu html từ web trong hệ sinh thái của <code>tidyverse</code>. Sử dụng <code>rvest</code> cho phép thu thập dữ liệu một cách nhanh chóng từ web.</p>
+<pre class="r"><code>library(dplyr)
+library(rvest)</code></pre>
+<p>Mỗi thành phần của 1 file html được cấu thành từ các <code>tag</code> và các đối tượng nhất định được quy định bởi <code>css</code> của website đó. Khi thu thập dữ liệu từ web, ta cần biết được chính xác đối tượng ta muốn thu thập dữ liệu đang được gắn với tag nào của html. Có hai cách để biết được object thuộc tag nào:</p>
+<ul>
+<li>Sử dụng <code>Chrome &gt;&gt; F12</code></li>
+<li>Sử dụng selectorgadget addin của chrome để xác định node</li>
+</ul>
+<pre class="r"><code>vignette(&quot;selectorgadget&quot;)</code></pre>
+<pre class="r"><code>url &lt;- &#39;http://www.imdb.com/search/title?count=100&amp;release_date=2016,2016&amp;title_type=feature&#39;
+
+webpage &lt;- read_html(url)
+webpage %&gt;% 
+  html_nodes(&quot;.text-primary&quot;) %&gt;% 
+  html_text %&gt;% 
+  as.numeric %&gt;% 
+  head</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<pre class="r"><code>webpage %&gt;% 
+  html_nodes(&#39;.lister-item-header a&#39;) %&gt;%  
+  html_text %&gt;%
+  head</code></pre>
+<pre><code>## [1] &quot;Biet Doi Cam Tu&quot;                         
+## [2] &quot;Vung Nuoc Tu Thân&quot;                       
+## [3] &quot;Dâu Truong Âm Nhac&quot;                      
+## [4] &quot;Captain America: Nôi chiên siêu anh hùng&quot;
+## [5] &quot;Captain Fantastic&quot;                       
+## [6] &quot;Deadpool&quot;</code></pre>
+<pre class="r"><code>webpage %&gt;% 
+  html_nodes(&#39;.ratings-bar+ .text-muted&#39;) %&gt;%  
+  html_text %&gt;%
+  head</code></pre>
+<pre><code>## [1] &quot;\n    A secret government agency recruits some of the most dangerous incarcerated super-villains to form a defensive task force. Their first mission: save the world from the apocalypse.&quot;                                                             
+## [2] &quot;\n    A mere 200 yards from shore, surfer Nancy is attacked by a great white shark, with her short journey to safety becoming the ultimate contest of wills.&quot;                                                                                          
+## [3] &quot;\n    In a city of humanoid animals, a hustling theater impresario&#39;s attempt to save his theater with a singing competition becomes grander than he anticipates even as its finalists find that their lives will never be the same.&quot;                   
+## [4] &quot;\n    Political involvement in the Avengers&#39; affairs causes a rift between Captain America and Iron Man.&quot;                                                                                                                                              
+## [5] &quot;\n    In the forests of the Pacific Northwest, a father devoted to raising his six kids with a rigorous physical and intellectual education is forced to leave his paradise and enter the world, challenging his idea of what it means to be a parent.&quot;
+## [6] &quot;\n    A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks.&quot;</code></pre>
+<pre class="r"><code>webpage %&gt;% 
+  html_nodes(&#39;table&#39;) %&gt;%  
+  html_text %&gt;%
+  head</code></pre>
+<pre><code>## [1] &quot;\n                Amazon Affiliates\n            \n        \n        \n            \n                Prime VideoUnlimited Streamingof Movies &amp; TV\n            \n        \n    \n\n    \n        \n            \n                Amazon UKBuy Movies onDVD &amp; Blu-ray\n            \n        \n    \n\n    \n        \n            \n                Amazon GermanyBuy Movies onDVD &amp; Blu-ray\n            \n        \n    \n\n    \n        \n            \n                Amazon ItalyBuy Movies onDVD &amp; Blu-ray\n            \n        \n    \n\n    \n        \n            \n                Amazon FranceBuy Movies onDVD &amp; Blu-ray\n            \n        \n    \n\n    \n        \n            \n                Amazon IndiaBuy Movie andTV Show DVDs\n            \n        \n    \n\n    \n        \n            \n                DPReviewDigitalPhotography\n            \n        \n    \n\n    \n        \n            \n                AudibleDownloadAudio Books\n            \n        \n    \n        &quot;</code></pre>
+<hr />
+</div>
+<div id="s-dung-html_table--oc-d-liu-bang" class="section level2">
+<h2>Sử dụng <code>html_table</code> để đọc dữ liệu bảng</h2>
+<pre class="r"><code>library(rvest)
+lego_movie &lt;- read_html(&quot;http://www.imdb.com/title/tt1490017/&quot;)
+
+lego_movie %&gt;%
+  html_nodes(&quot;table&quot;) %&gt;%
+  html_table() %&gt;% 
+  as.data.frame %&gt;%
+  head</code></pre>
+<pre><code>##                                  X1                                X2
+## 1 Cast overview, first billed only: Cast overview, first billed only:
+## 2                                                         Will Arnett
+## 3                                                     Elizabeth Banks
+## 4                                                         Craig Berry
+## 5                                                         Alison Brie
+## 6                                                       David Burrows
+##                                  X3
+## 1 Cast overview, first billed only:
+## 2                               ...
+## 3                               ...
+## 4                               ...
+## 5                               ...
+## 6                               ...
+##                                                                   X4
+## 1                                  Cast overview, first billed only:
+## 2            Batman /  \n            Bruce Wayne \n  \n  \n  (voice)
+## 3                Wyldstyle /  \n            Lucy \n  \n  \n  (voice)
+## 4       Blake /  \n            Additional Voices \n  \n  \n  (voice)
+## 5                                       Unikitty \n  \n  \n  (voice)
+## 6 Octan Robot /  \n            Additional Voices \n  \n  \n  (voice)
+##                                           X1.1
+## 1                            Amazon Affiliates
+## 2 Prime VideoUnlimited Streamingof Movies &amp; TV
+## 3                            Amazon Affiliates
+## 4 Prime VideoUnlimited Streamingof Movies &amp; TV
+## 5                            Amazon Affiliates
+## 6 Prime VideoUnlimited Streamingof Movies &amp; TV
+##                                  X2.1
+## 1                   Amazon Affiliates
+## 2 Amazon UKBuy Movies onDVD &amp; Blu-ray
+## 3                   Amazon Affiliates
+## 4 Amazon UKBuy Movies onDVD &amp; Blu-ray
+## 5                   Amazon Affiliates
+## 6 Amazon UKBuy Movies onDVD &amp; Blu-ray
+##                                       X3.1
+## 1                        Amazon Affiliates
+## 2 Amazon GermanyBuy Movies onDVD &amp; Blu-ray
+## 3                        Amazon Affiliates
+## 4 Amazon GermanyBuy Movies onDVD &amp; Blu-ray
+## 5                        Amazon Affiliates
+## 6 Amazon GermanyBuy Movies onDVD &amp; Blu-ray
+##                                     X4.1
+## 1                      Amazon Affiliates
+## 2 Amazon ItalyBuy Movies onDVD &amp; Blu-ray
+## 3                      Amazon Affiliates
+## 4 Amazon ItalyBuy Movies onDVD &amp; Blu-ray
+## 5                      Amazon Affiliates
+## 6 Amazon ItalyBuy Movies onDVD &amp; Blu-ray
+##                                        X5
+## 1                       Amazon Affiliates
+## 2 Amazon FranceBuy Movies onDVD &amp; Blu-ray
+## 3                       Amazon Affiliates
+## 4 Amazon FranceBuy Movies onDVD &amp; Blu-ray
+## 5                       Amazon Affiliates
+## 6 Amazon FranceBuy Movies onDVD &amp; Blu-ray
+##                                      X6                         X7
+## 1                     Amazon Affiliates          Amazon Affiliates
+## 2 Amazon IndiaBuy Movie andTV Show DVDs DPReviewDigitalPhotography
+## 3                     Amazon Affiliates          Amazon Affiliates
+## 4 Amazon IndiaBuy Movie andTV Show DVDs DPReviewDigitalPhotography
+## 5                     Amazon Affiliates          Amazon Affiliates
+## 6 Amazon IndiaBuy Movie andTV Show DVDs DPReviewDigitalPhotography
+##                           X8
+## 1          Amazon Affiliates
+## 2 AudibleDownloadAudio Books
+## 3          Amazon Affiliates
+## 4 AudibleDownloadAudio Books
+## 5          Amazon Affiliates
+## 6 AudibleDownloadAudio Books</code></pre>
+</div>
+<div id="ng-dung---scrape-techcombank-atm" class="section level2">
+<h2>Ứng dụng - Scrape Techcombank ATM</h2>
+<p>Trong phần này, ta sẽ sử dụng <code>rvest</code> để thu thập dữ liệu về vị trí các chi nhánh của ngân hàng Techcombank.</p>
+<pre class="r"><code>branch_full &lt;- character()
+address_full &lt;- character()
+
+# Tạo vòng lặp để thu thập thông tin branch của 2 trang của Techcombank
+
+for (i in 1:2) {
+  url &lt;- paste0(
+      &#39;https://www.techcombank.com.vn/mang-luoi-dia-diem-atm/danh-sach-chi-nhanh-phong-giao-dich-va-atm?page=&#39;,
+      i
+    )
+  
+  webpage &lt;- read_html(url, encoding = &quot;UTF-8&quot;)
+  branch &lt;- webpage %&gt;%
+    html_nodes(&quot;.title-entries a&quot;) %&gt;%
+    html_text %&gt;%
+    as.character 
+  address &lt;- webpage %&gt;% 
+    html_nodes(&quot;.address&quot;) %&gt;% 
+    html_text %&gt;% 
+    as.character
+  branch_full &lt;- c(branch_full, branch)
+  address_full &lt;- c(address_full, address)
+}
+
+atm_tech &lt;- data.frame(branch = branch_full, address = address_full)</code></pre>
+<pre class="r"><code>atm_tech %&gt;% head</code></pre>
+<pre><code>##                                                 branch
+## 1                    ATM - B - 00330 Li&lt;U+1EC5&gt;u Giai 
+## 2                                  ATM C&lt;U+1EA7&gt;u Buou
+## 3                  ATM Công ty TNHH Nguy&lt;U+1EC5&gt;n Khoa
+## 4 ATM Ðoàn ti&lt;U+1EBF&gt;p viên Hàng không Vi&lt;U+1EC7&gt;t Nam
+## 5                                        ATM Nhà ga T2
+## 6                                ATM Tây H&lt;U+1ED3&gt; Tây
+##                                                                                                                                                                     address
+## 1                                                                                 Tòa nhà Lotte, s&lt;U+1ED1&gt; 54 Li&lt;U+1EC5&gt;u Giai, qu&lt;U+1EAD&gt;n Ba Ðình, Ba Ðình, Hà N&lt;U+1ED9&gt;i
+## 2                                                                                                                               Thanh Li&lt;U+1EC7&gt;t, Thanh Trì, Hà N&lt;U+1ED9&gt;i
+## 3                                                                       Khu Công nghi&lt;U+1EC7&gt;p Ð&lt;U+1ED3&gt;ng Van, huy&lt;U+1EC7&gt;n Duy Tiên, t&lt;U+1EC9&gt;nh Hà Nam, Duy Tiên, Hà Nam
+## 4                                                                                       200 Nguy&lt;U+1EC5&gt;n Son, qu&lt;U+1EAD&gt;n Long Biên, Hà N&lt;U+1ED9&gt;i, Ba Ðình, Hà N&lt;U+1ED9&gt;i
+## 5                       Khu v&lt;U+1EF1&gt;c cách li Qu&lt;U+1ED1&gt;c t&lt;U+1EBF&gt; d&lt;U+1EBF&gt;n, Nhà ga Hành khách T2, Sân bay Qu&lt;U+1ED1&gt;c T&lt;U+1EBF&gt; N&lt;U+1ED9&gt;i Bài, Sóc Son, Hà N&lt;U+1ED9&gt;i
+## 6 LK.C09, D&lt;U+1EF1&gt; án Embassy Garden, phu&lt;U+1EDD&gt;ng C&lt;U+1ED5&gt; Nhu&lt;U+1EBF&gt; và Xuân T&lt;U+1EA3&gt;o, qu&lt;U+1EAD&gt;n B&lt;U+1EAF&gt;c T&lt;U+1EEB&gt; Liêm, Hà N&lt;U+1ED9&gt;i, Ba Ðình, Hà N&lt;U+1ED9&gt;i</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách sử dụng <code>R</code> để thu thập dữ liệu từ website với <code>rvest</code>.
+Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>
+</div>
