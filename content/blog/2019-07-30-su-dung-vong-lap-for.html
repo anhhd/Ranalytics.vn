@@ -1,0 +1,97 @@
+---
+title: "Sử dụng vòng lặp for với R"
+author: "Nguyễn Hải Trường"
+date: "2019-07-30"
+categories:
+  - data-manipulation
+tags:
+  - loop
+summary: "Cách sử dụng vòng lặp for"
+banner: "img/banners/banner-48.png"
+---
+
+
+
+<p>Trong quá trình phân tích dữ liệu thực tế, chúng ta sẽ có thể phải sử dụng <strong>vòng lặp</strong> (loop) đối với những bước tính toán hoặc thao tác mà được lặp đi lặp lại nhiều lần.
+Trong bài viết này, <code>RAnalytics</code> sẽ chia sẻ với các bạn cách sử dụng vòng lặp <strong>for</strong> trong <code>R</code>.</p>
+<p><strong>Cấu trúc</strong> của vòng lặp <strong>for</strong> như sau:</p>
+<blockquote>
+<p>for (value in sequence) {</p>
+<p>statement</p>
+<p>}</p>
+</blockquote>
+<p><strong>Ví dụ 1</strong>: Vòng lặp for đơn giản</p>
+<pre class="r"><code>for(i in 2010:2019) {
+  output &lt;- paste(&quot;The year is&quot;, i)
+  print(output)
+}</code></pre>
+<pre><code>## [1] &quot;The year is 2010&quot;
+## [1] &quot;The year is 2011&quot;
+## [1] &quot;The year is 2012&quot;
+## [1] &quot;The year is 2013&quot;
+## [1] &quot;The year is 2014&quot;
+## [1] &quot;The year is 2015&quot;
+## [1] &quot;The year is 2016&quot;
+## [1] &quot;The year is 2017&quot;
+## [1] &quot;The year is 2018&quot;
+## [1] &quot;The year is 2019&quot;</code></pre>
+<p><strong>Ví dụ 2</strong>:</p>
+<p>Sử dụng vòng lặp thực hiện so sánh ANOVA lần lượt <code>Sepal.Length</code>, <code>Sepal.Width</code>, <code>Petal.Length</code>, <code>Petal.Width</code> giữa các loài hoa (<code>Species</code>)</p>
+<pre class="r"><code>library(dplyr)
+for (i in c(1:4)){
+  df &lt;- iris %&gt;% select(i, Species)
+  # Hiện thị công thức mô tả mối quan hệ giữa 2 biến
+  formula.aov &lt;- paste(names(df)[1], names(df)[2], sep = &quot;~&quot;) 
+  print(formula.aov)
+  aov(formula(formula.aov), df) %&gt;% TukeyHSD %&gt;% print # ANOVA
+}</code></pre>
+<pre><code>## [1] &quot;Sepal.Length~Species&quot;
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = formula(formula.aov), data = df)
+## 
+## $Species
+##                       diff       lwr       upr p adj
+## versicolor-setosa    0.930 0.6862273 1.1737727     0
+## virginica-setosa     1.582 1.3382273 1.8257727     0
+## virginica-versicolor 0.652 0.4082273 0.8957727     0
+## 
+## [1] &quot;Sepal.Width~Species&quot;
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = formula(formula.aov), data = df)
+## 
+## $Species
+##                        diff         lwr        upr     p adj
+## versicolor-setosa    -0.658 -0.81885528 -0.4971447 0.0000000
+## virginica-setosa     -0.454 -0.61485528 -0.2931447 0.0000000
+## virginica-versicolor  0.204  0.04314472  0.3648553 0.0087802
+## 
+## [1] &quot;Petal.Length~Species&quot;
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = formula(formula.aov), data = df)
+## 
+## $Species
+##                       diff     lwr     upr p adj
+## versicolor-setosa    2.798 2.59422 3.00178     0
+## virginica-setosa     4.090 3.88622 4.29378     0
+## virginica-versicolor 1.292 1.08822 1.49578     0
+## 
+## [1] &quot;Petal.Width~Species&quot;
+##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = formula(formula.aov), data = df)
+## 
+## $Species
+##                      diff       lwr       upr p adj
+## versicolor-setosa    1.08 0.9830903 1.1769097     0
+## virginica-setosa     1.78 1.6830903 1.8769097     0
+## virginica-versicolor 0.70 0.6030903 0.7969097     0</code></pre>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách sử dụng vòng lặp for với <code>R</code>.
+Chúc các bạn học tập và làm việc hiệu quả với <code>RAnalytics.vn</code>!</p>

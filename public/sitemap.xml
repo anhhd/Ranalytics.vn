@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/2019/07/30/2019-07-30-su-dung-vong-lap-for/</loc>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/2019/07/15/2019-07-15-thu-thap-du-lieu-tu-website-voi-rvest/</loc>
     <lastmod>2019-07-15T00:00:00+00:00</lastmod>
   </url>
@@ -234,7 +239,7 @@
   
   <url>
     <loc>/blog/</loc>
-    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -281,7 +286,7 @@
   
   <url>
     <loc>/categories/data-manipulation/</loc>
-    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -354,6 +359,12 @@
   </url>
   
   <url>
+    <loc>/tags/loop/</loc>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/hoc-vien-tot-nghiep/</loc>
   </url>
   
@@ -377,7 +388,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
