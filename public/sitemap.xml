@@ -253,13 +253,13 @@
   </url>
   
   <url>
-    <loc>/categories/cloud-computing/</loc>
+    <loc>/tags/cloud-computing/</loc>
     <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/cloud-computing/</loc>
+    <loc>/categories/cloud-computing/</loc>
     <lastmod>2018-08-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -273,13 +273,13 @@
   </url>
   
   <url>
-    <loc>/categories/data-import/</loc>
+    <loc>/tags/data-import/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/data-import/</loc>
+    <loc>/categories/data-import/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -291,13 +291,13 @@
   </url>
   
   <url>
-    <loc>/categories/data-science/</loc>
+    <loc>/tags/data-science/</loc>
     <lastmod>2019-05-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/data-science/</loc>
+    <loc>/categories/data-science/</loc>
     <lastmod>2019-05-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -449,13 +449,13 @@
   </url>
   
   <url>
-    <loc>/categories/tips/</loc>
+    <loc>/tags/tips/</loc>
     <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/tips/</loc>
+    <loc>/categories/tips/</loc>
     <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
