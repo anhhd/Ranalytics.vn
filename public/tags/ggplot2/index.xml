@@ -6,10 +6,20 @@
     <description>Recent content in Ggplot2 on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sử dụng ggplot2 bằng cách kéo thả</title>
+      <link>/blog/2019/08/15/2019-08-15-bi-self-service-ggplot2/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/08/15/2019-08-15-bi-self-service-ggplot2/</guid>
+      <description>Ở loạt bài viết trước, chúng ta đã học và sử dụng cách ứng dụng ggplot2 thông qua việc viết các câu lệnh với R.Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn trực quan hóa dữ liệu bằng cách kéo thả trong R bằng việc sử dụng ggplot2 builder addin - esquisse.
+Đầu tiên, các bạn cần tải package esquisse về bằng câu lệnh install.packages(&#34;esquisse&#34;).Sau khi đã tải được package trên về, các bạn sử dụng câu lệnh sau: esquisse::esquisser().</description>
+    </item>
     
     <item>
       <title>Xây dựng phễu bán hàng với ggplot2</title>
