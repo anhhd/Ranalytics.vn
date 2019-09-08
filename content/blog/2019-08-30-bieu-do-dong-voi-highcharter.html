@@ -1,0 +1,141 @@
+---
+title: "Vẽ biểu đồ động với highcharter"
+author: "Nguyễn Hải Trường"
+date: "2019-08-30"
+categories:
+  - data-vizualization
+tags:
+  - ggplot2
+summary: "Vẽ biểu đồ động với highcharter"
+banner: "img/banners/banner-50.png"
+---
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/pymjs/pym.v1.js"></script>
+<script src="/rmarkdown-libs/widgetframe-binding/widgetframe.js"></script>
+
+
+<p>Trong bài viết này, <code>RAnalytics</code> sẽ hướng dẫn các bạn cách vẽ biểu đồ động sử dụng package <strong>highcharter</strong>.</p>
+<p>Chúng ta sẽ sử dụng dữ liệu <code>gapminder</code> trong package <strong>gapminder</strong>.</p>
+<pre class="r"><code># Dữ liệu
+data(gapminder, package = &quot;gapminder&quot;)
+
+library(dplyr)
+# Summary dữ liệu
+gapminder %&gt;% summary</code></pre>
+<pre><code>##         country        continent        year         lifeExp     
+##  Afghanistan:  12   Africa  :624   Min.   :1952   Min.   :23.60  
+##  Albania    :  12   Americas:300   1st Qu.:1966   1st Qu.:48.20  
+##  Algeria    :  12   Asia    :396   Median :1980   Median :60.71  
+##  Angola     :  12   Europe  :360   Mean   :1980   Mean   :59.47  
+##  Argentina  :  12   Oceania : 24   3rd Qu.:1993   3rd Qu.:70.85  
+##  Australia  :  12                  Max.   :2007   Max.   :82.60  
+##  (Other)    :1632                                                
+##       pop              gdpPercap       
+##  Min.   :6.001e+04   Min.   :   241.2  
+##  1st Qu.:2.794e+06   1st Qu.:  1202.1  
+##  Median :7.024e+06   Median :  3531.8  
+##  Mean   :2.960e+07   Mean   :  7215.3  
+##  3rd Qu.:1.959e+07   3rd Qu.:  9325.5  
+##  Max.   :1.319e+09   Max.   :113523.1  
+## </code></pre>
+<p>Giả sử, chúng ta muốn vẽ biểu đồ thể hiện trung bình GDP bình quân đầu người (<code>gdpPercap</code>) của từng châu lục (<code>continent</code>) theo từng các năm (<code>year</code>).</p>
+<pre class="r"><code># Tính toán GDP bình quân đầu người theo châu lục theo từng năm
+data &lt;- gapminder %&gt;% 
+  group_by(year, continent) %&gt;% 
+  summarise(gdp_per_cap = mean(gdpPercap) %&gt;% round(0))
+
+data %&gt;% head(10)</code></pre>
+<pre><code>## # A tibble: 10 x 3
+## # Groups:   year [2]
+##     year continent gdp_per_cap
+##    &lt;int&gt; &lt;fct&gt;           &lt;dbl&gt;
+##  1  1952 Africa           1253
+##  2  1952 Americas         4079
+##  3  1952 Asia             5195
+##  4  1952 Europe           5661
+##  5  1952 Oceania         10298
+##  6  1957 Africa           1385
+##  7  1957 Americas         4616
+##  8  1957 Asia             5788
+##  9  1957 Europe           6963
+## 10  1957 Oceania         11599</code></pre>
+<pre class="r"><code># Biến đổi dữ liệu từ dạng dọc sang ngang
+library(tidyr)
+data_new &lt;- data %&gt;% 
+  spread(continent, gdp_per_cap)
+
+data_new %&gt;% head(10)</code></pre>
+<pre><code>## # A tibble: 10 x 6
+## # Groups:   year [10]
+##     year Africa Americas  Asia Europe Oceania
+##    &lt;int&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1  1952   1253     4079  5195   5661   10298
+##  2  1957   1385     4616  5788   6963   11599
+##  3  1962   1598     4902  5729   8365   12696
+##  4  1967   2050     5668  5971  10144   14495
+##  5  1972   2340     6491  8187  12480   16417
+##  6  1977   2586     7352  7791  14284   17284
+##  7  1982   2482     7507  7434  15618   18555
+##  8  1987   2283     7793  7608  17214   20448
+##  9  1992   2282     8045  8640  17062   20894
+## 10  1997   2379     8889  9834  19077   24024</code></pre>
+<pre class="r"><code># Create interactive line chart
+library(highcharter)
+
+# Tạo biểu đồ
+h &lt;- highchart() %&gt;% 
+  # Thêm trục X (year)
+  hc_xAxis(categories = data_new$year) %&gt;% 
+  # Thêm các đường line (GDP bình quân của các châu lục)
+  hc_add_series(name = &quot;Africa&quot;, 
+                data = data_new$Africa
+                ) %&gt;% 
+  hc_add_series(name = &quot;Americas&quot;, 
+                data = data_new$Americas
+                ) %&gt;% 
+  hc_add_series(name = &quot;Asia&quot;, 
+                data = data_new$Asia
+                ) %&gt;% 
+  hc_add_series(name = &quot;Europe&quot;, 
+                data = data_new$Europe
+                ) %&gt;% 
+  hc_add_series(name = &quot;Oceania&quot;, 
+                data = data_new$Oceania
+                ) %&gt;% 
+  hc_colors(c(&quot;darkgreen&quot;, &quot;darkred&quot;, &quot;steelblue&quot;, &quot;gray&quot;, &quot;orange&quot;))</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:480px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"url":"/blog/2019-08-30-bieu-do-dong-voi-highcharter_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code># Customize biểu đồ
+h1 &lt;- h %&gt;%
+  # Add tên tiêu đề
+  hc_title(text = &quot;Average of GDP per capital by Country&quot;,
+           margin = 20, 
+           align = &quot;left&quot;,
+           style = list(color = &quot;black&quot;, fontWeight = &quot;bold&quot;)
+           ) %&gt;% 
+  # Add subtitle
+  hc_subtitle(text = &quot;1952 to 2007&quot;,
+              align = &quot;left&quot;) %&gt;% 
+  # Add caption
+  hc_credits(enabled = T, # add caption
+             text = &quot;Gapminder Data&quot;,
+             href = &quot;http://gapminder.com&quot;) %&gt;% 
+  # Add chú giải
+  hc_legend(align = &quot;right&quot;,
+            verticalAlign = &quot;top&quot;,
+            layout = &quot;vertical&quot;,
+            x = 0, 
+            y = 100
+            ) %&gt;%
+  # Add đường so sánh
+  hc_tooltip(crosshairs = TRUE, 
+             backgroundColor = &quot;#FCFFC5&quot;,
+             shared = TRUE, 
+             borderWidth = 4)</code></pre>
+<div id="htmlwidget-2" style="width:100%;height:480px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"url":"/blog/2019-08-30-bieu-do-dong-voi-highcharter_files/figure-html//widgets/widget_unnamed-chunk-7.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<p> </p>
+<p>Chúng ta thấy dù không có thêm giá trị GDP lên biểu đồ, nhưng nếu muốn xem giá trị GDP của từng châu lục theo các năm chúng ta cũng có thể xem được bằng cách di chuột đến vùng tương ứng - rất thuận tiện và trực quan.</p>
+<hr />
+<p>Như vậy, chúng ta đã vừa được học cách vẽ biểu đồ động với <strong>highcharter</strong>. Chúc các bạn học tập và làm việc hiệu quả với <code>Ranalytics.vn</code>!</p>

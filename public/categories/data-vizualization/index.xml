@@ -6,10 +6,21 @@
     <description>Recent content in Data Vizualization on Ranalytics.vn - Từ phân tích đến quyết định</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-vizualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vẽ biểu đồ động với highcharter</title>
+      <link>/blog/2019/08/30/2019-08-30-bieu-do-dong-voi-highcharter/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2019/08/30/2019-08-30-bieu-do-dong-voi-highcharter/</guid>
+      <description>Trong bài viết này, RAnalytics sẽ hướng dẫn các bạn cách vẽ biểu đồ động sử dụng package highcharter.
+Chúng ta sẽ sử dụng dữ liệu gapminder trong package gapminder.
+# Dữ liệudata(gapminder, package = &amp;quot;gapminder&amp;quot;)library(dplyr)# Summary dữ liệugapminder %&amp;gt;% summary## country continent year lifeExp ## Afghanistan: 12 Africa :624 Min. :1952 Min. :23.60 ## Albania : 12 Americas:300 1st Qu.:1966 1st Qu.</description>
+    </item>
     
     <item>
       <title>Sử dụng ggplot2 bằng cách kéo thả</title>
